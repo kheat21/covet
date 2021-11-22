@@ -20,10 +20,9 @@ struct CovetItem: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: getSize(), height: getSize())
+//                        .frame(width: getSize(), height: getSize())
                 }
                 .cornerRadius(0) // Necessary for working
-                .frame(width: getSize(), height: getSize())
                 .border(Color.green, width: 8)
             },
             placeholder: {

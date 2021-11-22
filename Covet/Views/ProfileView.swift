@@ -26,21 +26,19 @@ struct ProfileView: View {
             CovetItem(url: items[0])
                 .frame(width: nil, height: 250, alignment: Alignment.center)
             ScrollView {
-                LazyVGrid(columns: gridItems) {
-                    ForEach(items, id: \.self) { item in
-                        CovetItem(url: item)
-                            .padding(8)
-                            .background(colors[0])
-                            .frame(width: nil, height: 100, alignment: Alignment.center)
+                LazyVGrid(columns: gridItems, spacing: 20) {
+                    ForEach((0...2), id: \.self) {
+                        CovetItem(url: items[$0])
+                            .font(.system(size: 30))
+                            .frame(minWidth: 50, maxWidth: .infinity, minHeight: 150, maxHeight: 250)
+                            .background(colors[$0 % colors.count])
+                            .cornerRadius(10)
                     }
                 }
             }
         }
-        .toolbar {
-            Button("Help") {
-                print("Help tapped!")
-            }
-        }
+        
+        
     }
 }
 
