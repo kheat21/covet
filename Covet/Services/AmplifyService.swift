@@ -15,7 +15,12 @@ class AmplifyService: NSObject, ObservableObject {
     
     @Published var isConfigured: Bool = false;
     
+    init(defaultIsConfiguredValue: Bool = false) {
+        self.isConfigured = defaultIsConfiguredValue;
+    }
+    
     static let shared = AmplifyService()
+    static let mocked = AmplifyService(defaultIsConfiguredValue: true)
     
     func configureAmplify() {
         let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())

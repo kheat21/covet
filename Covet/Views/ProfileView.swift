@@ -36,6 +36,11 @@ struct ProfileView: View {
                 }
             }
         }
+        .toolbar {
+            Button("Help") {
+                print("Help tapped!")
+            }
+        }
     }
 }
 

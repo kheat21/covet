@@ -48,6 +48,7 @@
 		EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308C274C2FF4004395CA /* AmplifyService.swift */; };
 		EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308F274C3620004395CA /* ContentViewDataModel.swift */; };
 		EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453091274C3C9C004395CA /* SigninViewController.swift */; };
+		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		EB45308C274C2FF4004395CA /* AmplifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyService.swift; sourceTree = "<group>"; };
 		EB45308F274C3620004395CA /* ContentViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDataModel.swift; sourceTree = "<group>"; };
 		EB453091274C3C9C004395CA /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		EB453042274BF993004395CA /* Covet */ = {
 			isa = PBXGroup;
 			children = (
+				EB453093274C41D2004395CA /* Classes */,
 				EB45308E274C3612004395CA /* Data Models */,
 				EB453087274C26E8004395CA /* Services */,
 				EB453086274C26C6004395CA /* Info.plist */,
@@ -272,6 +275,14 @@
 				EB45308F274C3620004395CA /* ContentViewDataModel.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		EB453093274C41D2004395CA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EB453094274C41DE004395CA /* CovetUser.swift.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
+				EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,

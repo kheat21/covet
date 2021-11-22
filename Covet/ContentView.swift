@@ -62,6 +62,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(amplifyService: AmplifyService.shared, authService: AuthService.shared)
+        ContentView(
+            amplifyService: AmplifyService.mocked,
+            authService: AuthService.mockedLoggedIn
+        )
     }
 }

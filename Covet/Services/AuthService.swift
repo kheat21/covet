@@ -14,7 +14,20 @@ class AuthService: NSObject, ObservableObject {
     
     @Published var isLoggedIn: Bool = false;
     
-    static let shared = AuthService()
+    private var _mockedLoginState: Bool? = nil;
+    private var _mockedUser: CovetUser? = nil;
+    
+    init(mockedLoginState: Bool?, mockedUser: CovetUser? = nil) {
+        self._mockedLoginState = mockedLoginState;
+        self._mockedUser = mockedUser;
+        if(mockedLoginState != nil) {
+            isLoggedIn = mockedLoginState!;
+        }
+    }
+    
+    static let shared = AuthService(mockedLoginState: nil, mockedUser: nil)
+    static let mockedLoggedIn = AuthService(mockedLoginState: true, mockedUser: CovetUser.mockedSample1)
+    static let mockedLoggedOut = AuthService(mockedLoginState: false, mockedUser: nil)
     
     private var window: UIWindow {
         guard
@@ -51,6 +64,19 @@ class AuthService: NSObject, ObservableObject {
                     print("Fetch session failed with error \(error)")
                     self.isLoggedIn = false
             }
+        }
+    }
+    
+    func getUser() -> CovetUser? {
+        if self._mockedUser != nil {
+            return self._mockedUser;
+        } else if let currentAmplifyUser = Amplify.Auth.getCurrentUser() {
+            return CovetUser(
+                amplifyUserId: currentAmplifyUser.userId,
+                username: currentAmplifyUser.username
+            )
+        } else {
+            return nil
         }
     }
     
