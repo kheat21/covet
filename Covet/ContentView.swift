@@ -9,8 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            
+            TabView {
+                FeedView()
+                    .tabItem {
+                        Label("Feed", systemImage: "list.dash")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.fill")
+                    }
+            }.toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("Covet_Logo_BW")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: nil, height: 20, alignment: Alignment.center)
+                }
+            }
+        }
+       
     }
 }
 

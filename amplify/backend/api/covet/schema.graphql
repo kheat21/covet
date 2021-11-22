@@ -1,0 +1,65 @@
+enum RelationshipStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+enum RelationshipTier {
+  FOLLOWING
+  FRIENDS
+}
+
+type UserRelationship @model @key(name: "byUser", fields: ["userID"]) @auth(rules: [{allow: owner}]) {
+  id: ID!
+  user: User @connection
+  friend: User @connection
+  tier: RelationshipTier
+  status: RelationshipStatus
+  userID: ID
+}
+
+type User @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  amplify_auth_id: String!
+  covets: [Covets] @connection(keyName: "byUser", fields: ["id"])
+  handle: String!
+  name: String!
+  bio: String
+  birthday: AWSDate
+  address: String
+  UserRelationships: [UserRelationship] @connection(keyName: "byUser", fields: ["id"])
+}
+
+type ReportCovet @model @auth(rules: [{allow: public, operations: [create]}]) {
+  id: ID!
+  complaint: String
+  covets: Covets @connection
+}
+
+type ReportUser @model @auth(rules: [{allow: public, operations: [create]}]) {
+  id: ID!
+  User: UserRelationship @connection
+  complaint: String
+}
+
+type Product @model @key(name: "byCovets", fields: ["covetsID"]) @auth(rules: [{allow: owner}]) {
+  id: ID!
+  type: ProductType
+  link: AWSURL
+  image: String
+  covetsID: ID
+}
+
+enum ProductType {
+  LINK
+  IMAGE
+}
+
+type Covets @model @key(name: "byUser", fields: ["userID"]) @auth(rules: [{allow: owner}]) {
+  id: ID!
+  userID: ID
+  Products: [Product] @connection(keyName: "byCovets", fields: ["id"])
+  public_message: String
+  private_message: String
+}
+ 
