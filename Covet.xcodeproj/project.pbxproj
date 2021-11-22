@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB453044274BF993004395CA /* CovetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453043274BF993004395CA /* CovetApp.swift */; };
+		EB453046274BF993004395CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453045274BF993004395CA /* ContentView.swift */; };
+		EB453048274BF995004395CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
+		EB45304B274BF995004395CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB45304A274BF995004395CA /* Preview Assets.xcassets */; };
+		EB453055274BF995004395CA /* CovetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453054274BF995004395CA /* CovetTests.swift */; };
+		EB45305F274BF995004395CA /* CovetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45305E274BF995004395CA /* CovetUITests.swift */; };
+		EB453061274BF995004395CA /* CovetUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453060274BF995004395CA /* CovetUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB453051274BF995004395CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB453038274BF993004395CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB45303F274BF993004395CA;
+			remoteInfo = Covet;
+		};
+		EB45305B274BF995004395CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB453038274BF993004395CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB45303F274BF993004395CA;
+			remoteInfo = Covet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EB453040274BF993004395CA /* Covet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB453043274BF993004395CA /* CovetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetApp.swift; sourceTree = "<group>"; };
+		EB453045274BF993004395CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB453047274BF995004395CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB45304A274BF995004395CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EB453050274BF995004395CA /* CovetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB453054274BF995004395CA /* CovetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetTests.swift; sourceTree = "<group>"; };
+		EB45305A274BF995004395CA /* CovetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB45305E274BF995004395CA /* CovetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUITests.swift; sourceTree = "<group>"; };
+		EB453060274BF995004395CA /* CovetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB45303D274BF993004395CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB45304D274BF995004395CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB453057274BF995004395CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB453037274BF993004395CA = {
+			isa = PBXGroup;
+			children = (
+				EB453042274BF993004395CA /* Covet */,
+				EB453053274BF995004395CA /* CovetTests */,
+				EB45305D274BF995004395CA /* CovetUITests */,
+				EB453041274BF993004395CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB453041274BF993004395CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB453040274BF993004395CA /* Covet.app */,
+				EB453050274BF995004395CA /* CovetTests.xctest */,
+				EB45305A274BF995004395CA /* CovetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB453042274BF993004395CA /* Covet */ = {
+			isa = PBXGroup;
+			children = (
+				EB453043274BF993004395CA /* CovetApp.swift */,
+				EB453045274BF993004395CA /* ContentView.swift */,
+				EB453047274BF995004395CA /* Assets.xcassets */,
+				EB453049274BF995004395CA /* Preview Content */,
+			);
+			path = Covet;
+			sourceTree = "<group>";
+		};
+		EB453049274BF995004395CA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EB45304A274BF995004395CA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB453053274BF995004395CA /* CovetTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB453054274BF995004395CA /* CovetTests.swift */,
+			);
+			path = CovetTests;
+			sourceTree = "<group>";
+		};
+		EB45305D274BF995004395CA /* CovetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB45305E274BF995004395CA /* CovetUITests.swift */,
+				EB453060274BF995004395CA /* CovetUITestsLaunchTests.swift */,
+			);
+			path = CovetUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB45303F274BF993004395CA /* Covet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB453064274BF995004395CA /* Build configuration list for PBXNativeTarget "Covet" */;
+			buildPhases = (
+				EB45303C274BF993004395CA /* Sources */,
+				EB45303D274BF993004395CA /* Frameworks */,
+				EB45303E274BF993004395CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Covet;
+			productName = Covet;
+			productReference = EB453040274BF993004395CA /* Covet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB45304F274BF995004395CA /* CovetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB453067274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetTests" */;
+			buildPhases = (
+				EB45304C274BF995004395CA /* Sources */,
+				EB45304D274BF995004395CA /* Frameworks */,
+				EB45304E274BF995004395CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB453052274BF995004395CA /* PBXTargetDependency */,
+			);
+			name = CovetTests;
+			productName = CovetTests;
+			productReference = EB453050274BF995004395CA /* CovetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EB453059274BF995004395CA /* CovetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB45306A274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetUITests" */;
+			buildPhases = (
+				EB453056274BF995004395CA /* Sources */,
+				EB453057274BF995004395CA /* Frameworks */,
+				EB453058274BF995004395CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB45305C274BF995004395CA /* PBXTargetDependency */,
+			);
+			name = CovetUITests;
+			productName = CovetUITests;
+			productReference = EB45305A274BF995004395CA /* CovetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB453038274BF993004395CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					EB45303F274BF993004395CA = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					EB45304F274BF995004395CA = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = EB45303F274BF993004395CA;
+					};
+					EB453059274BF995004395CA = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = EB45303F274BF993004395CA;
+					};
+				};
+			};
+			buildConfigurationList = EB45303B274BF993004395CA /* Build configuration list for PBXProject "Covet" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB453037274BF993004395CA;
+			productRefGroup = EB453041274BF993004395CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB45303F274BF993004395CA /* Covet */,
+				EB45304F274BF995004395CA /* CovetTests */,
+				EB453059274BF995004395CA /* CovetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB45303E274BF993004395CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB45304B274BF995004395CA /* Preview Assets.xcassets in Resources */,
+				EB453048274BF995004395CA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB45304E274BF995004395CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB453058274BF995004395CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB45303C274BF993004395CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB453046274BF993004395CA /* ContentView.swift in Sources */,
+				EB453044274BF993004395CA /* CovetApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB45304C274BF995004395CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB453055274BF995004395CA /* CovetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB453056274BF995004395CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB453061274BF995004395CA /* CovetUITestsLaunchTests.swift in Sources */,
+				EB45305F274BF995004395CA /* CovetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB453052274BF995004395CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB45303F274BF993004395CA /* Covet */;
+			targetProxy = EB453051274BF995004395CA /* PBXContainerItemProxy */;
+		};
+		EB45305C274BF995004395CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB45303F274BF993004395CA /* Covet */;
+			targetProxy = EB45305B274BF995004395CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EB453062274BF995004395CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB453063274BF995004395CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB453065274BF995004395CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.Covet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB453066274BF995004395CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.Covet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB453068274BF995004395CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.CovetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Covet.app/Covet";
+			};
+			name = Debug;
+		};
+		EB453069274BF995004395CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.CovetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Covet.app/Covet";
+			};
+			name = Release;
+		};
+		EB45306B274BF995004395CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.CovetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Covet;
+			};
+			name = Debug;
+		};
+		EB45306C274BF995004395CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 844DBNGC2A;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.CovetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Covet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB45303B274BF993004395CA /* Build configuration list for PBXProject "Covet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB453062274BF995004395CA /* Debug */,
+				EB453063274BF995004395CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB453064274BF995004395CA /* Build configuration list for PBXNativeTarget "Covet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB453065274BF995004395CA /* Debug */,
+				EB453066274BF995004395CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB453067274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB453068274BF995004395CA /* Debug */,
+				EB453069274BF995004395CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB45306A274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB45306B274BF995004395CA /* Debug */,
+				EB45306C274BF995004395CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB453038274BF993004395CA /* Project object */;
+}
