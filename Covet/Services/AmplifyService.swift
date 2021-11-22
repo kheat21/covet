@@ -1,0 +1,35 @@
+//
+//  AmplifyService.swift
+//  Covet
+//
+//  Created by Brendan Manning on 11/22/21.
+//
+
+import Foundation
+
+import Amplify
+import AWSCognitoAuthPlugin
+import AWSDataStorePlugin
+
+class AmplifyService: NSObject, ObservableObject {
+    
+    @Published var isConfigured: Bool = false;
+    
+    static let shared = AmplifyService()
+    
+    func configureAmplify() {
+        let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+        let authenticationPlugin = AWSCognitoAuthPlugin()
+        do {
+            try Amplify.add(plugin: dataStorePlugin)
+            try Amplify.add(plugin: authenticationPlugin)
+            try Amplify.configure()
+            print("Initialized Amplify");
+            self.isConfigured = true;
+            AuthService.shared.listen()
+        } catch {
+            // simplified error handling for the tutorial
+            print("Could not initialize Amplify: \(error)")
+        }
+    }
+}

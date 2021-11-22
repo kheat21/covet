@@ -42,6 +42,12 @@
 		EB45307F274C2514004395CA /* AWSDataStorePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = EB45307E274C2514004395CA /* AWSDataStorePlugin */; };
 		EB453081274C2514004395CA /* AWSS3StoragePlugin in Frameworks */ = {isa = PBXBuildFile; productRef = EB453080274C2514004395CA /* AWSS3StoragePlugin */; };
 		EB453083274C2514004395CA /* Amplify in Frameworks */ = {isa = PBXBuildFile; productRef = EB453082274C2514004395CA /* Amplify */; };
+		EB453085274C2631004395CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453084274C2631004395CA /* AppDelegate.swift */; };
+		EB453089274C26F2004395CA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453088274C26F2004395CA /* AuthService.swift */; };
+		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
+		EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308C274C2FF4004395CA /* AmplifyService.swift */; };
+		EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308F274C3620004395CA /* ContentViewDataModel.swift */; };
+		EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453091274C3C9C004395CA /* SigninViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,21 +68,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2574AB8CC4EE6DEC4FAAA6B7 /* RelationshipTier.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = RelationshipTier.swift; path = amplify/generated/models/RelationshipTier.swift; sourceTree = "<group>"; };
-		35CE91CE9D1117ED43761F7D /* ReportUser.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = ReportUser.swift; path = amplify/generated/models/ReportUser.swift; sourceTree = "<group>"; };
-		40E7AA3972035E42D8E142B9 /* Product.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Product.swift; path = amplify/generated/models/Product.swift; sourceTree = "<group>"; };
-		5FF46F849DF2C4E250A99B8B /* Product+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "Product+Schema.swift"; path = "amplify/generated/models/Product+Schema.swift"; sourceTree = "<group>"; };
-		675B1FE40C675E286EE47712 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
-		8DDCAE2890947B1A294E7A59 /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
-		9100FD68274F38C18F37221A /* ReportCovet.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = ReportCovet.swift; path = amplify/generated/models/ReportCovet.swift; sourceTree = "<group>"; };
-		A6829C311BD5B5B6E678B6F8 /* ProductType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = ProductType.swift; path = amplify/generated/models/ProductType.swift; sourceTree = "<group>"; };
-		B358DB06397DDB7F5CA70811 /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
-		BE6F15521276903F8BB44B0F /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = amplifyconfiguration.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		C59806E4ADD80C2978B9B8DB /* Covets.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Covets.swift; path = amplify/generated/models/Covets.swift; sourceTree = "<group>"; };
-		C65525AB4F134DF650659588 /* ReportCovet+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "ReportCovet+Schema.swift"; path = "amplify/generated/models/ReportCovet+Schema.swift"; sourceTree = "<group>"; };
-		C66F42F43706521A1728016C /* ReportUser+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "ReportUser+Schema.swift"; path = "amplify/generated/models/ReportUser+Schema.swift"; sourceTree = "<group>"; };
-		E0198B73F0B35769E6531214 /* UserRelationship.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = UserRelationship.swift; path = amplify/generated/models/UserRelationship.swift; sourceTree = "<group>"; };
-		E529D6BF8A9F76730EA3A24A /* RelationshipStatus.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = RelationshipStatus.swift; path = amplify/generated/models/RelationshipStatus.swift; sourceTree = "<group>"; };
+		2574AB8CC4EE6DEC4FAAA6B7 /* RelationshipTier.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = RelationshipTier.swift; path = amplify/generated/models/RelationshipTier.swift; sourceTree = "<group>"; };
+		35CE91CE9D1117ED43761F7D /* ReportUser.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ReportUser.swift; path = amplify/generated/models/ReportUser.swift; sourceTree = "<group>"; };
+		40E7AA3972035E42D8E142B9 /* Product.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Product.swift; path = amplify/generated/models/Product.swift; sourceTree = "<group>"; };
+		5FF46F849DF2C4E250A99B8B /* Product+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Product+Schema.swift"; path = "amplify/generated/models/Product+Schema.swift"; sourceTree = "<group>"; };
+		675B1FE40C675E286EE47712 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		8DDCAE2890947B1A294E7A59 /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
+		9100FD68274F38C18F37221A /* ReportCovet.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ReportCovet.swift; path = amplify/generated/models/ReportCovet.swift; sourceTree = "<group>"; };
+		A6829C311BD5B5B6E678B6F8 /* ProductType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ProductType.swift; path = amplify/generated/models/ProductType.swift; sourceTree = "<group>"; };
+		B358DB06397DDB7F5CA70811 /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
+		BE6F15521276903F8BB44B0F /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		C59806E4ADD80C2978B9B8DB /* Covets.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Covets.swift; path = amplify/generated/models/Covets.swift; sourceTree = "<group>"; };
+		C65525AB4F134DF650659588 /* ReportCovet+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "ReportCovet+Schema.swift"; path = "amplify/generated/models/ReportCovet+Schema.swift"; sourceTree = "<group>"; };
+		C66F42F43706521A1728016C /* ReportUser+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "ReportUser+Schema.swift"; path = "amplify/generated/models/ReportUser+Schema.swift"; sourceTree = "<group>"; };
+		E0198B73F0B35769E6531214 /* UserRelationship.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = UserRelationship.swift; path = amplify/generated/models/UserRelationship.swift; sourceTree = "<group>"; };
+		E529D6BF8A9F76730EA3A24A /* RelationshipStatus.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = RelationshipStatus.swift; path = amplify/generated/models/RelationshipStatus.swift; sourceTree = "<group>"; };
 		EB453040274BF993004395CA /* Covet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB453043274BF993004395CA /* CovetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetApp.swift; sourceTree = "<group>"; };
 		EB453045274BF993004395CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,9 +98,16 @@
 		EB453073274BF9DF004395CA /* CovetC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetC.swift; sourceTree = "<group>"; };
 		EB453075274BFEA4004395CA /* CovetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetItem.swift; sourceTree = "<group>"; };
 		EB453077274C16C2004395CA /* UserPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreview.swift; sourceTree = "<group>"; };
-		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
-		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
-		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = awsconfiguration.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		EB453084274C2631004395CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB453086274C26C6004395CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EB453088274C26F2004395CA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EB45308C274C2FF4004395CA /* AmplifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyService.swift; sourceTree = "<group>"; };
+		EB45308F274C3620004395CA /* ContentViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDataModel.swift; sourceTree = "<group>"; };
+		EB453091274C3C9C004395CA /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
+		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
+		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,12 +197,18 @@
 		EB453042274BF993004395CA /* Covet */ = {
 			isa = PBXGroup;
 			children = (
+				EB45308E274C3612004395CA /* Data Models */,
+				EB453087274C26E8004395CA /* Services */,
+				EB453086274C26C6004395CA /* Info.plist */,
 				EB453072274BF9CF004395CA /* Components */,
 				EB453071274BF9C3004395CA /* Views */,
+				EB453084274C2631004395CA /* AppDelegate.swift */,
 				EB453043274BF993004395CA /* CovetApp.swift */,
 				EB453045274BF993004395CA /* ContentView.swift */,
 				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
+				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
+				EB453091274C3C9C004395CA /* SigninViewController.swift */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -236,6 +255,23 @@
 				EB453077274C16C2004395CA /* UserPreview.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EB453087274C26E8004395CA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EB453088274C26F2004395CA /* AuthService.swift */,
+				EB45308C274C2FF4004395CA /* AmplifyService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EB45308E274C3612004395CA /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				EB45308F274C3620004395CA /* ContentViewDataModel.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,10 +419,14 @@
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
+				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,
 				EB45306E274BF9A6004395CA /* FeedView.swift in Sources */,
 				EB453044274BF993004395CA /* CovetApp.swift in Sources */,
+				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
+				EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */,
+				EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */,
 				50D3C4035AD74166EA5C23F0 /* AmplifyModels.swift in Sources */,
 				098C8A0F3BD2E897D40875C6 /* Covets+Schema.swift in Sources */,
 				9C0C0D93A87F177D43B7786F /* Covets.swift in Sources */,
@@ -397,8 +437,10 @@
 				270D5582118F94676655CBF6 /* RelationshipTier.swift in Sources */,
 				4C5AAB9EB3E9107E3F95FE08 /* ReportCovet+Schema.swift in Sources */,
 				1A5B89358E74D327D7BA1817 /* ReportCovet.swift in Sources */,
+				EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */,
 				3D8E87A1E6E1FD6C8855F5AD /* ReportUser+Schema.swift in Sources */,
 				2DE4868945659BBF49ED3F87 /* ReportUser.swift in Sources */,
+				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				78CFFE95E8D4AB5862266782 /* User+Schema.swift in Sources */,
 				2F43E964B90AC3C097FEEC69 /* User.swift in Sources */,
 				7AA74100EAC51AFC1FFFB914 /* UserRelationship+Schema.swift in Sources */,
@@ -566,6 +608,9 @@
 				DEVELOPMENT_TEAM = 844DBNGC2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Covet/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -595,6 +640,9 @@
 				DEVELOPMENT_TEAM = 844DBNGC2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Covet/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
