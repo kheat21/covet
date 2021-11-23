@@ -49,6 +49,8 @@
 		EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308F274C3620004395CA /* ContentViewDataModel.swift */; };
 		EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453091274C3C9C004395CA /* SigninViewController.swift */; };
 		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
+		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
+		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,8 @@
 		EB45308F274C3620004395CA /* ContentViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDataModel.swift; sourceTree = "<group>"; };
 		EB453091274C3C9C004395CA /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
+		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 		EB453042274BF993004395CA /* Covet */ = {
 			isa = PBXGroup;
 			children = (
+				EBDF21C9274D3E3A008E48E3 /* Structs */,
+				EBDF21C6274D3E1C008E48E3 /* Extensions */,
 				EB453093274C41D2004395CA /* Classes */,
 				EB45308E274C3612004395CA /* Data Models */,
 				EB453087274C26E8004395CA /* Services */,
@@ -283,6 +289,22 @@
 				EB453094274C41DE004395CA /* CovetUser.swift.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		EBDF21C6274D3E1C008E48E3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EBDF21C7274D3E27008E48E3 /* View.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EBDF21C9274D3E3A008E48E3 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */,
+			);
+			path = Structs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,8 +476,10 @@
 				2DE4868945659BBF49ED3F87 /* ReportUser.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				78CFFE95E8D4AB5862266782 /* User+Schema.swift in Sources */,
+				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
 				2F43E964B90AC3C097FEEC69 /* User.swift in Sources */,
 				7AA74100EAC51AFC1FFFB914 /* UserRelationship+Schema.swift in Sources */,
+				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
 				A15B49F30A990EAF886633BF /* UserRelationship.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
