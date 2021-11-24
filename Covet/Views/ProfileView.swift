@@ -23,8 +23,14 @@ struct ProfileView: View {
 
     var body: some View {
         VStack {
-            CovetItem(url: items[0])
-                .frame(width: nil, height: 250, alignment: Alignment.center)
+            CovetSquareZoomedInItem(
+                url: items[0],
+                size: 250,
+                topBorderWidth: 8,
+                leftBorderWidth: 8,
+                bottomBorderWidth: 8,
+                rightBorderWidth: 8
+            )
             ScrollView {
                 LazyVGrid(columns: gridItems, spacing: 0) {
                     ForEach(0..<items.count) { i in
