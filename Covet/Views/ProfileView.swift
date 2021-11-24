@@ -50,53 +50,20 @@ struct ProfileView: View {
         
     }
     
-    
     func getTopBorderWidth(index: Int) -> CGFloat {
-        print("(top) i=" + String(index))
         return 4;
-        if(index < 3) {
-            return 4;
-        } else {
-            return 0; // 4/2;
-        }
     }
     
     func getBottomBorderWidth(index: Int, total: Int) -> CGFloat {
-        
         return index >= total - 3 ? 4 : 0;
-        
-//        print("(bottom) i=" + String(index))
-//        
-//        var count_in_last_row = total % 3
-//        count_in_last_row = count_in_last_row == 0 ? 3 : count_in_last_row
-//        
-//        print("\tcount in last row: " + String(count_in_last_row))
-//        
-//        let minimum_last_row_index = total - count_in_last_row;
-//        
-//        print("\tminimum last row index: " + String(minimum_last_row_index))
-//        
-//        return (index >= minimum_last_row_index) ? 4 : 0;
-        
     }
     
     func getLeftBorderWidth(index: Int) -> CGFloat {
-        print("(left) i=" + String(index))
         return 4;
-        if(index % 3 == 0) {
-            return 4;
-        } else {
-            return 0; //4/2;
-        }
     }
     
     func getRightBorderWidth(index: Int, total: Int) -> CGFloat {
-        print("(right) i=" + String(index))
-        if(index % 3 == 2 || index == total - 1) {
-            return 4;
-        } else {
-            return 0; //4/2;
-        }
+        return (index % 3 == 2 || index == total - 1) ? 4 : 0;
     }
     
 }
