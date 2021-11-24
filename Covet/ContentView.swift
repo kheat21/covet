@@ -81,16 +81,6 @@ struct ContentView: View {
                 }
                 .font(.headline)
                 .accentColor(.green)
-                
-//                .toolbar {
-//                    ToolbarItem(placement: .principal) {
-//                        Image("Covet_Logo_BW")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: nil, height: 20, alignment: Alignment.center)
-//                    }
-//                }
-            
         }
     }
 }
