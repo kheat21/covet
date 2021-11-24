@@ -18,7 +18,7 @@ struct ContentView: View {
     
     @ObservedObject var amplifyService: AmplifyService;
     @ObservedObject var authService: AuthService;
-    
+
     var body: some View {
         if !self.$amplifyService.isConfigured.wrappedValue {
             NavigationView {
@@ -51,6 +51,7 @@ struct ContentView: View {
                     }
                     .tabItem {
                         Label("Feed", systemImage: "list.dash")
+                            .foregroundColor(Color.green)
                     }
                     .tag(0)
                     
@@ -67,15 +68,19 @@ struct ContentView: View {
                                         AuthService.shared.signOut()
                                     }) {
                                         Image(systemName: "ellipsis")
+                                            .foregroundColor(Color.green)
                                     }
                                 }
                             }
                     }
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
+                            .foregroundColor(Color.green)
                     }
                     .tag(1)
                 }
+                .font(.headline)
+                .accentColor(.green)
                 
 //                .toolbar {
 //                    ToolbarItem(placement: .principal) {
