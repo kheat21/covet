@@ -26,14 +26,7 @@ struct ContentView: View {
             }
         }
         else if !self.$authService.isLoggedIn.wrappedValue {
-            NavigationView {
-                VStack {
-                    Text("Need to log in")
-                    Button("Login", action: {
-                        AuthService.shared.socialSignInWithWebUI()
-                    })
-                }
-            }
+            AuthenticationView()
         }
         else {
            
