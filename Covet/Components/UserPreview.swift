@@ -15,8 +15,8 @@ struct UserPreview: View {
     var body: some View {
         HStack {
             CovetC(size: 60)
-                .padding(Edge.Set.leading, 16)
-            CovetItem(url: topItem)
+                .padding(Edge.Set.leading, 0)
+            CovetSquareItem(url: topItem, size: 250)
                 .frame(width: 250, height: 250)
                 .padding(Edge.Set.trailing, 16)
         }

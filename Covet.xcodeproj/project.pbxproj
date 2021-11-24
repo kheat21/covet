@@ -51,6 +51,8 @@
 		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
+		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
+		EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
+		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				EBDF21C7274D3E27008E48E3 /* View.swift */,
+				EBDF21CC274D400B008E48E3 /* Int.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */,
+				EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -464,9 +470,11 @@
 				50D3C4035AD74166EA5C23F0 /* AmplifyModels.swift in Sources */,
 				098C8A0F3BD2E897D40875C6 /* Covets+Schema.swift in Sources */,
 				9C0C0D93A87F177D43B7786F /* Covets.swift in Sources */,
+				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				783299450892712743C10002 /* Product+Schema.swift in Sources */,
 				BFF87878144201B96CC1D46E /* Product.swift in Sources */,
 				ACFB4475823A7A8BE30EA672 /* ProductType.swift in Sources */,
+				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				D68673C79E858691E36112E4 /* RelationshipStatus.swift in Sources */,
 				270D5582118F94676655CBF6 /* RelationshipTier.swift in Sources */,
 				4C5AAB9EB3E9107E3F95FE08 /* ReportCovet+Schema.swift in Sources */,
@@ -647,7 +655,6 @@
 				INFOPLIST_FILE = Covet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -679,7 +686,6 @@
 				INFOPLIST_FILE = Covet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -53,6 +53,17 @@ class AuthService: NSObject, ObservableObject {
         }
     }
 
+    func signOut() {
+        Amplify.Auth.signOut() { result in
+            switch result {
+            case .success:
+                print("Successfully signed out")
+                self.isLoggedIn = false
+            case .failure(let error):
+                print("Sign out failed with error \(error)")
+            }
+        }
+    }
     
     func listen() {
         _ = Amplify.Auth.fetchAuthSession { result in

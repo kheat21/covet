@@ -29,53 +29,73 @@ struct ProfileView: View {
                 LazyVGrid(columns: gridItems, spacing: 0) {
                     ForEach(0..<items.count) { i in
                         GeometryReader { gr in
-                            CovetGridItem(url: items[i])
-                                .frame(height: gr.size.width)
+                            CovetSquareZoomedInItem(
+                                url: items[i],
+                                size: gr.size.width,
+                                topBorderWidth: getTopBorderWidth(index: i),
+                                leftBorderWidth: getLeftBorderWidth(index: i),
+                                bottomBorderWidth: getBottomBorderWidth(index: i, total: items.count),
+                                rightBorderWidth: getRightBorderWidth(index: i, total: items.count)
+                            )
+                                //.frame(height: gr.size.width)
                         }
                         .clipped()
                         .aspectRatio(1, contentMode: .fit)
-                        .border(width: getTopBorderWidth(index: i), edges: [.top], color: Color.green)
-                        .border(width: getLeftBorderWidth(index: i), edges: [.leading], color: Color.green)
-                        .border(width: getBottomBorderWidth(index: i, total: items.count), edges: [.bottom], color: Color.green)
-                        .border(width: getRightBorderWidth(index: i), edges: [.trailing], color: Color.green)
                     }
                 }
             }
         }
         
         
+        
     }
     
     
     func getTopBorderWidth(index: Int) -> CGFloat {
+        print("(top) i=" + String(index))
+        return 4;
         if(index < 3) {
             return 4;
         } else {
-            return 4/2;
+            return 0; // 4/2;
         }
     }
     
     func getBottomBorderWidth(index: Int, total: Int) -> CGFloat {
-        if(total - index < 3) {
-            return 4;
-        } else {
-            return 4/2;
-        }
+        
+        return index >= total - 3 ? 4 : 0;
+        
+//        print("(bottom) i=" + String(index))
+//        
+//        var count_in_last_row = total % 3
+//        count_in_last_row = count_in_last_row == 0 ? 3 : count_in_last_row
+//        
+//        print("\tcount in last row: " + String(count_in_last_row))
+//        
+//        let minimum_last_row_index = total - count_in_last_row;
+//        
+//        print("\tminimum last row index: " + String(minimum_last_row_index))
+//        
+//        return (index >= minimum_last_row_index) ? 4 : 0;
+        
     }
     
     func getLeftBorderWidth(index: Int) -> CGFloat {
+        print("(left) i=" + String(index))
+        return 4;
         if(index % 3 == 0) {
             return 4;
         } else {
-            return 4/2;
+            return 0; //4/2;
         }
     }
     
-    func getRightBorderWidth(index: Int) -> CGFloat {
-        if(index % 3 == 2) {
+    func getRightBorderWidth(index: Int, total: Int) -> CGFloat {
+        print("(right) i=" + String(index))
+        if(index % 3 == 2 || index == total - 1) {
             return 4;
         } else {
-            return 4/2;
+            return 0; //4/2;
         }
     }
     

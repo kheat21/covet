@@ -16,7 +16,7 @@ struct FeedView: View {
     let image3 = "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg"
     
     var body: some View {
-        VStack {
+        ScrollView {
             UserPreview(userAbbr: "BM", topItem: image1);
             UserPreview(userAbbr: "AB", topItem: image2);
             UserPreview(userAbbr: "BC", topItem: image3);

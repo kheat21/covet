@@ -36,26 +36,56 @@ struct ContentView: View {
             }
         }
         else {
-            NavigationView {
+           
                 TabView {
-                    FeedView()
-                        .tabItem {
-                            Label("Feed", systemImage: "list.dash")
-                        }
-                    
-                    ProfileView()
-                        .tabItem {
-                            Label("Profile", systemImage: "person.fill")
-                        }
-                }.toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Image("Covet_Logo_BW")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: nil, height: 20, alignment: Alignment.center)
+                    NavigationView {
+                        FeedView()
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    Image("Covet_Logo_BW")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: nil, height: 20, alignment: Alignment.center)
+                                }
+                            }
                     }
+                    .tabItem {
+                        Label("Feed", systemImage: "list.dash")
+                    }
+                    .tag(0)
+                    
+                    NavigationView {
+                        ProfileView()
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    Text("brendanmanning")
+                                        .font(Font.title)
+                                        .fontWeight(Font.Weight.bold)
+                                }
+                                ToolbarItem(placement: .navigationBarTrailing) {
+                                    Button(action: {
+                                        AuthService.shared.signOut()
+                                    }) {
+                                        Image(systemName: "ellipsis")
+                                    }
+                                }
+                            }
+                    }
+                    .tabItem {
+                        Label("Profile", systemImage: "person.fill")
+                    }
+                    .tag(1)
                 }
-            }
+                
+//                .toolbar {
+//                    ToolbarItem(placement: .principal) {
+//                        Image("Covet_Logo_BW")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: nil, height: 20, alignment: Alignment.center)
+//                    }
+//                }
+            
         }
     }
 }
