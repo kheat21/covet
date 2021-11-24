@@ -47,12 +47,12 @@
 		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
 		EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308C274C2FF4004395CA /* AmplifyService.swift */; };
 		EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308F274C3620004395CA /* ContentViewDataModel.swift */; };
-		EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453091274C3C9C004395CA /* SigninViewController.swift */; };
 		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
 		EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */; };
+		EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,12 +109,12 @@
 		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB45308C274C2FF4004395CA /* AmplifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyService.swift; sourceTree = "<group>"; };
 		EB45308F274C3620004395CA /* ContentViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDataModel.swift; sourceTree = "<group>"; };
-		EB453091274C3C9C004395CA /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -221,7 +221,6 @@
 				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
-				EB453091274C3C9C004395CA /* SigninViewController.swift */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -256,6 +255,7 @@
 			children = (
 				EB45306D274BF9A6004395CA /* FeedView.swift */,
 				EB45306F274BF9B1004395CA /* ProfileView.swift */,
+				EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -479,13 +479,13 @@
 				270D5582118F94676655CBF6 /* RelationshipTier.swift in Sources */,
 				4C5AAB9EB3E9107E3F95FE08 /* ReportCovet+Schema.swift in Sources */,
 				1A5B89358E74D327D7BA1817 /* ReportCovet.swift in Sources */,
-				EB453092274C3C9C004395CA /* SigninViewController.swift in Sources */,
 				3D8E87A1E6E1FD6C8855F5AD /* ReportUser+Schema.swift in Sources */,
 				2DE4868945659BBF49ED3F87 /* ReportUser.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				78CFFE95E8D4AB5862266782 /* User+Schema.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
 				2F43E964B90AC3C097FEEC69 /* User.swift in Sources */,
+				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
 				7AA74100EAC51AFC1FFFB914 /* UserRelationship+Schema.swift in Sources */,
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
 				A15B49F30A990EAF886633BF /* UserRelationship.swift in Sources */,
