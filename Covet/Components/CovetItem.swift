@@ -24,8 +24,6 @@ struct CovetSquareBlurredItem: View {
                         .scaledToFill()
                         .frame(width: size, height: size)
                         .clipped()
-                        //.blur(radius: 8)
-                        //.background(Color.green)
                         .zIndex(0)
                     
                     VisualEffectView(effect: UIBlurEffect(style: .light))
