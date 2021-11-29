@@ -1,53 +1,95 @@
-//
-//  AuthenticationView.swift
-//  Covet
-//
-//  Created by Brendan Manning on 11/24/21.
-//
-
 import SwiftUI
+import FirebaseUI
+import Firebase
 
-struct AuthenticationView: View {
-    var body: some View {
-        NavigationView {
-            VStack {
-                Image("Covet_Logo_BW")
-                    .resizable()
-                    .scaledToFit()
-                    .padding([.leading, .trailing], 64)
-                    .padding([.bottom], 32)
-                Text("A whole new shopping experience (whatever subtitle you want)")
-                    .padding([.leading, .trailing], 32)
-                    .padding([.bottom], 16)
-                Button(
-                    action: {
-                        AuthService.shared.signIn()
-                    },
-                    label: {
-                        HStack {
-                            Image("GoogleG")
-                                .resizable()
-                                .frame(width: 28, height: 28, alignment: Alignment.leading)
-                                
-                            Text("Sign in with Google")
-                                .foregroundColor(Color.gray)
-                                .padding(Edge.Set.trailing, 4)
-                        }
-                        .padding(8)
-                        .cornerRadius(4)
-                        .background(
-                            Color.white.shadow(color: Color.gray, radius: 1.5, x: 0, y: 2)
-                        )
-                        .padding(4)
-                    }
-                )
-            }
+public var screenWidth: CGFloat {
+    return UIScreen.main.bounds.width
+}
+
+public var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+}
+
+struct LoginView : View {
+    
+    @State private var viewState = CGSize(width: 0, height: screenHeight)
+    @State private var MainviewState = CGSize.zero
+    
+    var body : some View {
+        ZStack {
+            CustomLoginViewController { (error) in
+                if error == nil {
+                    self.status()
+                }
+            }.offset(y: self.MainviewState.height).animation(.spring())
+            //MainView().environmentObject(DataStore()).offset(y: self.viewState.height).animation(.spring())
         }
+    }
+    
+    func status() {
+        self.viewState = CGSize(width: 0, height: 0)
+        self.MainviewState = CGSize(width: 0, height: screenHeight)
     }
 }
 
-struct AuthenticationView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthenticationView()
+struct LoginView_Previews : PreviewProvider {
+    static var previews : some View {
+        LoginView()
+    }
+}
+
+struct CustomLoginViewController : UIViewControllerRepresentable {
+    
+    var dismiss : (_ error : Error? ) -> Void
+    
+    func makeCoordinator() -> CustomLoginViewController.Coordinator {
+        Coordinator(self)
+    }
+    
+    func makeUIViewController(context: Context) -> UIViewController
+    {
+        let authUI = FUIAuth.defaultAuthUI()
+        
+        let providers : [FUIAuthProvider] = [
+            FUIEmailAuth(),
+            FUIGoogleAuth(),
+            FUIOAuth.appleAuthProvider()
+        ]
+        
+        authUI?.providers = providers
+        authUI?.delegate = context.coordinator
+        
+        let authViewController = authUI?.authViewController()
+        
+        return authViewController!
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<CustomLoginViewController>)
+    {
+        
+    }
+    
+    //coordinator
+    class Coordinator : NSObject, FUIAuthDelegate {
+        var parent : CustomLoginViewController
+        
+        init(_ customLoginViewController : CustomLoginViewController) {
+            self.parent = customLoginViewController
+        }
+        
+        // MARK: FUIAuthDelegate
+        func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?)
+        {
+            if let error = error {
+                parent.dismiss(error)
+            }
+            else {
+                parent.dismiss(nil)
+            }
+        }
+        
+        func authUI(_ authUI: FUIAuth, didFinish operation: FUIAccountSettingsOperationType, error: Error?)
+        {
+        }
     }
 }

@@ -43,7 +43,7 @@ class AuthService: NSObject, ObservableObject {
 
     
     func signIn() {
-        //try Auth.auth().signIn()
+        //Auth.auth().signIn(with: <#T##AuthCredential#>, completion: <#T##((AuthDataResult?, Error?) -> Void)?##((AuthDataResult?, Error?) -> Void)?##(AuthDataResult?, Error?) -> Void#>)
     }
 
     func signOut() throws {

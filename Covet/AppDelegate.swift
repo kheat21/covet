@@ -8,18 +8,15 @@
 import Foundation
 import UIKit
 
-
 class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-//        do {
-//            try Amplify.add(plugin: AWSCognitoAuthPlugin())
-//            try Amplify.configure()
-//            print("Amplify configured with auth plugin")
-//        } catch {
-//            print("Failed to initialize Amplify with \(error)")
-//        }
-        
-        return true
+    
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        let sceneConfig = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+        sceneConfig.delegateClass = SceneDelegate.self // 👈🏻
+        return sceneConfig
     }
 }

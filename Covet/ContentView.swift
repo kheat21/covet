@@ -22,7 +22,7 @@ struct ContentView: View {
             }
         }
         else if !self.$authService.isLoggedIn.wrappedValue {
-            AuthenticationView()
+            LoginView()
         }
         else {
            

@@ -7,14 +7,14 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    /*
-    
     var window: UIWindow?
     
+    /*
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         let amplifyService = AmplifyService.shared
@@ -38,4 +38,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
      
      */
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
+        print("scene function")
+        
+        // Use a UIHostingController as window root view controller.
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            if Auth.auth().currentUser == nil {
+                print("Current user is nil")
+                window.rootViewController = UIHostingController(rootView: LoginView())
+            }
+            else {
+                
+                print("Current user is defined")
+                
+                let amplifyService = AmplifyService.shared
+                amplifyService.configureAmplify()
+                
+                let authService = AuthService.shared
+                authService.listen()
+                
+                let contentView = ContentView(amplifyService: amplifyService, authService: authService)
+                
+                window.rootViewController = UIHostingController(rootView:contentView) // ContentView().environmentObject(DataStore())
+            }
+            
+            self.window = window
+            window.makeKeyAndVisible()
+        }
+    }
 }
