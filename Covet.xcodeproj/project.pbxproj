@@ -53,6 +53,14 @@
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
 		EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */; };
 		EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */; };
+		EBEF500927552E9600466642 /* GoogleService-Info (5).plist in Resources */ = {isa = PBXBuildFile; fileRef = EBEF500827552E9600466642 /* GoogleService-Info (5).plist */; };
+		EBEF500C2755311E00466642 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF500B2755311E00466642 /* FirebaseAnalytics */; };
+		EBEF500E2755311E00466642 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF500D2755311E00466642 /* FirebaseAuth */; };
+		EBEF50102755311E00466642 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF500F2755311E00466642 /* FirebaseCrashlytics */; };
+		EBEF50122755311E00466642 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50112755311E00466642 /* FirebaseDynamicLinks */; };
+		EBEF50142755311E00466642 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50132755311E00466642 /* FirebaseFirestore */; };
+		EBEF50162755311E00466642 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50152755311E00466642 /* FirebaseRemoteConfig */; };
+		EBEF50182755311E00466642 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50172755311E00466642 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +123,7 @@
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		EBEF500827552E9600466642 /* GoogleService-Info (5).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (5).plist"; sourceTree = "<group>"; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
@@ -125,10 +134,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEF50162755311E00466642 /* FirebaseRemoteConfig in Frameworks */,
 				EB45307F274C2514004395CA /* AWSDataStorePlugin in Frameworks */,
 				EB453083274C2514004395CA /* Amplify in Frameworks */,
+				EBEF500C2755311E00466642 /* FirebaseAnalytics in Frameworks */,
+				EBEF50142755311E00466642 /* FirebaseFirestore in Frameworks */,
+				EBEF50182755311E00466642 /* FirebaseStorage in Frameworks */,
 				EB45307B274C2514004395CA /* AWSAPIPlugin in Frameworks */,
 				EB45307D274C2514004395CA /* AWSCognitoAuthPlugin in Frameworks */,
+				EBEF50122755311E00466642 /* FirebaseDynamicLinks in Frameworks */,
+				EBEF50102755311E00466642 /* FirebaseCrashlytics in Frameworks */,
+				EBEF500E2755311E00466642 /* FirebaseAuth in Frameworks */,
 				EB453081274C2514004395CA /* AWSS3StoragePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +237,7 @@
 				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
+				EBEF500827552E9600466642 /* GoogleService-Info (5).plist */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -335,6 +352,13 @@
 				EB45307E274C2514004395CA /* AWSDataStorePlugin */,
 				EB453080274C2514004395CA /* AWSS3StoragePlugin */,
 				EB453082274C2514004395CA /* Amplify */,
+				EBEF500B2755311E00466642 /* FirebaseAnalytics */,
+				EBEF500D2755311E00466642 /* FirebaseAuth */,
+				EBEF500F2755311E00466642 /* FirebaseCrashlytics */,
+				EBEF50112755311E00466642 /* FirebaseDynamicLinks */,
+				EBEF50132755311E00466642 /* FirebaseFirestore */,
+				EBEF50152755311E00466642 /* FirebaseRemoteConfig */,
+				EBEF50172755311E00466642 /* FirebaseStorage */,
 			);
 			productName = Covet;
 			productReference = EB453040274BF993004395CA /* Covet.app */;
@@ -410,6 +434,7 @@
 			mainGroup = EB453037274BF993004395CA;
 			packageReferences = (
 				EB453079274C2514004395CA /* XCRemoteSwiftPackageReference "amplify-ios" */,
+				EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -427,6 +452,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEF500927552E9600466642 /* GoogleService-Info (5).plist in Resources */,
 				EB45304B274BF995004395CA /* Preview Assets.xcassets in Resources */,
 				EB453048274BF995004395CA /* Assets.xcassets in Resources */,
 				A8C4D64FDE8DC37084F5AB4F /* awsconfiguration.json in Resources */,
@@ -664,7 +690,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.Covet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.covetapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -695,7 +721,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brendanmanning.Covet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.covetapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -849,6 +875,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -876,6 +910,41 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EB453079274C2514004395CA /* XCRemoteSwiftPackageReference "amplify-ios" */;
 			productName = Amplify;
+		};
+		EBEF500B2755311E00466642 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		EBEF500D2755311E00466642 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		EBEF500F2755311E00466642 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		EBEF50112755311E00466642 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		EBEF50132755311E00466642 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		EBEF50152755311E00466642 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		EBEF50172755311E00466642 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBEF500A2755311E00466642 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

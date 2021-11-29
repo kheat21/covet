@@ -54,15 +54,27 @@ class AuthService: NSObject, ObservableObject {
     }
 
     func signOut() {
-        Amplify.Auth.signOut() { result in
-            switch result {
-            case .success:
-                print("Successfully signed out")
-                self.isLoggedIn = false
-            case .failure(let error):
-                print("Sign out failed with error \(error)")
+        
+        let cognitodomain = "covet9f0c20aa-9f0c20aa-staging.auth.us-east-1.amazoncognito.com"
+        let clientId = "4i36n90p6tcnr4v6jt4evktpce" // "190048349319-0gmin6mledh6n87kob3u2ec44qaqggv9" // .apps.googleusercontent.com"
+        let signoutUrl = "covetapp://"
+        
+        UIApplication.shared.open(
+            URL(string: "https://" + cognitodomain + "/logout?client_id=" + clientId + "&logout_uri=" + signoutUrl)!,
+            options: [:]) { opened in
+                print("Opened - " + String(opened))
             }
-        }
+        
+//        Amplify.Auth.signOut() { result in
+//            switch result {
+//            case .success:
+//                print("Successfully signed out")
+//                self.isLoggedIn = false
+//            case .failure(let error):
+//                print("Sign out failed with error \(error)")
+//            }
+//        }
+    
     }
     
     func listen() {
@@ -70,6 +82,9 @@ class AuthService: NSObject, ObservableObject {
             switch result {
                 case .success(let session):
                     print("Is user signed in - \(session.isSignedIn)")
+                    if let usr = AuthService.shared.getUser() {
+                        print("Amplify User Id - \(usr.amplifyUserId)")
+                    }
                     self.isLoggedIn = session.isSignedIn
                 case .failure(let error):
                     print("Fetch session failed with error \(error)")

@@ -16,7 +16,7 @@ struct UserPreview: View {
         HStack {
             CovetC(size: 60)
                 .padding(Edge.Set.leading, 0)
-            CovetItem(url: topItem)
+            CovetSquareZoomedInItem(url: topItem, size: 250)
                 
         }
         .frame(width: .infinity, height: 250, alignment: Alignment.center)

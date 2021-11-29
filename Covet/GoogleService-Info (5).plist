@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>190048349319-mecdklmhas0le2nb2ea45360i3pufj20.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.190048349319-mecdklmhas0le2nb2ea45360i3pufj20</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD-iyqjVsxU97kivu2GPzlHnmUmyzPeHIg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>190048349319</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.covetapp.covetapp</string>
+	<key>PROJECT_ID</key>
+	<string>covet-330922</string>
+	<key>STORAGE_BUCKET</key>
+	<string>covet-330922.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:190048349319:ios:2f6ba8dbc906ad17d69c22</string>
+</dict>
+</plist>
