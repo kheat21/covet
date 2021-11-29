@@ -24,8 +24,6 @@
 		EB453085274C2631004395CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453084274C2631004395CA /* AppDelegate.swift */; };
 		EB453089274C26F2004395CA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453088274C26F2004395CA /* AuthService.swift */; };
 		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
-		EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308C274C2FF4004395CA /* AmplifyService.swift */; };
-		EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308F274C3620004395CA /* ContentViewDataModel.swift */; };
 		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
@@ -80,8 +78,6 @@
 		EB453086274C26C6004395CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EB453088274C26F2004395CA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB45308C274C2FF4004395CA /* AmplifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyService.swift; sourceTree = "<group>"; };
-		EB45308F274C3620004395CA /* ContentViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewDataModel.swift; sourceTree = "<group>"; };
 		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
@@ -172,9 +168,7 @@
 				EBDF21C9274D3E3A008E48E3 /* Structs */,
 				EBDF21C6274D3E1C008E48E3 /* Extensions */,
 				EB453093274C41D2004395CA /* Classes */,
-				EB45308E274C3612004395CA /* Data Models */,
 				EB453087274C26E8004395CA /* Services */,
-				EB453086274C26C6004395CA /* Info.plist */,
 				EB453072274BF9CF004395CA /* Components */,
 				EB453071274BF9C3004395CA /* Views */,
 				EB453084274C2631004395CA /* AppDelegate.swift */,
@@ -183,6 +177,7 @@
 				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
+				EB453086274C26C6004395CA /* Info.plist */,
 				EBEF500827552E9600466642 /* GoogleService-Info.plist */,
 			);
 			path = Covet;
@@ -237,17 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				EB453088274C26F2004395CA /* AuthService.swift */,
-				EB45308C274C2FF4004395CA /* AmplifyService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		EB45308E274C3612004395CA /* Data Models */ = {
-			isa = PBXGroup;
-			children = (
-				EB45308F274C3620004395CA /* ContentViewDataModel.swift */,
-			);
-			path = "Data Models";
 			sourceTree = "<group>";
 		};
 		EB453093274C41D2004395CA /* Classes */ = {
@@ -565,8 +551,6 @@
 				EB453044274BF993004395CA /* CovetApp.swift in Sources */,
 				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
-				EB45308D274C2FF4004395CA /* AmplifyService.swift in Sources */,
-				EB453090274C3620004395CA /* ContentViewDataModel.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,

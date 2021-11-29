@@ -21,14 +21,7 @@ struct CovetApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Text("Covet App")
-            /*
-             //ContentView(amplifyService: AmplifyService.shared, authService: AuthService.shared)
-            if AuthService.shared.isLoggedIn {
-                ContentView(amplifyService: AmplifyService.shared, authService: AuthService.shared)
-            } else {
-                LoginView()
-            }*/
+            Text("Error Occured")
         }
     }
     
