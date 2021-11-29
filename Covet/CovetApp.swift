@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-import Amplify
-import AWSDataStorePlugin
-import AWSCognitoAuthPlugin
+import Firebase
 
 @main
 struct CovetApp: App {
@@ -58,7 +56,7 @@ struct CovetApp: App {
     */
     
     public init() {
-        AmplifyService.shared.configureAmplify()
+        FirebaseApp.configure()
         
     }
     

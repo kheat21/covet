@@ -12,6 +12,7 @@
 		270D5582118F94676655CBF6 /* RelationshipTier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2574AB8CC4EE6DEC4FAAA6B7 /* RelationshipTier.swift */; };
 		2DE4868945659BBF49ED3F87 /* ReportUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CE91CE9D1117ED43761F7D /* ReportUser.swift */; };
 		2F43E964B90AC3C097FEEC69 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B358DB06397DDB7F5CA70811 /* User.swift */; };
+		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		3D8E87A1E6E1FD6C8855F5AD /* ReportUser+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66F42F43706521A1728016C /* ReportUser+Schema.swift */; };
 		4C5AAB9EB3E9107E3F95FE08 /* ReportCovet+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65525AB4F134DF650659588 /* ReportCovet+Schema.swift */; };
 		50D3C4035AD74166EA5C23F0 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675B1FE40C675E286EE47712 /* AmplifyModels.swift */; };
@@ -22,6 +23,7 @@
 		A15B49F30A990EAF886633BF /* UserRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0198B73F0B35769E6531214 /* UserRelationship.swift */; };
 		A8C4D64FDE8DC37084F5AB4F /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = FD956CF52BF229099AD70AE4 /* awsconfiguration.json */; };
 		ACFB4475823A7A8BE30EA672 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6829C311BD5B5B6E678B6F8 /* ProductType.swift */; };
+		BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */; };
 		BE43ACEA07A979774D21FBC1 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BE6F15521276903F8BB44B0F /* amplifyconfiguration.json */; };
 		BFF87878144201B96CC1D46E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E7AA3972035E42D8E142B9 /* Product.swift */; };
 		D68673C79E858691E36112E4 /* RelationshipStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E529D6BF8A9F76730EA3A24A /* RelationshipStatus.swift */; };
@@ -61,6 +63,7 @@
 		EBEF50142755311E00466642 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50132755311E00466642 /* FirebaseFirestore */; };
 		EBEF50162755311E00466642 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50152755311E00466642 /* FirebaseRemoteConfig */; };
 		EBEF50182755311E00466642 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EBEF50172755311E00466642 /* FirebaseStorage */; };
+		F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB702DBB95E653E783522CB1 /* Pods_Covet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,19 +84,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.release.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.release.xcconfig"; sourceTree = "<group>"; };
 		2574AB8CC4EE6DEC4FAAA6B7 /* RelationshipTier.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = RelationshipTier.swift; path = amplify/generated/models/RelationshipTier.swift; sourceTree = "<group>"; };
 		35CE91CE9D1117ED43761F7D /* ReportUser.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ReportUser.swift; path = amplify/generated/models/ReportUser.swift; sourceTree = "<group>"; };
 		40E7AA3972035E42D8E142B9 /* Product.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Product.swift; path = amplify/generated/models/Product.swift; sourceTree = "<group>"; };
+		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
 		5FF46F849DF2C4E250A99B8B /* Product+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Product+Schema.swift"; path = "amplify/generated/models/Product+Schema.swift"; sourceTree = "<group>"; };
 		675B1FE40C675E286EE47712 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		8DDCAE2890947B1A294E7A59 /* User+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "User+Schema.swift"; path = "amplify/generated/models/User+Schema.swift"; sourceTree = "<group>"; };
 		9100FD68274F38C18F37221A /* ReportCovet.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ReportCovet.swift; path = amplify/generated/models/ReportCovet.swift; sourceTree = "<group>"; };
+		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6829C311BD5B5B6E678B6F8 /* ProductType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = ProductType.swift; path = amplify/generated/models/ProductType.swift; sourceTree = "<group>"; };
+		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
 		B358DB06397DDB7F5CA70811 /* User.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = User.swift; path = amplify/generated/models/User.swift; sourceTree = "<group>"; };
+		B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BE6F15521276903F8BB44B0F /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
 		C59806E4ADD80C2978B9B8DB /* Covets.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Covets.swift; path = amplify/generated/models/Covets.swift; sourceTree = "<group>"; };
 		C65525AB4F134DF650659588 /* ReportCovet+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "ReportCovet+Schema.swift"; path = "amplify/generated/models/ReportCovet+Schema.swift"; sourceTree = "<group>"; };
 		C66F42F43706521A1728016C /* ReportUser+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "ReportUser+Schema.swift"; path = "amplify/generated/models/ReportUser+Schema.swift"; sourceTree = "<group>"; };
+		CB702DBB95E653E783522CB1 /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0198B73F0B35769E6531214 /* UserRelationship.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = UserRelationship.swift; path = amplify/generated/models/UserRelationship.swift; sourceTree = "<group>"; };
 		E529D6BF8A9F76730EA3A24A /* RelationshipStatus.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = RelationshipStatus.swift; path = amplify/generated/models/RelationshipStatus.swift; sourceTree = "<group>"; };
 		EB453040274BF993004395CA /* Covet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,7 +134,9 @@
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		EBEF500827552E9600466642 /* GoogleService-Info (5).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (5).plist"; sourceTree = "<group>"; };
+		ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C5A10CF447E12A4E0CC281 /* UserRelationship+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "UserRelationship+Schema.swift"; path = "amplify/generated/models/UserRelationship+Schema.swift"; sourceTree = "<group>"; };
+		F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet_CovetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD181E59E5D03CDD0C560B8 /* Covets+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Covets+Schema.swift"; path = "amplify/generated/models/Covets+Schema.swift"; sourceTree = "<group>"; };
 		FD956CF52BF229099AD70AE4 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +158,7 @@
 				EBEF50102755311E00466642 /* FirebaseCrashlytics in Frameworks */,
 				EBEF500E2755311E00466642 /* FirebaseAuth in Frameworks */,
 				EB453081274C2514004395CA /* AWSS3StoragePlugin in Frameworks */,
+				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,12 +174,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		604CD5100DF85109485798CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB702DBB95E653E783522CB1 /* Pods_Covet.framework */,
+				F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */,
+				ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		79B55A4B6ABBF5F02B25C283 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */,
+				447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */,
+				98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */,
+				B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */,
+				A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */,
+				0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AE792007C74AECCDCC0AFE02 /* AmplifyModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +246,8 @@
 				EB453041274BF993004395CA /* Products */,
 				DCC3A9DD58DA1A43B7E0B353 /* AmplifyConfig */,
 				AE792007C74AECCDCC0AFE02 /* AmplifyModels */,
+				79B55A4B6ABBF5F02B25C283 /* Pods */,
+				604CD5100DF85109485798CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -337,9 +378,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB453064274BF995004395CA /* Build configuration list for PBXNativeTarget "Covet" */;
 			buildPhases = (
+				339D8853219EF06F900F395E /* [CP] Check Pods Manifest.lock */,
 				EB45303C274BF993004395CA /* Sources */,
 				EB45303D274BF993004395CA /* Frameworks */,
 				EB45303E274BF993004395CA /* Resources */,
+				8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */,
+				C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -368,6 +412,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB453067274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetTests" */;
 			buildPhases = (
+				B20F6A1AA81AD6F05AC18025 /* [CP] Check Pods Manifest.lock */,
 				EB45304C274BF995004395CA /* Sources */,
 				EB45304D274BF995004395CA /* Frameworks */,
 				EB45304E274BF995004395CA /* Resources */,
@@ -386,9 +431,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB45306A274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetUITests" */;
 			buildPhases = (
+				EC9103BA92A37226907BFDA6 /* [CP] Check Pods Manifest.lock */,
 				EB453056274BF995004395CA /* Sources */,
 				EB453057274BF995004395CA /* Frameworks */,
 				EB453058274BF995004395CA /* Resources */,
+				FAEA390C2B5C8D2DE09F48E6 /* [CP] Embed Pods Frameworks */,
+				F72CA6DE00E5978F9474CF0A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -475,6 +523,143 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		339D8853219EF06F900F395E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Covet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B20F6A1AA81AD6F05AC18025 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CovetTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC9103BA92A37226907BFDA6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Covet-CovetUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F72CA6DE00E5978F9474CF0A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAEA390C2B5C8D2DE09F48E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EB45303C274BF993004395CA /* Sources */ = {
@@ -669,6 +854,7 @@
 		};
 		EB453065274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -700,6 +886,7 @@
 		};
 		EB453066274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -731,6 +918,7 @@
 		};
 		EB453068274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -756,6 +944,7 @@
 		};
 		EB453069274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -781,6 +970,7 @@
 		};
 		EB45306B274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -804,6 +994,7 @@
 		};
 		EB45306C274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

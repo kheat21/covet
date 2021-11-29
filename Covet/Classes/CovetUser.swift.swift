@@ -9,15 +9,13 @@ import Foundation
 
 class CovetUser {
     
-    static let mockedSample1 = CovetUser(amplifyUserId: "amp-id-1", username: "brendanmanning")
-    static let mockedSample2 = CovetUser(amplifyUserId: "amp-id-2", username: "peytonmanning")
+    static let mockedSample1 = CovetUser(uid: "amp-id-1")
+    static let mockedSample2 = CovetUser(uid: "amp-id-2")
     
-    private(set) var amplifyUserId: String;
-    private(set) var username: String;
+    private(set) var uid: String;
     
-    init(amplifyUserId: String, username: String) {
-        self.amplifyUserId = amplifyUserId;
-        self.username = username;
+    init(uid: String) {
+        self.uid = uid;
     }
     
 }

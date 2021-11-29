@@ -1,0 +1,6 @@
+framework module Pods_Covet {
+  umbrella header "Pods-Covet-umbrella.h"
+
+  export *
+  module * { export * }
+}
