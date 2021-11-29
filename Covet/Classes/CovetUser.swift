@@ -21,7 +21,23 @@ class CovetUser {
     private(set) var birthday: Date?;
     private(set) var address: String?;
     
-    init(documentId: String, uid: String, name: String?, handle: String?, bio: String?, birthday: Date?, address: String?) {
+    private var following: Array<DocumentReference>?
+    private var followers: Array<DocumentReference>?
+    private var pendingIncomingFollowingRequests: Array<DocumentReference>?
+    private var pendingOutgoingFollowingRequests: Array<DocumentReference>?
+    private var friends: Array<DocumentReference>?
+    private var pendingIncomingFriendRequests: Array<DocumentReference>?
+    private var pendingOutgoingFriendRequests: Array<DocumentReference>?
+    
+    init(
+        documentId: String, uid: String,
+        name: String?, handle: String?,
+        bio: String?, birthday: Date?, address: String?,
+        following: Array<DocumentReference>?, followers: Array<DocumentReference>?,
+        pendingIncomingFollowingRequests: Array<DocumentReference>?, pendingOutgoingFollowingRequests: Array<DocumentReference>?,
+        friends: Array<DocumentReference>?,
+        pendingIncomingFriendRequests: Array<DocumentReference>?, pendingOutgoingFriendRequests: Array<DocumentReference>?
+    ) {
         self.documentId = documentId;
         self.uid = uid;
         self.name = name;
@@ -44,7 +60,14 @@ class CovetUser {
             handle: snapshot.data()["handle"] as? String,
             bio: snapshot.data()["bio"] as? String,
             birthday: snapshot.data()["birthday"] as? Date,
-            address: snapshot.data()["address"] as? String
+            address: snapshot.data()["address"] as? String,
+            following: snapshot.data()["following"] as? Array<DocumentReference>,
+            followers: snapshot.data()["following"] as? Array<DocumentReference>,
+            pendingIncomingFollowingRequests: snapshot.data()["pending_incoming_following_requests"] as? Array<DocumentReference>,
+            pendingOutgoingFollowingRequests: snapshot.data()["pending_outgoing_following_requests"] as? Array<DocumentReference>,
+            friends: snapshot.data()["friends"] as? Array<DocumentReference>,
+            pendingIncomingFriendRequests: snapshot.data()["pending_incoming_friend_requests"] as? Array<DocumentReference>,
+            pendingOutgoingFriendRequests: snapshot.data()["pending_outgoing_friend_requests"] as? Array<DocumentReference>
         )
     }
     

@@ -24,6 +24,7 @@ class AuthService: NSObject, ObservableObject {
         // If we have a cached copy of the currentCovetUser
         // object, then there is no need to sync with Firebase
         guard self.currentCovetUser == nil else {
+            print(self.currentCovetUser!)
             return self.currentCovetUser
         }
         
