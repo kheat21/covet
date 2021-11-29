@@ -37,8 +37,12 @@ class AuthService: NSObject, ObservableObject {
             // It is theoretically possible that multiple users will have the same firebase UID
             // This would be a catastrophic error, so we'll need to catch that here
             if let matching = await CovetUser.search(firebaseUID: currentUser.uid) {
+                
+                // If we find exactly one user (as we should), we'll cache
+                // it for later use and then return it. (Using simple recursion)
                 if matching.count == 1 {
-                    return matching[0]
+                    self.currentCovetUser = matching[0]
+                    return try await getUser()
                 } else if matching.count > 1 {
                     throw RuntimeError("Multiple users found matching firebaseUID: " + currentUser.uid)
                 }
