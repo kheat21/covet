@@ -31,6 +31,13 @@ struct ContentView: View {
                     .foregroundColor(Color.green)
             }
             .tag(0)
+            
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                        .foregroundColor(Color.green)
+                }
+                .tag(1)
                     
             NavigationView {
                 ProfileView()
@@ -56,7 +63,8 @@ struct ContentView: View {
                 Label("Profile", systemImage: "person.fill")
                     .foregroundColor(Color.green)
             }
-            .tag(1)
+            .tag(2)
+            
         }
         .font(.headline)
         .accentColor(.green)
