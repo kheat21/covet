@@ -6,8 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
+    
+    @State var user: CovetUser? = nil
+    
+    @Sendable
+    func onAppear() async {
+        do {
+            self.user = try await AuthService.shared.getUser()
+        } catch {
+            print("Error getting the user")
+        }
+    }
     
     let items = [
         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Temple_T_logo.svg/905px-Temple_T_logo.svg.png",
@@ -22,38 +34,64 @@ struct ProfileView: View {
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
 
     var body: some View {
-        VStack {
-            CovetSquareZoomedInItem(
-                url: items[0],
-                size: 250,
-                topBorderWidth: 8,
-                leftBorderWidth: 8,
-                bottomBorderWidth: 8,
-                rightBorderWidth: 8
-            )
-            ScrollView {
-                LazyVGrid(columns: gridItems, spacing: 0) {
-                    ForEach(0..<items.count) { i in
-                        GeometryReader { gr in
-                            CovetSquareZoomedInItem(
-                                url: items[i],
-                                size: gr.size.width,
-                                topBorderWidth: getTopBorderWidth(index: i),
-                                leftBorderWidth: getLeftBorderWidth(index: i),
-                                bottomBorderWidth: getBottomBorderWidth(index: i, total: items.count),
-                                rightBorderWidth: getRightBorderWidth(index: i, total: items.count)
-                            )
-                                //.frame(height: gr.size.width)
+        NavigationView {
+            VStack {
+                CovetSquareZoomedInItem(
+                    url: items[0],
+                    size: 250,
+                    topBorderWidth: 8,
+                    leftBorderWidth: 8,
+                    bottomBorderWidth: 8,
+                    rightBorderWidth: 8
+                )
+                ScrollView {
+                    LazyVGrid(columns: gridItems, spacing: 0) {
+                        ForEach(0..<items.count) { i in
+                            GeometryReader { gr in
+                                CovetSquareZoomedInItem(
+                                    url: items[i],
+                                    size: gr.size.width,
+                                    topBorderWidth: getTopBorderWidth(index: i),
+                                    leftBorderWidth: getLeftBorderWidth(index: i),
+                                    bottomBorderWidth: getBottomBorderWidth(index: i, total: items.count),
+                                    rightBorderWidth: getRightBorderWidth(index: i, total: items.count)
+                                )
+                                    //.frame(height: gr.size.width)
+                            }
+                            .clipped()
+                            .aspectRatio(1, contentMode: .fit)
                         }
-                        .clipped()
-                        .aspectRatio(1, contentMode: .fit)
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text(getCurrentUserHandle() ?? "")
+                        .font(Font.title)
+                        .fontWeight(Font.Weight.bold)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        do {
+                            try Auth.auth().signOut()
+                        } catch {}
+                    }) {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(Color.green)
+                    }
+                }
+            }
+            .task(self.onAppear)
         }
-        
-        
-        
+    }
+    
+    func getCurrentUserHandle() -> String? {
+        if let user = self.$user.wrappedValue {
+            if let handle = user.handle {
+                return handle
+            }
+        }
+        return nil
     }
     
     func getTopBorderWidth(index: Int) -> CGFloat {

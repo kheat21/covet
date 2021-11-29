@@ -24,9 +24,10 @@
 		EB453085274C2631004395CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453084274C2631004395CA /* AppDelegate.swift */; };
 		EB453089274C26F2004395CA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453088274C26F2004395CA /* AuthService.swift */; };
 		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
-		EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift.swift */; };
+		EB453095274C41DE004395CA /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
 		EB517D0C27555040006470B8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0B27555040006470B8 /* SearchView.swift */; };
 		EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0D2755537A006470B8 /* UserSettingsView.swift */; };
+		EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
@@ -80,9 +81,10 @@
 		EB453086274C26C6004395CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EB453088274C26F2004395CA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB453094274C41DE004395CA /* CovetUser.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift.swift; sourceTree = "<group>"; };
+		EB453094274C41DE004395CA /* CovetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift; sourceTree = "<group>"; };
 		EB517D0B27555040006470B8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EB517D0D2755537A006470B8 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
+		EB517D1027556C28006470B8 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		EB453042274BF993004395CA /* Covet */ = {
 			isa = PBXGroup;
 			children = (
+				EB517D0F27556C1E006470B8 /* Errors */,
 				EBDF21C9274D3E3A008E48E3 /* Structs */,
 				EBDF21C6274D3E1C008E48E3 /* Extensions */,
 				EB453093274C41D2004395CA /* Classes */,
@@ -245,9 +248,17 @@
 		EB453093274C41D2004395CA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EB453094274C41DE004395CA /* CovetUser.swift.swift */,
+				EB453094274C41DE004395CA /* CovetUser.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		EB517D0F27556C1E006470B8 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				EB517D1027556C28006470B8 /* RuntimeError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		EBDF21C6274D3E1C008E48E3 /* Extensions */ = {
@@ -548,9 +559,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
-				EB453095274C41DE004395CA /* CovetUser.swift.swift in Sources */,
+				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
+				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,

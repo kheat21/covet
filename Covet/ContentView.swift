@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     
@@ -39,26 +40,8 @@ struct ContentView: View {
                 }
                 .tag(1)
                     
-            NavigationView {
-                ProfileView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Text("brendanmanning")
-                                .font(Font.title)
-                                .fontWeight(Font.Weight.bold)
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(action: {
-                                do {
-                                    try AuthService.shared.signOut()
-                                } catch {}
-                            }) {
-                                Image(systemName: "ellipsis")
-                                    .foregroundColor(Color.green)
-                            }
-                        }
-                    }
-            }
+            
+            ProfileView()
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
                     .foregroundColor(Color.green)

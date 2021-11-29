@@ -15,61 +15,49 @@ import FirebaseAuth
 class AuthService: NSObject, ObservableObject {
     
     @Published var isLoggedIn: Bool = false;
+    @Published var currentCovetUser: CovetUser? = nil;
     
-    private var _mockedLoginState: Bool? = nil;
-    private var _mockedUser: CovetUser? = nil;
+    static let shared = AuthService()
     
-    init(mockedLoginState: Bool?, mockedUser: CovetUser? = nil) {
-        self._mockedLoginState = mockedLoginState;
-        self._mockedUser = mockedUser;
-        if(mockedLoginState != nil) {
-            isLoggedIn = mockedLoginState!;
-        }
-    }
-    
-    static let shared = AuthService(mockedLoginState: nil, mockedUser: nil)
-    static let mockedLoggedIn = AuthService(mockedLoginState: true, mockedUser: CovetUser.mockedSample1)
-    static let mockedLoggedOut = AuthService(mockedLoginState: false, mockedUser: nil)
-    
-    private var window: UIWindow {
-        guard
-            let scene = UIApplication.shared.connectedScenes.first,
-            let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
-            let window = windowSceneDelegate.window as? UIWindow
-        else { return UIWindow() }
+    func getUser() async throws -> CovetUser? {
         
-        return window
-    }
-
-    
-    func signIn() {
-        //Auth.auth().signIn(with: <#T##AuthCredential#>, completion: <#T##((AuthDataResult?, Error?) -> Void)?##((AuthDataResult?, Error?) -> Void)?##(AuthDataResult?, Error?) -> Void#>)
-    }
-
-    func signOut() throws {
-        try Auth.auth().signOut()
-    }
-    
-    func listen() {
-        _ = Auth.auth().addStateDidChangeListener { auth, user in
-            guard user != nil else {
-                self.isLoggedIn = false
-                return
+        // If we have a cached copy of the currentCovetUser
+        // object, then there is no need to sync with Firebase
+        guard self.currentCovetUser == nil else {
+            return self.currentCovetUser
+        }
+        
+        // Otherwise, get the Firebase currentUser object
+        // This will have the UID we need to resolve some
+        // properties from the database
+        if let currentUser = Auth.auth().currentUser {
+            
+            print("Fetching CovetUser for firebaseUID: " + currentUser.uid)
+            
+            // It is theoretically possible that multiple users will have the same firebase UID
+            // This would be a catastrophic error, so we'll need to catch that here
+            if let matching = await CovetUser.search(firebaseUID: currentUser.uid) {
+                if matching.count == 1 {
+                    return matching[0]
+                } else if matching.count > 1 {
+                    throw RuntimeError("Multiple users found matching firebaseUID: " + currentUser.uid)
+                }
             }
-            self.isLoggedIn = true
-        }
-    }
-    
-    func getUser() -> CovetUser? {
-        if self._mockedUser != nil {
-            return self._mockedUser;
-        } else if let currentUser = Auth.auth().currentUser {
-            return CovetUser(
-                uid: currentUser.uid
-            )
         } else {
-            return nil
+            print("Unable to get CovetUser because Auth.auth().currentUser was nil")
         }
+        return nil
     }
     
 }
+
+
+//    init(mockedLoginState: Bool?, mockedUser: CovetUser? = nil) {
+//        self._mockedLoginState = mockedLoginState;
+//        self._mockedUser = mockedUser;
+//        if(mockedLoginState != nil) {
+//            isLoggedIn = mockedLoginState!;
+//        }
+//    }
+//    static let mockedLoggedIn = AuthService(mockedLoginState: true, mockedUser: CovetUser.mockedSample1)
+//    static let mockedLoggedOut = AuthService(mockedLoginState: false, mockedUser: nil)
