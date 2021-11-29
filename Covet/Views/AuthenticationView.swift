@@ -21,7 +21,7 @@ struct AuthenticationView: View {
                     .padding([.bottom], 16)
                 Button(
                     action: {
-                        AuthService.shared.socialSignInWithWebUI()
+                        AuthService.shared.signIn()
                     },
                     label: {
                         HStack {

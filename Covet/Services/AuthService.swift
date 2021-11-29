@@ -43,17 +43,18 @@ class AuthService: NSObject, ObservableObject {
 
     
     func signIn() {
-        Auth.auth().signIn
+        //try Auth.auth().signIn()
     }
 
-    func signOut() {
-        Auth.auth().signOut()
+    func signOut() throws {
+        try Auth.auth().signOut()
     }
     
     func listen() {
         _ = Auth.auth().addStateDidChangeListener { auth, user in
             guard user != nil else {
                 self.isLoggedIn = false
+                return
             }
             self.isLoggedIn = true
         }

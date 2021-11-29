@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-import Amplify
-import AWSDataStorePlugin
-import AWSCognitoAuthPlugin
-
 struct ContentView: View {
     
     @State var amplifyConfigured = false
@@ -58,7 +54,9 @@ struct ContentView: View {
                                 }
                                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button(action: {
-                                        AuthService.shared.signOut()
+                                        do {
+                                            try AuthService.shared.signOut()
+                                        } catch {}
                                     }) {
                                         Image(systemName: "ellipsis")
                                             .foregroundColor(Color.green)

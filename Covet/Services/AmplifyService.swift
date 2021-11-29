@@ -7,9 +7,6 @@
 
 import Foundation
 
-import Amplify
-import AWSCognitoAuthPlugin
-import AWSDataStorePlugin
 
 class AmplifyService: NSObject, ObservableObject {
     
@@ -23,13 +20,13 @@ class AmplifyService: NSObject, ObservableObject {
     static let mocked = AmplifyService(defaultIsConfiguredValue: true)
     
     func configureAmplify() {
-        let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
-        let authenticationPlugin = AWSCognitoAuthPlugin()
+//        let dataStorePlugin = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+//        let authenticationPlugin = AWSCognitoAuthPlugin()
         do {
-            try Amplify.add(plugin: dataStorePlugin)
-            try Amplify.add(plugin: authenticationPlugin)
-            try Amplify.configure()
-            print("Initialized Amplify");
+//            try Amplify.add(plugin: dataStorePlugin)
+//            try Amplify.add(plugin: authenticationPlugin)
+//            try Amplify.configure()
+//            print("Initialized Amplify");
             self.isConfigured = true;
             AuthService.shared.listen()
         } catch {
