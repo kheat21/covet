@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */; };
+		EB12930E277A4D9800FA0E46 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
+		EB129310277A4E1000FA0E46 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
+		EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129311277A764F00FA0E46 /* CreatePostView.swift */; };
+		EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129313277A772A00FA0E46 /* ImagePicker.swift */; };
+		EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129318277AD4C200FA0E46 /* UserManagerView.swift */; };
+		EB12931B277AD61D00FA0E46 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12931A277AD61D00FA0E46 /* SearchBar.swift */; };
+		EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12931C277AD8B100FA0E46 /* UserListItem.swift */; };
+		EB12931F277ADAAE00FA0E46 /* Chip.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12931E277ADAAE00FA0E46 /* Chip.swift */; };
 		EB453044274BF993004395CA /* CovetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453043274BF993004395CA /* CovetApp.swift */; };
 		EB453046274BF993004395CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453045274BF993004395CA /* ContentView.swift */; };
 		EB453048274BF995004395CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
@@ -25,6 +33,7 @@
 		EB453089274C26F2004395CA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453088274C26F2004395CA /* AuthService.swift */; };
 		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
 		EB453095274C41DE004395CA /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
+		EB47BAC5277A420900C257FE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BAC4277A420900C257FE /* API.swift */; };
 		EB517D0C27555040006470B8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0B27555040006470B8 /* SearchView.swift */; };
 		EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0D2755537A006470B8 /* UserSettingsView.swift */; };
 		EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
@@ -62,6 +71,14 @@
 		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
 		B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CB702DBB95E653E783522CB1 /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB12930D277A4D9800FA0E46 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EB12930F277A4E1000FA0E46 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		EB129311277A764F00FA0E46 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
+		EB129313277A772A00FA0E46 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		EB129318277AD4C200FA0E46 /* UserManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerView.swift; sourceTree = "<group>"; };
+		EB12931A277AD61D00FA0E46 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		EB12931C277AD8B100FA0E46 /* UserListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListItem.swift; sourceTree = "<group>"; };
+		EB12931E277ADAAE00FA0E46 /* Chip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chip.swift; sourceTree = "<group>"; };
 		EB453040274BF993004395CA /* Covet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB453043274BF993004395CA /* CovetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetApp.swift; sourceTree = "<group>"; };
 		EB453045274BF993004395CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +99,7 @@
 		EB453088274C26F2004395CA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB453094274C41DE004395CA /* CovetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift; sourceTree = "<group>"; };
+		EB47BAC4277A420900C257FE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		EB517D0B27555040006470B8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EB517D0D2755537A006470B8 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		EB517D1027556C28006470B8 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
@@ -186,6 +204,7 @@
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
 				EB453086274C26C6004395CA /* Info.plist */,
 				EBEF500827552E9600466642 /* GoogleService-Info.plist */,
+				EB47BAC4277A420900C257FE /* API.swift */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -223,6 +242,8 @@
 				EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */,
 				EB517D0B27555040006470B8 /* SearchView.swift */,
 				EB517D0D2755537A006470B8 /* UserSettingsView.swift */,
+				EB129311277A764F00FA0E46 /* CreatePostView.swift */,
+				EB129318277AD4C200FA0E46 /* UserManagerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +254,10 @@
 				EB453073274BF9DF004395CA /* CovetC.swift */,
 				EB453075274BFEA4004395CA /* CovetItem.swift */,
 				EB453077274C16C2004395CA /* UserPreview.swift */,
+				EB129313277A772A00FA0E46 /* ImagePicker.swift */,
+				EB12931A277AD61D00FA0E46 /* SearchBar.swift */,
+				EB12931C277AD8B100FA0E46 /* UserListItem.swift */,
+				EB12931E277ADAAE00FA0E46 /* Chip.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -249,6 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				EB453094274C41DE004395CA /* CovetUser.swift */,
+				EB12930D277A4D9800FA0E46 /* Post.swift */,
+				EB12930F277A4E1000FA0E46 /* Product.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -559,24 +586,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
+				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
+				EB129310277A4E1000FA0E46 /* Product.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,
 				EB517D0C27555040006470B8 /* SearchView.swift in Sources */,
 				EB45306E274BF9A6004395CA /* FeedView.swift in Sources */,
 				EB453044274BF993004395CA /* CovetApp.swift in Sources */,
+				EB12931F277ADAAE00FA0E46 /* Chip.swift in Sources */,
+				EB12931B277AD61D00FA0E46 /* SearchBar.swift in Sources */,
 				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
+				EB12930E277A4D9800FA0E46 /* Post.swift in Sources */,
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
+				EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
+				EB47BAC5277A420900C257FE /* API.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
+				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
+				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

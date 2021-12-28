@@ -12,12 +12,25 @@ struct ContentView: View {
     
     @State var amplifyConfigured = false
     @State var userLoggedIn = false
+    
+    @State var showCreatePostView = false
 
     var body: some View {
 
         TabView {
             NavigationView {
+            
                 FeedView()
+                    .navigationBarItems(
+                        trailing: Button(
+                            action: {
+                                self.showCreatePostView = true
+                            }
+                        )
+                        {
+                            Image(systemName: "plus")
+                        }
+                    )
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Image("Covet_Logo_BW")
@@ -51,6 +64,9 @@ struct ContentView: View {
         }
         .font(.headline)
         .accentColor(.green)
+        .popover(isPresented: self.$showCreatePostView, content: {
+            CreatePostView()
+        })
     }
 }
 

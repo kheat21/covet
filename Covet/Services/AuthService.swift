@@ -28,6 +28,8 @@ class AuthService: NSObject, ObservableObject {
             return self.currentCovetUser
         }
         
+        /*
+        
         // Otherwise, get the Firebase currentUser object
         // This will have the UID we need to resolve some
         // properties from the database
@@ -51,6 +53,9 @@ class AuthService: NSObject, ObservableObject {
         } else {
             print("Unable to get CovetUser because Auth.auth().currentUser was nil")
         }
+         
+         
+        */
         return nil
     }
     

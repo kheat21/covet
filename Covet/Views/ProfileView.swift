@@ -12,6 +12,8 @@ struct ProfileView: View {
     
     @State var user: CovetUser? = nil
     
+    @State var showFriendView: Bool = false
+    
     @Sendable
     func onAppear() async {
         do {
@@ -35,7 +37,40 @@ struct ProfileView: View {
 
     var body: some View {
         NavigationView {
+            
+            
+            
             VStack {
+                HStack {
+                    NavigationLink(
+                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
+                    ) {
+                        VStack {
+                            Text("204")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                            Text("followers")
+                        }
+                    }
+                    NavigationLink(
+                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FOLLOWINGS])
+                    ) {
+                        VStack {
+                            Text("123")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                            Text("following")
+                        }
+                    }
+                    NavigationLink(
+                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])) {
+                        VStack {
+                            Text("23")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                            Text("friends")
+                        }
+                    }
+                }
+                .frame(width: nil, height: 48, alignment: .center)
+                .background(Color.yellow)
                 CovetSquareZoomedInItem(
                     url: items[0],
                     size: 250,
