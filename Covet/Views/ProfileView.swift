@@ -36,10 +36,7 @@ struct ProfileView: View {
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
 
     var body: some View {
-        NavigationView {
-            
-            
-            
+//        NavigationView {
             VStack {
                 HStack {
                     NavigationLink(
@@ -69,8 +66,7 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .frame(width: nil, height: 48, alignment: .center)
-                .background(Color.yellow)
+                
                 CovetSquareZoomedInItem(
                     url: items[0],
                     size: 250,
@@ -79,6 +75,9 @@ struct ProfileView: View {
                     bottomBorderWidth: 8,
                     rightBorderWidth: 8
                 )
+                    .background(Color.brown)
+                    .frame(width: 250, height: 250, alignment: .top)
+                Spacer()
                 ScrollView {
                     LazyVGrid(columns: gridItems, spacing: 0) {
                         ForEach(0..<items.count) { i in
@@ -99,32 +98,32 @@ struct ProfileView: View {
                     }
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text(getCurrentUserHandle() ?? "")
-                        .font(Font.title)
-                        .fontWeight(Font.Weight.bold)
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        do {
-                            try Auth.auth().signOut()
-                        } catch {}
-                    }) {
-                        Image(systemName: "ellipsis")
-                            .foregroundColor(Color.green)
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Text(getCurrentUserHandle() ?? "No handle")
+//                        .font(Font.title)
+//                        .fontWeight(Font.Weight.bold)
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        do {
+//                            try Auth.auth().signOut()
+//                        } catch {}
+//                    }) {
+//                        Image(systemName: "ellipsis")
+//                            .foregroundColor(Color.green)
+//                    }
+//                }
+//            }
             .task(self.onAppear)
-        }
+//        }
+//    .navigationViewStyle()
+        
     }
     
     func getCurrentUserHandle() -> String? {
         if let user = self.$user.wrappedValue {
-            if let handle = user.handle {
-                return handle
-            }
+            return user.getDisplayItem()
         }
         return nil
     }

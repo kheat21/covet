@@ -25,23 +25,25 @@ struct UserManagerView: View {
     }
     
     private var users: [CovetUser] = [
-        CovetUser(uid: "123"),
-        CovetUser(uid: "456")
+        CovetUser.getSampleUser(number: 1, privateForFollowing: true, privateForFriending: false),
+        CovetUser.getSampleUser(number: 2, privateForFollowing: false, privateForFriending: false)
     ]
     
     var body: some View {
-        ZStack {
+        
             VStack {
-                
-                SearchBar(text: $searchText).padding(.top, 0)
+                SearchBar(text: $searchText)
                 List(
                     users.filter({ searchText.isEmpty ? true : $0.getDisplayItem().contains(searchText) })
                 ) { item in
                     UserListItem(user: item)
+                        
                 }
+                .listStyle(PlainListStyle())
+                
             }
-
-        }
+            .navigationBarTitle("Friends", displayMode: .inline)
+            
     }
 
 }

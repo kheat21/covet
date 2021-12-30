@@ -30,7 +30,7 @@ class Product {
     
     init(json: JSON) {
         self.id = 0
-        self.initial_creator = CovetUser(uid: "")
+        self.initial_creator = CovetUser.getSampleUser(number: 1, privateForFollowing: true, privateForFriending: true)
         self.name = ""
         self.description = ""
         self.link = ""

@@ -10,10 +10,11 @@ import SwiftUI
 struct CovetC: View {
     
     var size: Int
+    var text: String = "BM"
     
     var body: some View {
         ZStack(alignment: Alignment.center) {
-            Text("BM");
+            Text(text);
             Image("Covet_C")
                 .resizable()
                 .scaledToFill() // <=== Saves aspect ratio

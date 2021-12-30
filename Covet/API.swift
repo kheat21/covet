@@ -161,7 +161,7 @@ class API {
     private func getIdToken() async -> String? {
         if let currentUser = Auth.auth().currentUser {
             do {
-                return await try currentUser.getIDToken()
+                return try await currentUser.getIDToken()
             } catch {}
         }
         return nil

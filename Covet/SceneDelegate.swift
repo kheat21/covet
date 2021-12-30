@@ -23,8 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = UIHostingController(rootView: LoginView())
             }
             else {
-                let contentView = ContentView()
-                window.rootViewController = UIHostingController(rootView:contentView) // ContentView().environmentObject(DataStore())
+                window.rootViewController = UIHostingController(rootView:ContentView())
             }
             
             self.window = window
