@@ -42,6 +42,8 @@
 		EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
 		EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724CFD2780C2650076593C /* JSDictExtension.swift */; };
 		EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D022780C5280076593C /* JSDictTypedef.swift */; };
+		EB724D062780D4850076593C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = EB724D052780D4850076593C /* AlertToast */; };
+		EB724D082780F4DE0076593C /* CovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D072780F4DE0076593C /* CovetView.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
@@ -113,6 +115,7 @@
 		EB517D1027556C28006470B8 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		EB724CFD2780C2650076593C /* JSDictExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDictExtension.swift; sourceTree = "<group>"; };
 		EB724D022780C5280076593C /* JSDictTypedef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDictTypedef.swift; sourceTree = "<group>"; };
+		EB724D072780F4DE0076593C /* CovetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetView.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
+				EB724D062780D4850076593C /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,9 +214,10 @@
 				EB453084274C2631004395CA /* AppDelegate.swift */,
 				EB453043274BF993004395CA /* CovetApp.swift */,
 				EB453045274BF993004395CA /* ContentView.swift */,
+				EB724D072780F4DE0076593C /* CovetView.swift */,
+				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
 				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
-				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
 				EB453086274C26C6004395CA /* Info.plist */,
 				EBEF500827552E9600466642 /* GoogleService-Info.plist */,
 				EB47BAC4277A420900C257FE /* API.swift */,
@@ -349,6 +354,7 @@
 			);
 			name = Covet;
 			packageProductDependencies = (
+				EB724D052780D4850076593C /* AlertToast */,
 			);
 			productName = Covet;
 			productReference = EB453040274BF993004395CA /* Covet.app */;
@@ -428,7 +434,7 @@
 			mainGroup = EB453037274BF993004395CA;
 			packageReferences = (
 				EB35F3A2277D1A6F00C7BA92 /* XCRemoteSwiftPackageReference "swiftui-date-picker-dialog" */,
-				EB9FC392277D826B00501080 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -632,6 +638,7 @@
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
 				EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */,
 				EB35F3A1277D16D100C7BA92 /* PromptedUserInput.swift in Sources */,
+				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EB47BAC5277A420900C257FE /* API.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
@@ -1009,15 +1016,23 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		EB9FC392277D826B00501080 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+		EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB724D052780D4850076593C /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EB453038274BF993004395CA /* Project object */;
 }

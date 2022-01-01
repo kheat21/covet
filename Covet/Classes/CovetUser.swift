@@ -36,7 +36,7 @@ class CovetUser: Identifiable, Decodable {
         self.username = json["username"].string!
         self.name = json["name"].string!
         self.bio = json["bio"].stringValue
-        self.birthday = json["birthday"].stringValue.isoStringToDate()
+        self.birthday = json["birthday"].string != nil ? json["birthday"].stringValue.isoStringToDate() : nil
         self.address = json["address"].stringValue
         self.privateForFollowing = json["privateForFollowing"].bool!
         self.privateForFriending = json["privateForFriending"].bool!

@@ -10,77 +10,51 @@ import Firebase
 
 struct ContentView: View {
     
+    @State var userAccountExistenceChecked = false
     @State var userAccountCreated = false
     
     @State var amplifyConfigured = false
     @State var userLoggedIn = false
     
-    @State var showCreatePostView = false
-
     var body: some View {
-        
-        if userAccountCreated {
-            TabView {
-                NavigationView {
-                
-                    FeedView()
-                        .navigationBarItems(
-                            trailing: Button(
-                                action: {
-                                    self.showCreatePostView = true
-                                }
-                            )
-                            {
-                                Image(systemName: "plus")
-                            }
-                        )
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Image("Covet_Logo_BW")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: nil, height: 20, alignment: Alignment.center)
-                            }
-                        }
-                }
-                .tabItem {
-                    Label("Feed", systemImage: "list.dash")
-                        .foregroundColor(Color.green)
-                }
-                .tag(0)
-            
-                SearchView()
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                            .foregroundColor(Color.green)
-                    }
-                    .tag(1)
-                        
-                
-                ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.fill")
-                        .foregroundColor(Color.green)
-                }
-                .tag(2)
-            
+        if userAccountExistenceChecked {
+            if userAccountCreated {
+                CovetView()
             }
-            .font(.headline)
-            .accentColor(.green)
-            .popover(isPresented: self.$showCreatePostView, content: {
-                CreatePostView()
-            })
+            else {
+                UserSettingsView(
+                    mode: UserSettingsViewPresentationOptions.NewSignup,
+                    handle: "",
+                    name: "",
+                    birthday: Date(),
+                    privateForFollowing: false,
+                    privateForFriending: false,
+                    userCreatedCallback: { profile in
+                        AuthService.shared.rememberThatAProfileWasCreated(user: profile)
+                        self.userAccountCreated = true
+                    }
+                )
+            }
         } else {
-            UserSettingsView(
-                mode: UserSettingsViewPresentationOptions.NewSignup,
-                handle: "",
-                name: "",
-                birthday: Date(),
-                privateForFollowing: false,
-                privateForFriending: false
-            )
+            VStack {
+                CovetC(size: 128)
+                Text("Covet")
+            }
+            .task {
+                if let user = Auth.auth().currentUser {
+                    if AuthService.shared.wasAProfileProbablyAlreadyCreatedFor(authId: user.uid) {
+                        userAccountExistenceChecked = true
+                        userAccountCreated = true
+                    } else {
+                        userAccountExistenceChecked = true
+                        userAccountCreated = false
+                        // Check on the network
+                    }
+                }
+            }
         }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -15,14 +15,23 @@ struct CovetApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    @ObservedObject var auth: AuthService = AuthService.shared
+    
     public init() {
         FirebaseApp.configure()
     }
     
     var body: some Scene {
         WindowGroup {
-            Text("Error Occured")
+            if auth.isLoggedIn {
+                ContentView()
+            } else {
+                LoginView()
+            }
+                
         }
+        
     }
+    
     
 }

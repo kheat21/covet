@@ -19,6 +19,33 @@ class AuthService: NSObject, ObservableObject {
     
     static let shared = AuthService()
     
+    func rememberThatAProfileWasCreated(user: CovetUser) {
+        UserDefaults.standard.set(user.authId, forKey: "auth_service_recall_profile_created_for")
+    }
+    
+    func wasAProfileProbablyAlreadyCreatedFor(authId: String) -> Bool {
+        if let recalled_user = UserDefaults.standard.string(forKey: "auth_service_recall_profile_created_for") {
+            return recalled_user == authId
+        }
+        return false
+    }
+    
+
+    func setLoggedIn() {
+        self.isLoggedIn = true
+    }
+    
+    func setLoggedOut() {
+        self.isLoggedIn = false
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            self.isLoggedIn = false
+        } catch {}
+    }
+    
     func getUser() async throws -> CovetUser? {
         
         // If we have a cached copy of the currentCovetUser

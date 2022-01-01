@@ -84,9 +84,11 @@ struct CustomLoginViewController : UIViewControllerRepresentable {
                 parent.dismiss(error)
             }
             else {
+                AuthService.shared.setLoggedIn()
                 parent.dismiss(nil)
             }
         }
+        
         
         func authUI(_ authUI: FUIAuth, didFinish operation: FUIAccountSettingsOperationType, error: Error?)
         {
