@@ -20,6 +20,7 @@ target 'Covet' do
   
   pod 'Alamofire', '~> 5.5'
   pod 'SwiftyJSON', '~> 4.0'
+  pod "PromiseKit", "~> 6.8"
 
 
   target 'CovetTests' do

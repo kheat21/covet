@@ -18,7 +18,6 @@ struct UserSettingsView: View {
     
     @State var handle: String;
     @State var name: String;
-    @State var username: String = ""
     @State var bio: String = ""
     
     @State var birthdaySet: Bool = false
@@ -46,7 +45,17 @@ struct UserSettingsView: View {
                 Group {
                     Button(
                         action: {
-                            print("Signup")
+                            Task {
+                                let profile = await createProfile(
+                                    username: handle,
+                                    name: name,
+                                    birthday: birthdaySet ? birthday : nil,
+                                    address: nil
+                                )
+                                print("Created user")
+                                print(profile)
+                                print(profile?.username)
+                            }
                         },
                         label: {
                             Text("Save")
@@ -80,6 +89,19 @@ func nameToInitials(str: String) -> String {
         let firstComponent = components[0]
         let lastComponent = components[components.count - 1]
         return firstComponent.firstCharacter() + lastComponent.firstCharacter()
+    }
+}
+
+func createProfile(username: String, name: String?, birthday: Date?, address: String?) async -> CovetUser? {
+    do {
+        return try await API.createProfile(
+            username: username,
+            name: name,
+            birthday: birthday,
+            address: address
+        )
+    } catch {
+        return nil
     }
 }
 

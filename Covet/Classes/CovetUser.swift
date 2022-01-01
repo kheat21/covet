@@ -8,9 +8,10 @@
 import Foundation
 import Firebase
 import SwiftyJSON
+import PromiseKit
 
-class CovetUser: Identifiable {
-    
+class CovetUser: Identifiable, Decodable {
+
     private(set) var id: Int;
     private(set) var authId: String;
     private(set) var username: String;
