@@ -24,6 +24,7 @@ class AuthService: NSObject, ObservableObject {
     }
     
     func wasAProfileProbablyAlreadyCreatedFor(authId: String) -> Bool {
+        return true
         if let recalled_user = UserDefaults.standard.string(forKey: "auth_service_recall_profile_created_for") {
             return recalled_user == authId
         }
@@ -55,46 +56,12 @@ class AuthService: NSObject, ObservableObject {
             return self.currentCovetUser
         }
         
-        /*
+        // Otherwise, we have to get the profile from the server
+        self.currentCovetUser = try await API.me()
         
-        // Otherwise, get the Firebase currentUser object
-        // This will have the UID we need to resolve some
-        // properties from the database
-        if let currentUser = Auth.auth().currentUser {
-            
-            print("Fetching CovetUser for firebaseUID: " + currentUser.uid)
-            
-            // It is theoretically possible that multiple users will have the same firebase UID
-            // This would be a catastrophic error, so we'll need to catch that here
-            if let matching = await CovetUser.search(firebaseUID: currentUser.uid) {
-                
-                // If we find exactly one user (as we should), we'll cache
-                // it for later use and then return it. (Using simple recursion)
-                if matching.count == 1 {
-                    self.currentCovetUser = matching[0]
-                    return try await getUser()
-                } else if matching.count > 1 {
-                    throw RuntimeError("Multiple users found matching firebaseUID: " + currentUser.uid)
-                }
-            }
-        } else {
-            print("Unable to get CovetUser because Auth.auth().currentUser was nil")
-        }
-         
-         
-        */
-        return nil
+        // Regardless, return whatever it is that we have
+        return self.currentCovetUser
+        
     }
     
 }
-
-
-//    init(mockedLoginState: Bool?, mockedUser: CovetUser? = nil) {
-//        self._mockedLoginState = mockedLoginState;
-//        self._mockedUser = mockedUser;
-//        if(mockedLoginState != nil) {
-//            isLoggedIn = mockedLoginState!;
-//        }
-//    }
-//    static let mockedLoggedIn = AuthService(mockedLoginState: true, mockedUser: CovetUser.mockedSample1)
-//    static let mockedLoggedOut = AuthService(mockedLoginState: false, mockedUser: nil)

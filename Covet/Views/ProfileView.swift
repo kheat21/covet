@@ -36,7 +36,7 @@ struct ProfileView: View {
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
 
     var body: some View {
-//        NavigationView {
+        NavigationView {
             VStack {
                 HStack {
                     NavigationLink(
@@ -98,25 +98,25 @@ struct ProfileView: View {
                     }
                 }
             }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Text(getCurrentUserHandle() ?? "No handle")
-//                        .font(Font.title)
-//                        .fontWeight(Font.Weight.bold)
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        do {
-//                            try Auth.auth().signOut()
-//                        } catch {}
-//                    }) {
-//                        Image(systemName: "ellipsis")
-//                            .foregroundColor(Color.green)
-//                    }
-//                }
-//            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text(getCurrentUserHandle() ?? "No handle")
+                        .font(Font.title)
+                        .fontWeight(Font.Weight.bold)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        do {
+                            try Auth.auth().signOut()
+                        } catch {}
+                    }) {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(Color.green)
+                    }
+                }
+            }
             .task(self.onAppear)
-//        }
+        }
 //    .navigationViewStyle()
         
     }

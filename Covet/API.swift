@@ -14,9 +14,19 @@ import PromiseKit
 class API {
     private static let hostname: String = "http://localhost:3000/dev"
     
+    public static func me() async throws -> CovetUser? {
+        return try await getEndpointPromise(
+            endpoint: "/user/profile/get",
+            method: .get,
+            headers: await getHeaders(),
+            data: nil,
+            CovetUser.self
+        )
+    }
+    
     public static func createProfile(username: String, name: String?, birthday: Date?, address: String?) async throws -> CovetUser? {
         return try await getEndpointPromise(
-            endpoint: "/user/relationships/create",
+            endpoint: "/user/profile/create",
             method: .post,
             headers: await getHeaders(),
             data: [
@@ -34,7 +44,7 @@ class API {
             endpoint: "/user/relationships/list",
             method: .get,
             headers: await getHeaders(),
-            data: [:],
+            data: nil,
             [CovetUserRelationship].self
         )
     }
@@ -183,7 +193,7 @@ class API {
         endpoint: String,
         method: HTTPMethod,
         headers: HTTPHeaders,
-        data: Parameters,
+        data: Parameters?,
         _ type: D.Type
     ) async throws -> D? {
         var res: D?;
@@ -199,7 +209,9 @@ class API {
                 print(String(data: data, encoding: .utf8)!)
                 do {
                     res = try JSONDecoder().decode(type, from: data)
-                } catch {}
+                } catch {
+                    print(error)
+                }
                 semaphore.signal()
             }
             
@@ -211,18 +223,18 @@ class API {
         return res
     }
     
-    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]) async throws -> URLRequest {
+    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?) async throws -> URLRequest {
         let token = (await getIdToken())!
         var rq = URLRequest(url: URL(string: buildEndpointURL(endpoint: endpoint))!)
         rq.httpMethod = method == .post ? "POST" : "GET"
         rq.addValue("application/json", forHTTPHeaderField: "Content-Type")
         rq.addValue("application/json", forHTTPHeaderField: "Accept")
         rq.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-        rq.httpBody = data.stringify().data(using: .utf8)
         
-        
-        print("Made request object")
-        print(data.stringify())
+        if let d = data {
+            rq.httpBody = d.stringify().data(using: .utf8)
+            print(d.stringify())
+        }
         
         return rq
     }

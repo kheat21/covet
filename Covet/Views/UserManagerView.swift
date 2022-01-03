@@ -46,6 +46,7 @@ struct UserManagerView: View {
             AlertToast(type: .loading, title: nil, subTitle: nil)
         })
         .task {
+            print("Trying to get relationships...")
             do {
                 if let relationships = try await API.getRelationships() {
                     self._users = getMatchingUsers(
@@ -53,8 +54,13 @@ struct UserManagerView: View {
                         relationships: relationships,
                         relationshipTypes: self.relationshipTypes
                     )
+                    self.shouldShowLoadingToast = false
+                } else {
+                    print("Unable to call API")
                 }
-            } catch {}
+            } catch {
+                print(error)
+            }
         }
     }
 }
@@ -64,6 +70,10 @@ func getMatchingUsers(me: CovetUser, relationships: [CovetUserRelationship], rel
     let include_my_friends = relationshipTypes.contains(UserRelationshipSearchType.FRIENDS)
     let include_my_followers = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWERS)
     let include_who_i_follow = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWINGS)
+    
+    print("include_my_friends: " + String(include_my_friends))
+    print("include_my_followers: " + String(include_my_followers))
+    print("include_who_i_follow: " + String(include_who_i_follow))
     
     let rels: [CovetUserRelationship?] = relationships
     
