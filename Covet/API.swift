@@ -16,7 +16,7 @@ class API {
     
     public static func createProfile(username: String, name: String?, birthday: Date?, address: String?) async throws -> CovetUser? {
         return try await getEndpointPromise(
-            endpoint: "/user/profile/create",
+            endpoint: "/user/relationships/create",
             method: .post,
             headers: await getHeaders(),
             data: [
@@ -28,6 +28,17 @@ class API {
             CovetUser.self
         )
     }
+    
+    public static func getRelationships() async throws -> [CovetUserRelationship]? {
+        return try await getEndpointPromise(
+            endpoint: "/user/relationships/list",
+            method: .get,
+            headers: await getHeaders(),
+            data: [:],
+            [CovetUserRelationship].self
+        )
+    }
+
     
     public func getFeed(page: Int, completion: @escaping (_: [Post]) -> Void) async {
         getEndpoint(
@@ -127,6 +138,7 @@ class API {
             completion(json["status"].string)
         }
     }
+
     
     private func getEndpoint(
         endpoint: String,

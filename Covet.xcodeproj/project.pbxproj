@@ -44,6 +44,7 @@
 		EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D022780C5280076593C /* JSDictTypedef.swift */; };
 		EB724D062780D4850076593C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = EB724D052780D4850076593C /* AlertToast */; };
 		EB724D082780F4DE0076593C /* CovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D072780F4DE0076593C /* CovetView.swift */; };
+		EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD26E2927820B4000366816 /* CovetUserRelationship.swift */; };
 		EBDF21C8274D3E27008E48E3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21C7274D3E27008E48E3 /* View.swift */; };
 		EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */; };
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
@@ -116,6 +117,7 @@
 		EB724CFD2780C2650076593C /* JSDictExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDictExtension.swift; sourceTree = "<group>"; };
 		EB724D022780C5280076593C /* JSDictTypedef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDictTypedef.swift; sourceTree = "<group>"; };
 		EB724D072780F4DE0076593C /* CovetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetView.swift; sourceTree = "<group>"; };
+		EBD26E2927820B4000366816 /* CovetUserRelationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUserRelationship.swift; sourceTree = "<group>"; };
 		EBDF21C7274D3E27008E48E3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		EBDF21CA274D3E48008E48E3 /* EdgeBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeBorder.swift; sourceTree = "<group>"; };
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				EB453094274C41DE004395CA /* CovetUser.swift */,
 				EB12930D277A4D9800FA0E46 /* Post.swift */,
 				EB12930F277A4E1000FA0E46 /* Product.swift */,
+				EBD26E2927820B4000366816 /* CovetUserRelationship.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
+				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
 				EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
