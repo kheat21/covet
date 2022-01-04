@@ -88,6 +88,7 @@ struct UserSettingsView: View {
                                         } else {
                                             actionState = .FailedToCreateProfile
                                             showProfileCreationErrorToast = true
+                                            actionState = .None
                                         }
                                     } catch {
                                         showLoadingToast = false
