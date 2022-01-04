@@ -41,16 +41,38 @@ struct ContentView: View {
                 Text("Covet")
             }
             .task {
+                do {
+                    let profileExists = try await AuthService.shared.profileExistsForCurrentUser()
+                    userAccountExistenceChecked = true
+                    userAccountCreated = profileExists
+                } catch {
+                    fatalError("Unable to verify whether account exists or not")
+                }
+                /*
                 if let user = Auth.auth().currentUser {
                     if AuthService.shared.wasAProfileProbablyAlreadyCreatedFor(authId: user.uid) {
+                        
+                        // Set these to true for now ...
                         userAccountExistenceChecked = true
                         userAccountCreated = true
+                        
+                        // But just in case, go and verify with the server...
+                        do {
+                            let profileExists = try await AuthService.shared.profileExistsForCurrentUser()
+                            if !profileExists {
+                                userAccountCreated = true
+                            }
+                        } catch {
+                            userAccountExistenceChecked = false
+                            userAccountCreated = false
+                        }
                     } else {
                         userAccountExistenceChecked = true
                         userAccountCreated = false
                         // Check on the network
                     }
                 }
+                 */
             }
         }
     }

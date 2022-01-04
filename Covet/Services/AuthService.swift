@@ -30,8 +30,8 @@ class AuthService: NSObject, ObservableObject {
     }
     
     func wasAProfileProbablyAlreadyCreatedFor(authId: String) -> Bool {
-        return true
         if let recalled_user = UserDefaults.standard.string(forKey: "auth_service_recall_profile_created_for") {
+            print("Comparing " + recalled_user + " and authId=" + authId)
             return recalled_user == authId
         }
         return false
@@ -51,6 +51,10 @@ class AuthService: NSObject, ObservableObject {
             try Auth.auth().signOut()
             //self.isLoggedIn = false
         } catch {}
+    }
+    
+    func profileExistsForCurrentUser() async throws -> Bool {
+        return try await getUser() != nil
     }
     
     func getUser() async throws -> CovetUser? {
