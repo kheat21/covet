@@ -19,6 +19,7 @@ struct CovetApp: App {
     
     public init() {
         FirebaseApp.configure()
+        AuthService.shared.initialize()
     }
     
     var body: some Scene {

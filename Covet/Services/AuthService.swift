@@ -19,6 +19,12 @@ class AuthService: NSObject, ObservableObject {
     
     static let shared = AuthService()
     
+    func initialize() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            self.isLoggedIn = auth.currentUser != nil
+        }
+    }
+    
     func rememberThatAProfileWasCreated(user: CovetUser) {
         UserDefaults.standard.set(user.authId, forKey: "auth_service_recall_profile_created_for")
     }
@@ -33,17 +39,17 @@ class AuthService: NSObject, ObservableObject {
     
 
     func setLoggedIn() {
-        self.isLoggedIn = true
+        //self.isLoggedIn = true
     }
     
     func setLoggedOut() {
-        self.isLoggedIn = false
+        //self.isLoggedIn = false
     }
     
     func logout() {
         do {
             try Auth.auth().signOut()
-            self.isLoggedIn = false
+            //self.isLoggedIn = false
         } catch {}
     }
     
