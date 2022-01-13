@@ -44,24 +44,59 @@ struct SearchView: View {
     let names = ["Holly", "Josh", "Rhonda", "Ted"]
     @State private var searchText = ""
     
+    @State private var _results: UnifiedSearchResult? = nil;
+    
     // @ObservedObject var viewModel = ViewModel()
+    
+    private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
     var body: some View {
         NavigationView {
-            HStack {
-                TextField("Search", text: $searchText, prompt: Text("A person, product, etc.."))
-                Button("Search", action: {
-                    Task {
-                        print(try await API.search(query: searchText, page: 1))
-                    }
-                })
-            }
-            List {
-                ForEach(searchResults, id: \.self) { name in
-                    NavigationLink(destination: Text(name)) {
-                        Text(name)
-                    }
+            VStack {
+                HStack {
+                    TextField("Search", text: $searchText, prompt: Text("A person, product, etc.."))
+                    Button("Search", action: {
+                        Task {
+                            _results = try await API.search(query: searchText, page: 1)
+                        }
+                    })
+                    
                 }
+                Spacer()
+                if let results = _results {
+                    ScrollView {
+                    // Show the users first
+                    //
+                        ForEach(results.users.prefix(5)) { user in
+                            UserListItem(user: user)
+                        }
+                    
+                    
+                        // Show the posts next
+                        if let posts = results.posts {
+                            LazyVGrid(columns: gridItems, spacing: 0) {
+                                ForEach(0..<posts.count) { i in
+                                    GeometryReader { gr in
+                                        CovetSquareZoomedInItem(
+                                            url: "https://www.bostonherald.com/wp-content/uploads/migration/2016/05/04/050416maxnl05.jpg",
+                                            size: gr.size.width,
+                                            topBorderWidth: getTopBorderWidth(index: i),
+                                            leftBorderWidth: getLeftBorderWidth(index: i),
+                                            bottomBorderWidth: getBottomBorderWidth(index: i, total: posts.count),
+                                            rightBorderWidth: getRightBorderWidth(index: i, total: posts.count)
+                                        )
+                                            //.frame(height: gr.size.width)
+                                    }
+                                    .clipped()
+                                    .aspectRatio(1, contentMode: .fit)
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                
+            
             }
 //            .searchable(text: $viewModel.text) {
 //                ForEach(searchResults, id: \.self) { result in
@@ -69,6 +104,7 @@ struct SearchView: View {
 //                }
 //            }
             .navigationTitle("Friends")
+            
         }
     }
     
@@ -79,6 +115,22 @@ struct SearchView: View {
             return names.filter { $0.contains(searchText) }
         }
     }
+    
+    func getTopBorderWidth(index: Int) -> CGFloat {
+        return 4;
+    }
+    
+    func getBottomBorderWidth(index: Int, total: Int) -> CGFloat {
+        return index >= total - 3 ? 4 : 0;
+    }
+    
+    func getLeftBorderWidth(index: Int) -> CGFloat {
+        return 4;
+    }
+    
+    func getRightBorderWidth(index: Int, total: Int) -> CGFloat {
+        return (index % 3 == 2 || index == total - 1) ? 4 : 0;
+    }
 }
 
 struct SearchView_Previews: PreviewProvider {
@@ -86,3 +138,4 @@ struct SearchView_Previews: PreviewProvider {
         SearchView()
     }
 }
+
