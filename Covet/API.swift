@@ -51,14 +51,29 @@ class API {
 
     
     public static func getFeed(page: Int) async throws -> [Post]? {
-        return try await getEndpointPromise(
+        print("Getting feed...")
+        let resp = try await getEndpointPromise(
             endpoint: "/feed/view",
             method: .get,
             headers: await getHeaders(),
-            data: [ "page": page ],
+            data: [ "page": String(page) ],
             [ Post ].self
         )
+        print(resp)
+        return resp
     }
+    
+    public static func search(query: String, page: Int, pageSize: Int = 50) async throws -> UnifiedSearchResult? {
+        return try await getEndpointPromise(
+            endpoint: "/search/search",
+            method: .get,
+            headers: await getHeaders(),
+            data: [ "query": query, "page": String(page), "pageSize": String(pageSize) ],
+            UnifiedSearchResult.self
+        )
+    }
+    
+    
     public func getPost(products: [Product], text: String, completion: @escaping (_: Post?) -> Void) async {
         getEndpoint(
             endpoint: "/post/create",
@@ -155,7 +170,7 @@ class API {
         data: Parameters,
         completion: @escaping (_: JSON) -> Void
     ) {
-        AF.request(API.buildEndpointURL(endpoint: endpoint), method: method, parameters: data).responseData { response in
+        AF.request(API.buildEndpointURL(endpoint: endpoint, data: data), method: method, parameters: data).responseData { response in
             do {
                 if let status = response.response?.statusCode {
                     debugPrint("Response: \(response)")
@@ -207,6 +222,7 @@ class API {
                 print(String(data: data, encoding: .utf8)!)
                 do {
                     res = try JSONDecoder().decode(type, from: data)
+                    print(res)
                 } catch {
                     print(error)
                 }
@@ -223,15 +239,22 @@ class API {
     
     static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?) async throws -> URLRequest {
         let token = (await getIdToken())!
-        var rq = URLRequest(url: URL(string: buildEndpointURL(endpoint: endpoint))!)
+        var rq = URLRequest(url:
+            URL(string: buildEndpointURL(
+                endpoint: endpoint,
+                data: method == .get ? data : nil
+            ))!
+        )
         rq.httpMethod = method == .post ? "POST" : "GET"
         rq.addValue("application/json", forHTTPHeaderField: "Content-Type")
         rq.addValue("application/json", forHTTPHeaderField: "Accept")
         rq.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         
         if let d = data {
-            rq.httpBody = d.stringify().data(using: .utf8)
-            print(d.stringify())
+            if method == .post {
+                rq.httpBody = d.stringify().data(using: .utf8)
+                print(d.stringify())
+            }
         }
         
         return rq
@@ -253,11 +276,21 @@ class API {
         return nil
     }
     
-    private static func buildEndpointURL(endpoint: String) -> String {
+    private static func buildEndpointURL(endpoint: String, data: [String : Any]?) -> String {
         if(!endpoint.starts(with: "/")) {
-            return buildEndpointURL(endpoint: "/" + endpoint)
+            return buildEndpointURL(endpoint: "/" + endpoint, data: data)
         }
-        return API.hostname + endpoint
+        var url = API.hostname + endpoint
+        if let d = data {
+            var components = URLComponents()
+            components.queryItems = d.map {
+                URLQueryItem(name: $0, value: $1 as? String)
+            }
+            print(components.query)
+            
+            url += "?" + components.query!
+        }
+        return url
     }
     
 }
