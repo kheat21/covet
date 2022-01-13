@@ -50,16 +50,14 @@ class API {
     }
 
     
-    public func getFeed(page: Int, completion: @escaping (_: [Post]) -> Void) async {
-        getEndpoint(
+    public static func getFeed(page: Int) async throws -> [Post]? {
+        return try await getEndpointPromise(
             endpoint: "/feed/view",
             method: .get,
-            headers: await API.getHeaders(),
-            data: [ "page": page ]
-        ) { json in
-            let feed = json["feed"].array
-            completion(feed != nil ? feed!.map({ Post(json: $0) }) : [])
-        }
+            headers: await getHeaders(),
+            data: [ "page": page ],
+            [ Post ].self
+        )
     }
     public func getPost(products: [Product], text: String, completion: @escaping (_: Post?) -> Void) async {
         getEndpoint(
