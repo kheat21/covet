@@ -27,20 +27,4 @@ class Product: Decodable {
     
     public let createdAt: Date;
     public let lastUpdatedAt: Date;
-    
-    init(json: JSON) {
-        self.id = 0
-        self.initial_creator = CovetUser.getSampleUser(number: 1, privateForFollowing: true, privateForFriending: true)
-        self.name = ""
-        self.description = ""
-        self.link = ""
-        self.image_url = ""
-        self.vendor = ""
-        self.verified = false
-        self.deleted = false
-        self.removed = false
-        self.createdAt = Date()
-        self.lastUpdatedAt = Date()
-    }
-    
 }

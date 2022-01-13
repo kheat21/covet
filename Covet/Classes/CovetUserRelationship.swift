@@ -13,27 +13,6 @@ enum CovetUserRelationshipType {
     case Blocks
 }
 
-//class CovetUserRelationship {
-//    private(set) var user: CovetUser;
-//    private(set) var other: Int;
-//    private(set) var relationshipType: CovetUserRelationshipType;
-//
-//    init(user: CovetUser, other: Int, relationshipType: CovetUserRelationshipType) {
-//        self.user = user
-//        self.other = other
-//        self.relationshipType = relationshipType
-//    }
-//
-//    static func from(userFollowing: CovetUserFollowingRelationship) -> CovetUserRelationship {
-//        return CovetUserRelationship(user: userFollowing.user, other: userFollowing.follows, relationshipType: .Following)
-//    }
-//
-//    static func from(userFollowing: CovetUserFriendshipRelationship) -> CovetUserRelationship {
-//        return CovetUserRelationship(user: userFollowing.user, other: userFollowing.befriends, relationshipType: .Friends)
-//    }
-//
-//}
-
 class CovetUserRelationship : Decodable {
     private(set) var user: CovetUser;
     private(set) var other: CovetUser;

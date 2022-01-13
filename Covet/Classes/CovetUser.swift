@@ -10,51 +10,20 @@ import Firebase
 import SwiftyJSON
 import PromiseKit
 
-class CovetUser: Identifiable, Decodable {
+struct CovetUser: Identifiable, Decodable {
 
-    private(set) var id: Int;
-    private(set) var authId: String;
-    private(set) var username: String;
-    private(set) var name: String?;
-    private(set) var bio: String?;
-    private(set) var birthday: Date?;
-    private(set) var address: String?;
+        var id: Int;
+        var authId: String;
+        var username: String;
+        var name: String?;
+        var bio: String?;
+        var birthday: Date?;
+        var address: String?;
+        
+        var privateForFollowing: Bool;
+        var privateForFriending: Bool;
     
-    private(set) var privateForFollowing: Bool;
-    private(set) var privateForFriending: Bool;
-    
-    public func getDisplayItem() -> String {
-        if let n = self.name {
-            return n
-        }
-        return self.username
-    }
-    
-    init(json: JSON) {
-        self.id = json["id"].number!.intValue
-        self.authId = json["authId"].string!
-        self.username = json["username"].string!
-        self.name = json["name"].string!
-        self.bio = json["bio"].stringValue
-        self.birthday = json["birthday"].string != nil ? json["birthday"].stringValue.isoStringToDate() : nil
-        self.address = json["address"].stringValue
-        self.privateForFollowing = json["privateForFollowing"].bool!
-        self.privateForFriending = json["privateForFriending"].bool!
-    }
-    
-    static func getSampleUser(number: Int, privateForFollowing: Bool, privateForFriending: Bool) -> CovetUser {
-        let json: [String: Any] = [
-            "id": 1,
-            "authId": "google:" + String(number),
-            "username": "user" + String(number),
-            "name": "User #" + String(number),
-            "bio": "Hello World " + String(number),
-            "birthday": Date(timeIntervalSince1970: Double(number * 10000)),
-            "address": String(number) + " Main St",
-            "privateForFollowing": privateForFollowing,
-            "privateForFriending": privateForFriending
-        ]
-        return CovetUser(json: JSON(json))
-    }
+        var follows: [CovetUser]?
+        var followers: [CovetUser]?
+        var friends: [CovetUser]?
 }
- 
