@@ -32,7 +32,7 @@ struct UserManagerView: View {
             if let users = self._users {
                 SearchBar(text: $searchText)
                 List(
-                    users.filter({ searchText.isEmpty ? true : $0.getDisplayItem().contains(searchText) })
+                    users.filter({ searchText.isEmpty ? true : $0.username.contains(searchText) })
                 ) { item in
                     UserListItem(user: item)
                     

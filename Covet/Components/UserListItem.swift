@@ -14,7 +14,8 @@ struct UserListItem: View {
     var body: some View {
         HStack {
             CovetC(size: 48)
-            Text(user.getDisplayItem())
+//            Text(user.getDisplayItem())
+            Text(user.username)
             Spacer()
             Chip(text: "FRIEND", color: Color.accentColor)
         }
