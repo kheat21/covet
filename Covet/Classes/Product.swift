@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-class Product {
+class Product: Decodable {
     
     public let id: Int;
     public let initial_creator: CovetUser;
