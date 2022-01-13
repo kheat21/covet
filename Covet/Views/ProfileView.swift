@@ -38,31 +38,33 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    NavigationLink(
-                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
-                    ) {
-                        VStack {
-                            Text("204")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("followers")
+                if let follows = user?.follows, let followers = user?.followers, let friends = user?.friends {
+                    HStack {
+                        NavigationLink(
+                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
+                        ) {
+                            VStack {
+                                Text(String(followers.count))
+                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                Text("followers")
+                            }
                         }
-                    }
-                    NavigationLink(
-                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FOLLOWINGS])
-                    ) {
-                        VStack {
-                            Text("123")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("following")
+                        NavigationLink(
+                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FOLLOWINGS])
+                        ) {
+                            VStack {
+                                Text(String(follows.count))
+                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                Text("following")
+                            }
                         }
-                    }
-                    NavigationLink(
-                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])) {
-                        VStack {
-                            Text("23")
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                            Text("friends")
+                        NavigationLink(
+                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])) {
+                            VStack {
+                                Text(String(friends.count))
+                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                Text("friends")
+                            }
                         }
                     }
                 }
@@ -123,7 +125,7 @@ struct ProfileView: View {
     
     func getCurrentUserHandle() -> String? {
         if let user = self.$user.wrappedValue {
-            return user.getDisplayItem()
+            return user.username
         }
         return nil
     }
