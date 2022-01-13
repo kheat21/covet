@@ -74,23 +74,9 @@ struct SearchView: View {
                     
                         // Show the posts next
                         if let posts = results.posts {
-                            LazyVGrid(columns: gridItems, spacing: 0) {
-                                ForEach(0..<posts.count) { i in
-                                    GeometryReader { gr in
-                                        CovetSquareZoomedInItem(
-                                            url: "https://www.bostonherald.com/wp-content/uploads/migration/2016/05/04/050416maxnl05.jpg",
-                                            size: gr.size.width,
-                                            topBorderWidth: getTopBorderWidth(index: i),
-                                            leftBorderWidth: getLeftBorderWidth(index: i),
-                                            bottomBorderWidth: getBottomBorderWidth(index: i, total: posts.count),
-                                            rightBorderWidth: getRightBorderWidth(index: i, total: posts.count)
-                                        )
-                                            //.frame(height: gr.size.width)
-                                    }
-                                    .clipped()
-                                    .aspectRatio(1, contentMode: .fit)
-                                }
-                            }
+                            ImageGrid(images: results.posts.map { $0
+                                return getImageForPost(post: $0)
+                            })
                         }
                     }
                     
@@ -106,6 +92,10 @@ struct SearchView: View {
             .navigationTitle("Friends")
             
         }
+    }
+    
+    func getImageForPost(post: Post) -> String {
+        return post.products[0].image_url
     }
     
     var searchResults: [String] {
