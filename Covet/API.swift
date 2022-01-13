@@ -68,46 +68,51 @@ class API {
             endpoint: "/search/search",
             method: .get,
             headers: await getHeaders(),
-            data: [ "query": query, "page": String(page), "pageSize": String(pageSize) ],
+            data: [
+                "query": query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+                "page": String(page),
+                "pageSize": String(pageSize)
+            ],
             UnifiedSearchResult.self
         )
     }
     
     
-    public func getPost(products: [Product], text: String, completion: @escaping (_: Post?) -> Void) async {
-        getEndpoint(
-            endpoint: "/post/create",
-            method: .post,
-            headers: await API.getHeaders(),
-            data: [
-                "product_ids": products.map({ $0.id }),
-                "text": text
-            ]
-        ) { json in
-            completion(Post(json: json["post"]))
-        }
-    }
-    public func getProduct(
-        name: String,
-        link: String,
-        imageUrl: String,
-        description: String,
-        completion: @escaping (_: Product) -> Void
-    ) async {
-        getEndpoint(
-            endpoint: "/product/create",
-            method: .post,
-            headers: await API.getHeaders(),
-            data: [
-                "name": name,
-                "link": link,
-                "image_url": imageUrl,
-                "description": description
-            ]
-        ) { json in
-            completion(Product(json: json["product"]))
-        }
-    }
+//    public func getPost(products: [Product], text: String, completion: @escaping (_: Post?) -> Void) async {
+//        getEndpoint(
+//            endpoint: "/post/create",
+//            method: .post,
+//            headers: await API.getHeaders(),
+//            data: [
+//                "product_ids": products.map({ $0.id }),
+//                "text": text
+//            ]
+//        ) { json in
+//            completion(Post(json: json["post"]))
+//        }
+//    }
+    
+//    public func getProduct(
+//        name: String,
+//        link: String,
+//        imageUrl: String,
+//        description: String,
+//        completion: @escaping (_: Product) -> Void
+//    ) async {
+//        getEndpoint(
+//            endpoint: "/product/create",
+//            method: .post,
+//            headers: await API.getHeaders(),
+//            data: [
+//                "name": name,
+//                "link": link,
+//                "image_url": imageUrl,
+//                "description": description
+//            ]
+//        ) { json in
+//            completion(Product(json: json["product"]))
+//        }
+//    }
     private func setBlockedStatusForUser(
         userId: String,
         blockedStatus: Bool,
@@ -201,7 +206,7 @@ class API {
         }
          */
     }
-    
+
     private static func getEndpointPromise<D: Decodable>(
         endpoint: String,
         method: HTTPMethod,
@@ -234,6 +239,7 @@ class API {
         } catch {
             throw error
         }
+        
         return res
     }
     
