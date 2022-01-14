@@ -11,10 +11,12 @@ import SwiftyJSON
 struct Post : Identifiable, Decodable {
     var id: Int;
     var user: CovetUser;
-    var text: String;
+    var text: String?;
     //var name: String?;
-    //var products: [Product];
-    var deleted: Int;
-    var removed: Int;
+    var products: [Product];
+    var deleted: Int?;
+    var removed: Int?;
     var createdAt: Int;
+    
+    var highlighted_product_id: Int?;
 }
