@@ -49,12 +49,21 @@ struct CovetView : View {
                 .tag(1)
             
             
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.fill")
-                        .foregroundColor(Color.green)
-                }
-                .tag(2)
+            NavigationView {
+                ProfileView()
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Text("User Handle Here")
+                                .fontWeight(Font.Weight.heavy)
+                        }
+                    }
+            }
+            .tabItem {
+                Label("Profile", systemImage: "person.fill")
+                    .foregroundColor(Color.green)
+            }
+            .tag(2)
             
         }
         .font(.headline)
