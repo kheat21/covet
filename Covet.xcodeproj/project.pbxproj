@@ -10,6 +10,8 @@
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
 		A4EDE9CF27908DA800EB6AE3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9CE27908DA800EB6AE3 /* Array.swift */; };
+		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
+		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
 		BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */; };
 		EB12930E277A4D9800FA0E46 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
 		EB129310277A4E1000FA0E46 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
@@ -80,6 +82,8 @@
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
 		A4EDE9CE27908DA800EB6AE3 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
+		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
 		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
 		B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CB702DBB95E653E783522CB1 /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +221,7 @@
 				EB453087274C26E8004395CA /* Services */,
 				EB453072274BF9CF004395CA /* Components */,
 				EB453071274BF9C3004395CA /* Views */,
+				EB47BAC4277A420900C257FE /* API.swift */,
 				EB453084274C2631004395CA /* AppDelegate.swift */,
 				EB453043274BF993004395CA /* CovetApp.swift */,
 				EB453045274BF993004395CA /* ContentView.swift */,
@@ -226,7 +231,6 @@
 				EB453049274BF995004395CA /* Preview Content */,
 				EB453086274C26C6004395CA /* Info.plist */,
 				EBEF500827552E9600466642 /* GoogleService-Info.plist */,
-				EB47BAC4277A420900C257FE /* API.swift */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -282,6 +286,8 @@
 				EB12931C277AD8B100FA0E46 /* UserListItem.swift */,
 				EB12931E277ADAAE00FA0E46 /* Chip.swift */,
 				EB35F3A0277D16D100C7BA92 /* PromptedUserInput.swift */,
+				A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */,
+				A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
+				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
@@ -649,6 +656,7 @@
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
 				EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */,
 				EB35F3A1277D16D100C7BA92 /* PromptedUserInput.swift in Sources */,
+				A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */,
 				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EB47BAC5277A420900C257FE /* API.swift in Sources */,
