@@ -13,9 +13,19 @@ enum CovetUserRelationshipType {
     case Blocks
 }
 
+func userRelationshipTypeToString(rel: CovetUserRelationshipType) throws -> String {
+    switch (rel) {
+        case .Friends: return "befriend"
+        case .Following: return "follow"
+        case .Blocks: return "block"
+        default: throw RuntimeError("CovetUserRelationshipType was invalid")
+    }
+}
+
 class CovetUserRelationship : Decodable {
-    private(set) var user: CovetUser;
-    private(set) var other: CovetUser;
+    private(set) var id: Int;
+    private(set) var user: Int;
+    private(set) var other: Int;
     private(set) var relationship: String;
     private(set) var pending: Bool;
 }

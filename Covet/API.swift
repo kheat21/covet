@@ -11,6 +11,14 @@ import Foundation
 import SwiftyJSON
 import PromiseKit
 
+struct CovetAPIError : Decodable {
+    var message: String;
+}
+
+struct CovetAPIFailureResponse : Decodable {
+    var error: CovetAPIError;
+}
+
 class API {
     private static let hostname: String = "http://localhost:3000/dev"
     
@@ -136,21 +144,22 @@ class API {
     public func unblockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
         await setBlockedStatusForUser(userId: userId, blockedStatus: false, completion: completion)
     }
-    public func friendUser(
-        userId: String,
-        completion: @escaping (_: String?) -> Void
-    ) async {
-        getEndpoint(
-            endpoint: "/user/friends/add",
+    
+    
+    
+    public static func setRelationship(userId: Int, relationshipType: CovetUserRelationshipType) async throws -> CovetUserRelationship? {
+        return try await getEndpointPromise(
+            endpoint: "/user/relationships/set",
             method: .post,
             headers: await API.getHeaders(),
             data: [
-                "friend": userId
-            ]
-        ) { json in
-            completion(json["status"].string)
-        }
+                "user": userId,
+                "relationship_type": userRelationshipTypeToString(rel: relationshipType)
+            ],
+            CovetUserRelationship.self
+        )
     }
+    
     public func followUser(
         userId: String,
         completion: @escaping (_: String?) -> Void
@@ -215,6 +224,7 @@ class API {
         _ type: D.Type
     ) async throws -> D? {
         var res: D?;
+        var errorMessage: String? = nil
         do {
             let semaphore = DispatchSemaphore (value: 0)
             let request = try await makeUrlRequest(endpoint: endpoint, method: method, data: data)
@@ -225,6 +235,14 @@ class API {
                     return
                 }
                 print(String(data: data, encoding: .utf8)!)
+                
+                // Try to decode as an unsuccessful response
+                do {
+                    let errorRes = try JSONDecoder().decode(CovetAPIFailureResponse.self, from: data)
+                    errorMessage = errorRes.error.message
+                } catch {}
+                
+                // Try to decode as a successful response
                 do {
                     res = try JSONDecoder().decode(type, from: data)
                     print(res)
@@ -238,6 +256,10 @@ class API {
             semaphore.wait()
         } catch {
             throw error
+        }
+        
+        if let msg = errorMessage {
+            throw RuntimeError(msg)
         }
         
         return res
