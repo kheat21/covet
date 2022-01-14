@@ -10,14 +10,14 @@ import Firebase
 
 struct ProfileView: View {
     
-    @State var user: CovetUser? = nil
+    @State var _user: CovetUser? = nil
     
     @State var showFriendView: Bool = false
     
     @Sendable
     func onAppear() async {
         do {
-            self.user = try await AuthService.shared.getUser()
+            self._user = try await AuthService.shared.getUser()
         } catch {
             print("Error getting the user")
         }
@@ -36,115 +36,60 @@ struct ProfileView: View {
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
 
     var body: some View {
-        NavigationView {
-            VStack {
-                if let follows = user?.follows, let followers = user?.followers, let friends = user?.friends {
-                    HStack {
-                        NavigationLink(
-                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
-                        ) {
-                            VStack {
-                                Text(String(followers.count))
-                                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                                Text("followers")
-                            }
-                        }
-                        NavigationLink(
-                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FOLLOWINGS])
-                        ) {
-                            VStack {
-                                Text(String(follows.count))
-                                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                                Text("following")
-                            }
-                        }
-                        NavigationLink(
-                            destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])) {
-                            VStack {
-                                Text(String(friends.count))
-                                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                                Text("friends")
-                            }
+        ZStack {
+            if let user = _user {
+                VStack {
+                    
+                    // Show the number of people they're connected to
+                    if let follows = user.follows, let followers = user.followers, let friends = user.friends {
+                        UserRelationshipsHero(following: follows, followers: followers, friends: friends)
+                    }
+                    
+                    // Show their posts
+                    if let posts = user.posts {
+                        
+                        // Show the most recent one
+                        CovetSquareZoomedInItem(
+                            url: items[0],
+                            size: 250,
+                            topBorderWidth: 8,
+                            leftBorderWidth: 8,
+                            bottomBorderWidth: 8,
+                            rightBorderWidth: 8
+                        )
+                        .background(Color.brown)
+                        .frame(width: 250, height: 250, alignment: .top)
+                        
+                        // Space them out so that the scroll view doesn't
+                        // get pushed too low or too high
+                        Spacer()
+                        
+                        // Show all the others
+                        ScrollView {
+                            ImageGrid(images: posts.map { $0
+                                return $0.products[0].image_url
+                            })
                         }
                     }
+                    
                 }
+                //.navigationBarTitle("Profile")
+                .navigationBarHidden(false)
+                //.navigationBarItems(leading: backButton, trailing: addButton)
                 
-                CovetSquareZoomedInItem(
-                    url: items[0],
-                    size: 250,
-                    topBorderWidth: 8,
-                    leftBorderWidth: 8,
-                    bottomBorderWidth: 8,
-                    rightBorderWidth: 8
-                )
-                    .background(Color.brown)
-                    .frame(width: 250, height: 250, alignment: .top)
-                Spacer()
-                ScrollView {
-                    LazyVGrid(columns: gridItems, spacing: 0) {
-                        ForEach(0..<items.count) { i in
-                            GeometryReader { gr in
-                                CovetSquareZoomedInItem(
-                                    url: items[i],
-                                    size: gr.size.width,
-                                    topBorderWidth: getTopBorderWidth(index: i),
-                                    leftBorderWidth: getLeftBorderWidth(index: i),
-                                    bottomBorderWidth: getBottomBorderWidth(index: i, total: items.count),
-                                    rightBorderWidth: getRightBorderWidth(index: i, total: items.count)
-                                )
-                                    //.frame(height: gr.size.width)
-                            }
-                            .clipped()
-                            .aspectRatio(1, contentMode: .fit)
-                        }
-                    }
-                }
+            } else {
+                Text("Error loading user. Please try again later.")
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text(getCurrentUserHandle() ?? "No handle")
-                        .font(Font.title)
-                        .fontWeight(Font.Weight.bold)
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        do {
-                            try Auth.auth().signOut()
-                        } catch {}
-                    }) {
-                        Image(systemName: "ellipsis")
-                            .foregroundColor(Color.green)
-                    }
-                }
-            }
-            .task(self.onAppear)
-        }
-//    .navigationViewStyle()
+        }.task(self.onAppear)
         
     }
     
-    func getCurrentUserHandle() -> String? {
-        if let user = self.$user.wrappedValue {
-            return user.username
-        }
-        return nil
-    }
-    
-    func getTopBorderWidth(index: Int) -> CGFloat {
-        return 4;
-    }
-    
-    func getBottomBorderWidth(index: Int, total: Int) -> CGFloat {
-        return index >= total - 3 ? 4 : 0;
-    }
-    
-    func getLeftBorderWidth(index: Int) -> CGFloat {
-        return 4;
-    }
-    
-    func getRightBorderWidth(index: Int, total: Int) -> CGFloat {
-        return (index % 3 == 2 || index == total - 1) ? 4 : 0;
-    }
+//    func getCurrentUserHandle() -> String? {
+//        if let user = self.$user.wrappedValue {
+//            return user.username
+//        }
+//        return nil
+//    }
     
 }
 
@@ -153,3 +98,22 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView()
     }
 }
+
+
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Text(getCurrentUserHandle() ?? "No handle")
+//                        .font(Font.title)
+//                        .fontWeight(Font.Weight.bold)
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        do {
+//                            try Auth.auth().signOut()
+//                        } catch {}
+//                    }) {
+//                        Image(systemName: "ellipsis")
+//                            .foregroundColor(Color.green)
+//                    }
+//                }
+//            }
