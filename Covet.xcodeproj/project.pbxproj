@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
-		A4EDE9CF27908DA800EB6AE3 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9CE27908DA800EB6AE3 /* Array.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
 		BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */; };
@@ -81,7 +80,6 @@
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
-		A4EDE9CE27908DA800EB6AE3 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
 		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -335,7 +333,6 @@
 				EBDF21CC274D400B008E48E3 /* Int.swift */,
 				EB35F39C277D0DF300C7BA92 /* String.swift */,
 				EB724CFD2780C2650076593C /* JSDictExtension.swift */,
-				A4EDE9CE27908DA800EB6AE3 /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -641,7 +638,6 @@
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
 				EB129310277A4E1000FA0E46 /* Product.swift in Sources */,
-				A4EDE9CF27908DA800EB6AE3 /* Array.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,
