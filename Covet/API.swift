@@ -147,7 +147,7 @@ class API {
     
     
     
-    public static func setRelationship(userId: Int, relationshipType: CovetUserRelationshipType) async throws -> CovetUserRelationship? {
+    public static func setRelationship(userId: Int, relationshipType: CovetUserRelationshipType) async throws -> SetUserRelationshipResponseObject? {
         return try await getEndpointPromise(
             endpoint: "/user/relationships/set",
             method: .post,
@@ -156,7 +156,7 @@ class API {
                 "user": userId,
                 "relationship_type": userRelationshipTypeToString(rel: relationshipType)
             ],
-            CovetUserRelationship.self
+            SetUserRelationshipResponseObject.self
         )
     }
     
@@ -295,7 +295,7 @@ class API {
         return []
     }
     
-    private static func getIdToken() async -> String? {
+    static func getIdToken() async -> String? {
         if let currentUser = Auth.auth().currentUser {
             do {
                 return try await currentUser.getIDToken()

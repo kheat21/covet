@@ -9,7 +9,7 @@ import AlertToast
 import SwiftUI
 
 struct UserListItem: View {
-    
+        
     @State var backgroundColor: Color = Color.white;
     @State var showingActionDialog: Bool = false;
     @State var user: CovetUser;
@@ -131,11 +131,9 @@ struct UserListItem: View {
         Task {
             do {
                 print("Setting relationship...")
-                let rel = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
-                if let relationship = rel {
-                    print(relationship.user.id)
-                    print(relationship.other.id)
-                    print(relationship.relationship)
+                let resp = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
+                if let response = resp {
+                    self.user = response.otherUser
                 } else {
                     print("No relation obtained")
                 }

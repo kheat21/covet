@@ -9,9 +9,9 @@ import SwiftUI
 
 struct UserRelationshipsHero: View {
     
-    var following: [CovetUser]
-    var followers: [CovetUser]
-    var friends: [CovetUser]
+    var following: [CovetUserRelationshipInfo]
+    var followers: [CovetUserRelationshipInfo]
+    var friends: [CovetUserRelationshipInfo]
     
     var body: some View {
         HStack {

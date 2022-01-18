@@ -67,6 +67,9 @@ struct UserManagerView: View {
 
 func getMatchingUsers(me: CovetUser, relationships: [CovetUserRelationship], relationshipTypes: [UserRelationshipSearchType]) -> [CovetUser] {
     
+    return []
+    
+    /*
     let include_my_friends = relationshipTypes.contains(UserRelationshipSearchType.FRIENDS)
     let include_my_followers = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWERS)
     let include_who_i_follow = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWINGS)
@@ -95,9 +98,10 @@ func getMatchingUsers(me: CovetUser, relationships: [CovetUserRelationship], rel
         }
     
     return users as! [CovetUser]
-
+     */
 }
 
+/*
 func getPendingUsers(relationships: [CovetUserRelationship]) -> [CovetUser] {
     return relationships
         .filter { rel in
@@ -107,7 +111,7 @@ func getPendingUsers(relationships: [CovetUserRelationship]) -> [CovetUser] {
             return rel.other
         }
 }
-
+*/
 
 /*
 func getMatchingUsers(relationships: [CovetUserRelationship], relationshipTypes: [UserRelationshipSearchType]) -> [CovetUser] {

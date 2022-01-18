@@ -22,6 +22,9 @@ class AuthService: NSObject, ObservableObject {
     func initialize() {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.isLoggedIn = auth.currentUser != nil
+            Task {
+                print(await API.getIdToken())
+            }
         }
     }
     

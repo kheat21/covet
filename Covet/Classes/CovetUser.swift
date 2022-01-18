@@ -10,13 +10,13 @@ import Firebase
 import SwiftyJSON
 import PromiseKit
 
-struct CovetUserRelationshipInfo {
+struct CovetUserRelationshipInfo : Decodable {
     
     // The other user, regardless of the "direction" of the relationship
-    user: CovetUser;
+    var user: CovetUser;
     
     // The relationship object itself
-    relationship: CovetUserRelationship;
+    var relationship: CovetUserRelationship;
     
 }
 
