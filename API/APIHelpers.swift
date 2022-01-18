@@ -9,11 +9,13 @@ import Alamofire
 import Foundation
 
 class APIHelpers {
+        
+    // headers: HTTPHeaders,
     
     static func getEndpointPromise<D: Decodable>(
+        token: String?,
         endpoint: String,
         method: HTTPMethod,
-        headers: HTTPHeaders,
         data: Parameters?,
         _ type: D.Type
     ) async throws -> D? {
@@ -21,7 +23,7 @@ class APIHelpers {
         var errorMessage: String? = nil
         do {
             let semaphore = DispatchSemaphore (value: 0)
-            let request = try await makeUrlRequest(endpoint: endpoint, method: method, data: data)
+            let request = try await makeUrlRequest(endpoint: endpoint, method: method, data: data, token: token)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data else {
                     print(String(describing: error))
@@ -59,8 +61,7 @@ class APIHelpers {
         return res
     }
     
-    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?) async throws -> URLRequest {
-        let token = (await getIdToken())!
+    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?, token: String?) async throws -> URLRequest {
         var rq = URLRequest(url:
             URL(string: buildEndpointURL(
                 endpoint: endpoint,
@@ -70,7 +71,9 @@ class APIHelpers {
         rq.httpMethod = method == .post ? "POST" : "GET"
         rq.addValue("application/json", forHTTPHeaderField: "Content-Type")
         rq.addValue("application/json", forHTTPHeaderField: "Accept")
-        rq.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        if let tok = token {
+            rq.addValue("Bearer " + tok, forHTTPHeaderField: "Authorization")
+        }
         
         if let d = data {
             if method == .post {

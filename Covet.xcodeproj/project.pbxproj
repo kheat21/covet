@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */; };
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
+		A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
+		A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
@@ -802,6 +804,7 @@
 				A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */,
 				A459DA26279755A100001BF5 /* APIErrors.swift in Sources */,
 				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
+				A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */,
 				A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */,
 				A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */,
 				A459DA202797552B00001BF5 /* APIConfig.swift in Sources */,
@@ -821,6 +824,7 @@
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,
+				A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,

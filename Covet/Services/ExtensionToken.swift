@@ -13,9 +13,9 @@ class ExtensionTokenService {
         do {
             let localTokenComponent = generateLocalToken()
             
-            let resp = try await API.setExtensionToken(localTokenComponent: localTokenComponent)
+            let resp = try await ExtensionAPI.setExtensionToken(localTokenComponent: localTokenComponent)
             guard resp != nil else { return false }
-            
+            return true
         } catch {
             return false
         }

@@ -14,23 +14,12 @@ import PromiseKit
 class API {
     private static let hostname: String = "http://localhost:3000/dev"
     
-    public static func setExtensionToken(localTokenComponent: String) async throws -> SetExtensionTokenResult? {
-        return try await APIHelpers.getEndpointPromise(
-            endpoint: "/user/extension_token/set",
-            method: .post,
-            headers: await getHeaders(),
-            data: [
-                "token": localTokenComponent
-            ],
-            SetExtensionTokenResult.self
-        )
-    }
-    
     public static func me() async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/user/profile/get",
-            method: .get,
-            headers: await getHeaders(),
+            method: HTTPMethod.get,
+            //headers: await getHeaders(),
             data: nil,
             CovetUser.self
         )
@@ -38,9 +27,10 @@ class API {
     
     public static func createProfile(username: String, name: String?, birthday: Date?, address: String?) async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/user/profile/create",
-            method: .post,
-            headers: await getHeaders(),
+            method: HTTPMethod.post,
+            //headers: await getHeaders(),
             data: [
                 "username": username,
                 "name": name ?? nil,
@@ -53,9 +43,10 @@ class API {
     
     public static func getRelationships() async throws -> [CovetUserRelationship]? {
         return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/user/relationships/list",
-            method: .get,
-            headers: await getHeaders(),
+            method: HTTPMethod.get,
+            // headers: await getHeaders(),
             data: nil,
             [CovetUserRelationship].self
         )
@@ -65,9 +56,10 @@ class API {
     public static func getFeed(page: Int) async throws -> [Post]? {
         print("Getting feed...")
         let resp = try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/feed/view",
-            method: .get,
-            headers: await getHeaders(),
+            method: HTTPMethod.get,
+            // headers: await getHeaders(),
             data: [ "page": String(page) ],
             [ Post ].self
         )
@@ -77,9 +69,10 @@ class API {
     
     public static func search(query: String, page: Int, pageSize: Int = 50) async throws -> UnifiedSearchResult? {
         return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/search/search",
-            method: .get,
-            headers: await getHeaders(),
+            method: HTTPMethod.get,
+            // headers: await getHeaders(),
             data: [
                 "query": query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
                 "page": String(page),
@@ -89,15 +82,17 @@ class API {
         )
     }
     
+    /*
     private func setBlockedStatusForUser(
         userId: String,
         blockedStatus: Bool,
         completion: @escaping (_: String?) -> Void
     ) async {
         APIHelpers.getEndpoint(
+            token: await getIdToken(),
             endpoint: "/user/block/block",
-            method: .post,
-            headers: await API.getHeaders(),
+            method: HTTPMethod.post,
+            // headers: await API.getHeaders(),
             data: [
                 "block": userId,
                 "status": blockedStatus
@@ -106,20 +101,21 @@ class API {
             completion(json["blocked"].string)
         }
     }
+    
     public func blockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
         await setBlockedStatusForUser(userId: userId, blockedStatus: true, completion: completion)
     }
     public func unblockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
         await setBlockedStatusForUser(userId: userId, blockedStatus: false, completion: completion)
     }
-    
-    
+     */
     
     public static func setRelationship(userId: Int, relationshipType: CovetUserRelationshipType) async throws -> SetUserRelationshipResponseObject? {
         return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/user/relationships/set",
             method: .post,
-            headers: await API.getHeaders(),
+            // headers: await API.getHeaders(),
             data: [
                 "user": userId,
                 "relationship_type": userRelationshipTypeToString(rel: relationshipType)
@@ -128,14 +124,15 @@ class API {
         )
     }
     
+    /*
     public func followUser(
         userId: String,
         completion: @escaping (_: String?) -> Void
     ) async {
         APIHelpers.getEndpoint(
             endpoint: "/user/following/add",
-            method: .post,
-            headers: await API.getHeaders(),
+            method: HTTPMethod.post,
+            // headers: await API.getHeaders(),
             data: [
                 "following": userId
             ]
@@ -143,6 +140,7 @@ class API {
             completion(json["status"].string)
         }
     }
+    */
     
     private static func getHeaders() async -> HTTPHeaders {
         if let token = await getIdToken() {
