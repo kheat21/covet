@@ -23,6 +23,12 @@ class AuthService: NSObject, ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.isLoggedIn = auth.currentUser != nil
             Task {
+                print("Trying to save the ID token")
+                UserDefaults.standard.set(
+                    await API.getIdToken(),
+                    forKey: "id_token"
+                )
+                print("Saved id token")
                 print(await API.getIdToken())
             }
         }

@@ -7,11 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */; };
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
+		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
+		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
+		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
+		A44DA6E72797410000A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
+		A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
+		A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724CFD2780C2650076593C /* JSDictExtension.swift */; };
+		A459DA1C279754F100001BF5 /* JSDictTypedef.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D022780C5280076593C /* JSDictTypedef.swift */; };
+		A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA1E2797552B00001BF5 /* APIConfig.swift */; };
+		A459DA202797552B00001BF5 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA1E2797552B00001BF5 /* APIConfig.swift */; };
+		A459DA222797553600001BF5 /* ExtensionTokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */; };
+		A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */; };
+		A459DA25279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
+		A459DA26279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
 		A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */; };
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
 		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
+		A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
+		A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
+		A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95027974BBD003DBD85 /* AppAPI.swift */; };
+		A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -43,7 +62,6 @@
 		EB453089274C26F2004395CA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453088274C26F2004395CA /* AuthService.swift */; };
 		EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45308A274C2F87004395CA /* SceneDelegate.swift */; };
 		EB453095274C41DE004395CA /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
-		EB47BAC5277A420900C257FE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47BAC4277A420900C257FE /* API.swift */; };
 		EB517D0C27555040006470B8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0B27555040006470B8 /* SearchView.swift */; };
 		EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D0D2755537A006470B8 /* UserSettingsView.swift */; };
 		EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
@@ -100,15 +118,30 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.release.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.release.xcconfig"; sourceTree = "<group>"; };
+		22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
+		26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
 		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
+		5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
+		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
+		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
+		A44DA6E5279740CB00A9422E /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		A459DA1E2797552B00001BF5 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTokenConfig.swift; sourceTree = "<group>"; };
+		A459DA24279755A100001BF5 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
 		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExtensionTokenResult.swift; sourceTree = "<group>"; };
+		A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
+		A4D1F95027974BBD003DBD85 /* AppAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPI.swift; sourceTree = "<group>"; };
+		A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAPI.swift; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -146,7 +179,6 @@
 		EB453088274C26F2004395CA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EB45308A274C2F87004395CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EB453094274C41DE004395CA /* CovetUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUser.swift; sourceTree = "<group>"; };
-		EB47BAC4277A420900C257FE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		EB517D0B27555040006470B8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EB517D0D2755537A006470B8 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		EB517D1027556C28006470B8 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
@@ -160,6 +192,7 @@
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		EBEF500827552E9600466642 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
 		ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet_CovetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +240,7 @@
 				CB702DBB95E653E783522CB1 /* Pods_Covet.framework */,
 				F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */,
 				ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */,
+				01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,13 +254,27 @@
 				B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */,
 				A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */,
 				0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */,
+				26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */,
+				ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */,
+				5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */,
+				22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A459DA1D2797551500001BF5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A459DA1E2797552B00001BF5 /* APIConfig.swift */,
+				A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		A4A47E8827965DB300FE8ED8 /* CovetIt */ = {
 			isa = PBXGroup;
 			children = (
+				A44DA6E027968C7500A9422E /* CovetIt.entitlements */,
 				A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */,
 				A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */,
 				A4A47E8E27965DB300FE8ED8 /* Info.plist */,
@@ -233,9 +282,22 @@
 			path = CovetIt;
 			sourceTree = "<group>";
 		};
+		A4D1F94C27974B87003DBD85 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */,
+				A4D1F95027974BBD003DBD85 /* AppAPI.swift */,
+				A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */,
+				A459DA24279755A100001BF5 /* APIErrors.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		EB453037274BF993004395CA = {
 			isa = PBXGroup;
 			children = (
+				A459DA1D2797551500001BF5 /* Config */,
+				A4D1F94C27974B87003DBD85 /* API */,
 				EB453042274BF993004395CA /* Covet */,
 				EB453053274BF995004395CA /* CovetTests */,
 				EB45305D274BF995004395CA /* CovetUITests */,
@@ -260,6 +322,7 @@
 		EB453042274BF993004395CA /* Covet */ = {
 			isa = PBXGroup;
 			children = (
+				A44DA6E127968C8700A9422E /* Covet.entitlements */,
 				EB724CFF2780C26E0076593C /* Types */,
 				EB517D0F27556C1E006470B8 /* Errors */,
 				EBDF21C9274D3E3A008E48E3 /* Structs */,
@@ -268,7 +331,6 @@
 				EB453087274C26E8004395CA /* Services */,
 				EB453072274BF9CF004395CA /* Components */,
 				EB453071274BF9C3004395CA /* Views */,
-				EB47BAC4277A420900C257FE /* API.swift */,
 				EB453084274C2631004395CA /* AppDelegate.swift */,
 				EB453043274BF993004395CA /* CovetApp.swift */,
 				EB453045274BF993004395CA /* ContentView.swift */,
@@ -343,6 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				EB453088274C26F2004395CA /* AuthService.swift */,
+				A44DA6E227973D5A00A9422E /* ExtensionToken.swift */,
+				A44DA6E5279740CB00A9422E /* Strings.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -356,6 +420,7 @@
 				EBD26E2927820B4000366816 /* CovetUserRelationship.swift */,
 				A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */,
 				A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */,
+				A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -403,6 +468,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A4A47E9527965DB300FE8ED8 /* Build configuration list for PBXNativeTarget "CovetIt" */;
 			buildPhases = (
+				7654C68D29FAF08C46E2ABD9 /* [CP] Check Pods Manifest.lock */,
 				A4A47E8327965DB300FE8ED8 /* Sources */,
 				A4A47E8427965DB300FE8ED8 /* Frameworks */,
 				A4A47E8527965DB300FE8ED8 /* Resources */,
@@ -590,6 +656,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7654C68D29FAF08C46E2ABD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CovetIt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,7 +797,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A459DA1C279754F100001BF5 /* JSDictTypedef.swift in Sources */,
+				A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */,
+				A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */,
+				A459DA26279755A100001BF5 /* APIErrors.swift in Sources */,
+				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
+				A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */,
 				A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */,
+				A459DA202797552B00001BF5 /* APIConfig.swift in Sources */,
+				A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */,
+				A44DA6E72797410000A9422E /* Strings.swift in Sources */,
+				A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +817,7 @@
 			files = (
 				EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
+				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,
@@ -729,6 +828,7 @@
 				EB129310277A4E1000FA0E46 /* Product.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
+				A459DA222797553600001BF5 /* ExtensionTokenConfig.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,
 				EB517D0C27555040006470B8 /* SearchView.swift in Sources */,
 				EB45306E274BF9A6004395CA /* FeedView.swift in Sources */,
@@ -737,23 +837,28 @@
 				EB12931F277ADAAE00FA0E46 /* Chip.swift in Sources */,
 				EB12931B277AD61D00FA0E46 /* SearchBar.swift in Sources */,
 				A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */,
+				A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */,
+				A459DA25279755A100001BF5 /* APIErrors.swift in Sources */,
 				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
 				EB12930E277A4D9800FA0E46 /* Post.swift in Sources */,
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
 				EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */,
 				EB35F3A1277D16D100C7BA92 /* PromptedUserInput.swift in Sources */,
+				A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */,
+				A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */,
 				A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */,
 				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
-				EB47BAC5277A420900C257FE /* API.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
 				EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */,
+				A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
+				A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -810,7 +915,9 @@
 /* Begin XCBuildConfiguration section */
 		A4A47E9327965DB300FE8ED8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CovetIt/CovetIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
@@ -835,7 +942,9 @@
 		};
 		A4A47E9427965DB300FE8ED8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CovetIt/CovetIt.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
@@ -981,6 +1090,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Covet/Covet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
@@ -1014,6 +1124,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Covet/Covet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
