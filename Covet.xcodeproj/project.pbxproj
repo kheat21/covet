@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
+		A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */; };
+		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
+		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -59,6 +62,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A4A47E8F27965DB300FE8ED8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB453038274BF993004395CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A4A47E8627965DB300FE8ED8;
+			remoteInfo = CovetIt;
+		};
 		EB453051274BF995004395CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB453038274BF993004395CA /* Project object */;
@@ -75,12 +85,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A4A47E9227965DB300FE8ED8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.release.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.release.xcconfig"; sourceTree = "<group>"; };
 		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
+		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -137,6 +165,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A4A47E8427965DB300FE8ED8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB45303D274BF993004395CA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,12 +223,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A4A47E8827965DB300FE8ED8 /* CovetIt */ = {
+			isa = PBXGroup;
+			children = (
+				A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */,
+				A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */,
+				A4A47E8E27965DB300FE8ED8 /* Info.plist */,
+			);
+			path = CovetIt;
+			sourceTree = "<group>";
+		};
 		EB453037274BF993004395CA = {
 			isa = PBXGroup;
 			children = (
 				EB453042274BF993004395CA /* Covet */,
 				EB453053274BF995004395CA /* CovetTests */,
 				EB45305D274BF995004395CA /* CovetUITests */,
+				A4A47E8827965DB300FE8ED8 /* CovetIt */,
 				EB453041274BF993004395CA /* Products */,
 				79B55A4B6ABBF5F02B25C283 /* Pods */,
 				604CD5100DF85109485798CF /* Frameworks */,
@@ -206,6 +252,7 @@
 				EB453040274BF993004395CA /* Covet.app */,
 				EB453050274BF995004395CA /* CovetTests.xctest */,
 				EB45305A274BF995004395CA /* CovetUITests.xctest */,
+				A4A47E8727965DB300FE8ED8 /* CovetIt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,6 +399,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A4A47E8627965DB300FE8ED8 /* CovetIt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4A47E9527965DB300FE8ED8 /* Build configuration list for PBXNativeTarget "CovetIt" */;
+			buildPhases = (
+				A4A47E8327965DB300FE8ED8 /* Sources */,
+				A4A47E8427965DB300FE8ED8 /* Frameworks */,
+				A4A47E8527965DB300FE8ED8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CovetIt;
+			productName = CovetIt;
+			productReference = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EB45303F274BF993004395CA /* Covet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB453064274BF995004395CA /* Build configuration list for PBXNativeTarget "Covet" */;
@@ -362,10 +426,12 @@
 				EB45303E274BF993004395CA /* Resources */,
 				8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */,
 				C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */,
+				A4A47E9227965DB300FE8ED8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A4A47E9027965DB300FE8ED8 /* PBXTargetDependency */,
 			);
 			name = Covet;
 			packageProductDependencies = (
@@ -425,6 +491,9 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					A4A47E8627965DB300FE8ED8 = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					EB45303F274BF993004395CA = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -458,11 +527,20 @@
 				EB45303F274BF993004395CA /* Covet */,
 				EB45304F274BF995004395CA /* CovetTests */,
 				EB453059274BF995004395CA /* CovetUITests */,
+				A4A47E8627965DB300FE8ED8 /* CovetIt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A4A47E8527965DB300FE8ED8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB45303E274BF993004395CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -627,6 +705,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A4A47E8327965DB300FE8ED8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EB45303C274BF993004395CA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -693,6 +779,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A4A47E9027965DB300FE8ED8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A4A47E8627965DB300FE8ED8 /* CovetIt */;
+			targetProxy = A4A47E8F27965DB300FE8ED8 /* PBXContainerItemProxy */;
+		};
 		EB453052274BF995004395CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EB45303F274BF993004395CA /* Covet */;
@@ -705,7 +796,68 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4A47E8C27965DB300FE8ED8 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		A4A47E9327965DB300FE8ED8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWWP79CS2D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CovetIt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CovetIt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.covetapp.CovetIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A4A47E9427965DB300FE8ED8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZWWP79CS2D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CovetIt/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CovetIt;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.covetapp.CovetIt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EB453062274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -826,6 +978,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -858,6 +1011,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -989,6 +1143,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A4A47E9527965DB300FE8ED8 /* Build configuration list for PBXNativeTarget "CovetIt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4A47E9327965DB300FE8ED8 /* Debug */,
+				A4A47E9427965DB300FE8ED8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EB45303B274BF993004395CA /* Build configuration list for PBXProject "Covet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
