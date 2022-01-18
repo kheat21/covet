@@ -10,23 +10,24 @@ import Alamofire
 
 class ExtensionAPI {
 
-    public static func setExtensionToken(localTokenComponent: String) async throws -> SetExtensionTokenResult? {
+    public static func createPost(
+        url: String, text: String,
+        productName: String, productDescription: String, imageURL: String
+    ) async throws -> CreatePostResponse? {
         return try await APIHelpers.getEndpointPromise(
-            token: nil,
-            endpoint: "/user/extension_token/set",
-            method: .post,
-            data: [
-                "token": localTokenComponent
-            ],
-            SetExtensionTokenResult.self
+            token: getToken(),
+            endpoint: "/post/create",
+            method: HTTPMethod.post,
+            data: [:],
+            CreatePostResponse.self
         )
     }
     
-    private static func getHeaders() async -> HTTPHeaders {
-//        if let token = await () {
-//            return [.authorization(bearerToken: token)]
-//        }
-        return []
+    private static func getToken() -> String? {
+        if let components = ExtensionTokenService.getTokens() {
+            return "EXT:" + components.local + "/" + components.server + "/" + components.uid
+        }
+        return nil
     }
 
 }

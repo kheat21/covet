@@ -11,6 +11,8 @@
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
+		A432CF4C27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
+		A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
@@ -128,6 +130,7 @@
 		5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostResponse.swift; sourceTree = "<group>"; };
 		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
 		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
 		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
@@ -423,6 +426,7 @@
 				A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */,
 				A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */,
 				A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */,
+				A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -806,6 +810,7 @@
 				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
 				A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */,
 				A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */,
+				A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */,
 				A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */,
 				A459DA202797552B00001BF5 /* APIConfig.swift in Sources */,
 				A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */,
@@ -864,6 +869,7 @@
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
 				A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
+				A432CF4C27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

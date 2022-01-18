@@ -8,6 +8,5 @@
 import Foundation
 
 struct SetExtensionTokenResult : Decodable {
-    var success: Bool;
     var serverTokenComponent: String?;
 }
