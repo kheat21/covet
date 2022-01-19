@@ -420,6 +420,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - FirebaseUI (~> 8.0)
   - PromiseKit (~> 6.8)
+  - SDWebImage (~> 5.0)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -487,6 +488,6 @@ SPEC CHECKSUMS:
   SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 17657f09a2914389c8b954dfc073ac561c60414a
+PODFILE CHECKSUM: c56b6368ed4388c3baff1b4e427814082c2efab9
 
 COCOAPODS: 1.11.2

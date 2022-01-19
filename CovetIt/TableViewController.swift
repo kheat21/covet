@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
@@ -55,14 +56,10 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
         print("Getting item...")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyImageCell", for: indexPath as IndexPath) as! ImageCell
             cell.backgroundColor = UIColor.blue
-            var currImage:String = ""
-            currImage = self.imageData[self.imageCounter]
-            self.imageCounter += 1
-            if self.imageCounter >= self.imageData.count {
-                    self.imageCounter = 0
-            }
         
-            // cell.image.image = UIImage(named: currImage)
+            //if cell.imageView != nil {
+                cell.imageView.sd_setImage(with: URL(string: "https://images.unsplash.com/photo-1642265538249-1dd3cb45cfb2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2535&q=80"), completed: nil)
+            //}
             return cell
     }
     

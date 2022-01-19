@@ -15,7 +15,6 @@
 		A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
 		A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4E2797B83F005EFCA8 /* TableViewController.swift */; };
 		A432CF512797B9F0005EFCA8 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF502797B9F0005EFCA8 /* ImageCell.swift */; };
-		A432CF532797BA2E005EFCA8 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A432CF522797BA2E005EFCA8 /* Storyboard.storyboard */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
@@ -136,7 +135,6 @@
 		A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostResponse.swift; sourceTree = "<group>"; };
 		A432CF4E2797B83F005EFCA8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A432CF502797B9F0005EFCA8 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
-		A432CF522797BA2E005EFCA8 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
 		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
 		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 				A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */,
 				A432CF4E2797B83F005EFCA8 /* TableViewController.swift */,
 				A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */,
-				A432CF522797BA2E005EFCA8 /* Storyboard.storyboard */,
 				A4A47E8E27965DB300FE8ED8 /* Info.plist */,
 				A432CF502797B9F0005EFCA8 /* ImageCell.swift */,
 			);
@@ -619,7 +616,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */,
-				A432CF532797BA2E005EFCA8 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

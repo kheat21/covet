@@ -40,4 +40,5 @@ end
 target 'CovetIt' do
   use_frameworks!
   shared_pods
+  pod 'SDWebImage', '~> 5.0'
 end
