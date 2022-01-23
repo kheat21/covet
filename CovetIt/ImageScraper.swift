@@ -1,0 +1,89 @@
+//
+//  ImageScraper.swift
+//  CovetIt
+//
+//  Created by Covet on 1/22/22.
+//
+
+import Foundation
+import SocketIO
+
+class ImageScraper {
+    
+    private var manager: SocketManager;
+    private var socket: SocketIOClient;
+    
+    private var onConnectionCallback: ( () -> Void)?;
+    private var onImageRecievedCallback: ( (_ image: ScrapedImage) -> Void)?;
+    
+    init() {
+        self.manager = SocketManager(socketURL: URL(string: "http://covetimagescraperloadbalancer-830414987.us-east-1.elb.amazonaws.com:8000/")!, config: [
+            .log(true)
+        ])
+        self.socket = manager.defaultSocket
+    }
+    
+    func setOnConnected(callback: @escaping () -> Void) {
+        self.onConnectionCallback = callback
+    }
+    
+    func setOnImageRecieved(callback: @escaping (_ image: ScrapedImage) -> Void) {
+        self.onImageRecievedCallback = callback
+    }
+    
+    func setup() {
+        
+        self.socket.on(clientEvent: .connect) {data, ack in
+            print("socket connected")
+            if let callback = self.onConnectionCallback {
+                callback()
+            }
+        }
+        
+        self.socket.on("image") { data, ack in
+            guard let url = data[0] as? String else {
+                print("Something wrong with response recieved")
+                return
+            }
+            print("Recieved: " + url)
+            if let imgRecieved = self.onImageRecievedCallback {
+                if let urlAsURL = URL(string: url) {
+                    self.getUIImage(from: urlAsURL) { image in
+                        if let img = image {
+                            imgRecieved(ScrapedImage(image: img, url: urlAsURL))
+                        }
+                    }
+                }
+            }
+        }
+    
+    }
+    
+    func request(url: String) {
+        print("Trying to send request to scrape " + url)
+        self.socket.emit("/scrape", url) {
+            print("Finished trying to emit the event")
+        }
+    }
+    
+    func connect() {
+        self.socket.connect()
+    }
+    
+    func disconnect() {
+        self.socket.disconnect()
+    }
+    
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    private func getUIImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+        getData(from: url) { data, resp, err in
+            if let d = data {
+                completion(UIImage(data: d))
+            }
+        }
+    }
+    
+}

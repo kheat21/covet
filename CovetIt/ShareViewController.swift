@@ -16,40 +16,36 @@ import UniformTypeIdentifiers
 class ShareViewController: SLComposeServiceViewController {
 
     weak var config : SLComposeSheetConfigurationItem?
-    var selectedText = "Large" {
-        didSet {
-            self.config?.value = self.selectedText
-        }
+
+    var selectedImage: ScrapedImage?
+    
+    override var placeholder: String? {
+        get { return "Say something about this product..." }
+        set { }
+    }
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.textView!.text = ""
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func isContentValid() -> Bool {
-        // Do validation of contentText and/or NSExtensionContext attachments here
-        return true
+        return self.selectedImage != nil && self.textView!.text!.count > 0
     }
 
-    override func didSelectPost() {
-        
-        self.getSharedURL { url in
-            print("Recieved")
-            print(url)
-            self.extensionContext?.completeRequest(returningItems: [], completionHandler:nil)
-        }
-        
-        // self.extensionContext?.completeRequest(returningItems: [], completionHandler:nil)
-    }
-        
     func getSharedURL(completion: @escaping (_: NSURL?) -> Void) -> NSURL? {
         if let item = extensionContext?.inputItems.first as? NSExtensionItem {
             if let itemProvider = item.attachments?.first {
                 if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-                
-                    
                     itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (url, error) -> Void in
                         if let shareURL = url as? NSURL {
                             // do what you want to do with shareURL
                             completion(shareURL)
                         }
-                        
                     })
                 }
             }
@@ -62,16 +58,31 @@ class ShareViewController: SLComposeServiceViewController {
     override func configurationItems() -> [Any]! {
             // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
             let c = SLComposeSheetConfigurationItem()!
-            c.title = "Size"
-            c.value = self.selectedText
+            c.title = "Image"
+            c.value = self.selectedImage != nil ? "Selected" : "Pick one"
             c.tapHandler = { [unowned self] in
-                let tvc = TableViewController()
+                let tvc = TableViewController(url: )
 //                tvc.selectedSize = self.selectedText
 //                tvc.delegate = self
+                tvc.setSelectedImageHandler { image in
+                    print("Selected image!! - " + image.url.absoluteString)
+                    self.selectedImage = image
+                    tvc.navigationController?.popViewController(animated: true)
+                    self.reloadConfigurationItems()
+                }
                 self.pushConfigurationViewController(tvc)
             }
             self.config = c
             return [c]
     }
+    
+//    override func loadPreviewView() -> UIView! {
+//        print("Called loadPreviewView()")
+//        if let image = self.selectedImage {
+//            return UIImageView(image: image.image)
+//        } else {
+//            return UIView()
+//        }
+//    }
     
 }

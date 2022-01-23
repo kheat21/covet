@@ -412,6 +412,10 @@ PODS:
   - SDWebImage (5.12.2):
     - SDWebImage/Core (= 5.12.2)
   - SDWebImage/Core (5.12.2)
+  - Socket.IO-Client-Swift (16.0.1):
+    - Starscream (~> 4.0)
+  - Starscream (4.0.4)
+  - SwiftSoup (2.3.7)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
@@ -421,6 +425,8 @@ DEPENDENCIES:
   - FirebaseUI (~> 8.0)
   - PromiseKit (~> 6.8)
   - SDWebImage (~> 5.0)
+  - Socket.IO-Client-Swift (~> 16.0.1)
+  - SwiftSoup
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -454,6 +460,9 @@ SPEC REPOS:
     - PromiseKit
     - PromisesObjC
     - SDWebImage
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftSoup
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -486,8 +495,11 @@ SPEC CHECKSUMS:
   PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
+  Socket.IO-Client-Swift: c116d6dc9fd6be9c259bacfe143f8725bce7d79e
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftSoup: 58e6228d50e89645f7345a3729929c5c2f25e4f2
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: c56b6368ed4388c3baff1b4e427814082c2efab9
+PODFILE CHECKSUM: 22bc780e328242fc81d85566302cfda2a542097d
 
 COCOAPODS: 1.11.2

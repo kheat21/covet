@@ -41,4 +41,6 @@ target 'CovetIt' do
   use_frameworks!
   shared_pods
   pod 'SDWebImage', '~> 5.0'
+  pod 'SwiftSoup'
+  pod 'Socket.IO-Client-Swift', '~> 16.0.1'
 end

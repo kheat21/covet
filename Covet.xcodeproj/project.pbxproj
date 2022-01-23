@@ -32,6 +32,8 @@
 		A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */; };
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
 		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A4B68BE8279CBA2C00DF74E0 /* ImageScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */; };
+		A4B68BEA279D170700DF74E0 /* ScrapedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */; };
 		A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
 		A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
@@ -147,6 +149,8 @@
 		A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScraper.swift; sourceTree = "<group>"; };
+		A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapedImage.swift; sourceTree = "<group>"; };
 		A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExtensionTokenResult.swift; sourceTree = "<group>"; };
 		A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
 		A4D1F95027974BBD003DBD85 /* AppAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPI.swift; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 				A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */,
 				A4A47E8E27965DB300FE8ED8 /* Info.plist */,
 				A432CF502797B9F0005EFCA8 /* ImageCell.swift */,
+				A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */,
+				A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */,
 			);
 			path = CovetIt;
 			sourceTree = "<group>";
@@ -809,9 +815,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B68BE8279CBA2C00DF74E0 /* ImageScraper.swift in Sources */,
 				A459DA1C279754F100001BF5 /* JSDictTypedef.swift in Sources */,
 				A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */,
 				A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */,
+				A4B68BEA279D170700DF74E0 /* ScrapedImage.swift in Sources */,
 				A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */,
 				A459DA26279755A100001BF5 /* APIErrors.swift in Sources */,
 				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
