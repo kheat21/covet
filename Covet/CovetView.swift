@@ -48,23 +48,10 @@ struct CovetView : View {
                 }
                 .tag(1)
             
-            
-            //NavigationView {
-                //ProfileView()
-                    // .navigationBarTitleDisplayMode(.inline)
-                    // .navigationTitle("User Title")
-                    
-//                    .toolbar {
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            Text("User Handle Here")
-//                                .fontWeight(Font.Weight.regular)
-//                        }
-//                    }
-           // }
             NavigationView {
                 ProfileView()
                 .navigationBarHidden(false)
-                .navigationBarTitle("Profile")
+                .navigationBarTitle("My Profile")
                 .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
             }
             .tabItem {

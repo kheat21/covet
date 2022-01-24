@@ -32,14 +32,12 @@ struct ProfileView: View {
        
         VStack {
             if let user = _user {
-                //VStack {
                     
                     // Show the number of people they're connected to
                     if let follows = user.follows,
                         let followers = user.followers,
                             let friends = user.friends {
                         UserRelationshipsHero(following: follows, followers: followers, friends: friends)
-                            .background(Color.yellow)
                     }
                     
                     // Show their posts
@@ -70,30 +68,15 @@ struct ProfileView: View {
                             ScrollView {
                                 ImageGrid(images: posts.suffix(posts.count - 1).map { $0
                                     return $0.products![0].image_url
-                                }) { selectedIndex in
-                                    print("Selected @ " + String(selectedIndex))
-                                    self.showingPostInDetailView = true
-                                }
+                                })
                             }
                         }
                     }
-                    
-                //}
-            
-                //.padding()
-                // .navigationViewStyle(StackNavigationViewStyle())
-                
-                //.navigationBarItems(leading: backButton, trailing: addButton)
-                
             } else {
                 Text("Error loading user. Please try again later.")
             }
         }
         .task(self.onAppear)
-        .background(Color.blue)
-            .sheet(isPresented: self.$showingPostInDetailView, onDismiss: nil, content: {
-                ProfileView()
-            })
     }
     
 //    func getCurrentUserHandle() -> String? {
