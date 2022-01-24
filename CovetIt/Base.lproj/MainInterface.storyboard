@@ -40,9 +40,6 @@
                                             <constraint firstAttribute="width" constant="96" id="Q4n-z7-qFY"/>
                                             <constraint firstAttribute="height" constant="96" id="oFd-9h-79o"/>
                                         </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="TUh-em-D8E" appends="YES" id="qnf-nC-Obg"/>
-                                        </connections>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sample Item Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxB-dQ-5hT">
                                         <rect key="frame" x="16" y="90" width="289" height="32"/>
@@ -110,11 +107,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="TUh-em-D8E">
-                    <connections>
-                        <action selector="imageViewPressed:" destination="j1y-V4-xli" id="Opl-dZ-WH9"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="40.848214285714285"/>
         </scene>

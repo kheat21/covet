@@ -20,6 +20,7 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     var images: [ScrapedImage] = [ScrapedImage]()
     
     let url: String;
+    var alreadyConfigured: Bool = false
     
     init(url: String) {
         self.url = url
@@ -36,12 +37,28 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        if alreadyConfigured {
+            return
+        }
+        alreadyConfigured = true
+        
+        view.backgroundColor = .white
+        
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        view.addSubview(navBar)
+
+        let navItem = UINavigationItem(title: "Pick a Thumbnail")
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(self.cancel))
+        navItem.leftBarButtonItem = cancelItem
+
+        navBar.setItems([navItem], animated: false)
 
         let wholeViewFrame = CGRect(
             x: 0,
-            y: 0,
+            y: 44,
             width: self.view.frame.width,
-            height: self.view.frame.height
+            height: self.view.frame.height - 44
         )
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -55,7 +72,7 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
         self.collectionView!.delegate = self
         self.collectionView!.dataSource = self
         self.collectionView!.register(ImageCell.self, forCellWithReuseIdentifier: "MyImageCell")
-    
+        
         
         self.loadingView = UIActivityIndicatorView(frame: wholeViewFrame)
         self.loadingView!.startAnimating()
@@ -91,6 +108,10 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (self.view.frame.width / 2) - 16, height: (self.view.frame.width / 2) - 16)
+    }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyImageCell", for: indexPath as IndexPath) as! ImageCell
@@ -116,6 +137,10 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     private func showCollectionView() {
         self.loadingView?.removeFromSuperview()
         self.view.addSubview(collectionView!)
+    }
+    
+    @objc func cancel() {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
 }

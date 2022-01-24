@@ -10,25 +10,50 @@ import Social
 import MobileCoreServices
 import Foundation
 import UniformTypeIdentifiers
+import SwiftSoup
 
 class ShareSheetViewController: UIViewController {
 
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var linkTextField: UITextField!
+    @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var inputTextView: UITextView!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+
+    var alreadyConfigured: Bool = false
+    var url: URL?;
+    var selectedImage: ScrapedImage?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageViewPressed))
+        previewImageView.addGestureRecognizer(tapGestureRecognizer)
+        previewImageView.isUserInteractionEnabled = true
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        getSharedURL { url in
-            print("GOT THE URL")
-            print(url)
+        if !self.alreadyConfigured {
+            self.alreadyConfigured = true
+            getSharedURL { url in
+                self.url = url?.absoluteURL
+                self.configureViewFor(url: self.url!)
+            }
         }
     }
     
-
+    func configureViewFor(url: URL) {
+        DispatchQueue.main.async {
+            self.linkTextField.text = url.absoluteString
+            self.titleTextField.text = self.getDefaultItemTitle()
+        }
+    }
+    
     func getSharedURL(completion: @escaping (_: NSURL?) -> Void) -> NSURL? {
         if let item = extensionContext?.inputItems.first as? NSExtensionItem {
             if let itemProvider = item.attachments?.first {
@@ -55,5 +80,60 @@ class ShareSheetViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @objc func imageViewPressed() {
+        print("Image view pressed!")
+        //DispatchQueue.main.sync {
+            let tableViewController = TableViewController(url: self.url!.absoluteString)
+            // tableViewController.modalPresentationStyle = .popover
+            tableViewController.setSelectedImageHandler { image in
+                self.selectedImage = image
+                self.previewImageView.image = image.image
+                self.dismiss(animated: true, completion: nil)
+            }
+            print("Trying to present table view controller")
+        
+            self.present(tableViewController, animated: true) {
+                print("Completion")
+            }
+        // }
+    }
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        if !isFormValid() {}
+    }
+    
+    func isFormValid() -> Bool {
+        return (
+            self.selectedImage != nil &&
+            self.isTitleValid() &&
+            self.isCommentValid()
+        )
+    }
+    
+    func isTitleValid() -> Bool {
+        if let text = self.titleTextField.text {
+            return text.count > 0
+        }
+        return false
+    }
+    
+    func isCommentValid() -> Bool {
+        if let comment = self.inputTextView.text {
+            return comment.count > 0
+        }
+        return false
+    }
+    
+    func getDefaultItemTitle() -> String? {
+        do {
+            let doc: Document = try SwiftSoup.parse(getPageHTML())
+            return try doc.title()
+        } catch {
+            return nil
+        }
+    }
+    
+    private func getPageHTML() throws -> String {
+        return try String(contentsOf: self.url!)
+    }
+    
 }
