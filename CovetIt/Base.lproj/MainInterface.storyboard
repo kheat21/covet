@@ -35,10 +35,14 @@
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pick_Image" translatesAutoresizingMaskIntoConstraints="NO" id="1tn-xr-wtI">
                                         <rect key="frame" x="302" y="70" width="96" height="96"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="96" id="Q4n-z7-qFY"/>
                                             <constraint firstAttribute="height" constant="96" id="oFd-9h-79o"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="TUh-em-D8E" appends="YES" id="qnf-nC-Obg"/>
+                                        </connections>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Sample Item Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxB-dQ-5hT">
                                         <rect key="frame" x="16" y="90" width="289" height="32"/>
@@ -68,7 +72,11 @@
                                         </textAttributes>
                                         <items>
                                             <navigationItem title="Covet It" id="Sqd-FL-rDU">
-                                                <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="z2H-Ba-mni"/>
+                                                <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="z2H-Ba-mni">
+                                                    <connections>
+                                                        <action selector="shareButtonPressed:" destination="j1y-V4-xli" id="PyE-9X-uE9"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -93,8 +101,20 @@
                             </view>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="inputTextView" destination="DC5-mC-i8U" id="oKE-Rl-fGg"/>
+                        <outlet property="linkTextField" destination="5XC-z9-yfb" id="tD1-ay-HAG"/>
+                        <outlet property="previewImageView" destination="1tn-xr-wtI" id="whW-gb-cD5"/>
+                        <outlet property="shareButton" destination="z2H-Ba-mni" id="Ss2-aV-O2e"/>
+                        <outlet property="titleTextField" destination="yxB-dQ-5hT" id="cy5-pi-2Id"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="TUh-em-D8E">
+                    <connections>
+                        <action selector="imageViewPressed:" destination="j1y-V4-xli" id="Opl-dZ-WH9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="40.848214285714285"/>
         </scene>
