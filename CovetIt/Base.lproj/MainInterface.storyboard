@@ -67,8 +67,8 @@
                                             <color key="textColor" systemColor="labelColor"/>
                                         </textAttributes>
                                         <items>
-                                            <navigationItem title="Covet Ot" id="Sqd-FL-rDU">
-                                                <barButtonItem key="rightBarButtonItem" title="Item" id="z2H-Ba-mni"/>
+                                            <navigationItem title="Covet It" id="Sqd-FL-rDU">
+                                                <barButtonItem key="rightBarButtonItem" title="Post" style="done" id="z2H-Ba-mni"/>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
