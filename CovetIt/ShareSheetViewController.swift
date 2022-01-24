@@ -19,7 +19,9 @@ class ShareSheetViewController: UIViewController {
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
-
+    var activityIndicator: UIActivityIndicatorView?
+    var loadingTextView: UILabel?
+    
     var alreadyConfigured: Bool = false
     var url: URL?;
     var selectedImage: ScrapedImage?;
@@ -33,6 +35,18 @@ class ShareSheetViewController: UIViewController {
         previewImageView.addGestureRecognizer(tapGestureRecognizer)
         previewImageView.isUserInteractionEnabled = true
         
+        let middleY = self.view.frame.height / 2
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(
+            x: 0, y: middleY - 40, width: self.view.frame.width, height: 40
+        ))
+        activityIndicator!.startAnimating()
+        
+        loadingTextView = UILabel(frame: CGRect(
+            x: 0, y: middleY + 12, width: self.view.frame.width, height: 40
+        ))
+        loadingTextView!.textAlignment = .center
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +57,9 @@ class ShareSheetViewController: UIViewController {
             getSharedURL { url in
                 self.url = url?.absoluteURL
                 self.configureViewFor(url: self.url!)
+                self.hideLoadingView()
             }
+            self.showLoadingView(message: "This will only take a second")
         }
     }
     
@@ -134,6 +150,28 @@ class ShareSheetViewController: UIViewController {
     
     private func getPageHTML() throws -> String {
         return try String(contentsOf: self.url!)
+    }
+    
+    func showLoadingView(message: String) {
+            self.titleTextField.isHidden = true
+            self.linkTextField.isHidden = true
+            self.previewImageView.isHidden = true
+            self.inputTextView.isHidden = true
+            self.shareButton.isEnabled = false
+            self.view.addSubview(self.activityIndicator!)
+            self.view.addSubview(self.loadingTextView!)
+            self.loadingTextView!.text = message
+    }
+    
+    func hideLoadingView() {
+        DispatchQueue.main.sync {
+            self.titleTextField.isHidden = false
+            self.linkTextField.isHidden = false
+            self.previewImageView.isHidden = false
+            self.inputTextView.isHidden = false
+            self.activityIndicator!.removeFromSuperview()
+            self.loadingTextView!.removeFromSuperview()
+        }
     }
     
 }
