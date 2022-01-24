@@ -13,6 +13,7 @@
 		A4A00448279F21DC00F2B229 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00447279F21DC00F2B229 /* UIColor.swift */; };
 		A4A00449279F21E200F2B229 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00447279F21DC00F2B229 /* UIColor.swift */; };
 		A4A0044B279F27FF00F2B229 /* PostShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */; };
+		A4A0044D279F3C1800F2B229 /* IsLikedResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0044C279F3C1800F2B229 /* IsLikedResponseObject.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -88,6 +89,7 @@
 		A4A00445279F07EC00F2B229 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A4A00447279F21DC00F2B229 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShareSheet.swift; sourceTree = "<group>"; };
+		A4A0044C279F3C1800F2B229 /* IsLikedResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLikedResponseObject.swift; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				EBD26E2927820B4000366816 /* CovetUserRelationship.swift */,
 				A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */,
 				A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */,
+				A4A0044C279F3C1800F2B229 /* IsLikedResponseObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EB47BAC5277A420900C257FE /* API.swift in Sources */,
 				A4A00448279F21DC00F2B229 /* UIColor.swift in Sources */,
+				A4A0044D279F3C1800F2B229 /* IsLikedResponseObject.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,

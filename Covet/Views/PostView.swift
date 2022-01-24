@@ -13,6 +13,8 @@ struct PostView: View {
     
     @State var post: Post
     
+    @State var isLikedStatusLoading: Bool = true
+    @State var isLikedStatusSaving: Bool = false
     @State var liked: Bool = false
     
     @State var showingShareActionSheet: Bool = false
@@ -25,9 +27,19 @@ struct PostView: View {
             VStack {
                 HStack {
                     Button {
-                        print("Heart button was tapped")
+                        if !self.isLikedStatusLoading && !self.isLikedStatusSaving {
+                            Task { await self.toggleLike() }
+                        }
                     } label: {
-                        self._likeButtonImage().foregroundColor(Color.black)
+                        if self.isLikedStatusSaving {
+                            ProgressView()
+                        } else {
+                            self._likeButtonImage()
+                                .foregroundColor(
+                                    self.isLikedStatusLoading
+                                        ? Color.clear : Color.black
+                                )
+                        }
                     }
                     .padding([.leading], 125)
                     Button {
@@ -120,17 +132,37 @@ struct PostView: View {
                         .frame(width: nil, height: 20, alignment: Alignment.center)
                 }
             }
-            
+            .task {
+                do {
+                    if let likeStatus = try await API.likes(post_id: self.post.id) {
+                        print(likeStatus)
+                        self.liked = likeStatus.likes
+                        self.isLikedStatusLoading = false
+                    }
+                } catch {}
+            }
         }
     
     }
     
-    private func toggleLikeState() {
-        self.liked = !self.liked
-        // Send this to the server
+    private func toggleLike() async {
+        
+            do {
+                self.isLikedStatusSaving = true
+                if let resp = try await API.like(post_id: self.post.id, status: !self.liked) {
+                    self.liked = resp.likes
+                }
+                self.isLikedStatusSaving = false
+            } catch {
+                print(error)
+            }
+        
     }
     
     private func _likeButtonImage() -> Image {
-        return Image(systemName: self.liked ? "heart.filled" : "heart")
+        if self.isLikedStatusLoading {
+            return Image(systemName: "hourglass")
+        }
+        return Image(systemName: self.liked ? "heart.fill" : "heart")
     }
 }
