@@ -13,16 +13,7 @@ struct ProfileView: View {
     @State var _user: CovetUser? = nil
     
     @State var showFriendView: Bool = false
-    
-    let items = [
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Temple_T_logo.svg/905px-Temple_T_logo.svg.png",
-        "https://cdn.shopify.com/s/files/1/0050/0182/products/AGingersSoul_3Q_1000x_70459821-7f81-4bd3-a36d-a2b853c430f0.jpg?v=1622118317",
-        "https://www.thespruce.com/thmb/5ZpyukLcBAS448-r2P43k9wDmEs=/3360x2240/filters:fill(auto,1)/signs-to-replace-your-couch-4165258-hero-5266fa7b788c41f6a02f24224a5de29b.jpg",
-        "https://i.insider.com/5a4f6ba3c32ae634008b49f0?width=800&format=jpeg",
-        "https://www.womansworld.com/wp-content/uploads/sites/2/2018/05/tjmaxx-handbags.jpg",
-        "https://images.squarespace-cdn.com/content/v1/5c479b7f710699200cbe95de/1553910021271-2PJYW4J4THGDNDUECDGD/TjMaxx-Interior%28web%2913.jpg",
-        "https://www.bostonherald.com/wp-content/uploads/migration/2016/05/04/050416maxnl05.jpg"
-    ];
+
     
     @Sendable
     func onAppear() async {
@@ -57,7 +48,7 @@ struct ProfileView: View {
                         
                             // Show the most recent one
                             CovetSquareZoomedInItem(
-                                url: items[0],
+                                url: posts[0].products![0].image_url,
                                 size: 250,
                                 topBorderWidth: 8,
                                 leftBorderWidth: 8,
@@ -73,9 +64,12 @@ struct ProfileView: View {
                             
                             // Show all the others
                             ScrollView {
-                                ImageGrid(images: posts.map { $0
-                                    return $0.products[0].image_url
-                                })
+                                ImageGrid(images: posts.suffix(posts.count - 1).map { $0
+                                    return $0.products![0].image_url
+                                }) { selectedIndex in
+                                    print("Selected @ " + String(selectedIndex))
+                                    
+                                }
                             }
                         }
                     }
