@@ -18,6 +18,7 @@ struct PostView: View {
     @State var liked: Bool = false
     
     @State var showingShareActionSheet: Bool = false
+    @State var showingRecovetActionSheet: Bool = false
     @State var showingAddressCopiedToast: Bool = false
     @State var showingNoAddressToCopyToast: Bool = false
     
@@ -49,7 +50,7 @@ struct PostView: View {
                             .foregroundColor(Color.black)
                     }
                     Button {
-                        print("Recovet button was tapped")
+                        self.showingRecovetActionSheet = true
                     } label: {
                         Image("Recovet")
                     }
@@ -69,39 +70,7 @@ struct PostView: View {
                 }
                 .frame(width: nil, height: 40, alignment: Alignment.trailing)
                 //.background(Color.cyan)
-                if let product = getProductForPost(post: self.post) {
-                    CovetSquareZoomedInItem(
-                        url: product.image_url,
-                        size: 250,
-                        topBorderWidth: 4,
-                        leftBorderWidth: 4,
-                        bottomBorderWidth: 4,
-                        rightBorderWidth: 4
-                    )
-                    .padding([.bottom], 16)
-                    
-                    if let productName = product.name {
-                        Text(productName)
-                            .font(.system(size: 24, weight: .regular, design: .default))
-                    }
-                    
-                    HStack {
-                        if let productVendor = product.vendor {
-                            Text(productVendor)
-                                .font(.system(size: 20, weight: .regular, design: .default))
-                        }
-                        if let productPrice = product.price {
-                            Text("$" + String(productPrice))
-                                .font(.system(size: 20, weight: .semibold, design: .default))
-                        }
-                    }
-                    .padding([.top, .bottom], 8)
-                    if let caption = self.post.text {
-                        Text(caption)
-                            .font(.system(size: 18, weight: .thin, design: .rounded))
-                            .padding([.leading, .trailing], 16)
-                    }
-                }
+                PostDisplay(post: self.post)
                 Spacer()
             }
             .toast(isPresenting: self.$showingAddressCopiedToast, duration: 2, tapToDismiss: true, alert: {
@@ -121,6 +90,9 @@ struct PostView: View {
                     self.post.products![0].link
                 ])
             }
+            .sheet(isPresented: $showingRecovetActionSheet, onDismiss: nil, content: {
+                RecovetView(post: self.post)
+            })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     CovetC(size: 36, text: "BM")

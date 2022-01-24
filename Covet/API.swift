@@ -111,6 +111,19 @@ class API {
         )
     }
     
+    public static func recovet(post_id: Int, caption: String) async throws -> Post? {
+        return try await getEndpointPromise(
+            endpoint: "/post/recovet",
+            method: .post,
+            headers: await getHeaders(),
+            data: [
+                "post_id": String(post_id),
+                "text": caption.count > 0 ? caption : nil
+            ],
+            Post.self
+        )
+    }
+    
 //    public func getPost(products: [Product], text: String, completion: @escaping (_: Post?) -> Void) async {
 //        getEndpoint(
 //            endpoint: "/post/create",
