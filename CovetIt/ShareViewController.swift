@@ -18,6 +18,7 @@ class ShareViewController: SLComposeServiceViewController {
     weak var config : SLComposeSheetConfigurationItem?
 
     var selectedImage: ScrapedImage?
+    var selectedURL: URL?
     
     override var placeholder: String? {
         get { return "Say something about this product..." }
@@ -31,6 +32,12 @@ class ShareViewController: SLComposeServiceViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        getSharedURL { url in
+            self.selectedURL = url?.absoluteURL
+            self.reloadConfigurationItems()
+        }
+        
     }
     
     override func isContentValid() -> Bool {
@@ -56,14 +63,12 @@ class ShareViewController: SLComposeServiceViewController {
     // self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
 
     override func configurationItems() -> [Any]! {
-            // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
+        if let url = self.selectedURL {
             let c = SLComposeSheetConfigurationItem()!
             c.title = "Image"
             c.value = self.selectedImage != nil ? "Selected" : "Pick one"
             c.tapHandler = { [unowned self] in
-                let tvc = TableViewController(url: )
-//                tvc.selectedSize = self.selectedText
-//                tvc.delegate = self
+                let tvc = TableViewController(url: url.absoluteString)
                 tvc.setSelectedImageHandler { image in
                     print("Selected image!! - " + image.url.absoluteString)
                     self.selectedImage = image
@@ -74,6 +79,8 @@ class ShareViewController: SLComposeServiceViewController {
             }
             self.config = c
             return [c]
+        }
+        return []
     }
     
 //    override func loadPreviewView() -> UIView! {
@@ -86,3 +93,7 @@ class ShareViewController: SLComposeServiceViewController {
 //    }
     
 }
+
+
+//                tvc.selectedSize = self.selectedText
+//                tvc.delegate = self

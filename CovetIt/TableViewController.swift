@@ -62,7 +62,7 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
         self.view.addSubview(self.loadingView!)
                 
         self.scraper.setOnConnected {
-            self.scraper.request(url: "https://apple.com")
+            self.scraper.request(url: self.url)
         }
         
         self.scraper.setOnImageRecieved { image in
