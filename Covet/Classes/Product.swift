@@ -20,6 +20,8 @@ struct Product: Decodable {
     public let image_url: String;
     
     public let vendor: String?;
+    public let price: Double?;
+    
     public let verified: Bool?;
     
     public let deleted: Int?;

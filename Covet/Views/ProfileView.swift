@@ -16,8 +16,6 @@ struct ProfileView: View {
     
     @State var showPostInDetailView: Post? = nil
     
-    @State var isNavigationBarHidden: Bool = true
-    
     @Sendable
     func onAppear() async {
         do {
@@ -70,7 +68,7 @@ struct ProfileView: View {
                                 ImageGrid(images: posts.suffix(posts.count - 1).map { $0
                                     return $0.products![0].image_url
                                 }) { i in
-                                    self.showPostInDetailView = self._user!.posts![i]
+                                    self.showPostInDetailView = self._user!.posts![i+1]
                                 }
                             }
                         }
