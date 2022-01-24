@@ -20,3 +20,16 @@ struct Post : Identifiable, Decodable {
     
     var highlighted_product_id: Int?;
 }
+
+func getProductForPost(post: Post) -> Product? {
+    if let products = post.products {
+        if let id = post.highlighted_product_id {
+            return products.filter { product in
+                return product.id == id
+            }[0]
+        } else {
+            return products[0]
+        }
+    }
+    return nil
+}

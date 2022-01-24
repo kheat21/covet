@@ -14,7 +14,9 @@ struct CovetC: View {
     
     var body: some View {
         ZStack(alignment: Alignment.center) {
-            Text(text);
+            Text(text)
+                .font(.system(size: 10, weight: .bold, design: .default))
+                .padding(Edge.Set.leading, 2)
             Image("Covet_C")
                 .resizable()
                 .scaledToFill() // <=== Saves aspect ratio

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
+		A4A00446279F07EC00F2B229 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00445279F07EC00F2B229 /* PostView.swift */; };
+		A4A00448279F21DC00F2B229 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00447279F21DC00F2B229 /* UIColor.swift */; };
+		A4A00449279F21E200F2B229 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00447279F21DC00F2B229 /* UIColor.swift */; };
+		A4A0044B279F27FF00F2B229 /* PostShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -81,6 +85,9 @@
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
+		A4A00445279F07EC00F2B229 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		A4A00447279F21DC00F2B229 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShareSheet.swift; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -271,6 +278,7 @@
 				EB517D0D2755537A006470B8 /* UserSettingsView.swift */,
 				EB129311277A764F00FA0E46 /* CreatePostView.swift */,
 				EB129318277AD4C200FA0E46 /* UserManagerView.swift */,
+				A4A00445279F07EC00F2B229 /* PostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 				EB35F3A0277D16D100C7BA92 /* PromptedUserInput.swift */,
 				A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */,
 				A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */,
+				A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -336,6 +345,7 @@
 				EBDF21CC274D400B008E48E3 /* Int.swift */,
 				EB35F39C277D0DF300C7BA92 /* String.swift */,
 				EB724CFD2780C2650076593C /* JSDictExtension.swift */,
+				A4A00447279F21DC00F2B229 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -634,6 +644,7 @@
 				EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
+				A4A0044B279F27FF00F2B229 /* PostShareSheet.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
@@ -660,6 +671,7 @@
 				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EB47BAC5277A420900C257FE /* API.swift in Sources */,
+				A4A00448279F21DC00F2B229 /* UIColor.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
@@ -668,6 +680,7 @@
 				EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
+				A4A00446279F07EC00F2B229 /* PostView.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,6 +699,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB453061274BF995004395CA /* CovetUITestsLaunchTests.swift in Sources */,
+				A4A00449279F21E200F2B229 /* UIColor.swift in Sources */,
 				EB45305F274BF995004395CA /* CovetUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

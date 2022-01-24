@@ -13,7 +13,8 @@ struct ProfileView: View {
     @State var _user: CovetUser? = nil
     
     @State var showFriendView: Bool = false
-    @State var showingPostInDetailView: Bool = false
+    
+    @State var showPostInDetailView: Post? = nil
     
     @State var isNavigationBarHidden: Bool = true
     
@@ -63,12 +64,14 @@ struct ProfileView: View {
                             // Space them out so that the scroll view doesn't
                             // get pushed too low or too high
                             Spacer()
-                            
+                                                        
                             // Show all the others
                             ScrollView {
                                 ImageGrid(images: posts.suffix(posts.count - 1).map { $0
                                     return $0.products![0].image_url
-                                })
+                                }) { i in
+                                    self.showPostInDetailView = self._user!.posts![i]
+                                }
                             }
                         }
                     }
@@ -76,6 +79,11 @@ struct ProfileView: View {
                 Text("Error loading user. Please try again later.")
             }
         }
+        .sheet(item: self.$showPostInDetailView, onDismiss: {
+            self.showPostInDetailView = nil
+        }, content: { p in
+            PostView(post: p)
+        })
         .task(self.onAppear)
     }
     

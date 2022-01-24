@@ -10,6 +10,7 @@ import SwiftUI
 struct ImageGrid: View {
     
     var images: [String]
+    var selected: (_: Int) -> Void
     
     private let gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
@@ -17,11 +18,11 @@ struct ImageGrid: View {
         LazyVGrid(columns: gridItems, spacing: 0) {
             ForEach(0..<images.count) { i in
                 GeometryReader { gr in
-                    NavigationLink {
-                        ProfileView()
-                            .navigationBarHidden(false)
-                            .navigationTitle("New Page")
-                    } label: {
+//                    NavigationLink {
+//                        ProfileView()
+//                            .navigationBarHidden(false)
+//                            .navigationTitle("New Page")
+//                    } label: {
                         CovetSquareZoomedInItem(
                             url: images[i],
                             size: gr.size.width,
@@ -30,7 +31,10 @@ struct ImageGrid: View {
                             bottomBorderWidth: getBottomBorderWidth(index: i, total: images.count),
                             rightBorderWidth: getRightBorderWidth(index: i, total: images.count)
                         )
-                    }
+                        .onTapGesture {
+                            self.selected(i)
+                        }
+//                    }
                 }
                 .clipped()
                 .aspectRatio(1, contentMode: .fit)
@@ -65,6 +69,8 @@ struct ImageGrid_Previews: PreviewProvider {
             "https://www.womansworld.com/wp-content/uploads/sites/2/2018/05/tjmaxx-handbags.jpg",
             "https://images.squarespace-cdn.com/content/v1/5c479b7f710699200cbe95de/1553910021271-2PJYW4J4THGDNDUECDGD/TjMaxx-Interior%28web%2913.jpg",
             "https://www.bostonherald.com/wp-content/uploads/migration/2016/05/04/050416maxnl05.jpg"
-        ])
+        ]) { i in
+            print("Selected at index " + String(i))
+        }
     }
 }

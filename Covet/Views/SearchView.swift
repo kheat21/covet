@@ -40,6 +40,8 @@ struct SearchView: View {
                         if let posts = results.posts {
                             ImageGrid(images: results.posts.map { $0
                                 return getImageForPost(post: $0)
+                            }, selected: { i in
+                                print(i)
                             })
                         }
                     }
@@ -53,7 +55,7 @@ struct SearchView: View {
     }
     
     func getImageForPost(post: Post) -> String {
-        return post.products[0].image_url
+        return post.products![0].image_url
     }
 
 }

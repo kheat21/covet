@@ -77,7 +77,7 @@ struct CovetSquareZoomedInItem: View {
                 ProgressView()
             }
         )
-            .background(Color.yellow)
+            //.background(Color.yellow)
             
     }
 }
