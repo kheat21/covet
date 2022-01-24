@@ -49,15 +49,23 @@ struct CovetView : View {
                 .tag(1)
             
             
+            //NavigationView {
+                //ProfileView()
+                    // .navigationBarTitleDisplayMode(.inline)
+                    // .navigationTitle("User Title")
+                    
+//                    .toolbar {
+//                        ToolbarItem(placement: .navigationBarLeading) {
+//                            Text("User Handle Here")
+//                                .fontWeight(Font.Weight.regular)
+//                        }
+//                    }
+           // }
             NavigationView {
                 ProfileView()
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Text("User Handle Here")
-                                .fontWeight(Font.Weight.heavy)
-                        }
-                    }
+                .navigationBarHidden(false)
+                .navigationBarTitle("Profile")
+                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
             }
             .tabItem {
                 Label("Profile", systemImage: "person.fill")

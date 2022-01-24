@@ -18,18 +18,23 @@ struct ImageGrid: View {
         LazyVGrid(columns: gridItems, spacing: 0) {
             ForEach(0..<images.count) { i in
                 GeometryReader { gr in
-                    CovetSquareZoomedInItem(
-                        url: images[i],
-                        size: gr.size.width,
-                        topBorderWidth: getTopBorderWidth(index: i),
-                        leftBorderWidth: getLeftBorderWidth(index: i),
-                        bottomBorderWidth: getBottomBorderWidth(index: i, total: images.count),
-                        rightBorderWidth: getRightBorderWidth(index: i, total: images.count)
-                    )
-                        .onTapGesture {
-                            self.selected(i)
-                        }
-                        //.frame(height: gr.size.width)
+                    NavigationLink {
+                        ProfileView()
+                            .navigationBarHidden(false)
+                            .navigationTitle("New Page")
+                    } label: {
+                        CovetSquareZoomedInItem(
+                            url: images[i],
+                            size: gr.size.width,
+                            topBorderWidth: getTopBorderWidth(index: i),
+                            leftBorderWidth: getLeftBorderWidth(index: i),
+                            bottomBorderWidth: getBottomBorderWidth(index: i, total: images.count),
+                            rightBorderWidth: getRightBorderWidth(index: i, total: images.count)
+                        )
+//                        .onTapGesture {
+//                            self.selected(i)
+//                        }
+                    }
                 }
                 .clipped()
                 .aspectRatio(1, contentMode: .fit)

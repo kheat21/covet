@@ -13,7 +13,9 @@ struct ProfileView: View {
     @State var _user: CovetUser? = nil
     
     @State var showFriendView: Bool = false
-
+    @State var showingPostInDetailView: Bool = false
+    
+    @State var isNavigationBarHidden: Bool = true
     
     @Sendable
     func onAppear() async {
@@ -25,17 +27,19 @@ struct ProfileView: View {
             print("Error getting the user")
         }
     }
-    
-    private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
 
     var body: some View {
-        ZStack {
+       
+        VStack {
             if let user = _user {
-                VStack {
+                //VStack {
                     
                     // Show the number of people they're connected to
-                    if let follows = user.follows, let followers = user.followers, let friends = user.friends {
+                    if let follows = user.follows,
+                        let followers = user.followers,
+                            let friends = user.friends {
                         UserRelationshipsHero(following: follows, followers: followers, friends: friends)
+                            .background(Color.yellow)
                     }
                     
                     // Show their posts
@@ -68,22 +72,28 @@ struct ProfileView: View {
                                     return $0.products![0].image_url
                                 }) { selectedIndex in
                                     print("Selected @ " + String(selectedIndex))
-                                    
+                                    self.showingPostInDetailView = true
                                 }
                             }
                         }
                     }
                     
-                }
-                //.navigationBarTitle("Profile")
-                .navigationBarHidden(false)
+                //}
+            
+                //.padding()
+                // .navigationViewStyle(StackNavigationViewStyle())
+                
                 //.navigationBarItems(leading: backButton, trailing: addButton)
                 
             } else {
                 Text("Error loading user. Please try again later.")
             }
-        }.task(self.onAppear)
-        
+        }
+        .task(self.onAppear)
+        .background(Color.blue)
+            .sheet(isPresented: self.$showingPostInDetailView, onDismiss: nil, content: {
+                ProfileView()
+            })
     }
     
 //    func getCurrentUserHandle() -> String? {
@@ -95,11 +105,11 @@ struct ProfileView: View {
     
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(isNa)
+//    }
+//}
 
 
 //            .toolbar {
