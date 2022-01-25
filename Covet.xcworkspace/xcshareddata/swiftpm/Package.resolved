@@ -27,6 +27,15 @@
           "revision": "e7f1a107014c3767c4220f9cae1e57d5c9f8fa8b",
           "version": "1.0.1"
         }
+      },
+      {
+        "package": "SwiftUITooltip",
+        "repositoryURL": "https://github.com/quassummanus/SwiftUI-Tooltip.git",
+        "state": {
+          "branch": null,
+          "revision": "01dae0053a27ee26331677a12c3d7388114aafcd",
+          "version": "1.1.2"
+        }
       }
     ]
   },

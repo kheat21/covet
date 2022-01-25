@@ -48,12 +48,12 @@ struct CovetView : View {
                 }
                 .tag(1)
             
-            NavigationView {
+//            NavigationView {
                 ProfileView()
-                .navigationBarHidden(false)
-                .navigationBarTitle("My Profile")
-                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-            }
+//                .navigationBarHidden(false)
+//                .navigationBarTitle("My Profile")
+//                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+//            }
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
                     .foregroundColor(Color.green)

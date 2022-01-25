@@ -15,6 +15,9 @@ struct UserRelationshipsHero: View {
     
     var body: some View {
         HStack {
+//            Spacer().frame(width: 32)
+//            CovetC(size: 56, text: "BM")
+            Spacer()
             NavigationLink(
                 destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
             ) {
@@ -41,8 +44,9 @@ struct UserRelationshipsHero: View {
                     Text("friends")
                 }
             }
+            Spacer()
         }
-        .frame(width: nil, height: 60, alignment: .top)
+        .frame(width: nil, height: 64, alignment: .top)
     }
 }
 
