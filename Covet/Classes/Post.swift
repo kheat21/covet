@@ -8,7 +8,20 @@
 import Foundation
 import SwiftyJSON
 
-struct Post : Identifiable, Decodable {
+struct Post : Identifiable, Decodable, Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: Post, rhs: Post) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    static func < (lhs: Post, rhs: Post) -> Bool {
+        return lhs.createdAt < rhs.createdAt
+    }
+    
     var id: Int;
     var user: CovetUser?;
     var text: String?;
@@ -30,6 +43,14 @@ func getProductForPost(post: Post) -> Product? {
         } else {
             return products[0]
         }
+    }
+    return nil
+}
+
+
+func getThumbnailImageURLForPost(post: Post) -> String? {
+    if let product = getProductForPost(post: post) {
+        return product.image_url
     }
     return nil
 }

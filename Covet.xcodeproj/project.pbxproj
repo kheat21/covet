@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
+		A461D946279F9BFF00034174 /* SwiftUIInfiniteList in Frameworks */ = {isa = PBXBuildFile; productRef = A461D945279F9BFF00034174 /* SwiftUIInfiniteList */; };
+		A461D948279F9E4400034174 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461D947279F9E4400034174 /* RecovetView.swift */; };
+		A461D94A279F9E7800034174 /* PostDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461D949279F9E7800034174 /* PostDisplay.swift */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
 		A4A00446279F07EC00F2B229 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00445279F07EC00F2B229 /* PostView.swift */; };
 		A4A00448279F21DC00F2B229 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A00447279F21DC00F2B229 /* UIColor.swift */; };
@@ -85,6 +88,8 @@
 		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A461D947279F9E4400034174 /* RecovetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecovetView.swift; sourceTree = "<group>"; };
+		A461D949279F9E7800034174 /* PostDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDisplay.swift; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
 		A4A00445279F07EC00F2B229 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A4A00447279F21DC00F2B229 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -150,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A461D946279F9BFF00034174 /* SwiftUIInfiniteList in Frameworks */,
 				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
 				EB724D062780D4850076593C /* AlertToast in Frameworks */,
 			);
@@ -273,6 +279,7 @@
 		EB453071274BF9C3004395CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A461D947279F9E4400034174 /* RecovetView.swift */,
 				EB45306D274BF9A6004395CA /* FeedView.swift */,
 				EB45306F274BF9B1004395CA /* ProfileView.swift */,
 				EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */,
@@ -288,6 +295,7 @@
 		EB453072274BF9CF004395CA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A461D949279F9E7800034174 /* PostDisplay.swift */,
 				EB453073274BF9DF004395CA /* CovetC.swift */,
 				EB453075274BFEA4004395CA /* CovetItem.swift */,
 				EB453077274C16C2004395CA /* UserPreview.swift */,
@@ -383,6 +391,7 @@
 			name = Covet;
 			packageProductDependencies = (
 				EB724D052780D4850076593C /* AlertToast */,
+				A461D945279F9BFF00034174 /* SwiftUIInfiniteList */,
 			);
 			productName = Covet;
 			productReference = EB453040274BF993004395CA /* Covet.app */;
@@ -463,6 +472,7 @@
 			packageReferences = (
 				EB35F3A2277D1A6F00C7BA92 /* XCRemoteSwiftPackageReference "swiftui-date-picker-dialog" */,
 				EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */,
+				A461D944279F9BFF00034174 /* XCRemoteSwiftPackageReference "swiftui-infinite-list" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -644,6 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A461D94A279F9E7800034174 /* PostDisplay.swift in Sources */,
 				EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
@@ -678,6 +689,7 @@
 				A4A0044D279F3C1800F2B229 /* IsLikedResponseObject.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
+				A461D948279F9E4400034174 /* RecovetView.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
@@ -1046,6 +1058,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A461D944279F9BFF00034174 /* XCRemoteSwiftPackageReference "swiftui-infinite-list" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-infinite-list";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		EB35F3A2277D1A6F00C7BA92 /* XCRemoteSwiftPackageReference "swiftui-date-picker-dialog" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-date-picker-dialog";
@@ -1065,6 +1085,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A461D945279F9BFF00034174 /* SwiftUIInfiniteList */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A461D944279F9BFF00034174 /* XCRemoteSwiftPackageReference "swiftui-infinite-list" */;
+			productName = SwiftUIInfiniteList;
+		};
 		EB724D052780D4850076593C /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */;

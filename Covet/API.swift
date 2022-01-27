@@ -20,7 +20,8 @@ struct CovetAPIFailureResponse : Decodable {
 }
 
 class API {
-    private static let hostname: String = "http://localhost:3000/dev"
+    private static let hostname: String = "https://og663wi5te.execute-api.us-east-1.amazonaws.com/staging"
+    // "http://localhost:3000/dev" //
     
     public static func me() async throws -> CovetUser? {
         return try await getEndpointPromise(
@@ -33,7 +34,7 @@ class API {
     }
     
     public static func createProfile(username: String, name: String?, birthday: Date?, address: String?) async throws -> CovetUser? {
-        return try await getEndpointPromise(
+        let resp = try await getEndpointPromise(
             endpoint: "/user/profile/create",
             method: .post,
             headers: await getHeaders(),
@@ -45,6 +46,8 @@ class API {
             ],
             CovetUser.self
         )
+        print(resp)
+        return resp
     }
     
     public static func getRelationships() async throws -> [CovetUserRelationship]? {
