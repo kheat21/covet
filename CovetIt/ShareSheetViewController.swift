@@ -115,10 +115,12 @@ class ShareSheetViewController: UIViewController {
     }
     
     @objc func primaryButtonPressed() {
-        if self.stageIndex != self.stages.count - 1 {
+        if self.stageIndex < self.stages.count - 1 {
+            print("Going to the next page")
             nextPage()
         } else {
-            
+            print("Saving post...")
+            savePost()
         }
     }
     
@@ -380,7 +382,7 @@ class ShareSheetViewController: UIViewController {
         self.primaryButton?.layer.shadowOffset = CGSize(width: 1, height: 2)
         self.primaryButton?.layer.shadowOpacity = 0.3
         
-        self.primaryButton?.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
+        self.primaryButton?.addTarget(self, action: #selector(primaryButtonPressed), for: .touchUpInside)
         self.toggleButtonStatus(enabled: enabledByDefault)
         
         self.view.addSubview(self.primaryButton!)
