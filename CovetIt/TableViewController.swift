@@ -15,15 +15,11 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     var loadingView: UIActivityIndicatorView?
     
     var selectedImageCallback: ((_ image: ScrapedImage) -> Void)?;
-    
-    let scraper: ImageScraper = ImageScraper()
     var images: [ScrapedImage] = [ScrapedImage]()
     
-    let url: String;
     var alreadyConfigured: Bool = false
     
-    init(url: String) {
-        self.url = url
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +29,6 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scraper.setup()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,34 +73,20 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
         self.loadingView = UIActivityIndicatorView(frame: wholeViewFrame)
         self.loadingView!.startAnimating()
         self.view.addSubview(self.loadingView!)
-                
-        self.scraper.setOnConnected {
-            self.scraper.request(url: self.url)
-        }
         
-        self.scraper.setOnImageRecieved { image in
-            DispatchQueue.main.sync {
-                if self.images.count == 0 {
-                    self.showCollectionView()
-                }
-            }
-            
-            self.images.append(image)
-            self.images = self.images.sorted { image1, image2 in
-                return (
-                    (image1.image.size.height * image1.image.size.width) >=
-                    (image2.image.size.height * image2.image.size.width)
-                )
-            }
-            DispatchQueue.main.sync {
-                self.collectionView!.reloadData()
-            }
-        }
-        
-        self.scraper.connect()
+        self.showCollectionView()
         
     }
 
+    func addImage(image: ScrapedImage) {
+        print("Setting the images...")
+        self.images.append(image)
+        self.images = self.images.sorted(by: { image1, image2 in
+            return image1.size() > image2.size()
+        })
+        self.collectionView?.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

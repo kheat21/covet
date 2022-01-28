@@ -51,6 +51,8 @@ class ShareSheetViewController: UIViewController {
     //@IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var skipButton: UIBarButtonItem!
     
+    var tableViewController = TableViewController()
+        
     var activityIndicator: UIActivityIndicatorView?
     var loadingTextView: UILabel?
     var imageView: UIImageView?
@@ -73,11 +75,11 @@ class ShareSheetViewController: UIViewController {
     var caption: String?
     
     var stages = [
-        ShareSheetViewControllerInputStage.PHOTO,
         ShareSheetViewControllerInputStage.TITLE,
         ShareSheetViewControllerInputStage.VENDOR,
         ShareSheetViewControllerInputStage.PRICE,
         ShareSheetViewControllerInputStage.CAPTION,
+        ShareSheetViewControllerInputStage.PHOTO,
         ShareSheetViewControllerInputStage.PREVIEW
     ]
     var stageIndex = 0
@@ -97,19 +99,34 @@ class ShareSheetViewController: UIViewController {
         
         configureLoadingView()
         
+        self.tableViewController.setSelectedImageHandler { image in
+            self.image = image
+            self.imageView?.image = image.image
+            self.dismiss(animated: true, completion: nil)
+            self.toggleButtonStatus(enabled: true)
+            self.toggleImageBorderStatus(enabled: true)
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !self.alreadyConfigured {
             self.alreadyConfigured = true
-            getSharedURL { url in
-                self.url = url?.absoluteURL
-                //self.configureViewFor(url: self.url!)
-                self.buildUI()
+            getSharedURL { u in
+                if let url = u {
+                    self.url = url.absoluteURL
+                    //self.configureViewFor(url: self.url!)
+                    self.buildUI()
+                    if let urlString = url.absoluteString {
+                        self.listedForScrapedImages(url: urlString)
+                    }
+                }
             }
+            
             // self.showLoadingView(message: "This will only take a second")
         }
     }
@@ -421,22 +438,9 @@ class ShareSheetViewController: UIViewController {
     
     @objc func imageViewPressed() {
         print("Image view pressed!")
-        //DispatchQueue.main.sync {
-            let tableViewController = TableViewController(url: self.url!.absoluteString)
-            // tableViewController.modalPresentationStyle = .popover
-            tableViewController.setSelectedImageHandler { image in
-                self.image = image
-                self.imageView?.image = image.image
-                self.dismiss(animated: true, completion: nil)
-                
-                self.toggleButtonStatus(enabled: true)
-                self.toggleImageBorderStatus(enabled: true)
-            }
-            print("Trying to present table view controller")
-        
-            self.present(tableViewController, animated: true) {
-                print("Completion")
-            }
+        self.present(tableViewController, animated: true) {
+            print("Completion")
+        }
     }
     @IBAction func shareButtonPressed(_ sender: Any) {
         nextPage()
