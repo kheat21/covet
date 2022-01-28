@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 import SwiftyJSON
 import PromiseKit
 

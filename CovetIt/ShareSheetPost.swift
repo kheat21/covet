@@ -18,12 +18,13 @@ extension ShareSheetViewController {
             
             var createdPostSuccessfully = false
             do {
-                if let createdPost = try await ExtensionAPI.createPost(
+                if let createdPost = try await ExtensionAPI.createSingleProductPost(
                     url: self.url!.absoluteString,
-                    text: "Sample text",
-                    productName: "Sample name",
-                    productDescription: "Sample description",
-                    imageURL: self.image!.url.absoluteString
+                    title: self.productTitle!,
+                    image_url: self.image!.url.absoluteString,
+                    vendor: self.produtVendor,
+                    price: self.productPrice,
+                    caption: self.caption
                 ) {
                     createdPostSuccessfully = true
                 } else {

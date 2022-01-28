@@ -20,8 +20,9 @@ class Product: Decodable {
     public let image_url: String;
     
     public let vendor: String?;
-    public let verified: Bool?;
+    public let price: Double?;
     
+    public let verified: Bool?;
     public let deleted: Int?;
     public let removed: Int?;
     

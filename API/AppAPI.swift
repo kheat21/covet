@@ -12,7 +12,6 @@ import SwiftyJSON
 import PromiseKit
 
 class API {
-    private static let hostname: String = "http://localhost:3000/dev"
     
     public static func me() async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(

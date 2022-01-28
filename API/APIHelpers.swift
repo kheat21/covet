@@ -62,12 +62,15 @@ class APIHelpers {
     }
     
     static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?, token: String?) async throws -> URLRequest {
-        var rq = URLRequest(url:
-            URL(string: buildEndpointURL(
-                endpoint: endpoint,
-                data: method == .get ? data : nil
-            ))!
+        
+        var requestUrlString = buildEndpointURL(
+            endpoint: endpoint,
+            data: method == .get ? data : nil
         )
+        
+        print(requestUrlString)
+        
+        var rq = URLRequest(url: URL(string: requestUrlString)!)
         rq.httpMethod = method == .post ? "POST" : "GET"
         rq.addValue("application/json", forHTTPHeaderField: "Content-Type")
         rq.addValue("application/json", forHTTPHeaderField: "Accept")
