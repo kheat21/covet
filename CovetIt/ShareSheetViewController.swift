@@ -85,24 +85,47 @@ class ShareSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if (isLoggedIn()) {
+            let alert = UIAlertController(title: "Please Login", message: "You cannot Covet things unless you have recently signed into the app", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                self.extensionContext!.cancelRequest(withError: RuntimeError("Not logged in"))
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
         self.backButton!.tintColor = UIColor.covetGreen
         
         configureLoadingView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !self.alreadyConfigured {
+            self.alreadyConfigured = true
+            getSharedURL { url in
+                self.url = url?.absoluteURL
+                //self.configureViewFor(url: self.url!)
+                self.buildUI()
+            }
+            // self.showLoadingView(message: "This will only take a second")
+        }
+    }
+    
+    @objc func primaryButtonPressed() {
+        if self.stageIndex != self.stages.count - 1 {
+            nextPage()
+        } else {
+            
+        }
     }
     
     @objc func nextPage() {
-        
-        // If we're coming from the photo upload page,
-        // will need to clear the UI before adding and
-        // changing the settings of the text field
-//        if self.stageIndex == 0 {
-//            resetUI()
-//        }
-        if self.stageIndex < self.stages.count - 1 {
-            self.stageIndex += 1
-            resetUI()
-            buildUI()
-        }
+        self.stageIndex += 1
+        resetUI()
+        buildUI()
     }
     
     @objc func lastPage() {
@@ -169,7 +192,7 @@ class ShareSheetViewController: UIViewController {
                 break
             }
             self.backButton.isEnabled = self.stageIndex > 0
-        
+    
         }
     }
     
@@ -240,8 +263,8 @@ class ShareSheetViewController: UIViewController {
     
     func buildPhotoPage(imageBorderPresentByDefault: Bool = false) {
         
-        let imageViewSize = 128.0
-        let imageViewYOrigin = self.fromTop(y: imageViewSize)
+        let imageViewSize = self.getImageSize()
+        let imageViewYOrigin = self.fromTop(y: 64)
         
         self.imageView = UIImageView(frame: CGRect(
             x: self.centerX(width: imageViewSize),
@@ -272,7 +295,7 @@ class ShareSheetViewController: UIViewController {
     func buildPreviewPage() {
         
         let padding = 16.0
-        let imageViewSize = 128.0
+        let imageViewSize = self.getImageSize()
         let imageViewYOrigin = self.fromTop(y: 32)
         
         let primaryTextHeight = 48.0
@@ -346,7 +369,7 @@ class ShareSheetViewController: UIViewController {
     func buildBottomButton(enabledByDefault: Bool = false, text: String = "Next") {
         self.primaryButton = UIButton(frame: CGRect(
             x: self.paddedXLeft(),
-            y: self.view.frame.height - (52.0 + 16.0),
+            y: self.view.frame.height - (52.0 + 24.0),
             width: self.paddedWidth(),
             height: 52
         ))
@@ -363,29 +386,18 @@ class ShareSheetViewController: UIViewController {
         self.view.addSubview(self.primaryButton!)
     }
     
-
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !self.alreadyConfigured {
-            self.alreadyConfigured = true
-            getSharedURL { url in
-                self.url = url?.absoluteURL
-                self.configureViewFor(url: self.url!)
-                self.buildUI()
-            }
-            // self.showLoadingView(message: "This will only take a second")
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
-        
-    }
-    
     func configureViewFor(url: URL) {
         DispatchQueue.main.async {
-            //self.linkTextField.text = url.absoluteString
-            //self.titleTextField.text = self.getDefaultItemTitle()
+            let suggestedText = self.getDefaultItemTitle()
+            
+            // If the user's already typed something by the time we
+            // get here, just keep whatever they typed
+            if let existingText = self.productTitle {
+                if existingText.count > 0 {
+                    return
+                }
+            }
+            self.productTitle = suggestedText
         }
     }
     
@@ -479,18 +491,25 @@ class ShareSheetViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
+        
+        print("Keyboard will show")
 
-        guard let userInfo = notification.userInfo else { return }
-        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+//        guard let userInfo = notification.userInfo else { return }
+//        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        let keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size.height
+        print(keyboardHeight)
         
         if let pb = self.primaryButton {
+            print("Got the button")
             pb.frame = CGRect(
-                x: pb.layer.frame.minX,
-                y: pb.layer.frame.minY - keyboardFrame.height - 16,
-                width: pb.layer.frame.width,
-                height: pb.layer.frame.height
+                x: self.paddedXLeft(),
+                y: self.view.frame.height - keyboardHeight - 52.0 - 16.0,
+                width: self.paddedWidth(),
+                height: 52
             )
+            print(pb.frame)
         }
 
 //        var contentInset:UIEdgeInsets = self.scrollView.contentInset
@@ -507,14 +526,12 @@ class ShareSheetViewController: UIViewController {
         if let pb = self.primaryButton {
             pb.frame = CGRect(
                 x: self.paddedXLeft(),
-                y: self.view.frame.height - (52.0 + 16.0),
-                width: pb.layer.frame.width,
-                height: pb.layer.frame.height
+                y: self.view.frame.height - 52.0 - 24.0,
+                width: self.paddedWidth(),
+                height: 52
             )
         }
         
-//        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
-//        scrollView.contentInset = contentInset
     }
     
     func toggleButtonStatus(enabled: Bool) {
@@ -525,38 +542,6 @@ class ShareSheetViewController: UIViewController {
     func toggleImageBorderStatus(enabled: Bool) {
         self.imageView!.layer.borderColor = UIColor.covetGreen.cgColor
         self.imageView!.layer.borderWidth = enabled ? 4.0 : 0.0
-    }
-    
-    func navbarHeight() -> Double {
-        return 44.0
-    }
-    
-    func fromTop(y: Double) -> Double {
-        return y + navbarHeight()
-    }
-    
-    func centerX(width: Double) -> Double {
-        return middleX() - (width / 2)
-    }
-    
-    func centerY(height: Double) -> Double {
-        return middleY() - (height / 2)
-    }
-    
-    func middleX() -> Double {
-        return self.view.frame.width / 2.0
-    }
-    
-    func middleY() -> Double {
-        return self.view.frame.height / 2.0
-    }
-    
-    func paddedXLeft() -> Double {
-        return 16
-    }
-    
-    func paddedWidth() -> Double {
-        return self.view.frame.width - (paddedXLeft() * 2)
     }
     
     private func truthy(value: String?) -> Bool {
