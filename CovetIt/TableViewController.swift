@@ -50,6 +50,7 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
 
         let navItem = UINavigationItem(title: "Pick a Thumbnail")
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(self.cancel))
+        cancelItem.tintColor = UIColor.covetGreen
         navItem.leftBarButtonItem = cancelItem
 
         navBar.setItems([navItem], animated: false)

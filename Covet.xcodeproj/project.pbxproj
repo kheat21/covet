@@ -18,6 +18,8 @@
 		A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
 		A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4E2797B83F005EFCA8 /* TableViewController.swift */; };
 		A432CF512797B9F0005EFCA8 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF502797B9F0005EFCA8 /* ImageCell.swift */; };
+		A43B1F8827A34E5800D09167 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8727A34E5700D09167 /* UIView.swift */; };
+		A43B1F8A27A3B4F700D09167 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8927A3B4F600D09167 /* UIColor.swift */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
@@ -140,6 +142,8 @@
 		A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostResponse.swift; sourceTree = "<group>"; };
 		A432CF4E2797B83F005EFCA8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A432CF502797B9F0005EFCA8 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		A43B1F8727A34E5700D09167 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A43B1F8927A3B4F600D09167 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
 		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
 		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
@@ -278,6 +282,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A43B1F8627A34E4B00D09167 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A43B1F8727A34E5700D09167 /* UIView.swift */,
+				A43B1F8927A3B4F600D09167 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A459DA1D2797551500001BF5 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +303,7 @@
 		A4A47E8827965DB300FE8ED8 /* CovetIt */ = {
 			isa = PBXGroup;
 			children = (
+				A43B1F8627A34E4B00D09167 /* Extensions */,
 				A44DA6E027968C7500A9422E /* CovetIt.entitlements */,
 				A4A47E8927965DB300FE8ED8 /* ShareViewController.swift */,
 				A432CF4E2797B83F005EFCA8 /* TableViewController.swift */,
@@ -829,10 +843,12 @@
 				A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */,
 				A459DA26279755A100001BF5 /* APIErrors.swift in Sources */,
 				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
+				A43B1F8A27A3B4F700D09167 /* UIColor.swift in Sources */,
 				A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */,
 				A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */,
 				A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */,
 				A4A47E8A27965DB300FE8ED8 /* ShareViewController.swift in Sources */,
+				A43B1F8827A34E5800D09167 /* UIView.swift in Sources */,
 				A459DA202797552B00001BF5 /* APIConfig.swift in Sources */,
 				A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */,
 				A44DA6E72797410000A9422E /* Strings.swift in Sources */,
