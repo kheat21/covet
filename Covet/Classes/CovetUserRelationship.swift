@@ -27,5 +27,5 @@ class CovetUserRelationship : Decodable {
     private(set) var user: Int;
     private(set) var other: Int;
     private(set) var relationship: String;
-    private(set) var pending: Bool;
+    private(set) var pending: Int;
 }

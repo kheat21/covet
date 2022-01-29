@@ -37,14 +37,14 @@ struct CovetUser: Identifiable, Decodable {
         var friends: [CovetUserRelationshipInfo]?
         var pending: [CovetUserRelationshipInfo]?
     
-        var current_user_is_following: Bool?
-        var current_user_is_pending_following: Bool?
-        var current_user_is_friending: Bool?
-        var current_user_is_pending_friending: Bool?
-        var current_user_is_pending_friended: Bool?
-        var current_user_is_followed_by: Bool?
-        var current_user_is_pending_followed_by: Bool?
-        var current_user_blocks: Bool?
+        var current_user_is_following: Int?
+        var current_user_is_pending_following: Int?
+        var current_user_is_friending: Int?
+        var current_user_is_pending_friending: Int?
+        var current_user_is_pending_friended: Int?
+        var current_user_is_followed_by: Int?
+        var current_user_is_pending_followed_by: Int?
+        var current_user_blocks: Int?
     
         var posts: [Post]?
     

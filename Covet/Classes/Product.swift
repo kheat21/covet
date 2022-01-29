@@ -22,7 +22,7 @@ struct Product: Decodable {
     public let vendor: String?;
     public let price: Double?;
 
-    public let verified: Bool?;
+    public let verified: Int?;
     public let deleted: Int?;
     public let removed: Int?;
 
