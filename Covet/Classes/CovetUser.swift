@@ -49,27 +49,27 @@ struct CovetUser: Identifiable, Decodable {
         var posts: [Post]?
     
         func currentUserFollows() -> Bool {
-            return current_user_is_following!
+            return current_user_is_following! == 1
         }
     
         func currentUserFollowedBy() -> Bool {
-            return current_user_is_followed_by!
+            return current_user_is_followed_by! == 1
         }
     
         func currentUserFriend() -> Bool {
-            return current_user_is_friending!
+            return current_user_is_friending! == 1
         }
     
         func currentUserPendingOutgoing() -> Bool {
-            return current_user_is_pending_following! || current_user_is_pending_friending!
+            return current_user_is_pending_following! == 1 || current_user_is_pending_friending! == 1
         }
     
         func currentUserPendingIncoming() -> Bool {
-            return current_user_is_pending_followed_by! || current_user_is_pending_friended!
+            return current_user_is_pending_followed_by! == 1 || current_user_is_pending_friended! == 1
         }
     
         func currentUserBlocks() -> Bool {
-            return current_user_blocks!
+            return current_user_blocks! == 1
         }
     
     func allRelationshipInformationPresent() -> Bool {
