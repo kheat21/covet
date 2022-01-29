@@ -73,28 +73,15 @@ struct CovetUser: Identifiable, Decodable {
         }
     
     func allRelationshipInformationPresent() -> Bool {
-        guard
-            let _ = self.current_user_is_following,
-            let __ = self.current_user_is_pending_following,
-            let ___ = self.current_user_is_friending,
-            let ____ = self.current_user_is_pending_friending,
-            let _____ = self.current_user_is_pending_friended,
-            let ______ = self.current_user_is_followed_by,
-            let _______ = self.current_user_is_pending_followed_by,
-            let ________ = self.current_user_blocks
-        else {
-            return false
-        }
-        return true
+        return (
+            self.current_user_is_following != nil &&
+            self.current_user_is_pending_following != nil &&
+            self.current_user_is_friending != nil &&
+            self.current_user_is_pending_friending != nil &&
+            self.current_user_is_pending_friended != nil &&
+            self.current_user_is_followed_by != nil &&
+            self.current_user_is_pending_followed_by != nil &&
+            self.current_user_blocks != nil
+        )
     }
 }
-
-//
-//let is_following = user.current_user_is_following,
-//let is_pending_following = user.current_user_is_pending_following,
-//let is_friending = user.current_user_is_friending,
-//let is_pending_friending = user.current_user_is_pending_friending,
-//let is_pending_friended = user.current_user_is_pending_friended,
-//let is_followed_by = user.current_user_is_followed_by,
-//let is_pending_followed_by = user.current_user_is_pending_followed_by,
-//let blocks = user.current_user_blocks
