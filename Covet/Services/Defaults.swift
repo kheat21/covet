@@ -8,5 +8,5 @@
 import Foundation
 
 class Defaults {
-    static let sharedSuite = UserDefaults(suiteName: "com.covetapp.covetapp.CovetGroup")!
+    static let sharedSuite = UserDefaults(suiteName: "group.covetappgroup")!
 }
