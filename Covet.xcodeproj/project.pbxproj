@@ -12,6 +12,11 @@
 		A4026966279E4A0600D314BB /* ShareSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4026965279E4A0600D314BB /* ShareSheetViewController.swift */; };
 		A4026967279E50FA00D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
 		A4026968279E513200D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
+		A42B07AA27A5F5B100667216 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07A927A5F5B100667216 /* PostView.swift */; };
+		A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AB27A5F60C00667216 /* RecovetView.swift */; };
+		A42B07AE27A5F63700667216 /* PostShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AD27A5F63700667216 /* PostShareSheet.swift */; };
+		A42B07B027A5F68D00667216 /* PostDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AF27A5F68D00667216 /* PostDisplay.swift */; };
+		A42B07B227A5F6A000667216 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07B127A5F6A000667216 /* UIColor.swift */; };
 		A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
 		A432CF4C27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
@@ -150,6 +155,11 @@
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4026965279E4A0600D314BB /* ShareSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetViewController.swift; sourceTree = "<group>"; };
+		A42B07A927A5F5B100667216 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		A42B07AB27A5F60C00667216 /* RecovetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecovetView.swift; sourceTree = "<group>"; };
+		A42B07AD27A5F63700667216 /* PostShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostShareSheet.swift; sourceTree = "<group>"; };
+		A42B07AF27A5F68D00667216 /* PostDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDisplay.swift; sourceTree = "<group>"; };
+		A42B07B127A5F6A000667216 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostResponse.swift; sourceTree = "<group>"; };
 		A432CF4E2797B83F005EFCA8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A432CF502797B9F0005EFCA8 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
@@ -429,6 +439,8 @@
 		EB453071274BF9C3004395CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A42B07AB27A5F60C00667216 /* RecovetView.swift */,
+				A42B07A927A5F5B100667216 /* PostView.swift */,
 				EB45306D274BF9A6004395CA /* FeedView.swift */,
 				EB45306F274BF9B1004395CA /* ProfileView.swift */,
 				EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */,
@@ -436,7 +448,6 @@
 				EB517D0D2755537A006470B8 /* UserSettingsView.swift */,
 				EB129311277A764F00FA0E46 /* CreatePostView.swift */,
 				EB129318277AD4C200FA0E46 /* UserManagerView.swift */,
-				A4A00445279F07EC00F2B229 /* PostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,6 +455,7 @@
 		EB453072274BF9CF004395CA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A42B07AF27A5F68D00667216 /* PostDisplay.swift */,
 				EB453073274BF9DF004395CA /* CovetC.swift */,
 				EB453075274BFEA4004395CA /* CovetItem.swift */,
 				EB453077274C16C2004395CA /* UserPreview.swift */,
@@ -452,9 +464,9 @@
 				EB12931C277AD8B100FA0E46 /* UserListItem.swift */,
 				EB12931E277ADAAE00FA0E46 /* Chip.swift */,
 				EB35F3A0277D16D100C7BA92 /* PromptedUserInput.swift */,
+				A42B07AD27A5F63700667216 /* PostShareSheet.swift */,
 				A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */,
 				A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */,
-				A4A0044A279F27FF00F2B229 /* PostShareSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -505,11 +517,11 @@
 		EBDF21C6274D3E1C008E48E3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A42B07B127A5F6A000667216 /* UIColor.swift */,
 				EBDF21C7274D3E27008E48E3 /* View.swift */,
 				EBDF21CC274D400B008E48E3 /* Int.swift */,
 				EB35F39C277D0DF300C7BA92 /* String.swift */,
 				EB724CFD2780C2650076593C /* JSDictExtension.swift */,
-				A4A00447279F21DC00F2B229 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -901,17 +913,19 @@
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
-				A4A0044B279F27FF00F2B229 /* PostShareSheet.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,
 				A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */,
+				A42B07AA27A5F5B100667216 /* PostView.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
+				A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */,
 				EB129310277A4E1000FA0E46 /* Product.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
+				A42B07AE27A5F63700667216 /* PostShareSheet.swift in Sources */,
 				A459DA222797553600001BF5 /* ExtensionTokenConfig.swift in Sources */,
 				EB453076274BFEA4004395CA /* CovetItem.swift in Sources */,
 				EB517D0C27555040006470B8 /* SearchView.swift in Sources */,
@@ -943,8 +957,10 @@
 				A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
+				A42B07B227A5F6A000667216 /* UIColor.swift in Sources */,
 				A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
+				A42B07B027A5F68D00667216 /* PostDisplay.swift in Sources */,
 				A432CF4C27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -963,7 +979,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB453061274BF995004395CA /* CovetUITestsLaunchTests.swift in Sources */,
-				A4A00449279F21E200F2B229 /* UIColor.swift in Sources */,
 				EB45305F274BF995004395CA /* CovetUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
