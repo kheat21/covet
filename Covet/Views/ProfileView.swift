@@ -28,7 +28,7 @@ struct ProfileView: View {
     }
 
     var body: some View {
-    NavigationView {
+       
         VStack {
             if let user = _user {
                     
@@ -38,7 +38,7 @@ struct ProfileView: View {
                             let friends = user.friends {
                         UserRelationshipsHero(following: follows, followers: followers, friends: friends)
                     }
-                
+                    
                     // Show their posts
                     if let posts = user.posts {
                         if posts.count == 0 {
@@ -77,21 +77,13 @@ struct ProfileView: View {
                 Text("Error loading user. Please try again later.")
             }
         }
-        .navigationBarHidden(false)
-        .navigationBarTitle(self.getDisplayName())
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                CovetC(size: 36, text: "BM")
-            }
-        }
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in
             PostView(post: p)
         })
         .task(self.onAppear)
-    }}
+    }
     
 //    func getCurrentUserHandle() -> String? {
 //        if let user = self.$user.wrappedValue {
@@ -99,17 +91,6 @@ struct ProfileView: View {
 //        }
 //        return nil
 //    }
-    
-    func getDisplayName() -> String {
-        if let user = self._user {
-            if let name = user.name {
-                return name
-            }
-            return user.username
-        } else {
-            return "Loading"
-        }
-    }
     
 }
 

@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */; };
 		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
-		A461D93E279F6EE900034174 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461D93D279F6EE900034174 /* RecovetView.swift */; };
-		A461D940279F6F3C00034174 /* PostDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A461D93F279F6F3C00034174 /* PostDisplay.swift */; };
-		A461D943279F940100034174 /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = A461D942279F940100034174 /* SwiftUITooltip */; };
 		A4026966279E4A0600D314BB /* ShareSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4026965279E4A0600D314BB /* ShareSheetViewController.swift */; };
 		A4026967279E50FA00D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
 		A4026968279E513200D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
@@ -179,8 +176,6 @@
 		A459DA1E2797552B00001BF5 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTokenConfig.swift; sourceTree = "<group>"; };
 		A459DA24279755A100001BF5 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
-		A461D93D279F6EE900034174 /* RecovetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecovetView.swift; sourceTree = "<group>"; };
-		A461D93F279F6F3C00034174 /* PostDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDisplay.swift; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
 		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -264,8 +259,6 @@
 			files = (
 				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
 				A47845A427A50983005F4C15 /* AlertToast in Frameworks */,
-				A461D943279F940100034174 /* SwiftUITooltip in Frameworks */,
-				EB724D062780D4850076593C /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +441,6 @@
 			children = (
 				A42B07AB27A5F60C00667216 /* RecovetView.swift */,
 				A42B07A927A5F5B100667216 /* PostView.swift */,
-				A461D93D279F6EE900034174 /* RecovetView.swift */,
 				EB45306D274BF9A6004395CA /* FeedView.swift */,
 				EB45306F274BF9B1004395CA /* ProfileView.swift */,
 				EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */,
@@ -464,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				A42B07AF27A5F68D00667216 /* PostDisplay.swift */,
-				A461D93F279F6F3C00034174 /* PostDisplay.swift */,
 				EB453073274BF9DF004395CA /* CovetC.swift */,
 				EB453075274BFEA4004395CA /* CovetItem.swift */,
 				EB453077274C16C2004395CA /* UserPreview.swift */,
@@ -585,8 +576,6 @@
 			name = Covet;
 			packageProductDependencies = (
 				A47845A327A50983005F4C15 /* AlertToast */,
-				EB724D052780D4850076593C /* AlertToast */,
-				A461D942279F940100034174 /* SwiftUITooltip */,
 			);
 			productName = Covet;
 			productReference = EB453040274BF993004395CA /* Covet.app */;
@@ -670,7 +659,6 @@
 			packageReferences = (
 				EB35F3A2277D1A6F00C7BA92 /* XCRemoteSwiftPackageReference "swiftui-date-picker-dialog" */,
 				EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */,
-				A461D941279F940100034174 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -920,7 +908,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A461D940279F6F3C00034174 /* PostDisplay.swift in Sources */,
 				EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */,
 				A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
@@ -963,7 +950,6 @@
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
-				A461D93E279F6EE900034174 /* RecovetView.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
@@ -1424,14 +1410,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A461D941279F940100034174 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/quassummanus/SwiftUI-Tooltip.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		EB35F3A2277D1A6F00C7BA92 /* XCRemoteSwiftPackageReference "swiftui-date-picker-dialog" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/globulus/swiftui-date-picker-dialog";
@@ -1452,12 +1430,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		A47845A327A50983005F4C15 /* AlertToast */ = {
-		A461D942279F940100034174 /* SwiftUITooltip */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A461D941279F940100034174 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
-			productName = SwiftUITooltip;
-		};
-		EB724D052780D4850076593C /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EB724D042780D4850076593C /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
