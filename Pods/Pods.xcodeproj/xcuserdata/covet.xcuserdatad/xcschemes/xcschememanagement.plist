@@ -16,7 +16,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>4</integer>
 		</dict>
 		<key>AppAuth.xcscheme</key>
 		<dict>
@@ -58,7 +58,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>20</integer>
 		</dict>
 		<key>FirebaseAuth.xcscheme</key>
 		<dict>
@@ -219,7 +219,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>34</integer>
+			<integer>15</integer>
 		</dict>
 		<key>Pods-CovetExtension.xcscheme</key>
 		<dict>
