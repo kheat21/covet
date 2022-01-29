@@ -87,7 +87,7 @@ class ShareSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if (isLoggedIn()) {
+        if (!isLoggedIn()) {
             let alert = UIAlertController(title: "Please Login", message: "You cannot Covet things unless you have recently signed into the app", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                 self.extensionContext!.cancelRequest(withError: RuntimeError("Not logged in"))

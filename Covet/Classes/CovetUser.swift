@@ -29,8 +29,8 @@ struct CovetUser: Identifiable, Decodable {
         var birthday: Date?;
         var address: String?;
         
-        var privateForFollowing: Bool;
-        var privateForFriending: Bool;
+        var privateForFollowing: Int;
+        var privateForFriending: Int;
     
         var follows: [CovetUserRelationshipInfo]?
         var followers: [CovetUserRelationshipInfo]?

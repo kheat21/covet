@@ -3,7 +3,6 @@
 
 def shared_pods
   pod 'Alamofire', '~> 5.5'
-  pod 'AlertToast'
   pod 'SwiftyJSON', '~> 4.0'
   pod "PromiseKit", "~> 6.8"
 end

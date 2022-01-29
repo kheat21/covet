@@ -147,7 +147,7 @@ class API {
         }
         return []
     }
-    
+
     static func getIdToken() async -> String? {
         if let currentUser = Auth.auth().currentUser {
             do {

@@ -23,13 +23,20 @@ class AuthService: NSObject, ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             self.isLoggedIn = auth.currentUser != nil
             Task {
-                print("Trying to save the ID token")
-                UserDefaults.standard.set(
-                    await API.getIdToken(),
-                    forKey: "id_token"
-                )
-                print("Saved id token")
-                print(await API.getIdToken())
+                if self.isLoggedIn {
+                    let token = await API.getIdToken()
+                    print("Trying to save the ID token (" + token! + ") in UserDefaults...")
+                    UserDefaults.standard.set(token, forKey: "id_token")
+                    
+                    print("Updating ExtensionTokenService...")
+                    await ExtensionTokenStateManagement.update(uid: user!.uid)
+                } else {
+                    print("Clearning ID token from UserDefaults")
+                    UserDefaults.standard.removeObject(forKey: "id_token")
+                    
+                    print("Clearing ExtensionTokenService...")
+                    ExtensionTokenStateManagement.clear()
+                }
             }
         }
     }

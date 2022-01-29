@@ -69,11 +69,15 @@ class ExtensionAPI {
         )
     }
     
-    private static func getToken() -> String? {
+    static func getToken() -> String? {
+        var token: String? = nil
         if let components = ExtensionTokenService.getTokens() {
-            return "EXT:" + components.local + "/" + components.server + "/" + components.uid
+            print(components)
+            token = "EXT:" + components.local + "/" + components.server + "/" + components.uid
         }
-        return nil
+        print("token")
+        print(token)
+        return token
     }
 
 }
