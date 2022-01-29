@@ -46,7 +46,7 @@ struct ProfileView: View {
                             Text("No posts yet. Add something with the Covet button to make one!")
                             Spacer()
                         } else {
-                        
+                            
                             // Show the most recent one
                             CovetSquareZoomedInItem(
                                 url: posts[0].products![0].image_url,
@@ -62,6 +62,11 @@ struct ProfileView: View {
                             // Space them out so that the scroll view doesn't
                             // get pushed too low or too high
                             Spacer()
+                            
+                            Button("Logout") {
+                                print("Logging out...")
+                                AuthService.shared.logout()
+                            }
                                                         
                             // Show all the others
                             ScrollView {

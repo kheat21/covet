@@ -10,12 +10,9 @@ import SwiftUI
 
 struct FeedView: View {
     
-    @State var lastRecentFetchedPage: Int = 0
+    @State var isFetching = false
+    @State var currentPage: Int = 0
     @State var posts: [Post] = []
-    
-    let image1 = "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1621545823-1e858398-6b43-4b4f-81bd-97d3679679dd_2.b511cad8f1874faa3a41d25d836758d6.jpg"
-    
-    let image2 = "https://n.nordstrommedia.com/id/sr3/92abe789-a05f-46a5-9af0-e7a949675482.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196"
     
     let image3 = "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg"
     
@@ -24,31 +21,49 @@ struct FeedView: View {
     }
     
     func _fetchNextPage() {
-        print("Fetching next page...")
+        Task {
+            self.currentPage += 1;
+            do {
+                if let feedItems = try await API.getFeed(page: self.currentPage) {
+                    for item in feedItems {
+                        posts.append(item)
+                    }
+                } else {
+                    throw RuntimeError("Unable to get feed items")
+                }
+            } catch {
+                self.currentPage -= 1
+            }
+            self.isFetching = false
+        }
     }
     
     var body: some View {
         ScrollView {
-            ForEach(posts) { post in
-                UserPreview(userAbbr: "BC", topItem: image3)
-                    .onAppear(perform: {
-                        if let lastPost = $posts.last {
-                            if lastPost.wrappedValue.id == post.id {
-                                _fetchNextPage()
+            LazyVStack {
+                ForEach(posts) { post in
+                    if let thumbnailImage = getThumbnailImageURLForPost(post: post) {
+                        UserPreview(
+                            userAbbr: "BC",
+                            topItem: thumbnailImage
+                        )
+                        .onAppear(perform: {
+                            print("Running on appear")
+                            if let lastPost = $posts.last {
+                                if lastPost.wrappedValue.id == post.id {
+                                    print("This is the last post (" + String(lastPost.wrappedValue.id) + " == " + String(post.id) + ")")
+                                    if !self.isFetching {
+                                        _fetchNextPage()
+                                    }
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
+                }
             }
         }
         .task {
-            do {
-                if let returnedPosts = try await API.getFeed(page: 1) {
-                    posts.append(contentsOf: returnedPosts)
-                }
-            } catch {
-                print("Unable to fetch page 1")
-            }
-            
+            _fetchNextPage()
         }
     }
 }

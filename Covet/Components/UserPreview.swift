@@ -26,7 +26,8 @@ struct UserPreview: View {
 
 struct UserPreview_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        EmptyView()
+        //FeedView()
         //UserPreview(userAbbr: "BAM", topItem: "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg")
     }
 }
