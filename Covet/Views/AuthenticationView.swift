@@ -81,6 +81,7 @@ struct CustomLoginViewController : UIViewControllerRepresentable {
         func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?)
         {
             if let error = error {
+                print(error)
                 parent.dismiss(error)
             }
             else {
@@ -92,6 +93,7 @@ struct CustomLoginViewController : UIViewControllerRepresentable {
         
         func authUI(_ authUI: FUIAuth, didFinish operation: FUIAccountSettingsOperationType, error: Error?)
         {
+            print(error)
         }
     }
 }

@@ -16,16 +16,14 @@ struct FeedView: View {
     
     let image3 = "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg"
     
-    func _buildList() {
-        return
-    }
-    
     func _fetchNextPage() {
         Task {
             self.currentPage += 1;
             do {
                 if let feedItems = try await API.getFeed(page: self.currentPage) {
                     for item in feedItems {
+                        print("AN ITEM WAS")
+                        print(item)
                         posts.append(item)
                     }
                 } else {
