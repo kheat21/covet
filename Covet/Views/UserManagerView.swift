@@ -20,6 +20,9 @@ struct UserManagerView: View {
     @State private var relationshipTypes: [UserRelationshipSearchType] = []
     @State private var searchText = ""
     
+    @State private var networkError: Bool = false
+    @State private var internalAPIError: Bool = false
+    
     @State private var shouldShowLoadingToast: Bool = true
     @State private var _users: [CovetUser]?
     

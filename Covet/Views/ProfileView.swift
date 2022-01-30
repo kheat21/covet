@@ -70,10 +70,8 @@ struct ProfileView: View {
                                                         
                             // Show all the others
                             ScrollView {
-                                ImageGrid(images: posts.suffix(posts.count - 1).map { $0
-                                    return $0.products![0].image_url
-                                }) { i in
-                                    self.showPostInDetailView = self._user!.posts![i+1]
+                                ImageGrid(images: posts.suffix(posts.count - 1)) { i in
+                                    self.showPostInDetailView = i
                                 }
                             }
                         }

@@ -121,7 +121,7 @@ struct PostView: View {
         
             do {
                 self.isLikedStatusSaving = true
-r                if let resp = try await API.like(post_id: self.post.id, status: !self.liked) {
+                if let resp = try await API.like(post_id: self.post.id, status: !self.liked) {
                     self.liked = resp.likes
                 }
                 self.isLikedStatusSaving = false

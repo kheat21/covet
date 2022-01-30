@@ -82,10 +82,10 @@ class API {
     }
     
     public static func likes(post_id: Int) async throws -> IsLikedResponseObject? {
-        return try await getEndpointPromise(
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/post/is_liked",
             method: .get,
-            headers: await getHeaders(),
             data: [
                 "post_id": String(post_id)
             ],
@@ -95,10 +95,10 @@ class API {
     
     public static func like(post_id: Int, status: Bool) async throws -> IsLikedResponseObject? {
         print("Trying to like record...")
-        return try await getEndpointPromise(
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/post/like",
             method: .post,
-            headers: await getHeaders(),
             data: [
                 "post_id": String(post_id),
                 "status": status ? "like" : "unlike"
@@ -108,10 +108,10 @@ class API {
     }
     
     public static func recovet(post_id: Int, caption: String) async throws -> Post? {
-        return try await getEndpointPromise(
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
             endpoint: "/post/recovet",
             method: .post,
-            headers: await getHeaders(),
             data: [
                 "post_id": String(post_id),
                 "text": caption.count > 0 ? caption : nil

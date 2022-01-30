@@ -23,6 +23,7 @@
 		A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
 		A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4E2797B83F005EFCA8 /* TableViewController.swift */; };
 		A432CF512797B9F0005EFCA8 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF502797B9F0005EFCA8 /* ImageCell.swift */; };
+		A436DA6427A5F9A5002FF28D /* IsLikedResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */; };
 		A436FE6727A3C7970029820D /* ShareSheetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436FE6627A3C7960029820D /* ShareSheetPost.swift */; };
 		A43B1F8827A34E5800D09167 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8727A34E5700D09167 /* UIView.swift */; };
 		A43B1F8A27A3B4F700D09167 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8927A3B4F600D09167 /* UIColor.swift */; };
@@ -163,6 +164,7 @@
 		A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostResponse.swift; sourceTree = "<group>"; };
 		A432CF4E2797B83F005EFCA8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A432CF502797B9F0005EFCA8 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsLikedResponseObject.swift; sourceTree = "<group>"; };
 		A436FE6627A3C7960029820D /* ShareSheetPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetPost.swift; sourceTree = "<group>"; };
 		A43B1F8727A34E5700D09167 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A43B1F8927A3B4F600D09167 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */,
 				A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */,
 				A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */,
+				A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
+				A436DA6427A5F9A5002FF28D /* IsLikedResponseObject.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
 				A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */,

@@ -38,9 +38,7 @@ struct SearchView: View {
                     
                         // Show the posts next
                         if let posts = results.posts {
-                            ImageGrid(images: results.posts.map { $0
-                                return getImageForPost(post: $0)
-                            }, selected: { i in
+                            ImageGrid(images: results.posts, selected: { i in
                                 print(i)
                             })
                         }

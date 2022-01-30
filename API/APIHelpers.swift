@@ -43,6 +43,7 @@ class APIHelpers {
                     res = try JSONDecoder().decode(type, from: data)
                     print(res)
                 } catch {
+                    print("Error decoding")
                     print(error)
                 }
                 semaphore.signal()
