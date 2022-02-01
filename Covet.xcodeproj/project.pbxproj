@@ -48,6 +48,7 @@
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
 		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */; };
+		A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */; };
 		A4B1775627A4515A00E784F6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
 		A4B1775727A452FD00E784F6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
 		A4B1775827A4534B00E784F6 /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
@@ -183,6 +184,7 @@
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerOptionsView.swift; sourceTree = "<group>"; };
 		A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetThumbnails.swift; sourceTree = "<group>"; };
 		A4B1775C27A47C2400E784F6 /* ExtensionTokenStateManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTokenStateManagement.swift; sourceTree = "<group>"; };
 		A4B1775E27A4949C00E784F6 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				EB517D0D2755537A006470B8 /* UserSettingsView.swift */,
 				EB129311277A764F00FA0E46 /* CreatePostView.swift */,
 				EB129318277AD4C200FA0E46 /* UserManagerView.swift */,
+				A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
 				A4B1775D27A47C2400E784F6 /* ExtensionTokenStateManagement.swift in Sources */,
 				EB12930E277A4D9800FA0E46 /* Post.swift in Sources */,
+				A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */,
 				EB453074274BF9DF004395CA /* CovetC.swift in Sources */,
 				EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */,
 				EB35F3A1277D16D100C7BA92 /* PromptedUserInput.swift in Sources */,

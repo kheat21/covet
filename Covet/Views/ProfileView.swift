@@ -10,16 +10,31 @@ import Firebase
 
 struct ProfileView: View {
     
+    private var isLoggedInUser: Bool = false
+    private var userId: Int? = -1
+
     @State var _user: CovetUser? = nil
+    
+    init() {
+        self.userId = nil
+        self.isLoggedInUser = true
+    }
+    
+    init(id: Int) {
+        self.userId = id
+        self.isLoggedInUser = false
+    }
     
     @State var showFriendView: Bool = false
     
     @State var showPostInDetailView: Post? = nil
     
+    @State var showManagerView: Bool = false
+    
     @Sendable
     func onAppear() async {
         do {
-            self._user = try await AuthService.shared.getUser()
+            self._user = try await getApplicableUser()
             print("______ POSTS ______")
             print(self._user?.posts)
         } catch {
@@ -28,7 +43,8 @@ struct ProfileView: View {
     }
 
     var body: some View {
-       
+        NavigationView {
+            
         VStack {
             if let user = _user {
                     
@@ -63,10 +79,10 @@ struct ProfileView: View {
                             // get pushed too low or too high
                             Spacer()
                             
-                            Button("Logout") {
-                                print("Logging out...")
-                                AuthService.shared.logout()
-                            }
+//                            Button("Logout") {
+//                                print("Logging out...")
+//                                AuthService.shared.logout()
+//                            }
                                                         
                             // Show all the others
                             ScrollView {
@@ -80,20 +96,53 @@ struct ProfileView: View {
                 Text("Error loading user. Please try again later.")
             }
         }
+            .navigationBarHidden(getCurrentUserHandle() == nil)
+            .navigationBarTitle(getCurrentUserHandle() ?? "Loading...")
+            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarItems(
+                trailing: Button(
+                    action: {
+                        self.showManagerView = true
+                    }
+                )
+                {
+                    Image(systemName: "line.horizontal.3")
+                }
+            )
+        }
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in
             PostView(post: p)
         })
+        .sheet(isPresented: self.$showManagerView, onDismiss: nil, content: {
+            HamburgerOptionsView()
+//            UserSettingsView(
+//                mode: UserSettingsViewPresentationOptions.Modify,
+//                handle: getCurrentUserHandle() ?? "",
+//                name: self._user?.name ?? "",
+//                birthday: self._user?.birthday ?? Date(),
+//                privateForFollowing: self._user?.privateForFollowing == 1,
+//                privateForFriending: self._user?.privateForFriending == 1
+//            )
+        })
         .task(self.onAppear)
     }
     
-//    func getCurrentUserHandle() -> String? {
-//        if let user = self.$user.wrappedValue {
-//            return user.username
-//        }
-//        return nil
-//    }
+    func getApplicableUser() async throws -> CovetUser? {
+        if self.isLoggedInUser {
+            return try await AuthService.shared.getUser()
+        } else {
+            return try await API.getUser(user_id: self.userId!)
+        }
+    }
+    
+    func getCurrentUserHandle() -> String? {
+        if let user = self._user {
+            return user.username
+        }
+        return nil
+    }
     
 }
 

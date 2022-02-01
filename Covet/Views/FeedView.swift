@@ -56,6 +56,9 @@ struct FeedView: View {
                                 }
                             }
                         })
+                        .onTapGesture {
+                            
+                        }
                     }
                 }
             }

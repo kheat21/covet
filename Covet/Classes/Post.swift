@@ -50,7 +50,10 @@ func getProductForPost(post: Post) -> Product? {
 
 func getThumbnailImageURLForPost(post: Post) -> String? {
     if let product = getProductForPost(post: post) {
+        print("Returning a thumbnail image of " + product.image_url)
         return product.image_url
+    } else {
+        print("could not get the prouct for this post")
     }
     return nil
 }

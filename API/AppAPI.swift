@@ -14,12 +14,18 @@ import PromiseKit
 class API {
     
     public static func me() async throws -> CovetUser? {
+        return try await API.getUser(user_id: nil)
+    }
+    
+    public static func getUser(user_id: Int?) async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/get",
             method: HTTPMethod.get,
             //headers: await getHeaders(),
-            data: nil,
+            data: user_id != nil ? [
+                "user": user_id
+            ] : nil,
             CovetUser.self
         )
     }

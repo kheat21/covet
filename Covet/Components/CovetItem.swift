@@ -75,6 +75,7 @@ struct CovetSquareZoomedInItem: View {
             },
             placeholder: {
                 ProgressView()
+                    .frame(width: size, height: size, alignment: SwiftUI.Alignment.center)
             }
         )
             //.background(Color.yellow)
