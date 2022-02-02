@@ -106,6 +106,7 @@ struct ProfileView: View {
                             if posts.count == 0 {
                                 Spacer()
                                 Text("No posts yet. Add something with the Covet button to make one!")
+                                    .padding([.leading, .trailing], 64)
                                 Spacer()
                             } else {
                                 
