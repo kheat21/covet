@@ -12,8 +12,14 @@ struct UserListItem: View {
         
     @State var backgroundColor: Color = Color.white;
     @State var showingActionDialog: Bool = false;
-    @State var user: CovetUser;
     
+    @State var user: CovetUser;
+    @State var relatiomship: CovetUserRelationship?;
+    @State var clickable: Bool = true
+    @State var showRelationshipToUser: Bool = true
+    @State var showPendingOptions: Bool = false
+    
+    @State var isSaving: Bool = false
     @State var showRelationshipManagementFailedToast: Bool = false;
     
     @State private var navigateToUserView: Bool = false
@@ -26,21 +32,41 @@ struct UserListItem: View {
             EmptyView()
         })
         HStack {
+            Spacer().frame(width: 16)
             CovetC(size: 48)
 //            Text(user.getDisplayItem())
             Text(user.username)
             Spacer()
-            if let chipContents = getChipContents(user: user) {
-                Chip(
-                    preIcon: chipContents.icon,
-                    text: chipContents.text,
-                    color: Color.accentColor
-                )
+            if !self.isSaving {
+                if self.showRelationshipToUser {
+                    if let chipContents = getChipContents(user: user) {
+                        Chip(
+                            preIcon: chipContents.icon,
+                            text: chipContents.text,
+                            color: Color.accentColor
+                        )
+                    }
+                }
+                if self.showPendingOptions {
+                    Chip(preIcon: "person.crop.circle.badge.xmark", text: "REJECT", color: Color.gray)
+                        .onTapGesture {
+                            doActOnPendingRequest(value: false)
+                        }
+                    Chip(preIcon: "person.badge.plus", text: "ACCEPT", color: Color.covetGreen())
+                        .onTapGesture {
+                            doActOnPendingRequest(value: false)
+                        }
+                }
+            } else {
+                ProgressView()
             }
+            Spacer().frame(width: 16)
         }
         .onTapGesture {
-            self.navigateToUserId = user.id
-            self.navigateToUserView = true
+            if self.clickable {
+                self.navigateToUserId = user.id
+                self.navigateToUserView = true
+            }
         }
         .onLongPressGesture(perform: {
             if let currentUser = AuthService.shared.currentCovetUser {
@@ -51,14 +77,16 @@ struct UserListItem: View {
             showingActionDialog = true
         })
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
-            if !user.currentUserFollows() && !user.currentUserFriend() {
-                followButton(user: user)
+            if user.allRelationshipInformationPresent() {
+                if !user.currentUserFollows() && !user.currentUserFriend() {
+                    followButton(user: user)
+                }
+                if !user.currentUserFriend() {
+                    befriendButton(user: user)
+                }
+                blockButton(user: user)
+                Button("Cancel", role: .cancel) { }
             }
-            if !user.currentUserFriend() {
-                befriendButton(user: user)
-            }
-            blockButton(user: user)
-            Button("Cancel", role: .cancel) { }
         } message: {
             Text("@" + user.username)
         }
@@ -140,6 +168,7 @@ struct UserListItem: View {
     }
     
     func doUserManagement(user: CovetUser, relationshipType: CovetUserRelationshipType) {
+        self.isSaving = true
         Task {
             do {
                 print("Setting relationship...")
@@ -152,6 +181,23 @@ struct UserListItem: View {
             } catch {
                 showRelationshipManagementFailedToast = true
             }
+            self.isSaving = false
         }
+    }
+    
+    func doActOnPendingRequest(value: Bool) {
+        print("Doing action")
+        self.isSaving = true
+        Task {
+            await actOnPendingRequest(value: value)
+            self.isSaving = false
+        }
+    }
+    
+    func actOnPendingRequest(value: Bool) async -> Bool {
+        if let rel = self.relatiomship {
+            
+        }
+        return false
     }
 }

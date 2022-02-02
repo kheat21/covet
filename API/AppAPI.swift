@@ -18,14 +18,16 @@ class API {
     }
     
     public static func getUser(user_id: Int?) async throws -> CovetUserResponseObject? {
+        print(user_id)
+        let params = user_id != nil ? [
+            "user": String(user_id!)
+        ] : nil
+        print(params)
         let resp = try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/get",
             method: HTTPMethod.get,
-            //headers: await getHeaders(),
-            data: user_id != nil ? [
-                "user": user_id
-            ] : nil,
+            data: params,
             CovetUserResponseObject.self
         )
         print(resp)
@@ -76,6 +78,17 @@ class API {
     }
     
     public static func getRelationships() async throws -> [CovetUserRelationship]? {
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/user/relationships/list",
+            method: HTTPMethod.get,
+            // headers: await getHeaders(),
+            data: nil,
+            [CovetUserRelationship].self
+        )
+    }
+    
+    public static func modifyRelationship(id: Int, accept: Bool) async throws -> Void {
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/relationships/list",

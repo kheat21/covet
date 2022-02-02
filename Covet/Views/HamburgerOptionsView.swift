@@ -19,7 +19,10 @@ struct HamburgerOptionsView: View {
             if let pendingRelationships = self.user.pending {
                 if pendingRelationships.count > 0 {
                     NavigationLink(
-                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.PENDING])) {
+                        destination: UserManagerView(
+                            relationships: pendingRelationships,
+                            navbarTitle: "Requested Friends/Followers"
+                        )) {
                         Text("Follow and Friend Requests")
                     }
                 }

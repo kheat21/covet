@@ -18,6 +18,54 @@ enum UserRelationshipSearchType {
 
 struct UserManagerView: View {
 
+    @State var relationships: [CovetUserRelationshipInfo]?
+    @State var navbarTitle: String?
+    
+    @State private var searchText = ""
+    @State private var shouldShowSavingToast: Bool = false
+    
+    var body: some View {
+        VStack {
+            SearchBar(text: $searchText)
+            Spacer().frame(height: 16)
+            ForEach(self.getFilteredRelationships(), id: \.self) { item in
+                UserListItem(
+                    user: item.user,
+                    clickable: false,
+                    showRelationshipToUser: false,
+                    showPendingOptions: true
+                )
+            }
+            .listStyle(PlainListStyle())
+            Spacer()
+        }
+        .navigationBarTitle(self.navbarTitle ?? "User Management", displayMode: .inline)
+        .toast(isPresenting: $shouldShowSavingToast, alert: {
+            AlertToast(type: .loading, title: nil, subTitle: nil)
+        })
+    }
+    
+    func getFilteredRelationships() -> [CovetUserRelationshipInfo] {
+        if let rels = self.relationships {
+            let res = rels.filter { relationshipInfo in
+                if searchText.isEmpty {
+                    return true
+                }
+                return (
+                    (relationshipInfo.user.name ?? "").contains(searchText) ||
+                    relationshipInfo.user.username.contains(searchText)
+                )
+            }
+            print(res)
+            return res
+        }
+        return []
+    }
+}
+
+/*
+struct UserManagerViewOld: View {
+
     @State private var relationshipTypes: [UserRelationshipSearchType] = []
     @State private var searchText = ""
     
@@ -68,12 +116,10 @@ struct UserManagerView: View {
         }
     }
 }
-
 func getMatchingUsers(me: CovetUser, relationships: [CovetUserRelationship], relationshipTypes: [UserRelationshipSearchType]) -> [CovetUser] {
     
     return []
-    
-    /*
+
     let include_my_friends = relationshipTypes.contains(UserRelationshipSearchType.FRIENDS)
     let include_my_followers = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWERS)
     let include_who_i_follow = relationshipTypes.contains(UserRelationshipSearchType.FOLLOWINGS)
@@ -102,9 +148,9 @@ func getMatchingUsers(me: CovetUser, relationships: [CovetUserRelationship], rel
         }
     
     return users as! [CovetUser]
-     */
-}
 
+}
+ */
 /*
 func getPendingUsers(relationships: [CovetUserRelationship]) -> [CovetUser] {
     return relationships
@@ -152,8 +198,8 @@ func getMatchingUsers(relationships: [CovetUserRelationship], relationshipTypes:
 }
  */
 
-struct UserManagerView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserManagerView(relationshipTypes: [])
-    }
-}
+//struct UserManagerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserManagerView(relationshipTypes: [])
+//    }
+//}

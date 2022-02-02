@@ -9,7 +9,20 @@ import Foundation
 import SwiftyJSON
 import PromiseKit
 
-struct CovetUserRelationshipInfo : Decodable {
+struct CovetUserRelationshipInfo : Decodable, Hashable {
+    
+    static func == (lhs: CovetUserRelationshipInfo, rhs: CovetUserRelationshipInfo) -> Bool {
+        return lhs.user.id == rhs.user.id && lhs.relationship.id == rhs.relationship.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(user.id)
+        hasher.combine(relationship.id)
+    }
+//
+//    static func < (lhs: Post, rhs: Post) -> Bool {
+//        return lhs.createdAt < rhs.createdAt
+//    }
     
     // The other user, regardless of the "direction" of the relationship
     var user: CovetUser;
@@ -49,6 +62,8 @@ struct CovetUser: Identifiable, Decodable {
         var posts: [Post]?
     
         func currentUserFollows() -> Bool {
+            print("SELF WAS")
+            print(self)
             return current_user_is_following! == 1
         }
     

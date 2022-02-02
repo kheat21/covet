@@ -17,8 +17,7 @@ struct UserRelationshipsHero: View {
     var body: some View {
         HStack {
             NavigationLink(
-                destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])
-            ) {
+                destination: UserManagerView(relationships: followers)) {
                 VStack {
                     Text(String(followers.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -26,8 +25,7 @@ struct UserRelationshipsHero: View {
                 }
             }
             NavigationLink(
-                destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FOLLOWINGS])
-            ) {
+                destination: UserManagerView(relationships: following)) {
                 VStack {
                     Text(String(following.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -35,7 +33,7 @@ struct UserRelationshipsHero: View {
                 }
             }
             NavigationLink(
-                destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.FRIENDS])) {
+                destination: UserManagerView(relationships: friends)) {
                 VStack {
                     Text(String(friends.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
