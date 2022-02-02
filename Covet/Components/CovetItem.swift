@@ -40,7 +40,7 @@ struct CovetSquareBlurredItem: View {
             }
         )
         .frame(width: size, height: size, alignment: Alignment.center)
-        .border(Color.green, width: 4)
+        .border(Color.covetGreen(), width: 4)
         
             
     }
@@ -67,10 +67,10 @@ struct CovetSquareZoomedInItem: View {
                         .scaledToFill()
                         .frame(width: size, height: size)
                         .clipped()
-                        .border(width: topBorderWidth ?? 0, edges: [.top], color: Color.green)
-                        .border(width: leftBorderWidth ?? 0, edges: [.leading], color: Color.green)
-                        .border(width: bottomBorderWidth ?? 0, edges: [.bottom], color: Color.green)
-                        .border(width: rightBorderWidth ?? 0, edges: [.trailing], color: Color.green)
+                        .border(width: topBorderWidth ?? 0, edges: [.top], color: Color.covetGreen())
+                        .border(width: leftBorderWidth ?? 0, edges: [.leading], color: Color.covetGreen())
+                        .border(width: bottomBorderWidth ?? 0, edges: [.bottom], color: Color.covetGreen())
+                        .border(width: rightBorderWidth ?? 0, edges: [.trailing], color: Color.covetGreen())
                 
             },
             placeholder: {

@@ -8,18 +8,55 @@
 import SwiftUI
 
 struct HamburgerOptionsView: View {
+    
+    private var user: CovetUser;
+    init(user: CovetUser) {
+        self.user = user
+    }
+    
     var body: some View {
         List {
-            Text("Manage my account")
-            Text("Delete my account")
-            Text("Logout")
-            Text("Open Source Software")
+            if let pendingRelationships = self.user.pending {
+                if pendingRelationships.count > 0 {
+                    NavigationLink(
+                        destination: UserManagerView(relationshipTypes: [UserRelationshipSearchType.PENDING])) {
+                        Text("Follow and Friend Requests")
+                    }
+                }
+            }
+            NavigationLink(destination: {
+                UserSettingsView(
+                    mode: UserSettingsViewPresentationOptions.Modify,
+                    handle: self.user.username,
+                    name: self.user.name ?? "",
+                    birthday: nil, // self.user.birthday.p ?? Date(),
+                    privateForFollowing: self.user.privateForFollowing == 1,
+                    privateForFriending: self.user.privateForFriending == 1
+                )
+            }, label: {
+                Text("Manage my account")
+            })
+            Button(action: {
+                print("Delete my account")
+            }, label: {
+                Text("Delete my account")
+            })
+            Button(action: {
+                AuthService.shared.logout()
+            }, label: {
+                Text("Logout")
+            })
+            NavigationLink(destination: {
+                OpenSourceSoftware()
+            }, label: {
+                Text("Open Source Software")
+            })
         }
     }
 }
 
-struct HamburgerOptionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        HamburgerOptionsView()
-    }
-}
+//struct HamburgerOptionsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HamburgerOptionsView()
+//    }
+//}

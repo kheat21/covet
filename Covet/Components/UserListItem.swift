@@ -16,7 +16,15 @@ struct UserListItem: View {
     
     @State var showRelationshipManagementFailedToast: Bool = false;
     
+    @State private var navigateToUserView: Bool = false
+    @State private var navigateToUserId: Int = -1
+    
     var body: some View {
+        NavigationLink(isActive: self.$navigateToUserView, destination: {
+            ProfileView(id: self.navigateToUserId)
+        }, label: {
+            EmptyView()
+        })
         HStack {
             CovetC(size: 48)
 //            Text(user.getDisplayItem())
@@ -29,6 +37,10 @@ struct UserListItem: View {
                     color: Color.accentColor
                 )
             }
+        }
+        .onTapGesture {
+            self.navigateToUserId = user.id
+            self.navigateToUserView = true
         }
         .onLongPressGesture(perform: {
             if let currentUser = AuthService.shared.currentCovetUser {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CovetView : View {
-    
+
     @State var showCreatePostView = false
     
     var body : some View {
@@ -37,14 +37,14 @@ struct CovetView : View {
             }
             .tabItem {
                 Label("Feed", systemImage: "list.dash")
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.covetGreen())
             }
             .tag(0)
             
             SearchView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
-                        .foregroundColor(Color.green)
+                        .foregroundColor(Color.covetGreen())
                 }
                 .tag(1)
             
@@ -56,13 +56,13 @@ struct CovetView : View {
 //            }
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.covetGreen())
             }
             .tag(2)
             
         }
         .font(.headline)
-        .accentColor(.green)
+        .accentColor(.covetGreen())
         .popover(isPresented: self.$showCreatePostView, content: {
             CreatePostView()
         })

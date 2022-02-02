@@ -12,6 +12,7 @@ struct UserRelationshipsHero: View {
     var following: [CovetUserRelationshipInfo]
     var followers: [CovetUserRelationshipInfo]
     var friends: [CovetUserRelationshipInfo]
+    var pending: [CovetUserRelationshipInfo]?
     
     var body: some View {
         HStack {

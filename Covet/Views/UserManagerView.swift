@@ -13,6 +13,7 @@ enum UserRelationshipSearchType {
     case FRIENDS
     case FOLLOWERS
     case FOLLOWINGS
+    case PENDING
 }
 
 struct UserManagerView: View {

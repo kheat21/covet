@@ -12,6 +12,7 @@
 		A4026966279E4A0600D314BB /* ShareSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4026965279E4A0600D314BB /* ShareSheetViewController.swift */; };
 		A4026967279E50FA00D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
 		A4026968279E513200D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
+		A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */; };
 		A42B07AA27A5F5B100667216 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07A927A5F5B100667216 /* PostView.swift */; };
 		A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AB27A5F60C00667216 /* RecovetView.swift */; };
 		A42B07AE27A5F63700667216 /* PostShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AD27A5F63700667216 /* PostShareSheet.swift */; };
@@ -47,6 +48,7 @@
 		A47845A427A50983005F4C15 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A47845A327A50983005F4C15 /* AlertToast */; };
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
 		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */; };
 		A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */; };
 		A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */; };
 		A4B1775627A4515A00E784F6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
@@ -157,6 +159,7 @@
 		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4026965279E4A0600D314BB /* ShareSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetViewController.swift; sourceTree = "<group>"; };
+		A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUserResponseObject.swift; sourceTree = "<group>"; };
 		A42B07A927A5F5B100667216 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A42B07AB27A5F60C00667216 /* RecovetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecovetView.swift; sourceTree = "<group>"; };
 		A42B07AD27A5F63700667216 /* PostShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostShareSheet.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceSoftware.swift; sourceTree = "<group>"; };
 		A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerOptionsView.swift; sourceTree = "<group>"; };
 		A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetThumbnails.swift; sourceTree = "<group>"; };
@@ -453,6 +457,7 @@
 				EB129311277A764F00FA0E46 /* CreatePostView.swift */,
 				EB129318277AD4C200FA0E46 /* UserManagerView.swift */,
 				A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */,
+				A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 				A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */,
 				A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */,
 				A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */,
+				A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -916,6 +922,7 @@
 			files = (
 				EB724D032780C5280076593C /* JSDictTypedef.swift in Sources */,
 				A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */,
+				A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
 				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
 				A436DA6427A5F9A5002FF28D /* IsLikedResponseObject.swift in Sources */,
@@ -954,6 +961,7 @@
 				A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */,
 				A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */,
 				A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */,
+				A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */,
 				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,

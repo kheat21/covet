@@ -20,7 +20,7 @@ enum UserProfileOperationState {
     case CreatedProfile
     case FailedToCreateProfile
     case UpdatingProfile
-    //    case UpdatedProfile
+    case UpdatedProfile
     case FailedToUpdateProfile
 }
 
@@ -32,6 +32,7 @@ struct UserSettingsView: View {
     
     @State var showLoadingToast: Bool = false
     @State var showProfileCreationErrorToast: Bool = false
+    @State var errorToastExplanation: String? = nil
     
     @State var profile: CovetUser?;
     
@@ -41,7 +42,7 @@ struct UserSettingsView: View {
     @State var address: String?
     
     @State var birthdaySet: Bool = false
-    @State var birthday: Date;
+    @State var birthday: Date? = nil;
     
     @State var privateForFollowing: Bool;
     @State var privateForFriending: Bool;
@@ -49,18 +50,21 @@ struct UserSettingsView: View {
     var userCreatedCallback: ((_: CovetUser) -> Void)?;
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             VStack {
                 ScrollView {
                     CovetC(size: 64, text: nameToInitials(str: $name.wrappedValue))
                         .padding(Edge.Set.top, 2)
                         .padding(Edge.Set.bottom, 8)
                     if mode == .NewSignup {
-                        PromptedUserInput(prompt: "Handle", placeholder: "This is your screen name", text: $handle)
+                        PromptedUserInput(prompt: "Handle", placeholder: "This is your screen name", text: $handle,
+                                          autocapitalization: UIKit.UITextAutocapitalizationType.none,
+                                          autocorrect: false
+                        )
                     }
                     PromptedUserInput(prompt: "Name", placeholder: "Pleased to meet you 😃", text: $name)
                     PromptedUserInput(prompt: "Bio", placeholder: "Something witty", text: $bio)
-                    PromptedDateInput(prompt: "Birthday", noDateSelectedMessage: "Select", buttonColor: Color.green, date: $birthday, dateSet: $birthdaySet)
+                    //PromptedDateInput(prompt: "Birthday", noDateSelectedMessage: "Select", buttonColor: Color.covetGreen(), date: $birthday, dateSet: $birthdaySet)
                     PromptedRadioInput(prompt: "Require permission to follow me", toggleBackgroundColor: nil, value: $privateForFollowing)
                     PromptedRadioInput(prompt: "Require permission to become my friend", toggleBackgroundColor: nil, value: $privateForFriending)
                 }
@@ -69,31 +73,10 @@ struct UserSettingsView: View {
                         Button(
                             action: {
                                 Task {
-                                    do {
-                                        showLoadingToast = true
-                                        actionState = .CreatingProfile
-                                        let createdProfile = try await API.createProfile(
-                                            username: handle,
-                                            name: name,
-                                            birthday: birthdaySet ? birthday : nil,
-                                            address: address
-                                        )
-                                        showLoadingToast = false
-                                        if createdProfile != nil {
-                                            actionState = .CreatedProfile
-                                            profile = createdProfile
-                                            if let callback = userCreatedCallback {
-                                                callback(profile!)
-                                            }
-                                        } else {
-                                            actionState = .FailedToCreateProfile
-                                            showProfileCreationErrorToast = true
-                                            actionState = .None
-                                        }
-                                    } catch {
-                                        showLoadingToast = false
-                                        showProfileCreationErrorToast = true
-                                        actionState = .FailedToCreateProfile
+                                    if self.mode == .NewSignup {
+                                        await self.createProfile()
+                                    } else {
+                                        await self.updateProfile()
                                     }
                                 }
                             },
@@ -103,14 +86,23 @@ struct UserSettingsView: View {
                                     .frame(maxWidth: .infinity)
                             }
                         )
-                            .frame(width: .infinity, height: 52, alignment: Alignment.center)
-                            .background(Color.green)
+                            .frame(width: self.getButtonWidth(), height: 52, alignment: Alignment.center)
+                            .background(self.getButtonColor())
                             .foregroundColor(Color.white)
+                            .disabled(!self.isInputComplete())
                     }
+                    .frame(width: nil, height: 52, alignment: .top)
+                }
+                if (self.mode == .Modify) {
+                    Spacer()
                 }
             }
             .toast(isPresenting: $showLoadingToast) {
-                AlertToast(type: .loading, title: "Creating Profile", subTitle: nil)
+                AlertToast(
+                    type: .loading,
+                    title: getToastWorkingText(),
+                    subTitle: nil
+                )
             }
             .toast(isPresenting: $showProfileCreationErrorToast) {
                 AlertToast(type: .error(Color.red), title: "Oops!", subTitle: "We weren't able to make your profile")
@@ -119,15 +111,106 @@ struct UserSettingsView: View {
             .navigationTitle("Your Covet Profile")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        AuthService.shared.logout()
-                    }) {
-                        Text("Logout")
-                    }
+                    self.mode == .NewSignup ? (
+                        AnyView(Button(action: {
+                            AuthService.shared.logout()
+                        }) {
+                            Text("Logout")
+                                .foregroundColor(Color.covetGreen())
+                        })
+                    ): AnyView(EmptyView())
                 }
             }
-        }
+        //}
         
+    }
+    
+    func getButtonWidth() -> CGFloat {
+        if self.mode == .NewSignup {
+            return .infinity
+        } else {
+            return 256.0
+        }
+    }
+    
+    func getToastWorkingText() -> String {
+        return self.mode == .NewSignup ? "Creating Profile" : "Updating Profile"
+    }
+    
+    func getButtonColor() -> Color {
+        if (isInputComplete()) {
+            return Color.covetGreen()
+        } else {
+            return Color.covetGreen().opacity(0.5)
+        }
+    }
+    
+    func isInputComplete() -> Bool {
+        var complete = true
+        if(self.mode == .NewSignup) {
+            complete = complete && self.$handle.wrappedValue.count >= 3
+        }
+        return complete
+    }
+    
+    private func createProfile() async {
+        do {
+            showLoadingToast = true
+            actionState = .CreatingProfile
+            let createdProfile = try await API.createProfile(
+                username: handle,
+                name: name,
+                birthday: birthdaySet ? birthday : nil,
+                address: address,
+                privateForFollowing: self.privateForFollowing ? 1 : 0,
+                privateForFriending: self.privateForFriending ? 1 : 0
+            )
+            showLoadingToast = false
+            if createdProfile != nil {
+                actionState = .CreatedProfile
+                profile = createdProfile
+                if let callback = userCreatedCallback {
+                    callback(profile!)
+                }
+            } else {
+                actionState = .FailedToCreateProfile
+                showProfileCreationErrorToast = true
+                actionState = .None
+            }
+        } catch {
+            showLoadingToast = false
+            showProfileCreationErrorToast = true
+            actionState = .FailedToCreateProfile
+        }
+    }
+    
+    private func updateProfile() async {
+        do {
+            showLoadingToast = true
+            actionState = .UpdatingProfile
+            let createdProfile = try await API.updateProfile(
+                originalUser: (await AuthService.shared.getUser())!,
+                name: name,
+                bio: bio,
+                birthday: birthdaySet ? birthday : nil,
+                address: address,
+                privateForFollowing: self.privateForFollowing ? 1 : 0,
+                privateForFriending: self.privateForFriending ? 1 : 0
+            )
+            showLoadingToast = false
+            if createdProfile != nil {
+                actionState = .UpdatedProfile
+                profile = createdProfile
+            } else {
+                actionState = .FailedToUpdateProfile
+                showProfileCreationErrorToast = true
+                actionState = .None
+            }
+        } catch {
+            showLoadingToast = false
+            showProfileCreationErrorToast = true
+            actionState = .FailedToUpdateProfile
+        }
     }
     
 }

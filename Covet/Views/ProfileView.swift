@@ -10,10 +10,11 @@ import Firebase
 
 struct ProfileView: View {
     
-    private var isLoggedInUser: Bool = false
+    var isLoggedInUser: Bool;
     private var userId: Int? = -1
 
-    @State var _user: CovetUser? = nil
+    @State var isLoading: Bool = false
+    @State var otherUser: CovetUser? = nil
     
     init() {
         self.userId = nil
@@ -33,69 +34,84 @@ struct ProfileView: View {
     
     @Sendable
     func onAppear() async {
-        do {
-            self._user = try await getApplicableUser()
-            print("______ POSTS ______")
-            print(self._user?.posts)
-        } catch {
-            print("Error getting the user")
+        if !self.isLoggedInUser {
+            do {
+                self.isLoading = true
+                if let resp = try await API.getUser(user_id: self.userId!) {
+                    return self.otherUser = resp.user
+                }
+                print("______ POSTS ______")
+                print(self.otherUser?.posts)
+            } catch {
+                print("Error getting the user")
+            }
         }
     }
 
     var body: some View {
-        NavigationView {
-            
-        VStack {
-            if let user = _user {
-                    
-                    // Show the number of people they're connected to
-                    if let follows = user.follows,
-                        let followers = user.followers,
-                            let friends = user.friends {
-                        UserRelationshipsHero(following: follows, followers: followers, friends: friends)
+        NavigationView {            
+            VStack {
+                NavigationLink(isActive: self.$showManagerView, destination: {
+                    if let user = self.getUser() {
+                        HamburgerOptionsView(
+                            user: user
+                        )
                     }
-                    
-                    // Show their posts
-                    if let posts = user.posts {
-                        if posts.count == 0 {
-                            Spacer()
-                            Text("No posts yet. Add something with the Covet button to make one!")
-                            Spacer()
-                        } else {
-                            
-                            // Show the most recent one
-                            CovetSquareZoomedInItem(
-                                url: posts[0].products![0].image_url,
-                                size: 250,
-                                topBorderWidth: 8,
-                                leftBorderWidth: 8,
-                                bottomBorderWidth: 8,
-                                rightBorderWidth: 8
+                }, label: {
+                    EmptyView()
+                })
+                if let user = getUser() {
+                        
+                        // Show the number of people they're connected to
+                        if let follows = user.follows, let followers = user.followers, let friends = user.friends {
+                            UserRelationshipsHero(
+                                following: follows,
+                                followers: followers,
+                                friends: friends,
+                                pending: user.pending
                             )
-                            .background(Color.brown)
-                            .frame(width: 250, height: 250, alignment: .top)
-                            
-                            // Space them out so that the scroll view doesn't
-                            // get pushed too low or too high
-                            Spacer()
-                            
-//                            Button("Logout") {
-//                                print("Logging out...")
-//                                AuthService.shared.logout()
-//                            }
-                                                        
-                            // Show all the others
-                            ScrollView {
-                                ImageGrid(images: posts.suffix(posts.count - 1)) { i in
-                                    self.showPostInDetailView = i
+                        }
+                        
+                        // Show their posts
+                        if let posts = user.posts {
+                            if posts.count == 0 {
+                                Spacer()
+                                Text("No posts yet. Add something with the Covet button to make one!")
+                                Spacer()
+                            } else {
+                                
+                                // Show the most recent one
+                                CovetSquareZoomedInItem(
+                                    url: posts[0].products![0].image_url,
+                                    size: 250,
+                                    topBorderWidth: 8,
+                                    leftBorderWidth: 8,
+                                    bottomBorderWidth: 8,
+                                    rightBorderWidth: 8
+                                )
+                                .background(Color.brown)
+                                .frame(width: 250, height: 250, alignment: .top)
+                                
+                                // Space them out so that the scroll view doesn't
+                                // get pushed too low or too high
+                                Spacer()
+                                                      
+                                // Show all the others
+                                ScrollView {
+                                    ImageGrid(images: posts.suffix(posts.count - 1)) { i in
+                                        self.showPostInDetailView = i
+                                    }
                                 }
                             }
                         }
+                } else {
+                    if self.isLoading {
+                        ProgressView()
+                    } else {
+                        Text("Error loading user. Please try again later.")
                     }
-            } else {
-                Text("Error loading user. Please try again later.")
+                }
             }
-        }
             .navigationBarHidden(getCurrentUserHandle() == nil)
             .navigationBarTitle(getCurrentUserHandle() ?? "Loading...")
             .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
@@ -115,8 +131,8 @@ struct ProfileView: View {
         }, content: { p in
             PostView(post: p)
         })
-        .sheet(isPresented: self.$showManagerView, onDismiss: nil, content: {
-            HamburgerOptionsView()
+//        .sheet(isPresented: self.$showManagerView, onDismiss: nil, content: {
+//            HamburgerOptionsView()
 //            UserSettingsView(
 //                mode: UserSettingsViewPresentationOptions.Modify,
 //                handle: getCurrentUserHandle() ?? "",
@@ -125,20 +141,29 @@ struct ProfileView: View {
 //                privateForFollowing: self._user?.privateForFollowing == 1,
 //                privateForFriending: self._user?.privateForFriending == 1
 //            )
-        })
+//        })
         .task(self.onAppear)
+    }
+    
+    func getUser() -> CovetUser? {
+        return isLoggedInUser
+            ? AuthService.shared.currentCovetUser
+            : self.otherUser
     }
     
     func getApplicableUser() async throws -> CovetUser? {
         if self.isLoggedInUser {
             return try await AuthService.shared.getUser()
         } else {
-            return try await API.getUser(user_id: self.userId!)
+            if let resp = try await API.getUser(user_id: self.userId!) {
+                return resp.user
+            }
         }
+        return nil
     }
     
     func getCurrentUserHandle() -> String? {
-        if let user = self._user {
+        if let user = self.getUser() {
             return user.username
         }
         return nil

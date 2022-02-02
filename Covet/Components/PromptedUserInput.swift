@@ -5,6 +5,7 @@
 //  Created by Brendan Manning on 12/29/21.
 //
 
+import UIKit
 import SwiftUI
 
 struct PromptedUserInput: View {
@@ -13,6 +14,8 @@ struct PromptedUserInput: View {
     var placeholder: String?;
     var inputColor: Color?;
     @Binding var text: String;
+    var autocapitalization: UITextAutocapitalizationType? = nil;
+    var autocorrect: Bool? = true
     
     var body: some View {
         HStack {
@@ -25,6 +28,8 @@ struct PromptedUserInput: View {
                 .shadow(color: Color.gray.opacity(0.4),
                         radius: 3, x: 1, y: 2)
                 .foregroundColor(inputColor ?? Color.black)
+                .autocapitalization(self.autocapitalization ?? UITextAutocapitalizationType.sentences)
+                .disableAutocorrection(self.autocorrect != nil ? !self.autocorrect! : false)
         }.padding(Edge.Set.horizontal, 16)
     }
 }

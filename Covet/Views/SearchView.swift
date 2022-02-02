@@ -12,12 +12,20 @@ struct SearchView: View {
     @State private var searchText = ""
     
     @State private var _results: UnifiedSearchResult? = nil;
+    
+//    @State private var navigateToUserView: Bool = false
+//    @State private var navigateToUserId: Int = -1
         
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
     var body: some View {
         NavigationView {
             VStack {
+//                NavigationLink(isActive: self.$navigateToUserView, destination: {
+//                    ProfileView(id: self.navigateToUserId)
+//                }, label: {
+//                    EmptyView()
+//                })
                 HStack {
                     TextField("Search", text: $searchText, prompt: Text("A person, product, etc.."))
                     Button("Search", action: {
@@ -34,6 +42,10 @@ struct SearchView: View {
                         // Show the users first
                         ForEach(results.users.prefix(5)) { user in
                             UserListItem(user: user)
+//                                .onTapGesture {
+//                                    self.navigateToUserId = user.id
+//                                    self.navigateToUserView = true
+//                                }
                         }
                     
                         // Show the posts next

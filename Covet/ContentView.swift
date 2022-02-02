@@ -22,23 +22,25 @@ struct ContentView: View {
                 CovetView()
             }
             else {
-                UserSettingsView(
-                    mode: UserSettingsViewPresentationOptions.NewSignup,
-                    handle: "",
-                    name: "",
-                    birthday: Date(),
-                    privateForFollowing: false,
-                    privateForFriending: false,
-                    userCreatedCallback: { profile in
-                        AuthService.shared.rememberThatAProfileWasCreated(user: profile)
-                        self.userAccountCreated = true
-                    }
-                )
+                NavigationView {
+                    UserSettingsView(
+                        mode: UserSettingsViewPresentationOptions.NewSignup,
+                        handle: "",
+                        name: "",
+                        birthday: Date(),
+                        privateForFollowing: false,
+                        privateForFriending: false,
+                        userCreatedCallback: { profile in
+                            AuthService.shared.rememberThatAProfileWasCreated(user: profile)
+                            self.userAccountCreated = true
+                        }
+                    )
+                }
             }
         } else {
             VStack {
-                CovetC(size: 128)
-                Text("Covet")
+                Image("Covet_Logo_Colored")
+                    .frame(width: nil, height: 192)
             }
             .task {
                 do {

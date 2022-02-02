@@ -31,11 +31,19 @@ class APIHelpers {
                     return
                 }
                 print(String(data: data, encoding: .utf8)!)
+
+                // Try to decode as an unnested unsuccessful response
+                do {
+                    let errorRes = try JSONDecoder().decode(CovetAPIError.self, from: data)
+                    errorMessage = errorRes.message
+                    return
+                } catch {}
                 
-                // Try to decode as an unsuccessful response
+                // Try to decode as a nested unsuccessful response
                 do {
                     let errorRes = try JSONDecoder().decode(CovetAPIFailureResponse.self, from: data)
                     errorMessage = errorRes.error.message
+                    return
                 } catch {}
                 
                 // Try to decode as a successful response
@@ -56,6 +64,7 @@ class APIHelpers {
         }
         
         if let msg = errorMessage {
+            print("Throwing runtime error with message " + msg)
             throw RuntimeError(msg)
         }
         

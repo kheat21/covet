@@ -13,12 +13,12 @@ import PromiseKit
 
 class API {
     
-    public static func me() async throws -> CovetUser? {
+    public static func me() async throws -> CovetUserResponseObject? {
         return try await API.getUser(user_id: nil)
     }
     
-    public static func getUser(user_id: Int?) async throws -> CovetUser? {
-        return try await APIHelpers.getEndpointPromise(
+    public static func getUser(user_id: Int?) async throws -> CovetUserResponseObject? {
+        let resp = try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/get",
             method: HTTPMethod.get,
@@ -26,11 +26,16 @@ class API {
             data: user_id != nil ? [
                 "user": user_id
             ] : nil,
-            CovetUser.self
+            CovetUserResponseObject.self
         )
+        print(resp)
+        return resp
     }
     
-    public static func createProfile(username: String, name: String?, birthday: Date?, address: String?) async throws -> CovetUser? {
+    public static func createProfile(
+        username: String, name: String?, birthday: Date?, address: String?,
+        privateForFollowing: Int, privateForFriending: Int
+    ) async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/create",
@@ -40,7 +45,31 @@ class API {
                 "username": username,
                 "name": name ?? nil,
                 "birthday": birthday?.formatted(),
-                "address": address
+                "address": address,
+                "privateForFollowing": privateForFollowing,
+                "privateForFriending": privateForFriending
+            ],
+            CovetUser.self
+        )
+    }
+    
+    public static func updateProfile(
+        originalUser: CovetUser,
+        name: String?, bio: String?, birthday: Date?, address: String?,
+        privateForFollowing: Int?, privateForFriending: Int?
+    ) async throws -> CovetUser? {
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/user/profile/update",
+            method: HTTPMethod.post,
+            data: [
+                "user": originalUser.id,
+                "name": name ?? originalUser.name ?? "",
+                "bio": bio ?? originalUser.bio ?? "",
+                "birthday": birthday?.formatted() ?? nil,
+                "address": address ?? originalUser.address ?? "",
+                "privateForFollowing": privateForFollowing ?? originalUser.privateForFollowing,
+                "privateForFriending": privateForFriending ?? originalUser.privateForFriending
             ],
             CovetUser.self
         )

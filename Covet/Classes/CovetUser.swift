@@ -26,7 +26,7 @@ struct CovetUser: Identifiable, Decodable {
         var username: String;
         var name: String?;
         var bio: String?;
-        var birthday: Date?;
+        var birthday: String?;
         var address: String?;
         
         var privateForFollowing: Int;
