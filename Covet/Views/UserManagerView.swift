@@ -36,6 +36,7 @@ struct UserManagerView: View {
                 ForEach(self.getFilteredRelationships(), id: \.self) { item in
                     UserListItem(
                         user: item.user,
+                        relationship: item.relationship,
                         clickable: false,
                         showRelationshipToUser: false,
                         showPendingOptions: true //,

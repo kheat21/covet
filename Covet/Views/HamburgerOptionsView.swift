@@ -21,7 +21,8 @@ struct HamburgerOptionsView: View {
                     NavigationLink(
                         destination: UserManagerView(
                             relationships: pendingRelationships,
-                            navbarTitle: "Requested Friends/Followers" //,
+                            navbarTitle: "Requested Friends/Followers"
+                            //,
 //                            shouldShowSavingToast: $shouldShowSavingToast,
 //                            shouldShowErrorToast: $shouldShowErrorToast,
 //                            errorToastContents: $errorToastContents
