@@ -8,10 +8,23 @@
 import SwiftUI
 
 struct SearchView: View {
-    let names = ["Holly", "Josh", "Rhonda", "Ted"]
-    @State private var searchText = ""
+//
+//    private var shouldShowSavingToast: Binding<Bool>
+//    private var shouldShowErrorToast: Binding<Bool>
+//    private var errorToastContents: Binding<String>
+//
+//    init(
+//        shouldShowSavingToast: Binding<Bool>,
+//        shouldShowErrorToast: Binding<Bool>,
+//        errorToastContents: Binding<String>
+//    ) {
+//        self.shouldShowSavingToast = shouldShowSavingToast
+//        self.shouldShowErrorToast = shouldShowErrorToast
+//        self.errorToastContents = errorToastContents
+//    }
     
-    @State private var _results: UnifiedSearchResult? = nil;
+    @State var searchText: String = ""
+    @State var _results: UnifiedSearchResult? = nil;
     
 //    @State private var navigateToUserView: Bool = false
 //    @State private var navigateToUserId: Int = -1
@@ -41,7 +54,12 @@ struct SearchView: View {
                         
                         // Show the users first
                         ForEach(results.users.prefix(5)) { user in
-                            UserListItem(user: user)
+                            UserListItem(
+                                user: user //,
+//                                shouldShowSavingToast: self.shouldShowSavingToast,
+//                                shouldShowErrorToast: self.shouldShowErrorToast,
+//                                errorToastContents: self.errorToastContents
+                            )
 //                                .onTapGesture {
 //                                    self.navigateToUserId = user.id
 //                                    self.navigateToUserView = true
@@ -70,9 +88,10 @@ struct SearchView: View {
 
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}
+//
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Sear
+//    }
+//}
 

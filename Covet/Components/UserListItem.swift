@@ -14,13 +14,12 @@ struct UserListItem: View {
     @State var showingActionDialog: Bool = false;
     
     @State var user: CovetUser;
-    @State var relatiomship: CovetUserRelationship?;
+    @State var relationship: CovetUserRelationship?;
     @State var clickable: Bool = true
     @State var showRelationshipToUser: Bool = true
     @State var showPendingOptions: Bool = false
     
     @State var isSaving: Bool = false
-    @State var showRelationshipManagementFailedToast: Bool = false;
     
     @State private var navigateToUserView: Bool = false
     @State private var navigateToUserId: Int = -1
@@ -63,18 +62,20 @@ struct UserListItem: View {
             Spacer().frame(width: 16)
         }
         .onTapGesture {
-            if self.clickable {
+            if self.clickable && !self.isSaving {
                 self.navigateToUserId = user.id
                 self.navigateToUserView = true
             }
         }
         .onLongPressGesture(perform: {
-            if let currentUser = AuthService.shared.currentCovetUser {
-                if currentUser.id == user.id {
-                    return
+            if !self.isSaving {
+                if let currentUser = AuthService.shared.currentCovetUser {
+                    if currentUser.id == user.id {
+                        return
+                    }
                 }
+                showingActionDialog = true
             }
-            showingActionDialog = true
         })
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
             if user.allRelationshipInformationPresent() {
@@ -89,9 +90,6 @@ struct UserListItem: View {
             }
         } message: {
             Text("@" + user.username)
-        }
-        .toast(isPresenting: $showRelationshipManagementFailedToast) {
-            AlertToast(type: .error(Color.red), title: "Oops!", subTitle: "We weren't able to make your profile")
         }
     }
 
@@ -168,6 +166,7 @@ struct UserListItem: View {
     }
     
     func doUserManagement(user: CovetUser, relationshipType: CovetUserRelationshipType) {
+        if self.isSaving { return }
         self.isSaving = true
         Task {
             do {
@@ -179,7 +178,8 @@ struct UserListItem: View {
                     print("No relation obtained")
                 }
             } catch {
-                showRelationshipManagementFailedToast = true
+//                self.shouldShowErrorToast = true
+//                self.errorToastContents = "Try again later"
             }
             self.isSaving = false
         }
@@ -189,14 +189,23 @@ struct UserListItem: View {
         print("Doing action")
         self.isSaving = true
         Task {
-            await actOnPendingRequest(value: value)
+            let success = await actOnPendingRequest(value: value)
+            print("Success " + String(success))
             self.isSaving = false
         }
     }
     
     func actOnPendingRequest(value: Bool) async -> Bool {
-        if let rel = self.relatiomship {
-            
+        if let rel = self.relationship {
+            do {
+                if let resp = try await API.actOnPending(id: rel.id, accept: value) {
+                    return resp.success
+                }
+            } catch {
+                print(error)
+            }
+        } else {
+            print("No relationship available")
         }
         return false
     }

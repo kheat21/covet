@@ -88,14 +88,16 @@ class API {
         )
     }
     
-    public static func modifyRelationship(id: Int, accept: Bool) async throws -> Void {
+    public static func actOnPending(id: Int, accept: Bool) async throws -> SimpleSuccessOrFailureResponseObject? {
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
-            endpoint: "/user/relationships/list",
-            method: HTTPMethod.get,
-            // headers: await getHeaders(),
-            data: nil,
-            [CovetUserRelationship].self
+            endpoint: "/user/relationships/act_on_pending",
+            method: HTTPMethod.post,
+            data: [
+                "relationship": id,
+                "accept": accept ? 1 : 0
+            ],
+            SimpleSuccessOrFailureResponseObject.self
         )
     }
 

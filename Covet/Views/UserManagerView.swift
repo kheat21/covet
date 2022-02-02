@@ -6,8 +6,9 @@
 //
 
 import AlertToast
+import Combine
+import ManagedSettings
 import SwiftUI
-
 
 enum UserRelationshipSearchType {
     case FRIENDS
@@ -21,28 +22,39 @@ struct UserManagerView: View {
     @State var relationships: [CovetUserRelationshipInfo]?
     @State var navbarTitle: String?
     
+//    @Binding var shouldShowSavingToast: Bool
+//    @Binding var shouldShowErrorToast: Bool
+//    @Binding var errorToastContents: String
+    
     @State private var searchText = ""
-    @State private var shouldShowSavingToast: Bool = false
     
     var body: some View {
         VStack {
             SearchBar(text: $searchText)
             Spacer().frame(height: 16)
-            ForEach(self.getFilteredRelationships(), id: \.self) { item in
-                UserListItem(
-                    user: item.user,
-                    clickable: false,
-                    showRelationshipToUser: false,
-                    showPendingOptions: true
-                )
+            ScrollView {
+                ForEach(self.getFilteredRelationships(), id: \.self) { item in
+                    UserListItem(
+                        user: item.user,
+                        clickable: false,
+                        showRelationshipToUser: false,
+                        showPendingOptions: true //,
+//                        shouldShowSavingToast: $shouldShowSavingToast,
+//                        shouldShowErrorToast: $shouldShowErrorToast,
+//                        errorToastContents: $errorToastContents
+                    )
+                }
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
             Spacer()
         }
         .navigationBarTitle(self.navbarTitle ?? "User Management", displayMode: .inline)
-        .toast(isPresenting: $shouldShowSavingToast, alert: {
-            AlertToast(type: .loading, title: nil, subTitle: nil)
-        })
+//        .toast(isPresenting: $shouldShowSavingToast, alert: {
+//            AlertToast(type: .loading, title: nil, subTitle: nil)
+//        })
+//        .toast(isPresenting: $shouldShowErrorToast, alert: {
+//            AlertToast(displayMode: .hud, type: .error(Color.red), title: self.errorToastContents)
+//        })
     }
     
     func getFilteredRelationships() -> [CovetUserRelationshipInfo] {

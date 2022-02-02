@@ -10,20 +10,41 @@ import Firebase
 
 struct ProfileView: View {
     
+//    var shouldShowSavingToast: Binding<Bool>
+//    var shouldShowErrorToast: Binding<Bool>
+//    var errorToastContents: Binding<String>
+    
     var isLoggedInUser: Bool;
     private var userId: Int? = -1
 
     @State var isLoading: Bool = false
     @State var otherUser: CovetUser? = nil
     
-    init() {
+    init(
+//        shouldShowSavingToast: Binding<Bool>,
+//        shouldShowErrorToast: Binding<Bool>,
+//        errorToastContents: Binding<String>
+    ) {
         self.userId = nil
         self.isLoggedInUser = true
+//
+//        self.shouldShowSavingToast = shouldShowSavingToast
+//        self.shouldShowErrorToast = shouldShowErrorToast
+//        self.errorToastContents = errorToastContents
     }
     
-    init(id: Int) {
+    init(
+        id: Int //,
+//        shouldShowSavingToast: Binding<Bool>,
+//        shouldShowErrorToast: Binding<Bool>,
+//        errorToastContents: Binding<String>
+    ) {
         self.userId = id
         self.isLoggedInUser = false
+        
+//        self.shouldShowSavingToast = shouldShowSavingToast
+//        self.shouldShowErrorToast = shouldShowErrorToast
+//        self.errorToastContents = errorToastContents
     }
     
     @State var showFriendView: Bool = false
@@ -54,7 +75,10 @@ struct ProfileView: View {
                 NavigationLink(isActive: self.$showManagerView, destination: {
                     if let user = self.getUser() {
                         HamburgerOptionsView(
-                            user: user
+                            user: user //,
+//                            shouldShowSavingToast: self.shouldShowSavingToast,
+//                            shouldShowErrorToast: self.shouldShowErrorToast,
+//                            errorToastContents: self.errorToastContents
                         )
                     }
                 }, label: {
@@ -68,7 +92,10 @@ struct ProfileView: View {
                                 following: follows,
                                 followers: followers,
                                 friends: friends,
-                                pending: user.pending
+                                pending: user.pending //,
+//                                shouldShowSavingToast: self.shouldShowSavingToast,
+//                                shouldShowErrorToast: self.shouldShowErrorToast,
+//                                errorToastContents: self.errorToastContents
                             )
                         }
                         

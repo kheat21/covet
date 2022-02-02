@@ -14,10 +14,19 @@ struct UserRelationshipsHero: View {
     var friends: [CovetUserRelationshipInfo]
     var pending: [CovetUserRelationshipInfo]?
     
+//    @Binding var shouldShowSavingToast: Bool
+//    @Binding var shouldShowErrorToast: Bool
+//    @Binding var errorToastContents: String
+    
     var body: some View {
         HStack {
             NavigationLink(
-                destination: UserManagerView(relationships: followers)) {
+                destination: UserManagerView(
+                    relationships: followers //,
+//                    shouldShowSavingToast: $shouldShowSavingToast,
+//                    shouldShowErrorToast: $shouldShowErrorToast,
+//                    errorToastContents: $errorToastContents
+                )) {
                 VStack {
                     Text(String(followers.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -25,7 +34,12 @@ struct UserRelationshipsHero: View {
                 }
             }
             NavigationLink(
-                destination: UserManagerView(relationships: following)) {
+                destination: UserManagerView(
+                    relationships: following //,
+//                    shouldShowSavingToast: $shouldShowSavingToast,
+//                    shouldShowErrorToast: $shouldShowErrorToast,
+//                    errorToastContents: $errorToastContents
+                )) {
                 VStack {
                     Text(String(following.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -33,7 +47,12 @@ struct UserRelationshipsHero: View {
                 }
             }
             NavigationLink(
-                destination: UserManagerView(relationships: friends)) {
+                destination: UserManagerView(
+                    relationships: friends //,
+//                    shouldShowSavingToast: $shouldShowSavingToast,
+//                    shouldShowErrorToast: $shouldShowErrorToast,
+//                    errorToastContents: $errorToastContents
+                )) {
                 VStack {
                     Text(String(friends.count))
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -45,12 +64,12 @@ struct UserRelationshipsHero: View {
     }
 }
 
-struct UserRelationshipsHero_Previews: PreviewProvider {
-    static var previews: some View {
-        UserRelationshipsHero(
-            following: [],
-            followers: [],
-            friends: []
-        )
-    }
-}
+//struct UserRelationshipsHero_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserRelationshipsHero(
+//            following: [],
+//            followers: [],
+//            friends: []
+//        )
+//    }
+//}

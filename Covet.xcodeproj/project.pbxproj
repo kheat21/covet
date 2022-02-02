@@ -31,6 +31,7 @@
 		A43B1F8C27A3BA0900D09167 /* AuthenticationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8B27A3BA0900D09167 /* AuthenticationHelpers.swift */; };
 		A43B1F8E27A3BDD300D09167 /* ShareSheetUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8D27A3BDD300D09167 /* ShareSheetUIConfig.swift */; };
 		A43B1F9027A3BF9F00D09167 /* ShareSheetImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */; };
+		A44C8EFA27AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
@@ -175,6 +176,7 @@
 		A43B1F8B27A3BA0900D09167 /* AuthenticationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHelpers.swift; sourceTree = "<group>"; };
 		A43B1F8D27A3BDD300D09167 /* ShareSheetUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetUIConfig.swift; sourceTree = "<group>"; };
 		A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetImageConfig.swift; sourceTree = "<group>"; };
+		A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuccessOrFailureResponseObject.swift; sourceTree = "<group>"; };
 		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
 		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
 		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */,
 				A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */,
 				A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */,
+				A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -967,6 +970,7 @@
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
+				A44C8EFA27AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
 				EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */,

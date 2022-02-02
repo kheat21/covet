@@ -11,6 +11,10 @@ struct CovetView : View {
 
     @State var showCreatePostView = false
     
+//    @State private var shouldShowSavingToast: Bool = false
+//    @State var shouldShowErrorToast: Bool = false
+//    @State var errorToastContents: String = ""
+    
     var body : some View {
         TabView {
             NavigationView {
@@ -41,7 +45,11 @@ struct CovetView : View {
             }
             .tag(0)
             
-            SearchView()
+            SearchView(
+//                shouldShowSavingToast: $shouldShowSavingToast,
+//                shouldShowErrorToast: $shouldShowErrorToast,
+//                errorToastContents: $errorToastContents
+            )
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                         .foregroundColor(Color.covetGreen())
@@ -49,7 +57,11 @@ struct CovetView : View {
                 .tag(1)
             
             //NavigationView {
-                ProfileView()
+                ProfileView(
+//                    shouldShowSavingToast: $shouldShowSavingToast,
+//                    shouldShowErrorToast: $shouldShowErrorToast,
+//                    errorToastContents: $errorToastContents
+                )
 //                .navigationBarHidden(false)
 //                .navigationBarTitle("My Profile")
 //                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)

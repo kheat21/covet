@@ -9,10 +9,10 @@ import SwiftUI
 
 struct HamburgerOptionsView: View {
     
-    private var user: CovetUser;
-    init(user: CovetUser) {
-        self.user = user
-    }
+    @State var user: CovetUser;
+//    @Binding var shouldShowSavingToast: Bool
+//    @Binding var shouldShowErrorToast: Bool
+//    @Binding var errorToastContents: String
     
     var body: some View {
         List {
@@ -21,7 +21,10 @@ struct HamburgerOptionsView: View {
                     NavigationLink(
                         destination: UserManagerView(
                             relationships: pendingRelationships,
-                            navbarTitle: "Requested Friends/Followers"
+                            navbarTitle: "Requested Friends/Followers" //,
+//                            shouldShowSavingToast: $shouldShowSavingToast,
+//                            shouldShowErrorToast: $shouldShowErrorToast,
+//                            errorToastContents: $errorToastContents
                         )) {
                         Text("Follow and Friend Requests")
                     }
