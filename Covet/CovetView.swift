@@ -20,16 +20,16 @@ struct CovetView : View {
             NavigationView {
                 
                 FeedView()
-                    .navigationBarItems(
-                        trailing: Button(
-                            action: {
-                                self.showCreatePostView = true
-                            }
-                        )
-                        {
-                            Image(systemName: "plus")
-                        }
-                    )
+//                    .navigationBarItems(
+//                        trailing: Button(
+//                            action: {
+//                                self.showCreatePostView = true
+//                            }
+//                        )
+//                        {
+//                            Image(systemName: "plus")
+//                        }
+//                    )
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Image("Covet_Logo_BW")

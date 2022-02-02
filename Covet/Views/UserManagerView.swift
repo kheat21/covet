@@ -38,12 +38,11 @@ struct UserManagerView: View {
                         user: item.user,
                         relationship: item.relationship,
                         clickable: false,
-                        showRelationshipToUser: false,
-                        showPendingOptions: true //,
-//                        shouldShowSavingToast: $shouldShowSavingToast,
-//                        shouldShowErrorToast: $shouldShowErrorToast,
-//                        errorToastContents: $errorToastContents
-                    )
+                        showRelationshipToUser: item.relationship.pending == 0,
+                        showPendingOptions: item.relationship.pending == 1
+                    ) {
+                        self.removeFromList(item: item)
+                    }
                 }
                 .listStyle(PlainListStyle())
             }
@@ -73,6 +72,13 @@ struct UserManagerView: View {
             return res
         }
         return []
+    }
+    
+    func removeFromList(item: CovetUserRelationshipInfo) -> Void {
+        guard self.relationships != nil else { return }
+        self.relationships = self.relationships!.filter({ (r: CovetUserRelationshipInfo) in
+            return item != r
+        })
     }
 }
 

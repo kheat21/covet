@@ -15,10 +15,12 @@ import FirebaseAuth
 class AuthService: NSObject, ObservableObject {
     
     @Published var isLoggedIn: Bool = false;
+    @Published var gettingCurrentCovetUserFirstTime: Bool = false;
+    @Published var gettingCurrentCovetUser: Bool = false;
     @Published var currentCovetUser: CovetUser? = nil;
-    
-    static let shared = AuthService()
-    
+    @Published var currentCovetUserExists: Bool? = nil;
+    @Published var errorGettingCurrentCovetUser: Bool = false;
+
     func initialize() {
         print("Setting up Auth state listener")
         Auth.auth().addStateDidChangeListener { (auth, user) in
@@ -26,90 +28,66 @@ class AuthService: NSObject, ObservableObject {
             self.isLoggedIn = auth.currentUser != nil
             Task {
                 print("In the Task")
+                if self.isLoggedIn {
+                    await self.firstFetch()
+                    await self.refreshExtensionToken()
+                }
                 if !self.isLoggedIn {
-                    print("Clearning ID token from UserDefaults")
-                    UserDefaults.standard.removeObject(forKey: "id_token")
-                    
-                    print("Clearing ExtensionTokenService...")
-                    ExtensionTokenStateManagement.clear()
+                    self.clearExtensionToken()
                 }
             }
         }
     }
     
-    func rememberThatAProfileWasCreated(user: CovetUser) {
-        UserDefaults.standard.set(user.authId, forKey: "auth_service_recall_profile_created_for")
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch {}
     }
     
-    func wasAProfileProbablyAlreadyCreatedFor(authId: String) -> Bool {
-        if let recalled_user = UserDefaults.standard.string(forKey: "auth_service_recall_profile_created_for") {
-            print("Comparing " + recalled_user + " and authId=" + authId)
-            return recalled_user == authId
+    func firstFetch() async -> Void {
+        self.gettingCurrentCovetUserFirstTime = true
+        await self.refreshUser()
+        self.gettingCurrentCovetUserFirstTime = false
+    }
+    
+    func refreshUser() async -> Void {
+        self.gettingCurrentCovetUser = true
+        do {
+            if let meresp = try await API.me() {
+                if let me = meresp.user {
+                    self.currentCovetUser = me
+                }
+                self.currentCovetUserExists = meresp.exists
+            } else {
+                self.errorGettingCurrentCovetUser = true
+            }
+        } catch {
+            self.errorGettingCurrentCovetUser = true
+        }
+        self.gettingCurrentCovetUser = false
+    }
+    
+    func refreshExtensionToken() async -> Bool {
+        if let user = self.currentCovetUser {
+            // Updating the extension token now that the user
+            // account is guarenteed to be made
+            let token = await API.getIdToken()
+            print("Trying to save the ID token (" + token! + ") in UserDefaults...")
+            UserDefaults.standard.set(token, forKey: "id_token")
+            
+            print("Updatcing ExtensionTokenService...")
+            await ExtensionTokenStateManagement.update(uid: user.authId)
         }
         return false
     }
     
-
-    func setLoggedIn() {
-        //self.isLoggedIn = true
-    }
-    
-    func setLoggedOut() {
-        //self.isLoggedIn = false
-    }
-    
-    func logout() {
-        do {
-            try Auth.auth().signOut()
-            //self.isLoggedIn = false
-        } catch {}
-    }
-    
-    func profileExistsForCurrentUser() async throws -> Bool {
-        print("Does profile exist for current user?")
-        let answer = try await getUser() != nil
-        print("Answer was " + String(answer))
-        return answer
-    }
-    
-    func getUser() async throws -> CovetUser? {
+    func clearExtensionToken() -> Void {
+        print("Clearning ID token from UserDefaults")
+        UserDefaults.standard.removeObject(forKey: "id_token")
         
-        // If we have a cached copy of the currentCovetUser
-        // object, then there is no need to sync with Firebase
-        guard self.currentCovetUser == nil else {
-            print("The current user is not nil")
-            print(self.currentCovetUser!)
-            return self.currentCovetUser
-        }
-        
-        // Otherwise, we have to get the profile from the server
-        print("Trying to get the current user from the server...")
-        if let meresp = try await API.me() {
-            if let me = meresp.user {
-             
-                self.currentCovetUser = meresp.user
-                print("Got this user")
-                print(self.currentCovetUser)
-                
-                // Updating the extension token now that the user
-                // account is guarenteed to be made
-                let token = await API.getIdToken()
-                print("Trying to save the ID token (" + token! + ") in UserDefaults...")
-                UserDefaults.standard.set(token, forKey: "id_token")
-                
-                print("Updating ExtensionTokenService...")
-                await ExtensionTokenStateManagement.update(uid: self.currentCovetUser!.authId)
-                
-            }
-        }
-        
-        // Regardless, return whatever it is that we have
-        return self.currentCovetUser
-        
-    }
-    
-    func markForRefresh() {
-        self.currentCovetUser = nil
+        print("Clearing ExtensionTokenService...")
+        ExtensionTokenStateManagement.clear()
     }
     
 }

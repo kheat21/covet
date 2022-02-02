@@ -36,15 +36,17 @@ class APIHelpers {
                 do {
                     let errorRes = try JSONDecoder().decode(CovetAPIError.self, from: data)
                     errorMessage = errorRes.message
-                    return
-                } catch {}
+                } catch {
+                    print("Could not decode as a CovetAPIError")
+                }
                 
                 // Try to decode as a nested unsuccessful response
                 do {
                     let errorRes = try JSONDecoder().decode(CovetAPIFailureResponse.self, from: data)
                     errorMessage = errorRes.error.message
-                    return
-                } catch {}
+                } catch {
+                    print("Could not decode as a CovetAPIFailureResponse")
+                }
                 
                 // Try to decode as a successful response
                 do {
@@ -60,6 +62,8 @@ class APIHelpers {
             task.resume()
             semaphore.wait()
         } catch {
+            print("The error was")
+            print(error)
             throw error
         }
         

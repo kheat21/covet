@@ -5,10 +5,14 @@
 //  Created by Brendan Manning on 11/22/21.
 //
 
+import AlertToast
 import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    
+    @EnvironmentObject var auth: AuthService
+    @EnvironmentObject var settings: LocalSettingsService
     
     @State var userAccountExistenceChecked = false
     @State var userAccountCreated = false
@@ -16,9 +20,15 @@ struct ContentView: View {
     @State var amplifyConfigured = false
     @State var userLoggedIn = false
     
+//    var shouldShowUserLoadingToast = Binding(
+//        get: { auth.gettingCurrentCovetUser && settings.showNotificationWhenRefreshingUser },
+//        set: { newValue in {} }
+//    )
+    
     var body: some View {
-        if userAccountExistenceChecked {
-            if userAccountCreated {
+        ZStack {
+        if !auth.gettingCurrentCovetUserFirstTime {
+            if auth.currentCovetUserExists == true {
                 CovetView()
             }
             else {
@@ -31,7 +41,7 @@ struct ContentView: View {
                         privateForFollowing: false,
                         privateForFriending: false,
                         userCreatedCallback: { profile in
-                            AuthService.shared.rememberThatAProfileWasCreated(user: profile)
+                            // auth.rememberThatAProfileWasCreated(user: profile)
                             self.userAccountCreated = true
                         }
                     )
@@ -44,9 +54,10 @@ struct ContentView: View {
             }
             .task {
                 do {
-                    let profileExists = try await AuthService.shared.profileExistsForCurrentUser()
-                    userAccountExistenceChecked = true
-                    userAccountCreated = profileExists
+//                    let profileExists = try await auth.profileExistsForCurrentUser()
+//                    userAccountExistenceChecked = true
+//                    userAccountCreated = profileExists
+                    await auth.refreshUser()
                 } catch {
                     fatalError("Unable to verify whether account exists or not")
                 }
@@ -77,6 +88,13 @@ struct ContentView: View {
                  */
             }
         }
+        }
+        .toast(isPresenting: $auth.gettingCurrentCovetUser && $settings.showNotificationWhenRefreshingUser, alert: {
+            AlertToast(displayMode: .hud, type: .loading, title: "Refreshing User")
+        })
+        .toast(isPresenting: $auth.errorGettingCurrentCovetUser && $settings.showErrorWhenUserRefreshFails, alert: {
+            AlertToast(displayMode: .hud, type: .error(Color.red), title: "Error Refreshing")
+        })
     }
     
 }

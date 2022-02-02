@@ -9,6 +9,8 @@ import AlertToast
 import SwiftUI
 
 struct UserListItem: View {
+    
+    @EnvironmentObject var auth: AuthService
         
     @State var backgroundColor: Color = Color.white;
     @State var showingActionDialog: Bool = false;
@@ -18,6 +20,8 @@ struct UserListItem: View {
     @State var clickable: Bool = true
     @State var showRelationshipToUser: Bool = true
     @State var showPendingOptions: Bool = false
+    
+    var onListItemRemoved: (() -> Void)? = nil
     
     @State var isSaving: Bool = false
     
@@ -53,7 +57,7 @@ struct UserListItem: View {
                         }
                     Chip(preIcon: "person.badge.plus", text: "ACCEPT", color: Color.covetGreen())
                         .onTapGesture {
-                            doActOnPendingRequest(value: false)
+                            doActOnPendingRequest(value: true)
                         }
                 }
             } else {
@@ -69,7 +73,7 @@ struct UserListItem: View {
         }
         .onLongPressGesture(perform: {
             if !self.isSaving {
-                if let currentUser = AuthService.shared.currentCovetUser {
+                if let currentUser = auth.currentCovetUser {
                     if currentUser.id == user.id {
                         return
                     }
@@ -174,6 +178,7 @@ struct UserListItem: View {
                 let resp = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
                 if let response = resp {
                     self.user = response.otherUser
+                    await auth.refreshUser()
                 } else {
                     print("No relation obtained")
                 }
@@ -190,8 +195,13 @@ struct UserListItem: View {
         self.isSaving = true
         Task {
             let success = await actOnPendingRequest(value: value)
-            print("Success " + String(success))
+            if success {
+                await auth.refreshUser()
+            }
             self.isSaving = false
+            if let removedCallback = self.onListItemRemoved {
+                removedCallback()
+            }
         }
     }
     
@@ -199,9 +209,13 @@ struct UserListItem: View {
         if let rel = self.relationship {
             do {
                 if let resp = try await API.actOnPending(id: rel.id, accept: value) {
+                    print(resp)
                     return resp.success
+                } else {
+                    print("No resp")
                 }
             } catch {
+                print("The error was")
                 print(error)
             }
         } else {

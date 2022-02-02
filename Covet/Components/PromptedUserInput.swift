@@ -98,6 +98,9 @@ struct PromptedRadioInput: View {
     // Send data back to the parent
     @Binding var value: Bool;
     
+    var leftEdgePadding: CGFloat = 16.0
+    var rightEdgePadding: CGFloat = 16.0
+    
     var body: some View {
         HStack {
             Text(prompt)
@@ -107,7 +110,8 @@ struct PromptedRadioInput: View {
                 Toggle("", isOn: $value)
             }
         }
-        .padding(Edge.Set.horizontal, 16)
+        .padding([.leading], leftEdgePadding)
+        .padding([.trailing], rightEdgePadding)
     }
 }
 

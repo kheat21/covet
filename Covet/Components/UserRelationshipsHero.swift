@@ -22,7 +22,8 @@ struct UserRelationshipsHero: View {
         HStack {
             NavigationLink(
                 destination: UserManagerView(
-                    relationships: followers //,
+                    relationships: followers, //,
+                    navbarTitle: "Followers"
 //                    shouldShowSavingToast: $shouldShowSavingToast,
 //                    shouldShowErrorToast: $shouldShowErrorToast,
 //                    errorToastContents: $errorToastContents
@@ -35,7 +36,8 @@ struct UserRelationshipsHero: View {
             }
             NavigationLink(
                 destination: UserManagerView(
-                    relationships: following //,
+                    relationships: following, //,
+                    navbarTitle: "Following"
 //                    shouldShowSavingToast: $shouldShowSavingToast,
 //                    shouldShowErrorToast: $shouldShowErrorToast,
 //                    errorToastContents: $errorToastContents
@@ -48,7 +50,8 @@ struct UserRelationshipsHero: View {
             }
             NavigationLink(
                 destination: UserManagerView(
-                    relationships: friends //,
+                    relationships: friends,
+                    navbarTitle: "Friends"//,
 //                    shouldShowSavingToast: $shouldShowSavingToast,
 //                    shouldShowErrorToast: $shouldShowErrorToast,
 //                    errorToastContents: $errorToastContents

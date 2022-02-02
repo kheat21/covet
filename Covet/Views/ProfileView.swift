@@ -14,6 +14,8 @@ struct ProfileView: View {
 //    var shouldShowErrorToast: Binding<Bool>
 //    var errorToastContents: Binding<String>
     
+    @EnvironmentObject var auth: AuthService
+    
     var isLoggedInUser: Bool;
     private var userId: Int? = -1
 
@@ -174,13 +176,13 @@ struct ProfileView: View {
     
     func getUser() -> CovetUser? {
         return isLoggedInUser
-            ? AuthService.shared.currentCovetUser
+            ? auth.currentCovetUser
             : self.otherUser
     }
     
     func getApplicableUser() async throws -> CovetUser? {
         if self.isLoggedInUser {
-            return try await AuthService.shared.getUser()
+            return try await auth.currentCovetUser
         } else {
             if let resp = try await API.getUser(user_id: self.userId!) {
                 return resp.user

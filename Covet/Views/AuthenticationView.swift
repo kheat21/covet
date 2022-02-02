@@ -11,7 +11,7 @@ public var screenHeight: CGFloat {
 }
 
 struct LoginView : View {
-    
+        
     @State private var viewState = CGSize(width: 0, height: screenHeight)
     @State private var MainviewState = CGSize.zero
     
@@ -39,6 +39,8 @@ struct LoginView_Previews : PreviewProvider {
 }
 
 struct CustomLoginViewController : UIViewControllerRepresentable {
+    
+    @EnvironmentObject var auth: AuthService
     
     var dismiss : (_ error : Error? ) -> Void
     
@@ -85,7 +87,7 @@ struct CustomLoginViewController : UIViewControllerRepresentable {
                 parent.dismiss(error)
             }
             else {
-                AuthService.shared.setLoggedIn()
+                // parent.auth.setLoggedIn()
                 parent.dismiss(nil)
             }
         }

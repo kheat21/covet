@@ -26,6 +26,8 @@ enum UserProfileOperationState {
 
 struct UserSettingsView: View {
     
+    @EnvironmentObject var auth: AuthService
+    
     var mode: UserSettingsViewPresentationOptions;
     
     @State var actionState: UserProfileOperationState = .None
@@ -113,7 +115,7 @@ struct UserSettingsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     self.mode == .NewSignup ? (
                         AnyView(Button(action: {
-                            AuthService.shared.logout()
+                            auth.logout()
                         }) {
                             Text("Logout")
                                 .foregroundColor(Color.covetGreen())
@@ -189,7 +191,7 @@ struct UserSettingsView: View {
             showLoadingToast = true
             actionState = .UpdatingProfile
             let createdProfile = try await API.updateProfile(
-                originalUser: (await AuthService.shared.getUser())!,
+                originalUser: auth.currentCovetUser!,
                 name: name,
                 bio: bio,
                 birthday: birthdaySet ? birthday : nil,
@@ -201,6 +203,7 @@ struct UserSettingsView: View {
             if createdProfile != nil {
                 actionState = .UpdatedProfile
                 profile = createdProfile
+                await auth.refreshUser()
             } else {
                 actionState = .FailedToUpdateProfile
                 showProfileCreationErrorToast = true
