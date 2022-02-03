@@ -15,7 +15,7 @@ struct ContentView: View {
     @EnvironmentObject var settings: LocalSettingsService
     
     @State var userAccountExistenceChecked = false
-    @State var userAccountCreated = false
+    // @State var userAccountCreated = false
     
     @State var amplifyConfigured = false
     @State var userLoggedIn = false
@@ -44,7 +44,7 @@ struct ContentView: View {
                     CovetView()
                 }
             }
-            else {
+            else if auth.currentCovetUserExists == false {
                 NavigationView {
                     UserSettingsView(
                         mode: UserSettingsViewPresentationOptions.NewSignup,
@@ -52,13 +52,12 @@ struct ContentView: View {
                         name: "",
                         birthday: Date(),
                         privateForFollowing: false,
-                        privateForFriending: false,
-                        userCreatedCallback: { profile in
-                            // auth.rememberThatAProfileWasCreated(user: profile)
-                            self.userAccountCreated = true
-                        }
+                        privateForFriending: false
                     )
                 }
+            }
+            else {
+                ProgressView()
             }
         } else {
             VStack {

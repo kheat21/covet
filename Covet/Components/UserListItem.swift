@@ -46,6 +46,11 @@ struct UserListItem: View {
                             text: chipContents.text,
                             color: Color.accentColor
                         )
+                        .onTapGesture {
+                            if hasPendingRequestOutgoing() {
+                                print("Cancel outgoing pending request")
+                            }
+                        }
                     }
                 }
                 if self.showPendingOptions {
@@ -85,15 +90,20 @@ struct UserListItem: View {
         }
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
             if user.allRelationshipInformationPresent() {
-                if !user.currentUserFollows() && !user.currentUserFriend() {
-                    followButton(user: user)
+                if !hasPendingRequestOutgoing() {
+                    if !user.currentUserFollows() && !user.currentUserFriend() {
+                        followButton(user: user)
+                    }
+                    if !user.currentUserFriend() {
+                        befriendButton(user: user)
+                    }
                 }
-                if !user.currentUserFriend() {
-                    befriendButton(user: user)
-                }
-                blockButton(user: user)
-                Button("Cancel", role: .cancel) { }
             }
+            if let rel = self.relationship {
+                removeButton(relationship: rel)
+            }
+            blockButton(user: user)
+            Button("Cancel", role: .cancel) { }
         } message: {
             Text("@" + user.username)
         }
@@ -102,6 +112,118 @@ struct UserListItem: View {
     struct ChipContents {
         var text: String
         var icon: String?
+    }
+    
+    func blockButton(user: CovetUser) -> some View {
+        return Button("Block", role: .destructive) {
+            doUserManagement(user: user, relationshipType: .Blocks)
+        }
+    }
+    
+    func followButton(user: CovetUser) -> some View {
+        return Button("Follow") {
+            doUserManagement(user: user, relationshipType: .Following)
+        }
+    }
+    
+    func befriendButton(user: CovetUser) -> some View {
+        return Button("Friend") {
+            doUserManagement(user: user, relationshipType: .Friends)
+        }
+    }
+    
+    func removeButton(relationship: CovetUserRelationship) -> some View {
+        return Button("Remove", role: .destructive) {
+            doRemoveRelationship(relationship: relationship)
+        }
+    }
+    
+    func doUserManagement(user: CovetUser, relationshipType: CovetUserRelationshipType) {
+        if self.isSaving { return }
+        self.isSaving = true
+        Task {
+            do {
+                print("Setting relationship...")
+                let resp = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
+                if let response = resp {
+                    self.user = response.otherUser
+                    await auth.refreshUser()
+                } else {
+                    print("No relation obtained")
+                }
+            } catch {
+//                self.shouldShowErrorToast = true
+//                self.errorToastContents = "Try again later"
+            }
+            self.isSaving = false
+        }
+    }
+    
+    func doRemoveRelationship(relationship: CovetUserRelationship) {
+        if self.isSaving { return }
+        self.isSaving = true
+        Task {
+            do {
+                print("Removing relationship...")
+                if let resp = try await API.removeRelationship(relationshipId: relationship.id) {
+                    if resp.success {
+                        await auth.refreshUser()
+                        if let removedCallback = self.onListItemRemoved {
+                            removedCallback()
+                        }
+                    }
+                    self.isSaving = false
+                }
+            } catch {
+//                self.shouldShowErrorToast = true
+//                self.errorToastContents = "Try again later"
+            }
+            self.isSaving = false
+        }
+    }
+    
+    func doActOnPendingRequest(value: Bool) {
+        print("Doing action")
+        self.isSaving = true
+        Task {
+            let success = await actOnPendingRequest(value: value)
+            if success {
+                await auth.refreshUser()
+                if let removedCallback = self.onListItemRemoved {
+                    removedCallback()
+                }
+            }
+            self.isSaving = false
+        }
+    }
+    
+    func actOnPendingRequest(value: Bool) async -> Bool {
+        if let rel = self.relationship {
+            do {
+                if let resp = try await API.actOnPending(id: rel.id, accept: value) {
+                    print(resp)
+                    return resp.success
+                } else {
+                    print("No resp")
+                }
+            } catch {
+                print("The error was")
+                print(error)
+            }
+        } else {
+            print("No relationship available")
+        }
+        return false
+    }
+    
+    func hasPendingRequestOutgoing() -> Bool {
+        if let rel = self.relationship {
+            return rel.pending == 1
+        }
+        return (
+            self.user.current_user_is_pending_following == 1 ||
+            self.user.current_user_is_pending_friending == 1
+        )
     }
     
     func getChipContents(user: CovetUser) -> ChipContents? {
@@ -151,78 +273,5 @@ struct UserListItem: View {
             
         return nil
         
-    }
-    
-    func blockButton(user: CovetUser) -> some View {
-        return Button("Block") {
-            doUserManagement(user: user, relationshipType: .Blocks)
-        }
-    }
-    
-    func followButton(user: CovetUser) -> some View {
-        return Button("Follow") {
-            doUserManagement(user: user, relationshipType: .Following)
-        }
-    }
-    
-    func befriendButton(user: CovetUser) -> some View {
-        return Button("Friend") {
-            doUserManagement(user: user, relationshipType: .Friends)
-        }
-    }
-    
-    func doUserManagement(user: CovetUser, relationshipType: CovetUserRelationshipType) {
-        if self.isSaving { return }
-        self.isSaving = true
-        Task {
-            do {
-                print("Setting relationship...")
-                let resp = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
-                if let response = resp {
-                    self.user = response.otherUser
-                    await auth.refreshUser()
-                } else {
-                    print("No relation obtained")
-                }
-            } catch {
-//                self.shouldShowErrorToast = true
-//                self.errorToastContents = "Try again later"
-            }
-            self.isSaving = false
-        }
-    }
-    
-    func doActOnPendingRequest(value: Bool) {
-        print("Doing action")
-        self.isSaving = true
-        Task {
-            let success = await actOnPendingRequest(value: value)
-            if success {
-                await auth.refreshUser()
-            }
-            self.isSaving = false
-            if let removedCallback = self.onListItemRemoved {
-                removedCallback()
-            }
-        }
-    }
-    
-    func actOnPendingRequest(value: Bool) async -> Bool {
-        if let rel = self.relationship {
-            do {
-                if let resp = try await API.actOnPending(id: rel.id, accept: value) {
-                    print(resp)
-                    return resp.success
-                } else {
-                    print("No resp")
-                }
-            } catch {
-                print("The error was")
-                print(error)
-            }
-        } else {
-            print("No relationship available")
-        }
-        return false
     }
 }

@@ -48,9 +48,7 @@ struct UserSettingsView: View {
     
     @State var privateForFollowing: Bool;
     @State var privateForFriending: Bool;
-    
-    var userCreatedCallback: ((_: CovetUser) -> Void)?;
-    
+        
     var body: some View {
         //NavigationView {
             VStack {
@@ -74,12 +72,10 @@ struct UserSettingsView: View {
                     Group {
                         Button(
                             action: {
-                                Task {
-                                    if self.mode == .NewSignup {
-                                        await self.createProfile()
-                                    } else {
-                                        await self.updateProfile()
-                                    }
+                                if self.mode == .NewSignup {
+                                    self.createProfile()
+                                } else {
+                                    self.updateProfile()
                                 }
                             },
                             label: {
@@ -155,65 +151,75 @@ struct UserSettingsView: View {
         return complete
     }
     
-    private func createProfile() async {
-        do {
-            showLoadingToast = true
-            actionState = .CreatingProfile
-            let createdProfile = try await API.createProfile(
-                username: handle,
-                name: name,
-                birthday: birthdaySet ? birthday : nil,
-                address: address,
-                privateForFollowing: self.privateForFollowing ? 1 : 0,
-                privateForFriending: self.privateForFriending ? 1 : 0
-            )
-            showLoadingToast = false
-            if createdProfile != nil {
-                actionState = .CreatedProfile
-                profile = createdProfile
-                if let callback = userCreatedCallback {
-                    callback(profile!)
+    private func createProfile() {
+        Task.detached {
+            await self.updateUI(showLoadingToast: true, actionState: .CreatingProfile, profile: nil, errorToast: false)
+            var usr: CovetUser? = nil
+            do {
+                var createdProfile = try await API.createProfile(
+                    username: handle,
+                    name: name,
+                    birthday: birthdaySet ? birthday : nil,
+                    address: address,
+                    privateForFollowing: self.privateForFollowing ? 1 : 0,
+                    privateForFriending: self.privateForFriending ? 1 : 0
+                )
+
+                if createdProfile != nil {
+                    usr = createdProfile
                 }
-            } else {
-                actionState = .FailedToCreateProfile
-                showProfileCreationErrorToast = true
-                actionState = .None
+            } catch {
+                print(error)
             }
-        } catch {
-            showLoadingToast = false
-            showProfileCreationErrorToast = true
-            actionState = .FailedToCreateProfile
+            
+            await self.updateUI(
+                showLoadingToast: false,
+                actionState: usr == nil ? .FailedToCreateProfile : .CreatedProfile,
+                profile: usr,
+                errorToast: usr == nil
+            )
         }
     }
     
-    private func updateProfile() async {
-        do {
-            showLoadingToast = true
-            actionState = .UpdatingProfile
-            let createdProfile = try await API.updateProfile(
-                originalUser: auth.currentCovetUser!,
-                name: name,
-                bio: bio,
-                birthday: birthdaySet ? birthday : nil,
-                address: address,
-                privateForFollowing: self.privateForFollowing ? 1 : 0,
-                privateForFriending: self.privateForFriending ? 1 : 0
-            )
-            showLoadingToast = false
-            if createdProfile != nil {
-                actionState = .UpdatedProfile
-                profile = createdProfile
-                await auth.refreshUser()
-            } else {
-                actionState = .FailedToUpdateProfile
-                showProfileCreationErrorToast = true
-                actionState = .None
+    private func updateProfile() {
+        Task.detached {
+            await self.updateUI(showLoadingToast: true, actionState: .UpdatingProfile, profile: nil, errorToast: false)
+            var usr: CovetUser? = nil
+            do {
+                let createdProfile = try await API.updateProfile(
+                    originalUser: auth.currentCovetUser!,
+                    name: name,
+                    bio: bio,
+                    birthday: birthdaySet ? birthday : nil,
+                    address: address,
+                    privateForFollowing: self.privateForFollowing ? 1 : 0,
+                    privateForFriending: self.privateForFriending ? 1 : 0
+                )
+                if createdProfile != nil {
+                    usr = createdProfile
+                }
+            } catch {
+                print(error)
             }
-        } catch {
-            showLoadingToast = false
-            showProfileCreationErrorToast = true
-            actionState = .FailedToUpdateProfile
+            await self.updateUI(
+                showLoadingToast: false,
+                actionState: usr == nil ? .FailedToUpdateProfile : .UpdatedProfile,
+                profile: usr == nil ? (self.profile ?? nil) : usr,
+                errorToast: usr == nil
+            )
         }
+    }
+    
+    private func updateUI(showLoadingToast: Bool, actionState: UserProfileOperationState, profile: CovetUser?, errorToast: Bool) async {
+        
+        // Local page state
+        self.showLoadingToast = showLoadingToast
+        self.actionState = actionState
+        self.profile = profile
+        self.showProfileCreationErrorToast = errorToast
+        
+        // Global auth/profile state
+        auth.refreshUser()
     }
     
 }
@@ -242,7 +248,11 @@ func getInitials(str: String) -> String {
     if components.count == 0 {
         return ""
     } else if components.count == 1 {
-        return components[0].firstCharacter()
+        if components[0].count == 1 {
+            return components[0].firstCharacter()
+        } else {
+            return components[0].firstNCharacters(n: 2)
+        }
     } else {
         return components[0].firstCharacter() + components[components.count-1].firstCharacter()
     }

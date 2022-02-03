@@ -8,8 +8,13 @@
 import SwiftUI
 
 func makeCovetC(size: Int, user: CovetUser) -> some View {
-    let message = getInitials(str: user.name ?? "")
-    return CovetC(size: size, text: message)
+    let messageBasedOnName = getInitials(str: user.name ?? "")
+    let messageBasedOnUsername = getInitials(str: user.username)
+    if messageBasedOnName.count > 0 {
+        return CovetC(size: size, text: messageBasedOnName)
+    } else {
+        return CovetC(size: size, text: messageBasedOnUsername)
+    }
 }
 
 struct CovetC: View {

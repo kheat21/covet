@@ -23,4 +23,9 @@ extension String {
         return String(self[..<index])
     }
     
+    func firstNCharacters(n: Int) -> String {
+        let index = self.index(self.startIndex, offsetBy: n)
+        return String(self[..<index])
+    }
+    
 }
