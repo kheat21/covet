@@ -18,7 +18,7 @@ struct SearchBar: View {
             
             TextField("Search ...", text: $text)
                 .padding(7)
-                .padding(.horizontal, 25)
+                .padding(.horizontal, 4)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
                 .padding(.horizontal, 10)

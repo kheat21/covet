@@ -235,6 +235,19 @@ func nameToInitials(str: String) -> String {
     }
 }
 
+func getInitials(str: String) -> String {
+    let components = str.components(separatedBy: " ").filter { s in
+        return s.count > 0
+    }
+    if components.count == 0 {
+        return ""
+    } else if components.count == 1 {
+        return components[0].firstCharacter()
+    } else {
+        return components[0].firstCharacter() + components[components.count-1].firstCharacter()
+    }
+}
+
 //func createProfile(username: String, name: String?, birthday: Date?, address: String?, profile: State<CovetUser?>) -> Void {
 //    Task {
 //        do {

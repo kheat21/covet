@@ -29,7 +29,20 @@ struct ContentView: View {
         ZStack {
         if !auth.gettingCurrentCovetUserFirstTime {
             if auth.currentCovetUserExists == true {
-                CovetView()
+                if auth.currentCovetUserDeleted == true {
+                    VStack {
+                        Spacer()
+                        Text("User Deleted")
+                            .multilineTextAlignment(.center)
+                        Spacer().frame(height: 16)
+                        Button("Logout", action: {
+                            auth.logout()
+                        })
+                        Spacer()
+                    }
+                } else {
+                    CovetView()
+                }
             }
             else {
                 NavigationView {

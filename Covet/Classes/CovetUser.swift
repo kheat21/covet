@@ -45,10 +45,19 @@ struct CovetUser: Identifiable, Decodable {
         var privateForFollowing: Int;
         var privateForFriending: Int;
     
+        var isDeleted: Int?;
+    
         var follows: [CovetUserRelationshipInfo]?
         var followers: [CovetUserRelationshipInfo]?
         var friends: [CovetUserRelationshipInfo]?
-        var pending: [CovetUserRelationshipInfo]?
+        var pending_incoming: [CovetUserRelationshipInfo]?
+    
+        func isFollowingOrFriendingAnyone() -> Bool? {
+            guard follows != nil && friends != nil else {
+                return nil
+            }
+            return follows!.count > 0 || friends!.count > 0
+        }
     
         var current_user_is_following: Int?
         var current_user_is_pending_following: Int?
@@ -87,16 +96,16 @@ struct CovetUser: Identifiable, Decodable {
             return current_user_blocks! == 1
         }
     
-    func allRelationshipInformationPresent() -> Bool {
-        return (
-            self.current_user_is_following != nil &&
-            self.current_user_is_pending_following != nil &&
-            self.current_user_is_friending != nil &&
-            self.current_user_is_pending_friending != nil &&
-            self.current_user_is_pending_friended != nil &&
-            self.current_user_is_followed_by != nil &&
-            self.current_user_is_pending_followed_by != nil &&
-            self.current_user_blocks != nil
-        )
-    }
+        func allRelationshipInformationPresent() -> Bool {
+            return (
+                self.current_user_is_following != nil &&
+                self.current_user_is_pending_following != nil &&
+                self.current_user_is_friending != nil &&
+                self.current_user_is_pending_friending != nil &&
+                self.current_user_is_pending_friended != nil &&
+                self.current_user_is_followed_by != nil &&
+                self.current_user_is_pending_followed_by != nil &&
+                self.current_user_blocks != nil
+            )
+        }
 }

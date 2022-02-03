@@ -13,31 +13,25 @@ struct HamburgerOptionsView: View {
     @EnvironmentObject var settings: LocalSettingsService
     
     @State var user: CovetUser;
-//    @Binding var shouldShowSavingToast: Bool
-//    @Binding var shouldShowErrorToast: Bool
-//    @Binding var errorToastContents: String
+    @State var deletingAccount: Bool = false
+    @State var shouldShowDeleteAccount: Bool = false
     
     @State var showDeveloperOptions: Bool = false
     
     var body: some View {
         List {
-            if let user = auth.currentCovetUser {
-                if let pendingRelationships = user.pending {
-                    if pendingRelationships.count > 0 {
+            if auth.currentCovetUser != nil {
+                if let pending = auth.currentCovetUser!.pending_incoming {
+                    if pending.count > 0 {
                         NavigationLink(
                             destination: UserManagerView(
-                                relationships: pendingRelationships,
+                                relationships: pending,
                                 navbarTitle: "Requested Friends/Followers"
-                                //,
-    //                            shouldShowSavingToast: $shouldShowSavingToast,
-    //                            shouldShowErrorToast: $shouldShowErrorToast,
-    //                            errorToastContents: $errorToastContents
                             )) {
                             Text("Follow and Friend Requests")
                         }
                     }
                 }
-            
                 NavigationLink(destination: {
                     UserSettingsView(
                         mode: UserSettingsViewPresentationOptions.Modify,
@@ -51,9 +45,17 @@ struct HamburgerOptionsView: View {
                     Text("Manage my account")
                 })
                 Button(action: {
-                    print("Delete my account")
+                    self.shouldShowDeleteAccount = true
                 }, label: {
-                    Text("Delete my account")
+                    if self.deletingAccount {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                            Spacer()
+                        }
+                    } else {
+                        Text("Delete my account")
+                    }
                 })
                 Button(action: {
                     auth.logout()
@@ -89,7 +91,24 @@ struct HamburgerOptionsView: View {
                 )
             }
         }
-    
+        .confirmationDialog("Permanently delete your account?", isPresented: $shouldShowDeleteAccount) {
+            Button("Delete", role: .destructive) {
+                Task {
+                    self.deletingAccount = true
+                    do {
+                        if let status = try await API.requestDeletion() {
+                            if status.success {
+                                auth.logout()
+                            }
+                        }
+                    } catch {}
+                    self.deletingAccount = false
+                }
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Your Covet profile will be deleted")
+        }
     }
 }
 

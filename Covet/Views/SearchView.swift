@@ -40,12 +40,19 @@ struct SearchView: View {
 //                    EmptyView()
 //                })
                 HStack {
+                    Spacer().frame(width: 8)
                     TextField("Search", text: $searchText, prompt: Text("A person, product, etc.."))
+                        .padding(7)
+                        .padding(.horizontal, 4)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal, 10)
                     Button("Search", action: {
                         Task {
                             _results = try await API.search(query: searchText, page: 1)
                         }
                     })
+                    Spacer().frame(width: 16)
                     
                 }
                 Spacer()
@@ -55,15 +62,9 @@ struct SearchView: View {
                         // Show the users first
                         ForEach(results.users.prefix(5)) { user in
                             UserListItem(
-                                user: user //,
-//                                shouldShowSavingToast: self.shouldShowSavingToast,
-//                                shouldShowErrorToast: self.shouldShowErrorToast,
-//                                errorToastContents: self.errorToastContents
+                                user: user,
+                                clickable: shouldAllowClicksForUser(user: user)
                             )
-//                                .onTapGesture {
-//                                    self.navigateToUserId = user.id
-//                                    self.navigateToUserView = true
-//                                }
                         }
                     
                         // Show the posts next
@@ -78,12 +79,25 @@ struct SearchView: View {
                 
             
             }
-            .navigationTitle("Friends")
+            .navigationTitle("Search")
         }
     }
     
     func getImageForPost(post: Post) -> String {
         return post.products![0].image_url
+    }
+    
+    func shouldAllowClicksForUser(user: CovetUser) -> Bool {
+        // Allow clicks on completely public profiles
+        if user.privateForFollowing == 0 && user.privateForFriending == 0 {
+            return true
+        }
+        
+        // Otherwise, check if we have a relationship with them
+        if user.allRelationshipInformationPresent() {
+            return user.currentUserFollows() || user.currentUserFriend()
+        }
+        return false
     }
 
 }

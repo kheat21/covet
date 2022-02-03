@@ -212,6 +212,26 @@ class API {
         )
     }
     
+    public static func requestDeletion() async throws -> SimpleSuccessOrFailureResponseObject? {
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/user/delete/request",
+            method: .post,
+            data: nil,
+            SimpleSuccessOrFailureResponseObject.self
+        )
+    }
+    
+    public static func followCovet() async throws -> CovetUserRelationship? {
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/user/relationships/follow_covet",
+            method: .post,
+            data: nil,
+            CovetUserRelationship.self
+        )
+    }
+    
     /*
     public func followUser(
         userId: String,

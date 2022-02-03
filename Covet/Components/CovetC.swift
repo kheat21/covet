@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+func makeCovetC(size: Int, user: CovetUser) -> some View {
+    let message = getInitials(str: user.name ?? "")
+    return CovetC(size: size, text: message)
+}
+
 struct CovetC: View {
     
     var size: Int
-    var text: String = "BM"
+    var text: String = ""
     
     var body: some View {
         ZStack(alignment: Alignment.center) {

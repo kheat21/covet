@@ -9,79 +9,24 @@ import SwiftUI
 import Firebase
 
 struct ProfileView: View {
-    
-//    var shouldShowSavingToast: Binding<Bool>
-//    var shouldShowErrorToast: Binding<Bool>
-//    var errorToastContents: Binding<String>
-    
+
     @EnvironmentObject var auth: AuthService
     
-    var isLoggedInUser: Bool;
-    private var userId: Int? = -1
-
+    @State var isLoggedInUser: Bool;
+    @State var userId: Int? = -1
     @State var isLoading: Bool = false
     @State var otherUser: CovetUser? = nil
     
-    init(
-//        shouldShowSavingToast: Binding<Bool>,
-//        shouldShowErrorToast: Binding<Bool>,
-//        errorToastContents: Binding<String>
-    ) {
-        self.userId = nil
-        self.isLoggedInUser = true
-//
-//        self.shouldShowSavingToast = shouldShowSavingToast
-//        self.shouldShowErrorToast = shouldShowErrorToast
-//        self.errorToastContents = errorToastContents
-    }
-    
-    init(
-        id: Int //,
-//        shouldShowSavingToast: Binding<Bool>,
-//        shouldShowErrorToast: Binding<Bool>,
-//        errorToastContents: Binding<String>
-    ) {
-        self.userId = id
-        self.isLoggedInUser = false
-        
-//        self.shouldShowSavingToast = shouldShowSavingToast
-//        self.shouldShowErrorToast = shouldShowErrorToast
-//        self.errorToastContents = errorToastContents
-    }
-    
     @State var showFriendView: Bool = false
-    
     @State var showPostInDetailView: Post? = nil
-    
     @State var showManagerView: Bool = false
-    
-    @Sendable
-    func onAppear() async {
-        if !self.isLoggedInUser {
-            do {
-                self.isLoading = true
-                if let resp = try await API.getUser(user_id: self.userId!) {
-                    return self.otherUser = resp.user
-                }
-                print("______ POSTS ______")
-                print(self.otherUser?.posts)
-            } catch {
-                print("Error getting the user")
-            }
-        }
-    }
 
     var body: some View {
         NavigationView {            
             VStack {
                 NavigationLink(isActive: self.$showManagerView, destination: {
                     if let user = self.getUser() {
-                        HamburgerOptionsView(
-                            user: user //,
-//                            shouldShowSavingToast: self.shouldShowSavingToast,
-//                            shouldShowErrorToast: self.shouldShowErrorToast,
-//                            errorToastContents: self.errorToastContents
-                        )
+                        HamburgerOptionsView(user: user)
                     }
                 }, label: {
                     EmptyView()
@@ -94,10 +39,7 @@ struct ProfileView: View {
                                 following: follows,
                                 followers: followers,
                                 friends: friends,
-                                pending: user.pending //,
-//                                shouldShowSavingToast: self.shouldShowSavingToast,
-//                                shouldShowErrorToast: self.shouldShowErrorToast,
-//                                errorToastContents: self.errorToastContents
+                                pending: user.pending_incoming
                             )
                         }
                         
@@ -105,8 +47,9 @@ struct ProfileView: View {
                         if let posts = user.posts {
                             if posts.count == 0 {
                                 Spacer()
-                                Text("No posts yet. Add something with the Covet button to make one!")
+                                Text("No posts yet. Add something with the Covet button in Safari to make one!")
                                     .padding([.leading, .trailing], 64)
+                                    .multilineTextAlignment(.center)
                                 Spacer()
                             } else {
                                 
@@ -161,35 +104,32 @@ struct ProfileView: View {
         }, content: { p in
             PostView(post: p)
         })
-//        .sheet(isPresented: self.$showManagerView, onDismiss: nil, content: {
-//            HamburgerOptionsView()
-//            UserSettingsView(
-//                mode: UserSettingsViewPresentationOptions.Modify,
-//                handle: getCurrentUserHandle() ?? "",
-//                name: self._user?.name ?? "",
-//                birthday: self._user?.birthday ?? Date(),
-//                privateForFollowing: self._user?.privateForFollowing == 1,
-//                privateForFriending: self._user?.privateForFriending == 1
-//            )
-//        })
-        .task(self.onAppear)
+        .onAppear {
+            print("ON APPEAR")
+            Task {
+                print("Is logged in user?")
+                print(self.isLoggedInUser)
+                if !self.isLoggedInUser && self.otherUser == nil {
+                    self.isLoading = true
+                    do {
+                        print("Getting that user...")
+                        if let resp = try await API.getUser(user_id: self.userId!) {
+                            print(resp)
+                            self.otherUser = resp.user
+                        }
+                        print("______ POSTS ______")
+                        print(self.otherUser?.posts)
+                    } catch {
+                        print("Error getting the user")
+                    }
+                    self.isLoading = false
+                }
+            }
+        }
     }
     
     func getUser() -> CovetUser? {
-        return isLoggedInUser
-            ? auth.currentCovetUser
-            : self.otherUser
-    }
-    
-    func getApplicableUser() async throws -> CovetUser? {
-        if self.isLoggedInUser {
-            return try await auth.currentCovetUser
-        } else {
-            if let resp = try await API.getUser(user_id: self.userId!) {
-                return resp.user
-            }
-        }
-        return nil
+        return isLoggedInUser ? auth.currentCovetUser : self.otherUser
     }
     
     func getCurrentUserHandle() -> String? {
@@ -200,28 +140,3 @@ struct ProfileView: View {
     }
     
 }
-
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView(isNa)
-//    }
-//}
-
-
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Text(getCurrentUserHandle() ?? "No handle")
-//                        .font(Font.title)
-//                        .fontWeight(Font.Weight.bold)
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        do {
-//                            try Auth.auth().signOut()
-//                        } catch {}
-//                    }) {
-//                        Image(systemName: "ellipsis")
-//                            .foregroundColor(Color.green)
-//                    }
-//                }
-//            }

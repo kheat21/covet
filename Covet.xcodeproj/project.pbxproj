@@ -64,6 +64,7 @@
 		A4B68BEA279D170700DF74E0 /* ScrapedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */; };
 		A4CA973627AB160D0081616D /* LocalSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973527AB160D0081616D /* LocalSettingsService.swift */; };
 		A4CA973827AB1BE80081616D /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973727AB1BE80081616D /* Binding.swift */; };
+		A4CA973A27AB2EF30081616D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973927AB2EF30081616D /* AppConfig.swift */; };
 		A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
 		A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
@@ -200,6 +201,7 @@
 		A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapedImage.swift; sourceTree = "<group>"; };
 		A4CA973527AB160D0081616D /* LocalSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSettingsService.swift; sourceTree = "<group>"; };
 		A4CA973727AB1BE80081616D /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		A4CA973927AB2EF30081616D /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExtensionTokenResult.swift; sourceTree = "<group>"; };
 		A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
 		A4D1F95027974BBD003DBD85 /* AppAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPI.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			children = (
 				A459DA1E2797552B00001BF5 /* APIConfig.swift */,
 				A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */,
+				A4CA973927AB2EF30081616D /* AppConfig.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				EBDF21CD274D400B008E48E3 /* Int.swift in Sources */,
 				EB45308B274C2F87004395CA /* SceneDelegate.swift in Sources */,
 				EBDF21C8274D3E27008E48E3 /* View.swift in Sources */,
+				A4CA973A27AB2EF30081616D /* AppConfig.swift in Sources */,
 				A44C8EFA27AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,

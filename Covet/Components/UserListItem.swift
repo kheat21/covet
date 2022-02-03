@@ -25,19 +25,17 @@ struct UserListItem: View {
     
     @State var isSaving: Bool = false
     
-    @State private var navigateToUserView: Bool = false
-    @State private var navigateToUserId: Int = -1
+    @State private var navigateToUser: CovetUser? = nil
     
     var body: some View {
-        NavigationLink(isActive: self.$navigateToUserView, destination: {
-            ProfileView(id: self.navigateToUserId)
-        }, label: {
-            EmptyView()
-        })
+//        NavigationLink(isActive: self.$navigateToUserView, destination: {
+//            ProfileView(id: self.navigateToUserId)
+//        }, label: {
+//            EmptyView()
+//        })
         HStack {
             Spacer().frame(width: 16)
-            CovetC(size: 48)
-//            Text(user.getDisplayItem())
+            makeCovetC(size: 48, user: self.user)
             Text(user.username)
             Spacer()
             if !self.isSaving {
@@ -66,9 +64,10 @@ struct UserListItem: View {
             Spacer().frame(width: 16)
         }
         .onTapGesture {
+            print("Tapped")
             if self.clickable && !self.isSaving {
-                self.navigateToUserId = user.id
-                self.navigateToUserView = true
+                self.navigateToUser = user
+                // print("Navigate to " + String(self.navigateToUser.id))
             }
         }
         .onLongPressGesture(perform: {
@@ -81,6 +80,9 @@ struct UserListItem: View {
                 showingActionDialog = true
             }
         })
+        .sheet(item: $navigateToUser) { item in
+            ProfileView(isLoggedInUser: false, userId: item.id)
+        }
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
             if user.allRelationshipInformationPresent() {
                 if !user.currentUserFollows() && !user.currentUserFriend() {
@@ -131,7 +133,7 @@ struct UserListItem: View {
         }
         
         if !user.currentUserFollows() && user.currentUserFollowedBy() {
-            text = "FOLLOWED BY"
+            text = "FOLLOWS YOU"
             icon = "arrow.left"
         }
         

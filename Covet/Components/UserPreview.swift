@@ -9,12 +9,12 @@ import SwiftUI
 
 struct UserPreview: View {
     
-    let userAbbr: String;
+    let user: CovetUser;
     let topItem: String;
     
     var body: some View {
         HStack {
-            CovetC(size: 60)
+            makeCovetC(size: 60, user: user)
                 .padding(Edge.Set.leading, 0)
             CovetSquareZoomedInItem(
                 url: topItem, size: 250,

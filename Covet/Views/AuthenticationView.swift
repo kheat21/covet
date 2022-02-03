@@ -15,15 +15,73 @@ struct LoginView : View {
     @State private var viewState = CGSize(width: 0, height: screenHeight)
     @State private var MainviewState = CGSize.zero
     
+    @State private var showingLogin: Bool = false
+    
     var body : some View {
-        ZStack {
+        VStack {
+            
+            Spacer().frame(height: 64)
+            Image("Covet_Logo_Colored")
+                .frame(width: nil, height: 92)
+            Text("The social shopping app for you and your friends")
+                .font(.system(.headline))
+                .foregroundColor(Color.gray)
+            Spacer()
+            VStack {
+                HStack {
+                    Button("Terms of Service", action: {
+                        UIApplication.shared.open(
+                            URL(string: AppConfig.TERMS_AND_CONDITIONS_LINK)!,
+                            options: [:], completionHandler: nil
+                        )
+                    })
+                        .foregroundColor(Color.gray)
+                    Button("Privacy Policy", action: {
+                        UIApplication.shared.open(
+                            URL(string: AppConfig.PRIVACY_POLICY_LINK)!,
+                            options: [:], completionHandler: nil
+                        )
+                    })
+                        .foregroundColor(Color.gray)
+                }
+                Button(
+                    action: {
+                        self.showingLogin = true
+                    },
+                    label: {
+                        Text("Login")
+                            .padding(Edge.Set.vertical, 16)
+                            .padding(Edge.Set.horizontal, 52)
+                    }
+                )
+                .background(Color.covetGreen())
+                .foregroundColor(Color.white)
+                .padding([.bottom], 16.0)
+            }
+            //.frame(width: .i, height: 52, alignment: .center)
+        }
+        .sheet(isPresented: $showingLogin, onDismiss: nil, content: {
             CustomLoginViewController { (error) in
                 if error == nil {
                     self.status()
                 }
-            }.offset(y: self.MainviewState.height).animation(.spring())
-            //MainView().environmentObject(DataStore()).offset(y: self.viewState.height).animation(.spring())
+            }.offset(y: self.MainviewState.height)
+        })
+        /*
+        ZStack {
+            if self.showingLogin {
+                CustomLoginViewController { (error) in
+                    if error == nil {
+                        self.status()
+                    }
+                }.offset(y: self.MainviewState.height)
+            } else {
+                Button("Login", action: {
+                    self.showingLogin = true
+                })
+            }
         }
+        */
     }
     
     func status() {

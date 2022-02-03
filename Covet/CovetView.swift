@@ -56,16 +56,7 @@ struct CovetView : View {
                 }
                 .tag(1)
             
-            //NavigationView {
-                ProfileView(
-//                    shouldShowSavingToast: $shouldShowSavingToast,
-//                    shouldShowErrorToast: $shouldShowErrorToast,
-//                    errorToastContents: $errorToastContents
-                )
-//                .navigationBarHidden(false)
-//                .navigationBarTitle("My Profile")
-//                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-//            }
+            ProfileView(isLoggedInUser: true)
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
                     .foregroundColor(Color.covetGreen())

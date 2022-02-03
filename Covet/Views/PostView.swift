@@ -95,7 +95,11 @@ struct PostView: View {
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    CovetC(size: 36, text: "BM")
+                    if let u = self.post.user {
+                        makeCovetC(size: 36, user: u)
+                    } else {
+                        EmptyView()
+                    }
                 }
                 ToolbarItem(placement: .principal) {
                     Image("Covet_Logo_Colored")

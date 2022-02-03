@@ -19,6 +19,7 @@ class AuthService: NSObject, ObservableObject {
     @Published var gettingCurrentCovetUser: Bool = false;
     @Published var currentCovetUser: CovetUser? = nil;
     @Published var currentCovetUserExists: Bool? = nil;
+    @Published var currentCovetUserDeleted: Bool? = nil
     @Published var errorGettingCurrentCovetUser: Bool = false;
 
     func initialize() {
@@ -26,22 +27,25 @@ class AuthService: NSObject, ObservableObject {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             print("Got a callback on the auth state")
             self.isLoggedIn = auth.currentUser != nil
-            Task {
+            
+            
                 print("In the Task")
                 if self.isLoggedIn {
-                    await self.firstFetch()
-                    await self.refreshExtensionToken()
+                    Task {
+                        await self.firstFetch()
+                        await self.refreshExtensionToken()
+                    }
+                
                 }
-                if !self.isLoggedIn {
-                    self.clearExtensionToken()
-                }
-            }
+            
         }
     }
     
     func logout() {
         do {
             try Auth.auth().signOut()
+            self.currentCovetUser = nil
+            self.clearExtensionToken()
         } catch {}
     }
     
@@ -57,6 +61,8 @@ class AuthService: NSObject, ObservableObject {
             if let meresp = try await API.me() {
                 if let me = meresp.user {
                     self.currentCovetUser = me
+                    print(me)
+                    self.currentCovetUserDeleted = (me.isDeleted == 1)
                 }
                 self.currentCovetUserExists = meresp.exists
             } else {
