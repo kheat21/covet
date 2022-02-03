@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct SearchView: View {
 //
@@ -25,6 +26,9 @@ struct SearchView: View {
     
     @State var searchText: String = ""
     @State var _results: UnifiedSearchResult? = nil;
+    
+    @State var isSearching: Bool = false;
+    @State var error: Bool = false;
     
 //    @State private var navigateToUserView: Bool = false
 //    @State private var navigateToUserId: Int = -1
@@ -48,8 +52,9 @@ struct SearchView: View {
                         .cornerRadius(8)
                         .padding(.horizontal, 10)
                     Button("Search", action: {
-                        Task {
-                            _results = try await API.search(query: searchText, page: 1)
+                        if !self.isSearching {
+                            KeyboardHelper.hideKeyboard()
+                            doSearch(query: searchText)
                         }
                     })
                     Spacer().frame(width: 16)
@@ -80,7 +85,28 @@ struct SearchView: View {
             
             }
             .navigationTitle("Search")
+            .toast(isPresenting: $isSearching, alert: {
+                AlertToast(displayMode: .alert, type: .loading)
+            })
+            .toast(isPresenting: $error) {
+                AlertToast(displayMode: .hud, type: .error(Color.red), title: "Search failed", subTitle: "Try again")
+            }
         }
+    }
+    
+    func doSearch(query: String) -> Void {
+        self.isSearching = true
+        Task.detached {
+            let results = try await API.search(query: query, page: 1)
+            await self.updateUI(results: results)
+        }
+    }
+    
+    @MainActor
+    func updateUI(results: UnifiedSearchResult?) {
+        self._results = results
+        self.isSearching = false
+        self.error = results == nil
     }
     
     func getImageForPost(post: Post) -> String {

@@ -91,7 +91,7 @@ struct UserSettingsView: View {
                             .background(self.getButtonColor())
                             .foregroundColor(Color.white)
                             .disabled(!self.isInputComplete())
-                    }#imageLiteral(resourceName: "simulator_screenshot_9FEF110A-0F2E-4DCF-B416-C0C62CC4A225.png")
+                    }
                     .frame(width: nil, height: 52, alignment: .top)
                 }
                 if (self.mode == .Modify) {
