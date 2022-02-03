@@ -65,8 +65,11 @@ struct UserSettingsView: View {
                     PromptedUserInput(prompt: "Name", placeholder: "Pleased to meet you 😃", text: $name)
                     PromptedUserInput(prompt: "Bio", placeholder: "Something witty", text: $bio)
                     //PromptedDateInput(prompt: "Birthday", noDateSelectedMessage: "Select", buttonColor: Color.covetGreen(), date: $birthday, dateSet: $birthdaySet)
+                    Divider()
                     PromptedRadioInput(prompt: "Require permission to follow me", toggleBackgroundColor: nil, value: $privateForFollowing)
                     PromptedRadioInput(prompt: "Require permission to become my friend", toggleBackgroundColor: nil, value: $privateForFriending)
+                    Text("Who can...?").font(.system(.headline))
+                    UserPermissionSettingsExplainer(privateForFollowing: privateForFollowing, privateForFriending: privateForFriending)
                 }
                 if ( actionState == .None ) {
                     Group {
@@ -88,7 +91,7 @@ struct UserSettingsView: View {
                             .background(self.getButtonColor())
                             .foregroundColor(Color.white)
                             .disabled(!self.isInputComplete())
-                    }
+                    }#imageLiteral(resourceName: "simulator_screenshot_9FEF110A-0F2E-4DCF-B416-C0C62CC4A225.png")
                     .frame(width: nil, height: 52, alignment: .top)
                 }
                 if (self.mode == .Modify) {
@@ -257,6 +260,10 @@ func getInitials(str: String) -> String {
         return components[0].firstCharacter() + components[components.count-1].firstCharacter()
     }
 }
+
+//func permissionsMeaningMessage(privateForFollowing: Bool, privateForFriending: Bool) -> String {
+//    let canBuyYouGifts
+//}
 
 //func createProfile(username: String, name: String?, birthday: Date?, address: String?, profile: State<CovetUser?>) -> Void {
 //    Task {

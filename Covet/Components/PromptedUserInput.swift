@@ -104,7 +104,7 @@ struct PromptedRadioInput: View {
     var body: some View {
         HStack {
             Text(prompt)
-                .frame(width: 200, height: nil, alignment: .leading)
+                .frame(width: 250, height: nil, alignment: .leading)
             Spacer()
             HStack {
                 Toggle("", isOn: $value)

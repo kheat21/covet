@@ -45,6 +45,7 @@
 		A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */; };
 		A459DA25279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
 		A459DA26279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
+		A45B857127AC36490033F28E /* UserPermissionSettingsExplainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
 		A47845A427A50983005F4C15 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A47845A327A50983005F4C15 /* AlertToast */; };
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
@@ -187,6 +188,7 @@
 		A459DA1E2797552B00001BF5 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTokenConfig.swift; sourceTree = "<group>"; };
 		A459DA24279755A100001BF5 /* APIErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
+		A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionSettingsExplainer.swift; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
 		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				A42B07AD27A5F63700667216 /* PostShareSheet.swift */,
 				A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */,
 				A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */,
+				A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */,
 				A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */,
 				A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */,
+				A45B857127AC36490033F28E /* UserPermissionSettingsExplainer.swift in Sources */,
 				A4CA973627AB160D0081616D /* LocalSettingsService.swift in Sources */,
 				EB724D082780F4DE0076593C /* CovetView.swift in Sources */,
 				EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */,
