@@ -34,7 +34,6 @@ class AuthService: NSObject, ObservableObject {
                     
                     DispatchQueue.main.async {
                         self.firstFetch()
-                        self.refreshExtensionToken()
                     }
                 }
         }
@@ -51,15 +50,16 @@ class AuthService: NSObject, ObservableObject {
     func firstFetch() -> Void {
         Task.detached {
             await self.setWorking(state: true, firstTime: true)
-            self.refreshUser()
+            self.refreshUser(first: true)
             await self.setWorking(state: false)
+//            self.refreshExtensionToken()
         }
     }
     
-    func refreshUser() -> Void {
+    func refreshUser(first: Bool = false) -> Void {
         Task.detached {
             
-            await self.setWorking(state: true)
+            await self.setWorking(state: true, firstTime: first)
             
             var err: Bool = false
             var user: CovetUser? = nil
@@ -83,6 +83,9 @@ class AuthService: NSObject, ObservableObject {
             
             await self.updateUI(error: err, user: user, userExists: userExists, userDeleted: userDeleted)
             await self.setWorking(state: false)
+            if first {
+                self.refreshExtensionToken()
+            }
         }
     }
     
@@ -98,9 +101,13 @@ class AuthService: NSObject, ObservableObject {
     
     @MainActor
     func updateUI(error: Bool, user: CovetUser?, userExists: Bool?, userDeleted: Bool?) async {
+        
         self.errorGettingCurrentCovetUser = error
         if user != nil {
+            print("AuthService: Got the current user")
             self.currentCovetUser = user!
+        } else {
+            print("AuthService: Current user is still nil")
         }
         self.currentCovetUserExists = userExists
         self.currentCovetUserDeleted = userDeleted
@@ -108,15 +115,18 @@ class AuthService: NSObject, ObservableObject {
     
     func refreshExtensionToken() -> Void {
         Task.detached {
+            print("ExtensionTokenService: Beginning detatched refresh function")
             if let user = self.currentCovetUser {
                 // Updating the extension token now that the user
                 // account is guarenteed to be made
                 let token = await API.getIdToken()
-                print("Trying to save the ID token (" + token! + ") in UserDefaults...")
+                print("ExtensionTokenService: Trying to save the ID token (" + token! + ") in UserDefaults...")
                 UserDefaults.standard.set(token, forKey: "id_token")
                 
-                print("Updatcing ExtensionTokenService...")
+                print("ExtensionTokenService: Updatcing ExtensionTokenService...")
                 await ExtensionTokenStateManagement.update(uid: user.authId)
+            } else {
+                print("ExtensionTokenService: Could not update ExtensionTokenService because no user")
             }
         }
     }
