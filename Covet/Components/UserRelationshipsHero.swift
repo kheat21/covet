@@ -45,6 +45,8 @@ struct UserRelationshipsHero: View {
                         Text("followers")
                     }
                 }
+                .foregroundColor(Color.covetGreen())
+                .disabled(followers == nil)
             }
             if shouldShowFollowingCount() {
                 NavigationLink(
@@ -58,6 +60,8 @@ struct UserRelationshipsHero: View {
                         Text("following")
                     }
                 }
+                .foregroundColor(Color.covetGreen())
+                .disabled(following == nil)
             }
             if shouldShowFriendCount() {
                 NavigationLink(
@@ -71,6 +75,8 @@ struct UserRelationshipsHero: View {
                         Text("friends")
                     }
                 }
+                .foregroundColor(Color.covetGreen())
+                .disabled(friends == nil)
             }
         }
         .frame(width: nil, height: 60, alignment: .top)

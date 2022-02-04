@@ -137,9 +137,9 @@ struct UserProfile : View {
                     friends: friends
                 )
             } else {
-                if user.following_count != nil && user.followers_count != nil && user.friends_count != nil {
+                if user.follows_count != nil && user.followers_count != nil && user.friends_count != nil {
                     UserRelationshipsHero(
-                        following_count: user.following_count!,
+                        following_count: user.follows_count!,
                         followers_count: user.followers_count!,
                         friends_count: user.friends_count!
                     )

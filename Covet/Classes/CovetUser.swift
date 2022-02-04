@@ -52,7 +52,7 @@ struct CovetUser: Identifiable, Decodable {
         var friends: [CovetUserRelationshipInfo]?
         var pending_incoming: [CovetUserRelationshipInfo]?
     
-        var following_count: Int?
+        var follows_count: Int?
         var followers_count: Int?
         var friends_count: Int?
     
