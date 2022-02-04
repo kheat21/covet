@@ -46,13 +46,15 @@ struct FeedView: View {
             for item in items {
                 posts!.append(item)
             }
-            self.currentPage += 1;
+            if items.count > 0 {
+                self.currentPage += 1;
+            }
         }
         self.isFetching = false
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             // If the user just made their account, there will be no posts available AND
             // there will be no completed friend or follower requests yet
             if let user = auth.currentCovetUser, let posts = self.posts {
@@ -64,35 +66,41 @@ struct FeedView: View {
                 // Otherwise, just show whatever we got..
                 else {
                     List {
-                        ForEach(posts) { post in
+                        ForEach(Array(posts.enumerated()), id: \.offset) { index, post in
                             ZStack {
                                 if let thumbnailImage = getThumbnailImageURLForPost(post: post), let user = post.user {
-                                    NavigationLink {
-                                        ProfileView(isLoggedInUser: false, otherUser: user)
-                                    } label: {
+                                    ZStack {
                                         UserPreview(
                                             user: user,
                                             topItem: thumbnailImage
                                         )
-                                        .onAppear(perform: {
-                                            print("Running on appear")
-                                            if let lastPost = posts.last {
-                                                if lastPost.id == post.id {
-                                                    print("This is the last post (" + String(lastPost.id) + " == " + String(post.id) + ")")
-                                                    if !self.isFetching {
-                                                        _fetchNextPage()
-                                                    }
+                                        NavigationLink {
+                                            ProfileView(isLoggedInUser: false, otherUser: user)
+                                        } label: {
+                                            
+                                        }
+                                        .padding([.top], 8)
+                                        .padding([.bottom], 8)
+                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                    }
+                                    .onAppear(perform: {
+                                        print("Running on appear")
+                                        if let lastPost = posts.last {
+                                            if lastPost.id == post.id {
+                                                print("This is the last post (" + String(lastPost.id) + " == " + String(post.id) + ")")
+                                                if !self.isFetching {
+                                                    _fetchNextPage()
                                                 }
                                             }
-                                        })
-                                    }
+                                        }
+                                    })
                                 }
                             }
+                            .listRowSeparator(.hidden)
                         }
                     }
-                    .padding([.top], -40)
+                    .padding(.top, 0)
                     .listStyle(PlainListStyle())
-                    .listRowSeparator(Visibility.hidden)
                     .refreshable {
                         Task.detached {
                             await self._fetchFirstPage()

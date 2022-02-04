@@ -18,18 +18,8 @@ struct CovetView : View {
     var body : some View {
         TabView {
             NavigationView {
-                
                 FeedView()
-//                    .navigationBarItems(
-//                        trailing: Button(
-//                            action: {
-//                                self.showCreatePostView = true
-//                            }
-//                        )
-//                        {
-//                            Image(systemName: "plus")
-//                        }
-//                    )
+                    .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             Image("Covet_Logo_BW")
