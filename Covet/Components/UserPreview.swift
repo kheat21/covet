@@ -17,7 +17,7 @@ struct UserPreview: View {
             makeCovetC(size: 60, user: user)
                 .padding(Edge.Set.leading, 0)
             CovetSquareZoomedInItem(
-                url: topItem, size: 250,
+                url: topItem, size: AppConfig.getCovetImageWidth(),
                 topBorderWidth: 4,
                 leftBorderWidth: 4,
                 bottomBorderWidth: 4,

@@ -57,6 +57,7 @@ struct ProfileView: View {
                             .navigationBarTitle(auth.currentCovetUser?.username ?? "My Profile")
                             .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
                             .navigationBarItems(
+                                leading: makeCovetC(size: 36, user: me, textSize: 12),
                                 trailing: NavigationLink(isActive: self.$showManagerView, destination: {
                                     HamburgerOptionsView(user: me)
                                 }, label: {
@@ -86,7 +87,7 @@ struct ProfileView: View {
                             AlertToast(displayMode: .hud, type: .error(Color.red), title: "Error getting user")
                         })
                 } else {
-                    Text("loading...")
+                    ProgressView()
                         .onAppear {
                             doPopulateRemoteUser()
                         }
@@ -155,13 +156,20 @@ struct UserProfile : View {
                     // Show the most recent one
                     CovetSquareZoomedInItem(
                         url: posts[0].products![0].image_url,
-                        size: 250,
+                        size: AppConfig.getCovetImageWidth(),
                         topBorderWidth: 8,
                         leftBorderWidth: 8,
                         bottomBorderWidth: 8,
                         rightBorderWidth: 8
                     )
-                    .frame(width: 250, height: 250, alignment: .top)
+                    .frame(
+                        width: AppConfig.getCovetImageWidth(),
+                        height: AppConfig.getCovetImageWidth(),
+                        alignment: .top
+                    )
+                    .onTapGesture {
+                        self.showPostInDetailView = posts[0]
+                    }
                     
                     // Space them out so that the scroll view doesn't
                     // get pushed too low or too high

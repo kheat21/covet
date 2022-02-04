@@ -222,6 +222,18 @@ class API {
         )
     }
     
+    public static func removeRelationshipWith(userId: Int) async throws -> SimpleSuccessOrFailureResponseObject? {
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/user/relationships/remove_with",
+            method: .post,
+            data: [
+                "user": userId
+            ],
+            SimpleSuccessOrFailureResponseObject.self
+        )
+    }
+    
     public static func requestDeletion() async throws -> SimpleSuccessOrFailureResponseObject? {
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),

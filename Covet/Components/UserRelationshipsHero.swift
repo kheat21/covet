@@ -37,16 +37,16 @@ struct UserRelationshipsHero: View {
                 NavigationLink(
                     destination: UserManagerView(
                         relationships: followers,
-                        navbarTitle: AppConfig.FOLLOWS_ME_ALIAS
+                        navbarTitle: AppConfig.FOLLOWER_TIER_ALIAS
                     )) {
                     VStack {
                         Text(String(followerCount()))
                             .font(.system(size: 20, weight: .bold, design: .rounded))
-                        Text(AppConfig.FOLLOWS_ME_ALIAS)
+                        Text(AppConfig.FOLLOWER_TIER_ALIAS)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
                     }
-                    .fixedSize()
-                    .frame(width: 90, height: nil, alignment: Alignment.center)
+//                    .fixedSize()
+//                    .frame(width: 90, height: nil, alignment: Alignment.center)
                 }
                 .foregroundColor(Color.covetGreen())
                 .disabled(followers == nil)
@@ -63,8 +63,8 @@ struct UserRelationshipsHero: View {
                         Text(AppConfig.I_FOLLOW_ALIAS)
                             .font(.system(size: 12, weight: .medium, design: .rounded))
                     }
-                    .fixedSize()
-                    .frame(width: 90, height: nil, alignment: Alignment.center)
+//                    .fixedSize()
+//                    .frame(width: 90, height: nil, alignment: Alignment.center)
                 }
                 .foregroundColor(Color.covetGreen())
                 .disabled(following == nil)

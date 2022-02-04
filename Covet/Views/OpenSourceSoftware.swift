@@ -83,6 +83,12 @@ struct OpenSourceSoftware: View {
             license: .MIT,
             licenseLink: "https://github.com/socketio/socket.io-client-swift/blob/master/LICENSE"
         ),
+        Attribution(
+            name: "Kingfisher",
+            link: "https://github.com/onevcat/Kingfisher",
+            license: .MIT,
+            licenseLink: "https://github.com/onevcat/Kingfisher/blob/master/LICENSE"
+        )
     ]
     
     var body: some View {

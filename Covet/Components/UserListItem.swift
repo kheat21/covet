@@ -46,14 +46,7 @@ struct UserListItem: View {
                             text: chipContents.text,
                             color: Color.accentColor
                         )
-                        .onTapGesture {
-                            if hasPendingRequestOutgoing() {
-                                print("Has pending outgoing request")
-                                doCancelPendingRequest()
-                            } else {
-                                print("has no pending outgoing request")
-                            }
-                        }
+                        .foregroundColor(Color.white)
                     }
                 }
                 if self.showPendingOptions {
@@ -101,11 +94,11 @@ struct UserListItem: View {
                     if user.currentUserFollows() || user.currentUserFriend() {
                         removeButton()
                     }
+                } else {
+                    cancelPendingButton()
                 }
             }
-            if let rel = self.relationship {
-                removeButton()
-            }
+            removeButton()
             blockButton(user: user)
             Button("Cancel", role: .cancel) { }
         } message: {
@@ -138,7 +131,13 @@ struct UserListItem: View {
     
     func removeButton() -> some View {
         return Button("Remove", role: .destructive) {
-            doRemoveRelationship()
+            doRemoveRelationship(user: user)
+        }
+    }
+    
+    func cancelPendingButton() -> some View {
+        return Button("Cancel pending request", role: .none) {
+            doRemoveRelationship(user: user)
         }
     }
     
@@ -163,30 +162,54 @@ struct UserListItem: View {
         }
     }
     
-    func doRemoveRelationship() {
-        
+    func doRemoveRelationship(user: CovetUser) {
+        if self.isSaving { return }
+        Task.detached {
+            await updateUIForRemoveRelationshipRequest(saving: true, success: nil)
+            var success = false
+            do {
+                if let resp = try await API.removeRelationshipWith(userId: user.id) {
+                    success = resp.success
+                    if success {
+                        await auth.refreshUser()
+                    }
+                }
+            } catch {}
+            await updateUIForRemoveRelationshipRequest(saving: false, success: success)
+        }
     }
     
     func doRemoveRelationship(relationship: CovetUserRelationship) {
         if self.isSaving { return }
-        self.isSaving = true
-        Task {
+        Task.detached {
+            await self.setLoading(value: true)
+            var success = false
             do {
                 print("Removing relationship...")
                 if let resp = try await API.removeRelationship(relationshipId: relationship.id) {
+                    success = resp.success
                     if resp.success {
                         await auth.refreshUser()
-                        if let removedCallback = self.onListItemRemoved {
-                            removedCallback()
-                        }
                     }
-                    self.isSaving = false
                 }
-            } catch {
-//                self.shouldShowErrorToast = true
-//                self.errorToastContents = "Try again later"
-            }
-            self.isSaving = false
+            } catch {}
+            await self.updateUIForRemoveRelationshipRequest(saving: false, success: success)
+            await callItemRemovedListener()
+        }
+    }
+    
+    @MainActor
+    func updateUIForRemoveRelationshipRequest(saving: Bool, success: Bool?) {
+        self.isSaving = saving
+        if success == true {
+            self.relationship = nil
+        }
+    }
+    
+    @MainActor
+    func callItemRemovedListener() {
+        if let removedCallback = self.onListItemRemoved {
+            removedCallback()
         }
     }
     
@@ -205,23 +228,23 @@ struct UserListItem: View {
         }
     }
     
-    func doCancelPendingRequest() {
-        Task {
-            await self.setLoading(value: true)
-            
-            var success = false
-            
-            if let rel = self.relationship {
-                if let res = try await API.removeRelationship(relationshipId:  rel.id) {
-                    success = res.success
-                }
-            }
-            if success {
-                await auth.refreshUser()
-            }
-            await self.setLoading(value: false)
-        }
-    }
+//    func doCancelPendingRequest() {
+//        Task.detached {
+//            await self.setLoading(value: true)
+//
+//            var success = false
+//
+//            if let rel = self.relationship {
+//                if let res = try await API.removeRelationship(relationshipId:  rel.id) {
+//                    success = res.success
+//                }
+//            }
+//            if success {
+//                await auth.refreshUser()
+//            }
+//            await self.setLoading(value: false)
+//        }
+//    }
     
     func actOnPendingRequest(value: Bool) async -> Bool {
         if let rel = self.relationship {

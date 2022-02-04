@@ -68,6 +68,7 @@ struct SearchView: View {
                                     user: user,
                                     clickable: shouldAllowClicksForUser(user: user)
                                 )
+                                    .foregroundColor(Color.black)
                             }
                         }
                     
