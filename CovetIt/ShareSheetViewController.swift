@@ -204,7 +204,7 @@ class ShareSheetViewController: UIViewController {
                 self.skipButton.tintColor = UIColor.covetGreen
             case .PREVIEW:
                 self.buildPreviewPage()
-                self.buildBottomButton(enabledByDefault: true, text: "POST")
+                self.buildBottomButton(enabledByDefault: true, text: "COVET IT")
                 self.skipButton.isEnabled = false
                 self.skipButton.tintColor = UIColor.clear
             default:
