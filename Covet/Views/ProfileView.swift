@@ -22,7 +22,7 @@ struct ProfileView: View {
     @State var showManagerView: Bool = false
 
     var body: some View {
-        NavigationView {            
+        //NavigationView {
             VStack {
                 NavigationLink(isActive: self.$showManagerView, destination: {
                     if let user = self.getUser() {
@@ -84,20 +84,20 @@ struct ProfileView: View {
                     }
                 }
             }
-            .navigationBarHidden(getCurrentUserHandle() == nil)
-            .navigationBarTitle(getCurrentUserHandle() ?? "Loading...")
-            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-            .navigationBarItems(
-                trailing: Button(
-                    action: {
-                        self.showManagerView = true
-                    }
-                )
-                {
-                    Image(systemName: "line.horizontal.3")
-                }
-            )
-        }
+//            .navigationBarHidden(getCurrentUserHandle() == nil)
+//            .navigationBarTitle(getCurrentUserHandle() ?? "Loading...")
+//            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+//            .navigationBarItems(
+//                trailing: Button(
+//                    action: {
+//                        self.showManagerView = true
+//                    }
+//                )
+//                {
+//                    Image(systemName: "line.horizontal.3")
+//                }
+//            )
+        // }
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in

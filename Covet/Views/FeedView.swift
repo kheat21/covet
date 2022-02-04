@@ -18,6 +18,8 @@ struct FeedView: View {
     @State var currentPage: Int = 1
     @State var posts: [Post]? = nil
     
+//    @State var openUser: CovetUser? = nil
+    
     let image3 = "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg"
     
     func _fetchFirstPage() {
@@ -77,6 +79,7 @@ struct FeedView: View {
                                         )
                                         NavigationLink {
                                             ProfileView(isLoggedInUser: false, otherUser: user)
+                                                .navigationBarTitle(user.username)
                                         } label: {
                                             
                                         }
@@ -96,6 +99,9 @@ struct FeedView: View {
                                             }
                                         }
                                     })
+//                                    .onTapGesture {
+//                                        self.openUser = user
+//                                    }
                                 }
                             }
                             .listRowSeparator(.hidden)
@@ -114,6 +120,9 @@ struct FeedView: View {
         .toast(isPresenting: $isFetching, alert: {
             AlertToast(displayMode: .alert, type: .loading, title: nil)
         })
+//        .sheet(item: $openUser, onDismiss: nil, content: { item in
+//            ProfileView(isLoggedInUser: false, otherUser: item)
+//        })
         .task {
             _fetchFirstPage()
         }
