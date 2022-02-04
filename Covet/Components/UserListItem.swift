@@ -48,7 +48,10 @@ struct UserListItem: View {
                         )
                         .onTapGesture {
                             if hasPendingRequestOutgoing() {
-                                print("Cancel outgoing pending request")
+                                print("Has pending outgoing request")
+                                doCancelPendingRequest()
+                            } else {
+                                print("has no pending outgoing request")
                             }
                         }
                     }
@@ -86,21 +89,22 @@ struct UserListItem: View {
             }
         })
         .sheet(item: $navigateToUser) { item in
-            ProfileView(isLoggedInUser: false, userId: item.id)
+            ProfileView(userId: item.id)
         }
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
             if user.allRelationshipInformationPresent() {
                 if !hasPendingRequestOutgoing() {
                     if !user.currentUserFollows() && !user.currentUserFriend() {
                         followButton(user: user)
-                    }
-                    if !user.currentUserFriend() {
                         befriendButton(user: user)
+                    }
+                    if user.currentUserFollows() || user.currentUserFriend() {
+                        removeButton()
                     }
                 }
             }
             if let rel = self.relationship {
-                removeButton(relationship: rel)
+                removeButton()
             }
             blockButton(user: user)
             Button("Cancel", role: .cancel) { }
@@ -132,9 +136,9 @@ struct UserListItem: View {
         }
     }
     
-    func removeButton(relationship: CovetUserRelationship) -> some View {
+    func removeButton() -> some View {
         return Button("Remove", role: .destructive) {
-            doRemoveRelationship(relationship: relationship)
+            doRemoveRelationship()
         }
     }
     
@@ -157,6 +161,10 @@ struct UserListItem: View {
             }
             self.isSaving = false
         }
+    }
+    
+    func doRemoveRelationship() {
+        
     }
     
     func doRemoveRelationship(relationship: CovetUserRelationship) {
@@ -194,6 +202,24 @@ struct UserListItem: View {
                 }
             }
             self.isSaving = false
+        }
+    }
+    
+    func doCancelPendingRequest() {
+        Task {
+            await self.setLoading(value: true)
+            
+            var success = false
+            
+            if let rel = self.relationship {
+                if let res = try await API.removeRelationship(relationshipId:  rel.id) {
+                    success = res.success
+                }
+            }
+            if success {
+                await auth.refreshUser()
+            }
+            await self.setLoading(value: false)
         }
     }
     
@@ -273,5 +299,9 @@ struct UserListItem: View {
             
         return nil
         
+    }
+    
+    @MainActor func setLoading(value: Bool) {
+        self.isSaving = value
     }
 }

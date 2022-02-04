@@ -55,16 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FAE4D503-E75E-4A3C-8D6A-B0408910D3F7"
-            shouldBeEnabled = "Yes"
+            uuid = "B2D6DA63-415D-4CA6-98DA-30E82C5A9818"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Covet/Services/AuthService.swift"
+            filePath = "Covet/Views/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "setWorking(state:firstTime:)"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "doPopulateRemoteUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -78,7 +78,7 @@ struct FeedView: View {
                                             topItem: thumbnailImage
                                         )
                                         NavigationLink {
-                                            ProfileView(isLoggedInUser: false, otherUser: user)
+                                            ProfileView(userId: user.id)
                                                 .navigationBarTitle(user.username)
                                         } label: {
                                             

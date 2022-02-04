@@ -47,23 +47,7 @@ struct CovetView : View {
                 }
                 .tag(1)
             
-            NavigationView {
-                ProfileView(isLoggedInUser: true)
-                    .navigationBarHidden(false)
-                    .navigationBarTitle(auth.currentCovetUser?.username ?? "My Profile")
-                    .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-                    .navigationBarItems(
-                        trailing: Button(
-                            action: {
-                                print("1")
-                                // self.showManagerView = true
-                            }
-                        )
-                        {
-                            Image(systemName: "line.horizontal.3")
-                        }
-                    )
-            }
+            ProfileView(isMe: true)
             .tabItem {
                 Label("Profile", systemImage: "person.fill")
                     .foregroundColor(Color.covetGreen())

@@ -18,11 +18,9 @@ class API {
     }
     
     public static func getUser(user_id: Int?) async throws -> CovetUserResponseObject? {
-        print(user_id)
         let params = user_id != nil ? [
             "user": String(user_id!)
         ] : nil
-        print(params)
         let resp = try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/get",
