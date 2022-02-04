@@ -235,12 +235,12 @@ func nameToInitials(str: String) -> String {
         return ""
     }
     else if components.count == 1 {
-        return components[0].firstCharacter()
+        return components[0].firstCharacter().uppercased()
     }
     else {
         let firstComponent = components[0]
         let lastComponent = components[components.count - 1]
-        return firstComponent.firstCharacter() + lastComponent.firstCharacter()
+        return firstComponent.firstCharacter().uppercased() + lastComponent.firstCharacter().uppercased()
     }
 }
 
@@ -252,12 +252,14 @@ func getInitials(str: String) -> String {
         return ""
     } else if components.count == 1 {
         if components[0].count == 1 {
-            return components[0].firstCharacter()
+            return components[0].firstCharacter().uppercased()
         } else {
-            return components[0].firstNCharacters(n: 2)
+            return components[0].firstNCharacters(n: 2).uppercased()
         }
     } else {
-        return components[0].firstCharacter() + components[components.count-1].firstCharacter()
+        return (
+            components[0].firstCharacter().uppercased() + components[components.count-1].firstCharacter().uppercased()
+        )
     }
 }
 
