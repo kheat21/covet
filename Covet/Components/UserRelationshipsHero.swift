@@ -37,13 +37,16 @@ struct UserRelationshipsHero: View {
                 NavigationLink(
                     destination: UserManagerView(
                         relationships: followers,
-                        navbarTitle: "Followers"
+                        navbarTitle: AppConfig.FOLLOWS_ME_ALIAS
                     )) {
                     VStack {
                         Text(String(followerCount()))
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                        Text("followers")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                        Text(AppConfig.FOLLOWS_ME_ALIAS)
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
                     }
+                    .fixedSize()
+                    .frame(width: 90, height: nil, alignment: Alignment.center)
                 }
                 .foregroundColor(Color.covetGreen())
                 .disabled(followers == nil)
@@ -52,13 +55,16 @@ struct UserRelationshipsHero: View {
                 NavigationLink(
                     destination: UserManagerView(
                         relationships: following,
-                        navbarTitle: "Following"
+                        navbarTitle: AppConfig.I_FOLLOW_ALIAS
                     )) {
                     VStack {
                         Text(String(followingCount()))
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                        Text("following")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                        Text(AppConfig.I_FOLLOW_ALIAS)
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
                     }
+                    .fixedSize()
+                    .frame(width: 90, height: nil, alignment: Alignment.center)
                 }
                 .foregroundColor(Color.covetGreen())
                 .disabled(following == nil)
@@ -67,12 +73,17 @@ struct UserRelationshipsHero: View {
                 NavigationLink(
                     destination: UserManagerView(
                         relationships: friends,
-                        navbarTitle: "Friends"
+                        navbarTitle: AppConfig.FRIEND_TIER_ALIAS_PLURAL
                     )) {
                     VStack {
                         Text(String(friendCount()))
-                            .font(.system(size: 24, weight: .bold, design: .rounded))
-                        Text("friends")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                        Text(AppConfig.FRIEND_TIER_ALIAS_PLURAL)
+                            .font(.system(size: 12, weight: .medium, design: .rounded))
+//                            .fixedSize()
+//                            .frame(width: 90, height: nil, alignment: Alignment.center)
+//                            .multilineTextAlignment(.center)
+//                            .lineLimit(nil)
                     }
                 }
                 .foregroundColor(Color.covetGreen())

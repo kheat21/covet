@@ -25,7 +25,7 @@ struct CovetC: View {
     var body: some View {
         ZStack(alignment: Alignment.center) {
             Text(text)
-                .font(.system(size: 10, weight: .bold, design: .default))
+                .font(.system(size: 14, weight: .medium, design: .default))
                 .padding(Edge.Set.leading, 2)
             Image("Covet_C")
                 .resizable()

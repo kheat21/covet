@@ -44,13 +44,14 @@ struct RecovetView: View {
                             .font(.system(size: 18, weight: .thin, design: .default))
                             //.frame(minWidth: 512, height: 128, alignment: .center)
                             .frame(width: nil, height: 128, alignment: Alignment.center)
+                            .padding(EdgeInsets(top: 8, leading: 16,
+                                                bottom: 8, trailing: 16))
+                            //.background(Color.white)
                     }
-                    .border(width: 1, edges: [.bottom, .top, .leading, .trailing], color: Color.covetGreen())
-                    .padding([.leading, .trailing], 16)
+                    
+                    Spacer().frame(height: 40)
                 }
-                
-                
-                
+                .shadow(color: Color.gray.opacity(0.4), radius: 3, x: 1, y: 2)
             }
             .navigationBarTitle("ReCovet it!")
             .navigationBarTitleDisplayMode(.inline)

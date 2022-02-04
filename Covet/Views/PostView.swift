@@ -25,53 +25,70 @@ struct PostView: View {
     var body: some View {
         
         NavigationView {
-            VStack {
-                HStack {
-                    Button {
-                        if !self.isLikedStatusLoading && !self.isLikedStatusSaving {
-                            Task { await self.toggleLike() }
-                        }
-                    } label: {
-                        if self.isLikedStatusSaving {
-                            ProgressView()
-                        } else {
-                            self._likeButtonImage()
-                                .foregroundColor(
-                                    self.isLikedStatusLoading
-                                        ? Color.clear : Color.black
-                                )
-                        }
-                    }
-                    .padding([.leading], 125)
-                    Button {
-                        self.showingShareActionSheet = true
-                    } label: {
-                        Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(Color.black)
-                    }
-                    Button {
-                        self.showingRecovetActionSheet = true
-                    } label: {
-                        Image("Recovet")
-                    }
-                    Button {
-                        if let postUser = self.post.user {
-                            if let address = postUser.address {
-                                UIPasteboard.general.string = address
-                                self.showingAddressCopiedToast = true
+            ScrollView {
+                VStack {
+                    HStack {
+                        Button {
+                            if !self.isLikedStatusLoading && !self.isLikedStatusSaving {
+                                Task { await self.toggleLike() }
+                            }
+                        } label: {
+                            if self.isLikedStatusSaving {
+                                ProgressView()
                             } else {
-                                self.showingNoAddressToCopyToast = true
+                                self._likeButtonImage()
+                                    .foregroundColor(
+                                        self.isLikedStatusLoading
+                                            ? Color.clear : Color.black
+                                    )
                             }
                         }
-                        
-                    } label: {
-                        Image(systemName: "gift").foregroundColor(Color.black)
+                        .padding([.leading], 125)
+                        Button {
+                            self.showingShareActionSheet = true
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(Color.black)
+                        }
+                        Button {
+                            self.showingRecovetActionSheet = true
+                        } label: {
+                            Image("Recovet")
+                        }
+                        Button {
+                            if let postUser = self.post.user {
+                                if let address = postUser.address {
+                                    UIPasteboard.general.string = address
+                                    self.showingAddressCopiedToast = true
+                                } else {
+                                    self.showingNoAddressToCopyToast = true
+                                }
+                            }
+                            
+                        } label: {
+                            Image(systemName: "gift").foregroundColor(Color.black)
+                        }
+                    }
+                    .frame(width: nil, height: 20, alignment: Alignment.trailing)
+                    PostDisplay(post: self.post)
+                    Spacer().frame(height: 40)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        if let u = self.post.user {
+                            makeCovetC(size: 36, user: u)
+                        } else {
+                            EmptyView()
+                        }
+                    }
+                    ToolbarItem(placement: .principal) {
+                        Image("Covet_Logo_Colored")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: nil, height: 20, alignment: Alignment.center)
                     }
                 }
-                .frame(width: nil, height: 40, alignment: Alignment.trailing)
-                //.background(Color.cyan)
-                PostDisplay(post: self.post)
-                Spacer()
             }
             .toast(isPresenting: self.$showingAddressCopiedToast, duration: 2, tapToDismiss: true, alert: {
                 AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.covetGreen()), title: "Copied Address", subTitle: "Now use that to checkout on the merchant's website", style: nil)
@@ -93,21 +110,6 @@ struct PostView: View {
             .sheet(isPresented: $showingRecovetActionSheet, onDismiss: nil, content: {
                 RecovetView(post: self.post)
             })
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if let u = self.post.user {
-                        makeCovetC(size: 36, user: u)
-                    } else {
-                        EmptyView()
-                    }
-                }
-                ToolbarItem(placement: .principal) {
-                    Image("Covet_Logo_Colored")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: nil, height: 20, alignment: Alignment.center)
-                }
-            }
             .task {
                 do {
                     if let likeStatus = try await API.likes(post_id: self.post.id) {

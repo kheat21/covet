@@ -42,6 +42,7 @@ struct PostDisplay : View {
             .padding([.top, .bottom], 8)
             if let caption = self.post.text {
                 Text(caption)
+                    .lineLimit(5)
                     .font(.system(size: 18, weight: .thin, design: .rounded))
                     .padding([.leading, .trailing], 16)
             }

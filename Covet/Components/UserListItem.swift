@@ -125,13 +125,13 @@ struct UserListItem: View {
     }
     
     func followButton(user: CovetUser) -> some View {
-        return Button("Follow") {
+        return Button(AppConfig.FOLLOWER_TIER_ALIAS) {
             doUserManagement(user: user, relationshipType: .Following)
         }
     }
     
     func befriendButton(user: CovetUser) -> some View {
-        return Button("Friend") {
+        return Button(AppConfig.FRIEND_TIER_ALIAS) {
             doUserManagement(user: user, relationshipType: .Friends)
         }
     }
@@ -266,23 +266,23 @@ struct UserListItem: View {
         }
         
         if user.currentUserFriend() {
-            text = "FRIENDS"
-            icon = "person.2"
+            text = AppConfig.FRIEND_TIER_ALIAS
+            icon = AppConfig.FRIEND_TIER_ICON
         }
         
         if user.currentUserFollows() && user.currentUserFollowedBy() {
-            text = "FOLLOW"
-            icon = "arrow.right.arrow.left"
+            text = AppConfig.FOLLOWER_TIER_ALIAS
+            icon = AppConfig.FOLLOWER_TIER_ICON_FILLED
         }
         
         if user.currentUserFollows() && !user.currentUserFollowedBy() {
-            text = "FOLLOW"
-            icon = "arrow.right"
+            text = AppConfig.I_FOLLOW_ALIAS
+            icon = AppConfig.FOLLOWER_TIER_ICON
         }
         
         if !user.currentUserFollows() && user.currentUserFollowedBy() {
-            text = "FOLLOWS YOU"
-            icon = "arrow.left"
+            text = AppConfig.FOLLOWS_ME_ALIAS
+            icon = AppConfig.FOLLOWER_TIER_ICON
         }
         
         if user.currentUserPendingOutgoing() {

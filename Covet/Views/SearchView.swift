@@ -31,18 +31,13 @@ struct SearchView: View {
     @State var error: Bool = false;
     
 //    @State private var navigateToUserView: Bool = false
-//    @State private var navigateToUserId: Int = -1
+    @State private var navigateToPost: Post? = nil
         
     private var gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
     
     var body: some View {
         NavigationView {
             VStack {
-//                NavigationLink(isActive: self.$navigateToUserView, destination: {
-//                    ProfileView(id: self.navigateToUserId)
-//                }, label: {
-//                    EmptyView()
-//                })
                 HStack {
                     Spacer().frame(width: 8)
                     TextField("Search", text: $searchText, prompt: Text("A person, product, etc.."))
@@ -66,16 +61,20 @@ struct SearchView: View {
                         
                         // Show the users first
                         ForEach(results.users.prefix(5)) { user in
-                            UserListItem(
-                                user: user,
-                                clickable: shouldAllowClicksForUser(user: user)
-                            )
+                            NavigationLink {
+                                ProfileView(userId: user.id)
+                            } label: {
+                                UserListItem(
+                                    user: user,
+                                    clickable: shouldAllowClicksForUser(user: user)
+                                )
+                            }
                         }
                     
                         // Show the posts next
                         if let posts = results.posts {
-                            ImageGrid(images: results.posts, selected: { i in
-                                print(i)
+                            ImageGrid(images: results.posts, selected: { p in
+                                self.navigateToPost = p
                             })
                         }
                     }
@@ -85,11 +84,15 @@ struct SearchView: View {
             
             }
             .navigationTitle("Search")
+            .navigationBarTitleDisplayMode(.inline)
             .toast(isPresenting: $isSearching, alert: {
                 AlertToast(displayMode: .alert, type: .loading)
             })
             .toast(isPresenting: $error) {
                 AlertToast(displayMode: .hud, type: .error(Color.red), title: "Search failed", subTitle: "Try again")
+            }
+            .sheet(item: self.$navigateToPost, onDismiss: nil) { item in
+                PostView(post: item)
             }
         }
     }
