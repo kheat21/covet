@@ -7,6 +7,8 @@
 
 import SwiftUI
 import UIKit
+import Kingfisher
+
 
 struct CovetSquareBlurredItem: View {
     
@@ -59,6 +61,22 @@ struct CovetSquareZoomedInItem: View {
     var rightBorderWidth: CGFloat?
     
     var body: some View {
+        KFImage.url(URL(string: self.url))
+          .loadDiskFileSynchronously()
+          //.cacheMemoryOnly()
+          .onProgress { receivedSize, totalSize in  }
+          .onSuccess { result in  }
+          .onFailure { error in }
+          .resizable()
+          .scaledToFill()
+          .frame(width: size, height: size)
+          .clipped()
+          .border(width: topBorderWidth ?? 0, edges: [.top], color: Color.covetGreen())
+          .border(width: leftBorderWidth ?? 0, edges: [.leading], color: Color.covetGreen())
+          .border(width: bottomBorderWidth ?? 0, edges: [.bottom], color: Color.covetGreen())
+          .border(width: rightBorderWidth ?? 0, edges: [.trailing], color: Color.covetGreen())
+        
+        /*
         AsyncImage(
             url: URL(string: self.url),
             content: { image in
@@ -78,8 +96,7 @@ struct CovetSquareZoomedInItem: View {
                     .frame(width: size, height: size, alignment: SwiftUI.Alignment.center)
             }
         )
-            //.background(Color.yellow)
-            
+        */
     }
 }
 

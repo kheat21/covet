@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 import SocketIO
 
 class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {

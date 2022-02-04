@@ -699,7 +699,6 @@
 			mainGroup = EB453037274BF993004395CA;
 			packageReferences = (
 				A4BA61F427AC7D7A001E39DA /* XCRemoteSwiftPackageReference "AlertToast" */,
-				A4BA61F727AC7DAA001E39DA /* XCRemoteSwiftPackageReference "Refresh" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -1468,14 +1467,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
-			};
-		};
-		A4BA61F727AC7DAA001E39DA /* XCRemoteSwiftPackageReference "Refresh" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wxxsw/Refresh";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

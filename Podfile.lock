@@ -393,6 +393,7 @@ PODS:
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher/Core (~> 1.5)
   - GTMSessionFetcher/Core (1.7.0)
+  - Kingfisher (7.1.2)
   - leveldb-library (1.22.1)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -423,8 +424,8 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - FirebaseUI (~> 8.0)
+  - Kingfisher (~> 7.0)
   - PromiseKit (~> 6.8)
-  - SDWebImage (~> 5.0)
   - Socket.IO-Client-Swift (~> 16.0.1)
   - SwiftSoup
   - SwiftyJSON (~> 4.0)
@@ -455,6 +456,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMAppAuth
     - GTMSessionFetcher
+    - Kingfisher
     - leveldb-library
     - nanopb
     - PromiseKit
@@ -490,6 +492,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromiseKit: 3b2b6995e51a954c46dbc550ce3da44fbfb563c5
@@ -500,6 +503,6 @@ SPEC CHECKSUMS:
   SwiftSoup: 58e6228d50e89645f7345a3729929c5c2f25e4f2
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 22bc780e328242fc81d85566302cfda2a542097d
+PODFILE CHECKSUM: 5942f6d1489b11b69cb929eadadc030e1a9a05d0
 
 COCOAPODS: 1.11.2
