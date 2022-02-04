@@ -69,7 +69,8 @@ struct FeedView: View {
                         ForEach(Array(posts.enumerated()), id: \.offset) { index, post in
                             ZStack {
                                 if let thumbnailImage = getThumbnailImageURLForPost(post: post), let user = post.user {
-                                    ZStack {
+                                    HStack {
+                                        Spacer()
                                         UserPreview(
                                             user: user,
                                             topItem: thumbnailImage
@@ -82,6 +83,7 @@ struct FeedView: View {
                                         .padding([.top], 8)
                                         .padding([.bottom], 8)
                                         .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                        Spacer()
                                     }
                                     .onAppear(perform: {
                                         print("Running on appear")
