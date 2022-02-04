@@ -49,10 +49,7 @@ class AuthService: NSObject, ObservableObject {
     
     func firstFetch() -> Void {
         Task.detached {
-            await self.setWorking(state: true, firstTime: true)
             self.refreshUser(first: true)
-            await self.setWorking(state: false)
-//            self.refreshExtensionToken()
         }
     }
     
@@ -91,6 +88,7 @@ class AuthService: NSObject, ObservableObject {
     
     @MainActor
     func setWorking(state: Bool, firstTime: Bool = false) async {
+        print("--> setWorking(state: " + String(state) + ", firstTime: " + String(firstTime))
         self.gettingCurrentCovetUser = state
         if firstTime {
             self.gettingCurrentCovetUserFirstTime = true

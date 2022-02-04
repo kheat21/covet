@@ -62,7 +62,6 @@ struct ProfileView: View {
                                     bottomBorderWidth: 8,
                                     rightBorderWidth: 8
                                 )
-                                .background(Color.brown)
                                 .frame(width: 250, height: 250, alignment: .top)
                                 
                                 // Space them out so that the scroll view doesn't
