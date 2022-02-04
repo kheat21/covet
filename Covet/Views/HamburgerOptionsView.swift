@@ -20,29 +20,68 @@ struct HamburgerOptionsView: View {
     
     var body: some View {
         List {
-            if auth.currentCovetUser != nil {
-                if let pending = auth.currentCovetUser!.pending_incoming {
-                    if pending.count > 0 {
-                        NavigationLink(
-                            destination: UserManagerView(
-                                relationships: pending,
-                                navbarTitle: "Requested Friends/Followers"
-                            )) {
-                            Text("Follow and Friend Requests")
+            Section("My Covet Profile") {
+                if auth.currentCovetUser != nil {
+                    if let pending = auth.currentCovetUser!.pending_incoming {
+                        if pending.count > 0 {
+                            NavigationLink(
+                                destination: UserManagerView(
+                                    relationships: pending,
+                                    navbarTitle: "Requested Friends/Followers"
+                                )) {
+                                Text("Follow and Friend Requests")
+                            }
                         }
                     }
+                    NavigationLink(destination: {
+                        UserSettingsView(
+                            mode: UserSettingsViewPresentationOptions.Modify,
+                            handle: user.username,
+                            name: user.name ?? "",
+                            birthday: nil, // self.user.birthday.p ?? Date(),
+                            privateForFollowing: user.privateForFollowing == 1,
+                            privateForFriending: user.privateForFriending == 1
+                        )
+                    }, label: {
+                        Text("Manage my account")
+                    })
+                    Button(action: {
+                        auth.logout()
+                    }, label: {
+                        Text("Logout")
+                    })
+                } else {
+                    ProgressView()
                 }
-                NavigationLink(destination: {
-                    UserSettingsView(
-                        mode: UserSettingsViewPresentationOptions.Modify,
-                        handle: user.username,
-                        name: user.name ?? "",
-                        birthday: nil, // self.user.birthday.p ?? Date(),
-                        privateForFollowing: user.privateForFollowing == 1,
-                        privateForFriending: user.privateForFriending == 1
+            }
+            Section("Developer & Debugging", content: {
+                PromptedRadioInput(
+                    prompt: "Show developer options",
+                    toggleBackgroundColor: nil,
+                    value: $showDeveloperOptions,
+                    leftEdgePadding: 0
+                )
+                if showDeveloperOptions {
+                    PromptedRadioInput(
+                        prompt: "Show alert when user refreshing",
+                        toggleBackgroundColor: Color.gray,
+                        value: $settings.showNotificationWhenRefreshingUser,
+                        leftEdgePadding: 0
                     )
+                    PromptedRadioInput(
+                        prompt: "Show error if user refresh fails",
+                        toggleBackgroundColor: Color.gray,
+                        value: $settings.showErrorWhenUserRefreshFails,
+                        leftEdgePadding: 0
+                    )
+                }
+            })
+            Section("Compliance", content: {
+                NavigationLink(destination: {
+                    OpenSourceSoftware()
+                        .navigationBarTitle("Thank you")
                 }, label: {
-                    Text("Manage my account")
+                    Text("Open Source Software")
                 })
                 Button(action: {
                     self.shouldShowDeleteAccount = true
@@ -55,41 +94,10 @@ struct HamburgerOptionsView: View {
                         }
                     } else {
                         Text("Delete my account")
+                            .foregroundColor(Color.red)
                     }
                 })
-                Button(action: {
-                    auth.logout()
-                }, label: {
-                    Text("Logout")
-                })
-                NavigationLink(destination: {
-                    OpenSourceSoftware()
-                }, label: {
-                    Text("Open Source Software")
-                })
-            } else {
-                ProgressView()
-            }
-            PromptedRadioInput(
-                prompt: "Show developer options",
-                toggleBackgroundColor: nil,
-                value: $showDeveloperOptions,
-                leftEdgePadding: 0
-            )
-            if showDeveloperOptions {
-                PromptedRadioInput(
-                    prompt: "Show alert when user refreshing",
-                    toggleBackgroundColor: Color.gray,
-                    value: $settings.showNotificationWhenRefreshingUser,
-                    leftEdgePadding: 0
-                )
-                PromptedRadioInput(
-                    prompt: "Show error if user refresh fails",
-                    toggleBackgroundColor: Color.gray,
-                    value: $settings.showErrorWhenUserRefreshFails,
-                    leftEdgePadding: 0
-                )
-            }
+            })
         }
         .confirmationDialog("Permanently delete your account?", isPresented: $shouldShowDeleteAccount) {
             Button("Delete", role: .destructive) {
