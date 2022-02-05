@@ -48,6 +48,7 @@ struct FeedView: View {
             for item in items {
                 posts!.append(item)
             }
+            self.posts = self.posts!.removingDuplicates()
             if items.count > 0 {
                 self.currentPage += 1;
             }

@@ -61,15 +61,15 @@ struct SearchView: View {
                         
                         // Show the users first
                         ForEach(results.users.prefix(5)) { user in
-                            NavigationLink {
-                                ProfileView(userId: user.id)
-                            } label: {
+//                            NavigationLink {
+//                                ProfileView(userId: user.id)
+//                            } label: {
                                 UserListItem(
                                     user: user,
                                     clickable: shouldAllowClicksForUser(user: user)
                                 )
-                                    .foregroundColor(Color.black)
-                            }
+//                                .foregroundColor(Color.black)
+//                            }
                         }
                     
                         // Show the posts next

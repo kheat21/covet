@@ -52,6 +52,7 @@
 		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
 		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A4A49CDB27ADC76F00F2AAB7 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */; };
+		A4A49CDD27AE4D3600F2AAB7 /* PostArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */; };
 		A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */; };
 		A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */; };
 		A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */; };
@@ -199,6 +200,7 @@
 		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
+		A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArray.swift; sourceTree = "<group>"; };
 		A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceSoftware.swift; sourceTree = "<group>"; };
 		A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerOptionsView.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				EB724CFD2780C2650076593C /* JSDictExtension.swift */,
 				A4CA973727AB1BE80081616D /* Binding.swift */,
 				A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */,
+				A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -965,6 +968,7 @@
 				A42B07AA27A5F5B100667216 /* PostView.swift in Sources */,
 				EB453095274C41DE004395CA /* CovetUser.swift in Sources */,
 				EB453078274C16C2004395CA /* UserPreview.swift in Sources */,
+				A4A49CDD27AE4D3600F2AAB7 /* PostArray.swift in Sources */,
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
 				A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */,

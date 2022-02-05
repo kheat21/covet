@@ -25,14 +25,20 @@ struct UserListItem: View {
     
     @State var isSaving: Bool = false
     
+    @State private var navigateToUserProfile: Bool = false
     @State private var navigateToUser: CovetUser? = nil
     
     var body: some View {
-//        NavigationLink(isActive: self.$navigateToUserView, destination: {
-//            ProfileView(id: self.navigateToUserId)
-//        }, label: {
-//            EmptyView()
-//        })
+        NavigationLink(isActive: self.$navigateToUserProfile, destination: {
+            if let usr = self.navigateToUser {
+                ProfileView(userId: usr.id)
+                    .navigationBarTitle(usr.username)
+            } else {
+                EmptyView()
+            }
+        }, label: {
+            EmptyView()
+        })
         HStack {
             Spacer().frame(width: 16)
             makeCovetC(size: 48, user: self.user)
@@ -64,10 +70,19 @@ struct UserListItem: View {
             }
             Spacer().frame(width: 16)
         }
+        .background { Color.white }
+//        .background {
+//            NavigationLink(isActive: self.$navigateToUserProfile, destination: {
+//                ProfileView(userId: self.navigateToUser!.id)
+//            }, label: {
+//                EmptyView()
+//            })
+//        }
         .onTapGesture {
             print("Tapped")
             if self.clickable && !self.isSaving {
                 self.navigateToUser = user
+                self.navigateToUserProfile = true
                 // print("Navigate to " + String(self.navigateToUser.id))
             }
         }
@@ -81,9 +96,9 @@ struct UserListItem: View {
                 showingActionDialog = true
             }
         })
-        .sheet(item: $navigateToUser) { item in
-            ProfileView(userId: item.id)
-        }
+//        .sheet(item: $navigateToUser) { item in
+//            ProfileView(userId: item.id)
+//        }
         .confirmationDialog("Manage User", isPresented: $showingActionDialog) {
             if user.allRelationshipInformationPresent() {
                 if !hasPendingRequestOutgoing() {
@@ -98,7 +113,6 @@ struct UserListItem: View {
                     cancelPendingButton()
                 }
             }
-            removeButton()
             blockButton(user: user)
             Button("Cancel", role: .cancel) { }
         } message: {
@@ -131,38 +145,45 @@ struct UserListItem: View {
     
     func removeButton() -> some View {
         return Button("Remove", role: .destructive) {
-            doRemoveRelationship(user: user)
+            doRemoveRelationships(user: user)
         }
     }
     
     func cancelPendingButton() -> some View {
         return Button("Cancel pending request", role: .none) {
-            doRemoveRelationship(user: user)
+            doRemoveRelationships(user: user)
         }
     }
     
     func doUserManagement(user: CovetUser, relationshipType: CovetUserRelationshipType) {
         if self.isSaving { return }
-        self.isSaving = true
-        Task {
+        Task.detached {
+            await updateUIForUserManagement(saving: true, user: nil)
             do {
                 print("Setting relationship...")
                 let resp = try await API.setRelationship(userId: user.id, relationshipType: relationshipType)
                 if let response = resp {
-                    self.user = response.otherUser
-                    await auth.refreshUser()
+                    await updateUIForUserManagement(saving: false, user: response.otherUser)
                 } else {
-                    print("No relation obtained")
+                    await updateUIForUserManagement(saving: false, user: nil)
                 }
             } catch {
-//                self.shouldShowErrorToast = true
-//                self.errorToastContents = "Try again later"
+                await updateUIForUserManagement(saving: false, user: nil)
             }
-            self.isSaving = false
         }
     }
     
-    func doRemoveRelationship(user: CovetUser) {
+    @MainActor
+    func updateUIForUserManagement(saving: Bool, user: CovetUser?) {
+        self.isSaving = saving
+        if let u = user {
+            self.auth.refreshUser()
+            self.user = u
+        }
+        self.showRelationshipToUser = true
+    }
+    
+    func doRemoveRelationships(user: CovetUser) {
         if self.isSaving { return }
         Task.detached {
             await updateUIForRemoveRelationshipRequest(saving: true, success: nil)
@@ -188,9 +209,6 @@ struct UserListItem: View {
                 print("Removing relationship...")
                 if let resp = try await API.removeRelationship(relationshipId: relationship.id) {
                     success = resp.success
-                    if resp.success {
-                        await auth.refreshUser()
-                    }
                 }
             } catch {}
             await self.updateUIForRemoveRelationshipRequest(saving: false, success: success)
@@ -199,10 +217,17 @@ struct UserListItem: View {
     }
     
     @MainActor
-    func updateUIForRemoveRelationshipRequest(saving: Bool, success: Bool?) {
+    func updateUIForRemoveRelationshipRequest(saving: Bool, success: Bool?) async {
+        print("updateUIForRemoveRelationshipRequest")
         self.isSaving = saving
         if success == true {
+            print("IN success==true")
+            self.auth.refreshUser()
             self.relationship = nil
+            self.user.current_user_is_following = 0
+            self.user.current_user_is_followed_by = 0
+            self.user.current_user_is_friending = 0
+            self.showRelationshipToUser = false
         }
     }
     
