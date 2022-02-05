@@ -23,9 +23,28 @@ struct LoginView : View {
             Spacer().frame(height: 64)
             Image("Covet_Logo_Colored")
                 .frame(width: nil, height: 92)
-            Text("The social shopping app for you and your friends")
-                .font(.system(.headline))
-                .foregroundColor(Color.gray)
+            Group {
+                Text("Take the ")
+                    .font(.system(.headline))
+                    .foregroundColor(Color.gray)
+                +
+                Text("if")
+                    .font(.system(.headline))
+                    .foregroundColor(Color.covetGreen())
+                +
+                Text(" out of g")
+                    .font(.system(.headline))
+                    .foregroundColor(Color.gray)
+                +
+                Text("if")
+                    .font(.system(.headline))
+                    .foregroundColor(Color.covetGreen())
+                +
+                Text("t")
+                    .font(.system(.headline))
+                    .foregroundColor(Color.gray)
+            }
+            
             Spacer()
             VStack {
                 HStack {

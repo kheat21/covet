@@ -132,7 +132,7 @@ struct UserListItem: View {
     }
     
     func followButton(user: CovetUser) -> some View {
-        return Button(AppConfig.FOLLOWER_TIER_ALIAS) {
+        return Button("Follow") {
             doUserManagement(user: user, relationshipType: .Following)
         }
     }

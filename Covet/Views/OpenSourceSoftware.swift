@@ -88,6 +88,12 @@ struct OpenSourceSoftware: View {
             link: "https://github.com/onevcat/Kingfisher",
             license: .MIT,
             licenseLink: "https://github.com/onevcat/Kingfisher/blob/master/LICENSE"
+        ),
+        Attribution(
+            name: "Swift Soup",
+            link: "https://github.com/scinfu/SwiftSoup",
+            license: .MIT,
+            licenseLink: "https://github.com/scinfu/SwiftSoup/blob/master/LICENSE"
         )
     ]
     
