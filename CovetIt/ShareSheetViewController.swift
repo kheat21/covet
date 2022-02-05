@@ -442,6 +442,10 @@ class ShareSheetViewController: UIViewController {
             self.present(tableViewController, animated: true) {
                 print("Completion")
             }
+        } else {
+            let controller = UIAlertController(title: "No images", message: "Please wait, images are still loading...", preferredStyle: .actionSheet)
+            controller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(controller, animated: true, completion: nil)
         }
     }
     @IBAction func shareButtonPressed(_ sender: Any) {
