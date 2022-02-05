@@ -124,6 +124,8 @@ struct ProfileView: View {
 
 struct UserProfile : View {
     
+    @EnvironmentObject var auth: AuthService
+    
     var user: CovetUser;
     
     @State var showPostInDetailView: Post? = nil
@@ -187,8 +189,17 @@ struct UserProfile : View {
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in
-            PostView(post: p, isOwnPost: true)
+            PostView(post: p, isOwnPost: self.isOwnPost())
         })
+    }
+    
+    private func isOwnPost() -> Bool {
+        if let currentUser = self.auth.currentCovetUser {
+            if currentUser.id == user.id {
+                return true
+            }
+        }
+        return false
     }
 }
 

@@ -57,8 +57,9 @@ struct PostView: View {
                                 self.toggleLike(currentLiked: self.liked)
                             }
                         } label: {
-                            
-                            if self.isLikedStatusSaving || self.isLikedStatusLoading {
+                            if self.isLikedStatusLoading {
+                                EmptyView()
+                            } else if self.isLikedStatusSaving {
                                 ProgressView()
                             } else {
                                 self._likeButtonImage()

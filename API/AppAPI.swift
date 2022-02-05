@@ -195,7 +195,7 @@ class API {
                 endpoint: "/post/report",
                 method: .post,
                 data: [
-                    "post": String(post_id)
+                    "post_id": String(post_id)
                 ],
                 SimpleSuccessOrFailureResponseObject.self
             )
