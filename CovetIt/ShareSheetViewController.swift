@@ -437,9 +437,11 @@ class ShareSheetViewController: UIViewController {
     }
     
     @objc func imageViewPressed() {
-        print("Image view pressed!")
-        self.present(tableViewController, animated: true) {
-            print("Completion")
+        if self.tableViewController.images.count > 0 {
+            print("Image view pressed!")
+            self.present(tableViewController, animated: true) {
+                print("Completion")
+            }
         }
     }
     @IBAction func shareButtonPressed(_ sender: Any) {

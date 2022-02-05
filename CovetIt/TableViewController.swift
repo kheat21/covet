@@ -14,7 +14,7 @@ class TableViewController: UIViewController,  UICollectionViewDelegateFlowLayout
     var loadingView: UIActivityIndicatorView?
     
     var selectedImageCallback: ((_ image: ScrapedImage) -> Void)?;
-    var images: [ScrapedImage] = [ScrapedImage]()
+    public var images: [ScrapedImage] = [ScrapedImage]()
     
     var alreadyConfigured: Bool = false
     

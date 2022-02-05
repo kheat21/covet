@@ -51,9 +51,9 @@ class ImageScraper {
                 if let urlAsURL = URL(string: url) {
                     self.getUIImage(from: urlAsURL) { image in
                         if let img = image {
-                            if img.size.height >= 250 && img.size.width >= 250 {
+                            // if img.size.height >= 250 && img.size.width >= 250 {
                                 imgRecieved(ScrapedImage(image: img, url: urlAsURL))
-                            }
+                            // }
                         }
                     }
                 }
