@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RecovetView: View {
     
+    @EnvironmentObject var auth: AuthService
     @Environment(\.presentationMode) private var presentationMode
     
     var post: Post;
@@ -58,12 +59,12 @@ struct RecovetView: View {
             .navigationBarItems(
                 trailing: Button(
                     action: {
-                        Task {
-                            self.isSaving = true
+                        Task.detached {
+                            await self.updateUI(saving: true, success: nil)
                             if let post = await self.doRecovet() {
-                                self.isSaving = false
-                                self.savedSuccessfully = true
-                                self.presentationMode.wrappedValue.dismiss()
+                                await self.updateUI(saving: false, success: true)
+                            } else {
+                                await self.updateUI(saving: false, success: false)
                             }
                         }
                     }
@@ -85,6 +86,18 @@ struct RecovetView: View {
             return try await API.recovet(post_id: self.post.id, caption: self.caption)
         } catch {
             return nil
+        }
+    }
+    
+    @MainActor
+    private func updateUI(saving: Bool, success: Bool?) async {
+        self.isSaving = saving
+        if let successful = success {
+            self.savedSuccessfully = successful
+            if successful {
+                await self.auth.refreshUser()
+                self.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
     

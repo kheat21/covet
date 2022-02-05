@@ -168,6 +168,46 @@ class API {
         )
     }
     
+    public static func delete(post_id: Int) async -> Bool {
+        do {
+            let resp = try await APIHelpers.getEndpointPromise(
+                token: await getIdToken(),
+                endpoint: "/post/delete",
+                method: .post,
+                data: [
+                    "post": post_id
+                ],
+                SimpleSuccessOrFailureResponseObject.self
+            )
+            if let r = resp {
+                return r.success
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
+    public static func report(post_id: Int) async -> Bool {
+        do {
+            let resp = try await APIHelpers.getEndpointPromise(
+                token: await getIdToken(),
+                endpoint: "/post/report",
+                method: .post,
+                data: [
+                    "post": String(post_id)
+                ],
+                SimpleSuccessOrFailureResponseObject.self
+            )
+            if let r = resp {
+                return r.success
+            }
+        } catch {
+            print(error)
+        }
+        return false
+    }
+    
     /*
     private func setBlockedStatusForUser(
         userId: String,

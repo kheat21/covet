@@ -187,7 +187,7 @@ struct UserProfile : View {
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in
-            PostView(post: p)
+            PostView(post: p, isOwnPost: true)
         })
     }
 }

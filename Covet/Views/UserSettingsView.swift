@@ -68,8 +68,8 @@ struct UserSettingsView: View {
                     Divider()
                     PromptedRadioInput(prompt: "Require permission to follow me", toggleBackgroundColor: nil, value: $privateForFollowing)
                     PromptedRadioInput(prompt: "Require permission to become my friend", toggleBackgroundColor: nil, value: $privateForFriending)
-                    Text("Who can...?").font(.system(.headline))
-                    UserPermissionSettingsExplainer(privateForFollowing: privateForFollowing, privateForFriending: privateForFriending)
+                    // Text("Who can...?").font(.system(.headline))
+                    // UserPermissionSettingsExplainer(privateForFollowing: privateForFollowing, privateForFriending: privateForFriending)
                 }
                 if ( actionState == .None ) {
                     Group {
