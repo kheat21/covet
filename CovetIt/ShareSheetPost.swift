@@ -21,7 +21,7 @@ extension ShareSheetViewController {
                 if let createdPost = try await ExtensionAPI.createSingleProductPost(
                     url: self.url!.absoluteString,
                     title: self.productTitle!,
-                    image_url: self.image!.url.absoluteString,
+                    image_url: self.image!.getDatabaseValue(),
                     vendor: self.produtVendor,
                     price: self.productPrice,
                     caption: self.caption

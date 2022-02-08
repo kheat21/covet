@@ -17,7 +17,7 @@ struct UserListItem: View {
     
     @State var user: CovetUser;
     @State var relationship: CovetUserRelationship?;
-    @State var clickable: Bool = true
+    // @State var clickable: Bool = true
     @State var showRelationshipToUser: Bool = true
     @State var showPendingOptions: Bool = false
     
@@ -80,7 +80,7 @@ struct UserListItem: View {
 //        }
         .onTapGesture {
             print("Tapped")
-            if self.clickable && !self.isSaving {
+            if self.shouldAllowClicksForUser(user: self.user) && !self.isSaving {
                 self.navigateToUser = user
                 self.navigateToUserProfile = true
                 // print("Navigate to " + String(self.navigateToUser.id))
@@ -111,6 +111,11 @@ struct UserListItem: View {
                     }
                 } else {
                     cancelPendingButton()
+                }
+            }
+            if !user.allRelationshipInformationPresent() {
+                if relationship != nil && self.showPendingOptions == false {
+                    removeButton()
                 }
             }
             blockButton(user: user)
@@ -146,6 +151,9 @@ struct UserListItem: View {
     func removeButton() -> some View {
         return Button("Remove", role: .destructive) {
             doRemoveRelationships(user: user)
+            if let cb = self.onListItemRemoved {
+                cb()
+            }
         }
     }
     
@@ -351,5 +359,18 @@ struct UserListItem: View {
     
     @MainActor func setLoading(value: Bool) {
         self.isSaving = value
+    }
+    
+    private func shouldAllowClicksForUser(user: CovetUser) -> Bool {
+        // Allow clicks on completely public profiles
+        if user.privateForFollowing == 0 && user.privateForFriending == 0 {
+            return true
+        }
+        
+        // Otherwise, check if we have a relationship with them
+        if user.allRelationshipInformationPresent() {
+            return user.currentUserFollows() || user.currentUserFriend()
+        }
+        return false
     }
 }

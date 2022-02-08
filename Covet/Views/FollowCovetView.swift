@@ -18,7 +18,7 @@ struct FollowCovetView: View {
                 .font(.system(.headline))
                 .padding([.bottom], 8)
                 .padding([.leading, .trailing], 32)
-            Text("Why don't you start seeing some products by following @Covet?")
+            Text("Why don't you start seeing some products by following @covet?")
                 .font(.system(.subheadline))
                 .padding([.bottom], 8)
                 .padding([.leading, .trailing], 32)
@@ -28,7 +28,7 @@ struct FollowCovetView: View {
                     followCovet()
                 }
             }, label: {
-                Text("Follow @Covet")
+                Text("Follow @covet")
                     .padding(.all, 8)
                     .foregroundColor(Color.white)
             })

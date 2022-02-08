@@ -16,6 +16,7 @@ class ImageScraper {
     
     private var onConnectionCallback: ( () -> Void)?;
     private var onImageRecievedCallback: ( (_ image: ScrapedImage) -> Void)?;
+    private var onBase64ImageRecievedCallback: ( (_ image: ScrapedImage) -> Void)?;
     
     init() {
         self.manager = SocketManager(socketURL: URL(string: "http://covetimagescraperloadbalancer-830414987.us-east-1.elb.amazonaws.com:8000/")!, config: [
@@ -56,6 +57,20 @@ class ImageScraper {
                             // }
                         }
                     }
+                }
+            }
+        }
+        
+        self.socket.on("image_base64") { data, ack in
+            guard let dataString = data[0] as? String else {
+                print("Something went wrong with the 64 response recieved")
+                return
+            }
+            if let imgRecieved = self.onBase64ImageRecievedCallback {
+                if let data: Data = Data(base64Encoded: dataString, options: .ignoreUnknownCharacters) {
+                    let decodedImage = UIImage(data: data)!
+                    let scraped = ScrapedImage(image: decodedImage, url: nil, data: dataString)
+                    imgRecieved(scraped)
                 }
             }
         }

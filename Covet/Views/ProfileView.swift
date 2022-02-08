@@ -152,7 +152,7 @@ struct UserProfile : View {
             // Show their posts
             if let posts = user.posts {
                 if posts.count == 0 {
-                    UserProfileNoPostsYet()
+                    UserProfileNoPostsYet(isOwnProfile: self.isOwnProfile())
                 } else {
                             
                     // Show the most recent one
@@ -189,11 +189,11 @@ struct UserProfile : View {
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
         }, content: { p in
-            PostView(post: p, isOwnPost: self.isOwnPost())
+            PostView(post: p, isOwnPost: self.isOwnProfile())
         })
     }
     
-    private func isOwnPost() -> Bool {
+    private func isOwnProfile() -> Bool {
         if let currentUser = self.auth.currentCovetUser {
             if currentUser.id == user.id {
                 return true
@@ -204,11 +204,23 @@ struct UserProfile : View {
 }
 
 struct UserProfileNoPostsYet : View {
+    var isOwnProfile: Bool
     var body : some View {
         Spacer()
-        Text("No posts yet. Add something with the Covet button in Safari to make one!")
-            .padding([.leading, .trailing], 64)
-            .multilineTextAlignment(.center)
+        VStack {
+            Text("No posts yet.")
+            if isOwnProfile {
+                Group {
+                    Text("Add something with the ").foregroundColor(Color.black) +
+                    Text("covet").foregroundColor(Color.covetGreen()) +
+                    Text(". button in Safari").foregroundColor(Color.black)
+                }
+                .multilineTextAlignment(.center)
+            }
+        }
+//        Text("No posts yet. Add something with the covet button in Safari to make one!")
+//            .padding([.leading, .trailing], 64)
+//            .multilineTextAlignment(.center)
         Spacer()
     }
 }

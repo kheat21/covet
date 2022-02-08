@@ -65,8 +65,8 @@ struct SearchView: View {
 //                                ProfileView(userId: user.id)
 //                            } label: {
                                 UserListItem(
-                                    user: user,
-                                    clickable: shouldAllowClicksForUser(user: user)
+                                    user: user //,
+                                    // clickable: shouldAllowClicksForUser(user: user)
                                 )
 //                                .foregroundColor(Color.black)
 //                            }
@@ -115,19 +115,6 @@ struct SearchView: View {
     
     func getImageForPost(post: Post) -> String {
         return post.products![0].image_url
-    }
-    
-    func shouldAllowClicksForUser(user: CovetUser) -> Bool {
-        // Allow clicks on completely public profiles
-        if user.privateForFollowing == 0 && user.privateForFriending == 0 {
-            return true
-        }
-        
-        // Otherwise, check if we have a relationship with them
-        if user.allRelationshipInformationPresent() {
-            return user.currentUserFollows() || user.currentUserFriend()
-        }
-        return false
     }
 
 }

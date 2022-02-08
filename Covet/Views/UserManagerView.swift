@@ -37,7 +37,7 @@ struct UserManagerView: View {
                     UserListItem(
                         user: item.user,
                         relationship: item.relationship,
-                        clickable: false,
+                        // clickable: false,
                         showRelationshipToUser: item.relationship.pending == 0,
                         showPendingOptions: item.relationship.pending == 1
                     ) {

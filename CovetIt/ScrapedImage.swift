@@ -9,10 +9,19 @@ import Foundation
 import UIKit
 
 struct ScrapedImage {
+    
     var image: UIImage;
-    var url: URL;
+    var url: URL?;
+    var data: String?;
     
     func size() -> CGFloat {
         return self.image.size.height * self.image.size.width
+    }
+    
+    func getDatabaseValue() -> String {
+        if let u = url {
+            return u.absoluteString
+        }
+        return data!
     }
 }

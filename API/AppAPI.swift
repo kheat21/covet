@@ -33,7 +33,7 @@ class API {
     }
     
     public static func createProfile(
-        username: String, name: String?, birthday: Date?, address: String?,
+        username: String, name: String?, bio: String?, birthday: Date?, address: String?,
         privateForFollowing: Int, privateForFriending: Int
     ) async throws -> CovetUser? {
         return try await APIHelpers.getEndpointPromise(
@@ -44,6 +44,7 @@ class API {
             data: [
                 "username": username,
                 "name": name ?? nil,
+                "bio": bio,
                 "birthday": birthday?.formatted(),
                 "address": address,
                 "privateForFollowing": privateForFollowing,
@@ -58,19 +59,21 @@ class API {
         name: String?, bio: String?, birthday: Date?, address: String?,
         privateForFollowing: Int?, privateForFriending: Int?
     ) async throws -> CovetUser? {
+        let options: Parameters = [
+            "user": originalUser.id,
+            "name": name ?? originalUser.name ?? "",
+            "bio": bio ?? originalUser.bio ?? "",
+            "birthday": birthday?.formatted() ?? nil,
+            "address": address ?? originalUser.address ?? "",
+            "privateForFollowing": privateForFollowing ?? originalUser.privateForFollowing,
+            "privateForFriending": privateForFriending ?? originalUser.privateForFriending
+        ]
+        print(options)
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
             endpoint: "/user/profile/update",
             method: HTTPMethod.post,
-            data: [
-                "user": originalUser.id,
-                "name": name ?? originalUser.name ?? "",
-                "bio": bio ?? originalUser.bio ?? "",
-                "birthday": birthday?.formatted() ?? nil,
-                "address": address ?? originalUser.address ?? "",
-                "privateForFollowing": privateForFollowing ?? originalUser.privateForFollowing,
-                "privateForFriending": privateForFriending ?? originalUser.privateForFriending
-            ],
+            data: options,
             CovetUser.self
         )
     }

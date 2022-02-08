@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F4AB2ACB-5F7E-440B-A62A-DEE28148971E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CovetIt/ShareSheetPost.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "ShareSheetViewController"
-            landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1042A92C-656A-49F5-9003-073B6ECD3E7E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -65,6 +49,117 @@
             startingLineNumber = "108"
             endingLineNumber = "108"
             landmarkName = "doPopulateRemoteUser()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBFFDFBD-3A3D-44E8-9B76-3AFA859D118E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CovetIt/ShareSheetPost.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "savePost()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5620F662-98E7-449D-81C0-8615C71F0B38"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CovetIt/ShareSheetPost.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "savePost()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF3020E4-698B-4F1E-A2DE-30464F19D5D7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CovetIt/ShareSheetPost.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "savePost()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF3020E4-698B-4F1E-A2DE-30464F19D5D7 - e464c2f9211a4d82"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in CovetIt.ShareSheetViewController.savePost() -&gt; ()"
+                  moduleName = "CovetIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/CovetIt/ShareSheetPost.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "265">
+               </Location>
+               <Location
+                  uuid = "FF3020E4-698B-4F1E-A2DE-30464F19D5D7 - 39acd2c7662537b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async throws -&gt; () in CovetIt.ShareSheetViewController.savePost() -&gt; ()"
+                  moduleName = "CovetIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/CovetIt/ShareSheetPost.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "FF3020E4-698B-4F1E-A2DE-30464F19D5D7 - b8d5190f68cfd321"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in CovetIt.ShareSheetViewController.savePost() -&gt; ()"
+                  moduleName = "CovetIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/CovetIt/ShareSheetPost.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96EE5B4A-6F77-45C3-B718-AAAB83D68167"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CovetIt/ShareSheetPost.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "savePost()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

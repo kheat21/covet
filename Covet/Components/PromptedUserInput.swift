@@ -103,8 +103,49 @@ struct PromptedRadioInput: View {
     
     var body: some View {
         HStack {
+            VStack {
+                
+            }
             Text(prompt)
                 .frame(width: 250, height: nil, alignment: .leading)
+            Spacer()
+            HStack {
+                Toggle("", isOn: $value)
+            }
+        }
+        .padding([.leading], leftEdgePadding)
+        .padding([.trailing], rightEdgePadding)
+    }
+}
+
+struct ExplainedPromptedRadioInput: View {
+   
+    // Config parameters
+    var primaryPrompt: String;
+    var secondaryPrompt: String;
+    var toggleBackgroundColor: Color?;
+    
+    // Send data back to the parent
+    @Binding var value: Bool;
+    
+    var leftEdgePadding: CGFloat = 16.0
+    var rightEdgePadding: CGFloat = 16.0
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Group {
+                    Text("Require permission to be a ")
+                    +
+                    Text(primaryPrompt)
+                    .fontWeight(.bold)
+                }
+                .frame(width: 250, height: nil, alignment: .leading)
+                .padding([.bottom], 2)
+                Text(secondaryPrompt)
+                    .italic()
+                    .frame(width: 250, height: nil, alignment: .leading)
+            }
             Spacer()
             HStack {
                 Toggle("", isOn: $value)

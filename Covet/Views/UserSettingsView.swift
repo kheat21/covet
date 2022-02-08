@@ -57,17 +57,23 @@ struct UserSettingsView: View {
                         .padding(Edge.Set.top, 2)
                         .padding(Edge.Set.bottom, 8)
                     if mode == .NewSignup {
-                        PromptedUserInput(prompt: "Handle", placeholder: "This is your screen name", text: $handle,
+                        PromptedUserInput(prompt: "Handle", placeholder: "", text: $handle,
                                           autocapitalization: UIKit.UITextAutocapitalizationType.none,
                                           autocorrect: false
                         )
                     }
-                    PromptedUserInput(prompt: "Name", placeholder: "Pleased to meet you 😃", text: $name)
-                    PromptedUserInput(prompt: "Bio", placeholder: "Something witty", text: $bio)
+                    PromptedUserInput(prompt: "Name", placeholder: "", text: $name)
+                    PromptedUserInput(prompt: "Bio", placeholder: "", text: $bio)
                     //PromptedDateInput(prompt: "Birthday", noDateSelectedMessage: "Select", buttonColor: Color.covetGreen(), date: $birthday, dateSet: $birthdaySet)
                     Divider()
-                    PromptedRadioInput(prompt: "Require permission to follow me", toggleBackgroundColor: nil, value: $privateForFollowing)
-                    PromptedRadioInput(prompt: "Require permission to become my friend", toggleBackgroundColor: nil, value: $privateForFriending)
+                    ExplainedPromptedRadioInput(
+                        primaryPrompt: "Window Shopper",
+                        secondaryPrompt: "Allows access to your covet list",
+                        toggleBackgroundColor: nil, value: $privateForFollowing)
+                    ExplainedPromptedRadioInput(
+                        primaryPrompt: "Big Spender",
+                        secondaryPrompt: "Allows access to your covet list, gifting capabilities, and your shopping address",
+                        toggleBackgroundColor: nil, value: $privateForFriending)
                     // Text("Who can...?").font(.system(.headline))
                     // UserPermissionSettingsExplainer(privateForFollowing: privateForFollowing, privateForFriending: privateForFriending)
                 }
@@ -162,6 +168,7 @@ struct UserSettingsView: View {
                 var createdProfile = try await API.createProfile(
                     username: handle,
                     name: name,
+                    bio: bio,
                     birthday: birthdaySet ? birthday : nil,
                     address: address,
                     privateForFollowing: self.privateForFollowing ? 1 : 0,
