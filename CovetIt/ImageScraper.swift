@@ -61,6 +61,7 @@ class ImageScraper {
             }
         }
         
+        /*
         self.socket.on("image_base64") { data, ack in
             guard let dataString = data[0] as? String else {
                 print("Something went wrong with the 64 response recieved")
@@ -74,7 +75,7 @@ class ImageScraper {
                 }
             }
         }
-    
+         */
     }
     
     func request(url: String) {
