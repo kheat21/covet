@@ -327,8 +327,8 @@ struct UserListItem: View {
         }
         
         if user.currentUserFollows() && user.currentUserFollowedBy() {
-            text = AppConfig.FOLLOWER_TIER_ALIAS
-            icon = AppConfig.FOLLOWER_TIER_ICON_FILLED
+            text = AppConfig.FOLLOWER_TIER_ALIAS + "s"
+            icon = "arrow.right.arrow.left"
         }
         
         if user.currentUserFollows() && !user.currentUserFollowedBy() {

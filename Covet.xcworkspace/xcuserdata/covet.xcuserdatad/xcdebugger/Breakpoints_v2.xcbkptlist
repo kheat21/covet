@@ -163,5 +163,130 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EBAB66A-E418-4E53-8671-4298C72CB64B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Covet/Views/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2B748FC-3811-4624-9571-11CBCB81937F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Covet/Views/PostView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Covet/Views/PostView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "PostView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40 - 89a792221fe67cdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Covet.PostView.post : Covet.Post"
+                  moduleName = "Covet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/Covet/Views/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40 - 6ca4ffe4bfdb46a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Covet.PostView.post.getter : Covet.Post"
+                  moduleName = "Covet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/Covet/Views/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "2720">
+               </Location>
+               <Location
+                  uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40 - bd4ef52da7c64aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Covet.PostView.post.setter : Covet.Post"
+                  moduleName = "Covet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/Covet/Views/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "1216">
+               </Location>
+               <Location
+                  uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40 - 40607d123686962a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Covet.PostView.post.modify : Covet.Post with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Covet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/Covet/Views/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "19EB8D33-4B35-409E-9EC3-97A7F80C4D40 - 9bd93e11848e5362"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Covet.PostView.$post.getter : SwiftUI.Binding&lt;Covet.Post&gt;"
+                  moduleName = "Covet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/covet/Documents/Covet_iOS_App/Covet/Views/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "2736">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

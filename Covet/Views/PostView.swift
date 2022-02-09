@@ -115,7 +115,7 @@ struct PostView: View {
                             }
                         }
                     }
-                    .frame(width: nil, height: 40, alignment: Alignment.trailing)
+                    .frame(height: 50, alignment: Alignment.trailing)
                     PostDisplay(post: self.post)
                     Spacer() //.frame(height: 40)
                 }
@@ -139,14 +139,12 @@ struct PostView: View {
             .toast(isPresenting: self.$showingAddressCopiedToast, duration: 2, tapToDismiss: true, alert: {
                 AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.covetGreen()), title: "Copied Address", subTitle: "Now use that to checkout on the merchant's website", style: nil)
             }, onTap: nil, completion: {
-                if let product = getProductForPost(post: self.post) {
-                    if let validURL = URL(string: product.link) {
-                        UIApplication.shared.open(validURL, options: [:], completionHandler: nil)
-                    }
-                }
+                self.openURL()
             })
             .toast(isPresenting: self.$showingNoAddressToCopyToast, duration: 5, tapToDismiss: true, alert: {
                 AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.red), title: "No address available", subTitle: "You'll have to ask your friend", style: nil)
+            }, onTap: nil, completion: {
+                self.openURL()
             })
             .toast(isPresenting: self.$errorDeleting, duration: 2, tapToDismiss: true, alert: {
                 AlertToast(displayMode: .alert, type: .error(Color.red), title: "Could not delete", subTitle: "Try again later", style: nil)
@@ -266,6 +264,14 @@ struct PostView: View {
             self.errorReporting = e
             if !e {
                 self.showReportSuccessfulToast = true
+            }
+        }
+    }
+    
+    private func openURL() {
+        if let product = getProductForPost(post: self.post) {
+            if let validURL = URL(string: product.link) {
+                UIApplication.shared.open(validURL, options: [:], completionHandler: nil)
             }
         }
     }

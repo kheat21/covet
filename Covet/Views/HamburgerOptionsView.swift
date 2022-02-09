@@ -38,6 +38,8 @@ struct HamburgerOptionsView: View {
                             mode: UserSettingsViewPresentationOptions.Modify,
                             handle: user.username,
                             name: user.name ?? "",
+                            bio: user.bio ?? "",
+                            address: user.address ?? "",
                             birthday: nil, // self.user.birthday.p ?? Date(),
                             privateForFollowing: user.privateForFollowing == 1,
                             privateForFriending: user.privateForFriending == 1

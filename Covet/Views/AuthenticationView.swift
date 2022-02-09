@@ -21,6 +21,11 @@ struct LoginView : View {
         VStack {
             
             Spacer().frame(height: 64)
+            Image("LoginScreenBanner")
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: nil, idealWidth: UIScreen.width, maxWidth: UIScreen.width, minHeight: nil, idealHeight: nil, maxHeight: 250, alignment: SwiftUI.Alignment.center)
+            Spacer().frame(height: 32)
             Image("Covet_Logo_Colored")
                 .frame(width: nil, height: 92)
             Group {

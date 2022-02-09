@@ -50,6 +50,8 @@ struct ContentView: View {
                         mode: UserSettingsViewPresentationOptions.NewSignup,
                         handle: "",
                         name: "",
+                        bio: "",
+                        address: "",
                         birthday: Date(),
                         privateForFollowing: false,
                         privateForFriending: false

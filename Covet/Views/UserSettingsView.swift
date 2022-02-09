@@ -40,8 +40,8 @@ struct UserSettingsView: View {
     
     @State var handle: String;
     @State var name: String;
-    @State var bio: String = ""
-    @State var address: String?
+    @State var bio: String;
+    @State var address: String;
     
     @State var birthdaySet: Bool = false
     @State var birthday: Date? = nil;
@@ -64,6 +64,7 @@ struct UserSettingsView: View {
                     }
                     PromptedUserInput(prompt: "Name", placeholder: "", text: $name)
                     PromptedUserInput(prompt: "Bio", placeholder: "", text: $bio)
+                    PromptedUserInput(prompt: "Address", placeholder: "", text: $address)
                     //PromptedDateInput(prompt: "Birthday", noDateSelectedMessage: "Select", buttonColor: Color.covetGreen(), date: $birthday, dateSet: $birthdaySet)
                     Divider()
                     ExplainedPromptedRadioInput(
@@ -295,6 +296,8 @@ struct UserSettingsView_Previews: PreviewProvider {
             mode: .NewSignup,
             handle: "@brendanmanning",
             name: "Brendan",
+            bio: "Hello world",
+            address: "hello",
             birthday: Date(),
             privateForFollowing: false,
             privateForFriending: true

@@ -14,6 +14,8 @@ struct PostDisplay : View {
     
     var body : some View {
         if let product = getProductForPost(post: self.post) {
+            
+            
             CovetSquareZoomedInItem(
                 url: product.image_url,
                 size: 250,
@@ -23,11 +25,10 @@ struct PostDisplay : View {
                 rightBorderWidth: 4
             )
             .padding([.bottom], 16)
+            .allowsHitTesting(false)
             
-            //if let productName = product.name {
-                Text(product.name)
+            Text(product.name)
                     .font(.system(size: 24, weight: .regular, design: .default))
-            //}
             
             HStack {
                 if let productVendor = product.vendor {
@@ -40,12 +41,14 @@ struct PostDisplay : View {
                 }
             }
             .padding([.top, .bottom], 8)
+            
             if let caption = self.post.text {
                 Text(caption)
                     .lineLimit(5)
                     .font(.system(size: 18, weight: .thin, design: .rounded))
                     .padding([.leading, .trailing], 16)
             }
+             
         }
     }
 }

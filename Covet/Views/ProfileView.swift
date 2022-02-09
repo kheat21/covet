@@ -170,7 +170,7 @@ struct UserProfile : View {
                         alignment: .top
                     )
                     .onTapGesture {
-                        self.showPostInDetailView = posts[0]
+                        self.showPostInDetailView = posts.first!
                     }
                     
                     // Space them out so that the scroll view doesn't
