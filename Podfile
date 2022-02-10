@@ -23,20 +23,11 @@ target 'Covet' do
   # Add the pods for any other Firebase products you want to use in your app
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'Firebase/Auth'
-  pod 'Firebase/Crashlytics
-  
-  target 'CovetTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'CovetUITests' do
-    # Pods for testing
-  end
+  pod 'Firebase/Crashlytics'
   
 end
 
-target 'CovetIt' do
+target 'CovetButton' do
   use_frameworks!
   shared_pods
   pod 'SwiftSoup'

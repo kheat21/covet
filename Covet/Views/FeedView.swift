@@ -115,6 +115,13 @@ struct FeedView: View {
                             await self._fetchFirstPage()
                         }
                     }
+                    .task {
+                        if let p = self.posts {
+                            if p.count == 0 {
+                                self._fetchFirstPage()
+                            }
+                        }
+                    }
                 }
             }
         }

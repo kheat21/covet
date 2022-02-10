@@ -75,6 +75,7 @@ struct SearchView: View {
                         // Show the posts next
                         if let posts = results.posts {
                             ImageGrid(images: results.posts, selected: { p in
+                                print("selected " + String(p.id))
                                 self.navigateToPost = p
                             })
                         }
@@ -103,6 +104,14 @@ struct SearchView: View {
         Task.detached {
             let results = try await API.search(query: query, page: 1)
             await self.updateUI(results: results)
+            
+            if let r = results {
+                let p = r.posts
+                for post in p {
+                    print(post.id)
+                }
+                
+            }
         }
     }
     

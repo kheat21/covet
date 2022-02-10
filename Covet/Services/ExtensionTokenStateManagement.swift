@@ -50,7 +50,8 @@ class ExtensionTokenStateManagement {
             data: [
                 "token": localTokenComponent
             ],
-            SetExtensionTokenResult.self
+            SetExtensionTokenResult.self,
+            overrideBaseUrl: nil
         )
     }
     

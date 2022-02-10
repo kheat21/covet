@@ -17,13 +17,14 @@ class APIHelpers {
         endpoint: String,
         method: HTTPMethod,
         data: Parameters?,
-        _ type: D.Type
+        _ type: D.Type,
+        overrideBaseUrl: String?
     ) async throws -> D? {
         var res: D?;
         var errorMessage: String? = nil
         do {
             let semaphore = DispatchSemaphore (value: 0)
-            let request = try await makeUrlRequest(endpoint: endpoint, method: method, data: data, token: token)
+            let request = try await makeUrlRequest(endpoint: endpoint, method: method, data: data, token: token, overrideBaseUrl: overrideBaseUrl)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data else {
                     print(String(describing: error))
@@ -75,11 +76,12 @@ class APIHelpers {
         return res
     }
     
-    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?, token: String?) async throws -> URLRequest {
+    static func makeUrlRequest(endpoint: String, method: HTTPMethod, data: [String : Any]?, token: String?, overrideBaseUrl: String?) async throws -> URLRequest {
         
         var requestUrlString = buildEndpointURL(
             endpoint: endpoint,
-            data: method == .get ? data : nil
+            data: method == .get ? data : nil,
+            overrideBaseUrl: overrideBaseUrl
         )
         
         print(requestUrlString)
@@ -102,11 +104,12 @@ class APIHelpers {
         return rq
     }
     
-    static func buildEndpointURL(endpoint: String, data: [String : Any]?) -> String {
+    static func buildEndpointURL(endpoint: String, data: [String : Any]?, overrideBaseUrl: String?) -> String {
         if(!endpoint.starts(with: "/")) {
-            return buildEndpointURL(endpoint: "/" + endpoint, data: data)
+            return buildEndpointURL(endpoint: "/" + endpoint, data: data, overrideBaseUrl: overrideBaseUrl)
         }
-        var url = APIConfig.hostname + endpoint
+        
+        var url = (overrideBaseUrl == nil ? APIConfig.hostname : overrideBaseUrl!) + endpoint
         if let d = data {
             var components = URLComponents()
             components.queryItems = d.map {

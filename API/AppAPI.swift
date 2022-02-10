@@ -26,7 +26,8 @@ class API {
             endpoint: "/user/profile/get",
             method: HTTPMethod.get,
             data: params,
-            CovetUserResponseObject.self
+            CovetUserResponseObject.self,
+            overrideBaseUrl: nil
         )
         print(resp)
         return resp
@@ -50,7 +51,8 @@ class API {
                 "privateForFollowing": privateForFollowing,
                 "privateForFriending": privateForFriending
             ],
-            CovetUser.self
+            CovetUser.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -74,7 +76,8 @@ class API {
             endpoint: "/user/profile/update",
             method: HTTPMethod.post,
             data: options,
-            CovetUser.self
+            CovetUser.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -85,7 +88,8 @@ class API {
             method: HTTPMethod.get,
             // headers: await getHeaders(),
             data: nil,
-            [CovetUserRelationship].self
+            [CovetUserRelationship].self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -98,7 +102,8 @@ class API {
                 "relationship": id,
                 "accept": accept ? 1 : 0
             ],
-            SimpleSuccessOrFailureResponseObject.self
+            SimpleSuccessOrFailureResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
 
@@ -111,7 +116,8 @@ class API {
             method: HTTPMethod.get,
             // headers: await getHeaders(),
             data: [ "page": String(page) ],
-            [ Post ].self
+            [ Post ].self,
+            overrideBaseUrl: nil
         )
         print(resp)
         return resp
@@ -128,7 +134,8 @@ class API {
                 "page": String(page),
                 "pageSize": String(pageSize)
             ],
-            UnifiedSearchResult.self
+            UnifiedSearchResult.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -140,7 +147,8 @@ class API {
             data: [
                 "post_id": String(post_id)
             ],
-            IsLikedResponseObject.self
+            IsLikedResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -154,7 +162,8 @@ class API {
                 "post_id": String(post_id),
                 "status": status ? "like" : "unlike"
             ],
-            IsLikedResponseObject.self
+            IsLikedResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -167,7 +176,8 @@ class API {
                 "post_id": String(post_id),
                 "text": caption.count > 0 ? caption : nil
             ],
-            Post.self
+            Post.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -180,7 +190,8 @@ class API {
                 data: [
                     "post": post_id
                 ],
-                SimpleSuccessOrFailureResponseObject.self
+                SimpleSuccessOrFailureResponseObject.self,
+                overrideBaseUrl: nil
             )
             if let r = resp {
                 return r.success
@@ -200,7 +211,8 @@ class API {
                 data: [
                     "post_id": String(post_id)
                 ],
-                SimpleSuccessOrFailureResponseObject.self
+                SimpleSuccessOrFailureResponseObject.self,
+                overrideBaseUrl: nil
             )
             if let r = resp {
                 return r.success
@@ -249,7 +261,8 @@ class API {
                 "user": userId,
                 "relationship_type": userRelationshipTypeToString(rel: relationshipType)
             ],
-            SetUserRelationshipResponseObject.self
+            SetUserRelationshipResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -261,7 +274,8 @@ class API {
             data: [
                 "relationship": relationshipId
             ],
-            SimpleSuccessOrFailureResponseObject.self
+            SimpleSuccessOrFailureResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -273,7 +287,8 @@ class API {
             data: [
                 "user": userId
             ],
-            SimpleSuccessOrFailureResponseObject.self
+            SimpleSuccessOrFailureResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -283,7 +298,8 @@ class API {
             endpoint: "/user/delete/request",
             method: .post,
             data: nil,
-            SimpleSuccessOrFailureResponseObject.self
+            SimpleSuccessOrFailureResponseObject.self,
+            overrideBaseUrl: nil
         )
     }
     
@@ -293,7 +309,8 @@ class API {
             endpoint: "/user/relationships/follow_covet",
             method: .post,
             data: nil,
-            CovetUserRelationship.self
+            CovetUserRelationship.self,
+            overrideBaseUrl: nil
         )
     }
     

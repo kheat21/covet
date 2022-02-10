@@ -1,6 +1,0 @@
-framework module Pods_Covet_CovetUITests {
-  umbrella header "Pods-Covet-CovetUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

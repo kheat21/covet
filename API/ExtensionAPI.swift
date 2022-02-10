@@ -10,6 +10,32 @@ import Alamofire
 
 class ExtensionAPI {
     
+    public static func getImageURLs(
+        url: String
+    ) async -> [String]? {
+        do {
+            
+            if let scraped_response = try await APIHelpers.getEndpointPromise(
+                token: getToken(),
+                endpoint: "/scrape",
+                method: .get,
+                data: [
+                    "url": url
+                ],
+                ImageScrapeResponseObject.self,
+                overrideBaseUrl: "https://ExpressLoadBalancer-380815732.us-east-1.elb.amazonaws.com:8000"
+            ) {
+                print(scraped_response.urls)
+                return scraped_response.urls
+            } else {
+                print("invalid response")
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
     public static func createSingleProductPost(
         url: String, title: String, image_url: String,
         vendor: String?, price: Double?, caption: String?
@@ -48,7 +74,8 @@ class ExtensionAPI {
                 "vendor": vendor ?? nil,
                 "price": price ?? nil
             ],
-            Product.self
+            Product.self,
+            overrideBaseUrl: nil
         )
     }
 
@@ -65,7 +92,8 @@ class ExtensionAPI {
                 },
                 "caption": caption
             ],
-            Post.self
+            Post.self,
+            overrideBaseUrl: nil
         )
     }
     

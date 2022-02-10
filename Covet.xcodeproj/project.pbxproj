@@ -7,78 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */; };
-		31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */; };
-		A4026966279E4A0600D314BB /* ShareSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4026965279E4A0600D314BB /* ShareSheetViewController.swift */; };
-		A4026967279E50FA00D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
-		A4026968279E513200D314BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB453047274BF995004395CA /* Assets.xcassets */; };
+		84F255324BA80533EAA47EF3 /* Pods_CovetButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */; };
 		A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */; };
 		A42B07AA27A5F5B100667216 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07A927A5F5B100667216 /* PostView.swift */; };
 		A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AB27A5F60C00667216 /* RecovetView.swift */; };
 		A42B07AE27A5F63700667216 /* PostShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AD27A5F63700667216 /* PostShareSheet.swift */; };
 		A42B07B027A5F68D00667216 /* PostDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AF27A5F68D00667216 /* PostDisplay.swift */; };
 		A42B07B227A5F6A000667216 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07B127A5F6A000667216 /* UIColor.swift */; };
-		A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A432CF4A279770F0005EFCA8 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
 		A432CF4C27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
-		A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4B27977EAE005EFCA8 /* CreatePostResponse.swift */; };
-		A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4E2797B83F005EFCA8 /* TableViewController.swift */; };
-		A432CF512797B9F0005EFCA8 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF502797B9F0005EFCA8 /* ImageCell.swift */; };
 		A436DA6427A5F9A5002FF28D /* IsLikedResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */; };
-		A436FE6727A3C7970029820D /* ShareSheetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436FE6627A3C7960029820D /* ShareSheetPost.swift */; };
-		A43B1F8827A34E5800D09167 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8727A34E5700D09167 /* UIView.swift */; };
-		A43B1F8A27A3B4F700D09167 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8927A3B4F600D09167 /* UIColor.swift */; };
-		A43B1F8C27A3BA0900D09167 /* AuthenticationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8B27A3BA0900D09167 /* AuthenticationHelpers.swift */; };
-		A43B1F8E27A3BDD300D09167 /* ShareSheetUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8D27A3BDD300D09167 /* ShareSheetUIConfig.swift */; };
-		A43B1F9027A3BF9F00D09167 /* ShareSheetImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */; };
 		A44C8EFA27AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */; };
 		A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
-		A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
 		A44DA6E6279740CB00A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
-		A44DA6E72797410000A9422E /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E5279740CB00A9422E /* Strings.swift */; };
-		A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
-		A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724CFD2780C2650076593C /* JSDictExtension.swift */; };
-		A459DA1C279754F100001BF5 /* JSDictTypedef.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D022780C5280076593C /* JSDictTypedef.swift */; };
 		A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA1E2797552B00001BF5 /* APIConfig.swift */; };
-		A459DA202797552B00001BF5 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA1E2797552B00001BF5 /* APIConfig.swift */; };
 		A459DA222797553600001BF5 /* ExtensionTokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */; };
-		A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA212797553600001BF5 /* ExtensionTokenConfig.swift */; };
 		A459DA25279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
-		A459DA26279755A100001BF5 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
 		A45B857127AC36490033F28E /* UserPermissionSettingsExplainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */; };
 		A45B857427AC4D450033F28E /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B857327AC4D450033F28E /* KeyboardHelper.swift */; };
 		A45B857627AC4EF40033F28E /* FollowCovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45B857527AC4EF40033F28E /* FollowCovetView.swift */; };
+		A464BC6E27B497FB00CC1991 /* ImageScrapeResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464BC6D27B497FB00CC1991 /* ImageScrapeResponseObject.swift */; };
+		A464BC6F27B49C0E00CC1991 /* ImageScrapeResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A464BC6D27B497FB00CC1991 /* ImageScrapeResponseObject.swift */; };
 		A46F9A74278FDD9500D9157B /* UnifiedSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */; };
-		A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */; };
-		A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A492182427B3E41800D4D74E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A492182327B3E41800D4D74E /* MainInterface.storyboard */; };
+		A492182527B3E63100D4D74E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A495368427B3DB300000C3FE /* Assets.xcassets */; };
+		A495368527B3DB300000C3FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A495368427B3DB300000C3FE /* Assets.xcassets */; };
+		A495369427B3DDE20000C3FE /* CovetButton.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A495368A27B3DDE20000C3FE /* CovetButton.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A49536A227B3DE5C0000C3FE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8727A34E5700D09167 /* UIView.swift */; };
+		A49536A327B3DE5E0000C3FE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8927A3B4F600D09167 /* UIColor.swift */; };
+		A49536AF27B3DE650000C3FE /* ShareSheetImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */; };
+		A49536B027B3DE650000C3FE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF4E2797B83F005EFCA8 /* TableViewController.swift */; };
+		A49536B127B3DE650000C3FE /* ShareSheetThumbnails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */; };
+		A49536B227B3DE650000C3FE /* ScrapedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */; };
+		A49536B327B3DE650000C3FE /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A495368C27B3DDE20000C3FE /* ShareViewController.swift */; };
+		A49536B427B3DE650000C3FE /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A432CF502797B9F0005EFCA8 /* ImageCell.swift */; };
+		A49536B527B3DE650000C3FE /* ShareSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4026965279E4A0600D314BB /* ShareSheetViewController.swift */; };
+		A49536B627B3DE650000C3FE /* AuthenticationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8B27A3BA0900D09167 /* AuthenticationHelpers.swift */; };
+		A49536B727B3DE650000C3FE /* ShareSheetUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8D27A3BDD300D09167 /* ShareSheetUIConfig.swift */; };
+		A49536B827B3DE650000C3FE /* ImageScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */; };
+		A49536B927B3DE650000C3FE /* ShareSheetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A436FE6627A3C7960029820D /* ShareSheetPost.swift */; };
+		A49536BA27B3DFAF0000C3FE /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
+		A49536BB27B3DFB30000C3FE /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA24279755A100001BF5 /* APIErrors.swift */; };
+		A49536BC27B3DFE70000C3FE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
+		A49536BD27B3DFE70000C3FE /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
+		A49536BE27B3DFE70000C3FE /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
+		A49536BF27B3E06D0000C3FE /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB517D1027556C28006470B8 /* RuntimeError.swift */; };
+		A49536C027B3E0710000C3FE /* CovetUserRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD26E2927820B4000366816 /* CovetUserRelationship.swift */; };
+		A49536C127B3E0820000C3FE /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
+		A49536C227B3E0950000C3FE /* ExtensionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44DA6E227973D5A00A9422E /* ExtensionToken.swift */; };
+		A49536C327B3E0A00000C3FE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775E27A4949C00E784F6 /* Defaults.swift */; };
+		A49536C427B3E0F00000C3FE /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A459DA1E2797552B00001BF5 /* APIConfig.swift */; };
+		A49536C527B3E0FA0000C3FE /* JSDictTypedef.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724D022780C5280076593C /* JSDictTypedef.swift */; };
+		A49536C627B3E0FF0000C3FE /* JSDictExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB724CFD2780C2650076593C /* JSDictExtension.swift */; };
 		A4A49CDB27ADC76F00F2AAB7 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */; };
 		A4A49CDD27AE4D3600F2AAB7 /* PostArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */; };
 		A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */; };
 		A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */; };
 		A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */; };
-		A4B1775627A4515A00E784F6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
-		A4B1775727A452FD00E784F6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
-		A4B1775827A4534B00E784F6 /* CovetUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB453094274C41DE004395CA /* CovetUser.swift */; };
-		A4B1775927A4534F00E784F6 /* CovetUserRelationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD26E2927820B4000366816 /* CovetUserRelationship.swift */; };
-		A4B1775B27A45B5900E784F6 /* ShareSheetThumbnails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */; };
 		A4B1775D27A47C2400E784F6 /* ExtensionTokenStateManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775C27A47C2400E784F6 /* ExtensionTokenStateManagement.swift */; };
 		A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775E27A4949C00E784F6 /* Defaults.swift */; };
-		A4B1776027A4949C00E784F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775E27A4949C00E784F6 /* Defaults.swift */; };
-		A4B68BE8279CBA2C00DF74E0 /* ImageScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */; };
-		A4B68BEA279D170700DF74E0 /* ScrapedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */; };
 		A4BA61F627AC7D7A001E39DA /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = A4BA61F527AC7D7A001E39DA /* AlertToast */; };
 		A4CA973627AB160D0081616D /* LocalSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973527AB160D0081616D /* LocalSettingsService.swift */; };
 		A4CA973827AB1BE80081616D /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973727AB1BE80081616D /* Binding.swift */; };
 		A4CA973A27AB2EF30081616D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CA973927AB2EF30081616D /* AppConfig.swift */; };
 		A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
-		A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
 		A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95027974BBD003DBD85 /* AppAPI.swift */; };
-		A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
-		BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */; };
 		EB12930E277A4D9800FA0E46 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930D277A4D9800FA0E46 /* Post.swift */; };
 		EB129310277A4E1000FA0E46 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12930F277A4E1000FA0E46 /* Product.swift */; };
 		EB129312277A764F00FA0E46 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129311277A764F00FA0E46 /* CreatePostView.swift */; };
@@ -121,12 +118,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A4A47E8F27965DB300FE8ED8 /* PBXContainerItemProxy */ = {
+		A495369227B3DDE20000C3FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EB453038274BF993004395CA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A4A47E8627965DB300FE8ED8;
-			remoteInfo = CovetIt;
+			remoteGlobalIDString = A495368927B3DDE20000C3FE;
+			remoteInfo = CovetButton;
 		};
 		EB453051274BF995004395CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -151,7 +148,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A4A47E9127965DB300FE8ED8 /* CovetIt.appex in Embed App Extensions */,
+				A495369427B3DDE20000C3FE /* CovetButton.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,13 +157,13 @@
 
 /* Begin PBXFileReference section */
 		01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.release.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.release.xcconfig"; sourceTree = "<group>"; };
 		22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
 		26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
+		29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.debug.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.debug.xcconfig"; sourceTree = "<group>"; };
+		2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.release.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.release.xcconfig"; sourceTree = "<group>"; };
 		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
 		5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
-		98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetTests.debug.xcconfig"; path = "Target Support Files/Pods-CovetTests/Pods-CovetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4026965279E4A0600D314BB /* ShareSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetViewController.swift; sourceTree = "<group>"; };
 		A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUserResponseObject.swift; sourceTree = "<group>"; };
 		A42B07A927A5F5B100667216 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
@@ -185,7 +182,6 @@
 		A43B1F8D27A3BDD300D09167 /* ShareSheetUIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetUIConfig.swift; sourceTree = "<group>"; };
 		A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetImageConfig.swift; sourceTree = "<group>"; };
 		A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuccessOrFailureResponseObject.swift; sourceTree = "<group>"; };
-		A44DA6E027968C7500A9422E /* CovetIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetIt.entitlements; sourceTree = "<group>"; };
 		A44DA6E127968C8700A9422E /* Covet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Covet.entitlements; sourceTree = "<group>"; };
 		A44DA6E227973D5A00A9422E /* ExtensionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionToken.swift; sourceTree = "<group>"; };
 		A44DA6E5279740CB00A9422E /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -195,10 +191,14 @@
 		A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPermissionSettingsExplainer.swift; sourceTree = "<group>"; };
 		A45B857327AC4D450033F28E /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		A45B857527AC4EF40033F28E /* FollowCovetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCovetView.swift; sourceTree = "<group>"; };
+		A464BC6D27B497FB00CC1991 /* ImageScrapeResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrapeResponseObject.swift; sourceTree = "<group>"; };
 		A46F9A73278FDD9500D9157B /* UnifiedSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnifiedSearchResult.swift; sourceTree = "<group>"; };
-		A4A47E8727965DB300FE8ED8 /* CovetIt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetIt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		A4A47E8C27965DB300FE8ED8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		A4A47E8E27965DB300FE8ED8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A492182327B3E41800D4D74E /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		A495368427B3DB300000C3FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A495368A27B3DDE20000C3FE /* CovetButton.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CovetButton.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A495368C27B3DDE20000C3FE /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		A495369127B3DDE20000C3FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A49536C727B3E1590000C3FE /* CovetButton.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CovetButton.entitlements; sourceTree = "<group>"; };
 		A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArray.swift; sourceTree = "<group>"; };
 		A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceSoftware.swift; sourceTree = "<group>"; };
@@ -220,7 +220,6 @@
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
 		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
-		B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetUITests.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CB702DBB95E653E783522CB1 /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12930D277A4D9800FA0E46 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EB12930F277A4E1000FA0E46 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -236,7 +235,6 @@
 		EB453040274BF993004395CA /* Covet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Covet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB453043274BF993004395CA /* CovetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetApp.swift; sourceTree = "<group>"; };
 		EB453045274BF993004395CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EB453047274BF995004395CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB45304A274BF995004395CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB453050274BF995004395CA /* CovetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CovetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB453054274BF995004395CA /* CovetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetTests.swift; sourceTree = "<group>"; };
@@ -266,16 +264,14 @@
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
-		ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet_CovetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A4A47E8427965DB300FE8ED8 /* Frameworks */ = {
+		A495368727B3DDE20000C3FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				183A04CAC75009967131709F /* Pods_CovetIt.framework in Frameworks */,
+				84F255324BA80533EAA47EF3 /* Pods_CovetButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +288,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31D64466C9EC35483507556C /* Pods_CovetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +295,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB5C32046ED5BFC4DA6F98C5 /* Pods_Covet_CovetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,9 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				CB702DBB95E653E783522CB1 /* Pods_Covet.framework */,
-				F9B96858DC74146358B80E50 /* Pods_Covet_CovetUITests.framework */,
-				ED70DE2CC1D5F1757285294B /* Pods_CovetTests.framework */,
 				01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */,
+				2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -323,14 +316,12 @@
 			children = (
 				AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */,
 				447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */,
-				98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */,
-				B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */,
-				A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */,
-				0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */,
 				26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */,
 				ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */,
 				5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */,
 				22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */,
+				29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */,
+				4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -362,14 +353,12 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		A4A47E8827965DB300FE8ED8 /* CovetIt */ = {
+		A495368B27B3DDE20000C3FE /* CovetButton */ = {
 			isa = PBXGroup;
 			children = (
+				A49536C727B3E1590000C3FE /* CovetButton.entitlements */,
 				A43B1F8627A34E4B00D09167 /* Extensions */,
-				A44DA6E027968C7500A9422E /* CovetIt.entitlements */,
 				A432CF4E2797B83F005EFCA8 /* TableViewController.swift */,
-				A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */,
-				A4A47E8E27965DB300FE8ED8 /* Info.plist */,
 				A432CF502797B9F0005EFCA8 /* ImageCell.swift */,
 				A4B68BE7279CBA2C00DF74E0 /* ImageScraper.swift */,
 				A4B68BE9279D170600DF74E0 /* ScrapedImage.swift */,
@@ -379,8 +368,11 @@
 				A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */,
 				A436FE6627A3C7960029820D /* ShareSheetPost.swift */,
 				A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */,
+				A495368C27B3DDE20000C3FE /* ShareViewController.swift */,
+				A495369127B3DDE20000C3FE /* Info.plist */,
+				A492182327B3E41800D4D74E /* MainInterface.storyboard */,
 			);
-			path = CovetIt;
+			path = CovetButton;
 			sourceTree = "<group>";
 		};
 		A4D1F94C27974B87003DBD85 /* API */ = {
@@ -397,12 +389,13 @@
 		EB453037274BF993004395CA = {
 			isa = PBXGroup;
 			children = (
+				A495368427B3DB300000C3FE /* Assets.xcassets */,
 				A459DA1D2797551500001BF5 /* Config */,
 				A4D1F94C27974B87003DBD85 /* API */,
 				EB453042274BF993004395CA /* Covet */,
 				EB453053274BF995004395CA /* CovetTests */,
 				EB45305D274BF995004395CA /* CovetUITests */,
-				A4A47E8827965DB300FE8ED8 /* CovetIt */,
+				A495368B27B3DDE20000C3FE /* CovetButton */,
 				EB453041274BF993004395CA /* Products */,
 				79B55A4B6ABBF5F02B25C283 /* Pods */,
 				604CD5100DF85109485798CF /* Frameworks */,
@@ -415,7 +408,7 @@
 				EB453040274BF993004395CA /* Covet.app */,
 				EB453050274BF995004395CA /* CovetTests.xctest */,
 				EB45305A274BF995004395CA /* CovetUITests.xctest */,
-				A4A47E8727965DB300FE8ED8 /* CovetIt.appex */,
+				A495368A27B3DDE20000C3FE /* CovetButton.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,7 +431,6 @@
 				EB453045274BF993004395CA /* ContentView.swift */,
 				EB724D072780F4DE0076593C /* CovetView.swift */,
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
-				EB453047274BF995004395CA /* Assets.xcassets */,
 				EB453049274BF995004395CA /* Preview Content */,
 				EB453086274C26C6004395CA /* Info.plist */,
 				A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */,
@@ -538,6 +530,7 @@
 				A436DA6327A5F9A5002FF28D /* IsLikedResponseObject.swift */,
 				A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */,
 				A44C8EF927AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift */,
+				A464BC6D27B497FB00CC1991 /* ImageScrapeResponseObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -585,22 +578,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A4A47E8627965DB300FE8ED8 /* CovetIt */ = {
+		A495368927B3DDE20000C3FE /* CovetButton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A4A47E9527965DB300FE8ED8 /* Build configuration list for PBXNativeTarget "CovetIt" */;
+			buildConfigurationList = A495369527B3DDE20000C3FE /* Build configuration list for PBXNativeTarget "CovetButton" */;
 			buildPhases = (
-				7654C68D29FAF08C46E2ABD9 /* [CP] Check Pods Manifest.lock */,
-				A4A47E8327965DB300FE8ED8 /* Sources */,
-				A4A47E8427965DB300FE8ED8 /* Frameworks */,
-				A4A47E8527965DB300FE8ED8 /* Resources */,
+				EB6061D01ED1C0064AED8AFB /* [CP] Check Pods Manifest.lock */,
+				A495368627B3DDE20000C3FE /* Sources */,
+				A495368727B3DDE20000C3FE /* Frameworks */,
+				A495368827B3DDE20000C3FE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = CovetIt;
-			productName = CovetIt;
-			productReference = A4A47E8727965DB300FE8ED8 /* CovetIt.appex */;
+			name = CovetButton;
+			productName = CovetButton;
+			productReference = A495368A27B3DDE20000C3FE /* CovetButton.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		EB45303F274BF993004395CA /* Covet */ = {
@@ -618,7 +611,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A4A47E9027965DB300FE8ED8 /* PBXTargetDependency */,
+				A495369327B3DDE20000C3FE /* PBXTargetDependency */,
 			);
 			name = Covet;
 			packageProductDependencies = (
@@ -632,7 +625,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB453067274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetTests" */;
 			buildPhases = (
-				B20F6A1AA81AD6F05AC18025 /* [CP] Check Pods Manifest.lock */,
 				EB45304C274BF995004395CA /* Sources */,
 				EB45304D274BF995004395CA /* Frameworks */,
 				EB45304E274BF995004395CA /* Resources */,
@@ -651,12 +643,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB45306A274BF995004395CA /* Build configuration list for PBXNativeTarget "CovetUITests" */;
 			buildPhases = (
-				EC9103BA92A37226907BFDA6 /* [CP] Check Pods Manifest.lock */,
 				EB453056274BF995004395CA /* Sources */,
 				EB453057274BF995004395CA /* Frameworks */,
 				EB453058274BF995004395CA /* Resources */,
-				FAEA390C2B5C8D2DE09F48E6 /* [CP] Embed Pods Frameworks */,
-				F72CA6DE00E5978F9474CF0A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -678,7 +667,7 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					A4A47E8627965DB300FE8ED8 = {
+					A495368927B3DDE20000C3FE = {
 						CreatedOnToolsVersion = 13.1;
 					};
 					EB45303F274BF993004395CA = {
@@ -713,18 +702,18 @@
 				EB45303F274BF993004395CA /* Covet */,
 				EB45304F274BF995004395CA /* CovetTests */,
 				EB453059274BF995004395CA /* CovetUITests */,
-				A4A47E8627965DB300FE8ED8 /* CovetIt */,
+				A495368927B3DDE20000C3FE /* CovetButton */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A4A47E8527965DB300FE8ED8 /* Resources */ = {
+		A495368827B3DDE20000C3FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4026967279E50FA00D314BB /* Assets.xcassets in Resources */,
-				A4A47E8D27965DB300FE8ED8 /* MainInterface.storyboard in Resources */,
+				A492182527B3E63100D4D74E /* Assets.xcassets in Resources */,
+				A492182427B3E41800D4D74E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,8 +721,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4026968279E513200D314BB /* Assets.xcassets in Resources */,
 				EB45304B274BF995004395CA /* Preview Assets.xcassets in Resources */,
+				A495368527B3DB300000C3FE /* Assets.xcassets in Resources */,
 				A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -777,28 +766,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7654C68D29FAF08C46E2ABD9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CovetIt-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -814,28 +781,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B20F6A1AA81AD6F05AC18025 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CovetTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */ = {
@@ -855,7 +800,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC9103BA92A37226907BFDA6 /* [CP] Check Pods Manifest.lock */ = {
+		EB6061D01ED1C0064AED8AFB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -870,83 +815,47 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Covet-CovetUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CovetButton-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F72CA6DE00E5978F9474CF0A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FAEA390C2B5C8D2DE09F48E6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet-CovetUITests/Pods-Covet-CovetUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A4A47E8327965DB300FE8ED8 /* Sources */ = {
+		A495368627B3DDE20000C3FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A436FE6727A3C7970029820D /* ShareSheetPost.swift in Sources */,
-				A4B68BE8279CBA2C00DF74E0 /* ImageScraper.swift in Sources */,
-				A459DA1C279754F100001BF5 /* JSDictTypedef.swift in Sources */,
-				A432CF4F2797B83F005EFCA8 /* TableViewController.swift in Sources */,
-				A4B1775927A4534F00E784F6 /* CovetUserRelationship.swift in Sources */,
-				A43B1F8E27A3BDD300D09167 /* ShareSheetUIConfig.swift in Sources */,
-				A459DA232797553600001BF5 /* ExtensionTokenConfig.swift in Sources */,
-				A4026966279E4A0600D314BB /* ShareSheetViewController.swift in Sources */,
-				A4B1775627A4515A00E784F6 /* Product.swift in Sources */,
-				A4B68BEA279D170700DF74E0 /* ScrapedImage.swift in Sources */,
-				A4B1775B27A45B5900E784F6 /* ShareSheetThumbnails.swift in Sources */,
-				A43B1F8C27A3BA0900D09167 /* AuthenticationHelpers.swift in Sources */,
-				A459DA1B279754DE00001BF5 /* JSDictExtension.swift in Sources */,
-				A459DA26279755A100001BF5 /* APIErrors.swift in Sources */,
-				A4D1F95427974BC8003DBD85 /* ExtensionAPI.swift in Sources */,
-				A43B1F8A27A3B4F700D09167 /* UIColor.swift in Sources */,
-				A432CF4927976D15005EFCA8 /* SetExtensionTokenResult.swift in Sources */,
-				A4D1F94F27974BA7003DBD85 /* APIHelpers.swift in Sources */,
-				A432CF4D27977EAE005EFCA8 /* CreatePostResponse.swift in Sources */,
-				A4B1775727A452FD00E784F6 /* Post.swift in Sources */,
-				A43B1F8827A34E5800D09167 /* UIView.swift in Sources */,
-				A43B1F9027A3BF9F00D09167 /* ShareSheetImageConfig.swift in Sources */,
-				A459DA202797552B00001BF5 /* APIConfig.swift in Sources */,
-				A459DA1A2797545A00001BF5 /* RuntimeError.swift in Sources */,
-				A44DA6E72797410000A9422E /* Strings.swift in Sources */,
-				A44DA6E427973D7F00A9422E /* ExtensionToken.swift in Sources */,
-				A4B1776027A4949C00E784F6 /* Defaults.swift in Sources */,
-				A432CF512797B9F0005EFCA8 /* ImageCell.swift in Sources */,
-				A4B1775827A4534B00E784F6 /* CovetUser.swift in Sources */,
+				A49536BA27B3DFAF0000C3FE /* ExtensionAPI.swift in Sources */,
+				A49536B827B3DE650000C3FE /* ImageScraper.swift in Sources */,
+				A49536C427B3E0F00000C3FE /* APIConfig.swift in Sources */,
+				A49536B327B3DE650000C3FE /* ShareViewController.swift in Sources */,
+				A49536A227B3DE5C0000C3FE /* UIView.swift in Sources */,
+				A49536C527B3E0FA0000C3FE /* JSDictTypedef.swift in Sources */,
+				A49536C627B3E0FF0000C3FE /* JSDictExtension.swift in Sources */,
+				A49536C027B3E0710000C3FE /* CovetUserRelationship.swift in Sources */,
+				A49536C227B3E0950000C3FE /* ExtensionToken.swift in Sources */,
+				A49536BF27B3E06D0000C3FE /* RuntimeError.swift in Sources */,
+				A49536AF27B3DE650000C3FE /* ShareSheetImageConfig.swift in Sources */,
+				A49536C127B3E0820000C3FE /* APIHelpers.swift in Sources */,
+				A49536BB27B3DFB30000C3FE /* APIErrors.swift in Sources */,
+				A49536B727B3DE650000C3FE /* ShareSheetUIConfig.swift in Sources */,
+				A49536B227B3DE650000C3FE /* ScrapedImage.swift in Sources */,
+				A49536B527B3DE650000C3FE /* ShareSheetViewController.swift in Sources */,
+				A49536A327B3DE5E0000C3FE /* UIColor.swift in Sources */,
+				A49536B927B3DE650000C3FE /* ShareSheetPost.swift in Sources */,
+				A464BC6E27B497FB00CC1991 /* ImageScrapeResponseObject.swift in Sources */,
+				A49536BE27B3DFE70000C3FE /* Product.swift in Sources */,
+				A49536BD27B3DFE70000C3FE /* CovetUser.swift in Sources */,
+				A49536BC27B3DFE70000C3FE /* Post.swift in Sources */,
+				A49536C327B3E0A00000C3FE /* Defaults.swift in Sources */,
+				A49536B427B3DE650000C3FE /* ImageCell.swift in Sources */,
+				A49536B627B3DE650000C3FE /* AuthenticationHelpers.swift in Sources */,
+				A49536B127B3DE650000C3FE /* ShareSheetThumbnails.swift in Sources */,
+				A49536B027B3DE650000C3FE /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +896,7 @@
 				EB12931B277AD61D00FA0E46 /* SearchBar.swift in Sources */,
 				A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */,
 				A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */,
+				A464BC6F27B49C0E00CC1991 /* ImageScrapeResponseObject.swift in Sources */,
 				A4CA973827AB1BE80081616D /* Binding.swift in Sources */,
 				A459DA25279755A100001BF5 /* APIErrors.swift in Sources */,
 				EB453089274C26F2004395CA /* AuthService.swift in Sources */,
@@ -1045,10 +955,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A4A47E9027965DB300FE8ED8 /* PBXTargetDependency */ = {
+		A495369327B3DDE20000C3FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A4A47E8627965DB300FE8ED8 /* CovetIt */;
-			targetProxy = A4A47E8F27965DB300FE8ED8 /* PBXContainerItemProxy */;
+			target = A495368927B3DDE20000C3FE /* CovetButton */;
+			targetProxy = A495369227B3DDE20000C3FE /* PBXContainerItemProxy */;
 		};
 		EB453052274BF995004395CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1062,71 +972,62 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		A4A47E8B27965DB300FE8ED8 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A4A47E8C27965DB300FE8ED8 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		A4A47E9327965DB300FE8ED8 /* Debug */ = {
+		A495369627B3DDE20000C3FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */;
+			baseConfigurationReference = 29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = CovetIt/CovetIt.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CovetIt/Info.plist;
+				INFOPLIST_FILE = CovetButton/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "covet. it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetIt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		A4A47E9427965DB300FE8ED8 /* Release */ = {
+		A495369727B3DDE20000C3FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */;
+			baseConfigurationReference = 4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = CovetIt/CovetIt.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CovetIt/Info.plist;
+				INFOPLIST_FILE = CovetButton/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "covet. it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetIt;
+				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1181,6 +1082,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1236,6 +1138,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1274,7 +1177,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1312,7 +1215,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1324,7 +1227,6 @@
 		};
 		EB453068274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A15F1AAEC14330D840186B38 /* Pods-CovetTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1350,7 +1252,6 @@
 		};
 		EB453069274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0712FB15E9BAC2ABD0730F91 /* Pods-CovetTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1376,7 +1277,6 @@
 		};
 		EB45306B274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 98FC5C735E5946372AFAAE50 /* Pods-Covet-CovetUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1400,7 +1300,6 @@
 		};
 		EB45306C274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9ECC11635FE7742AAF530FF /* Pods-Covet-CovetUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1425,11 +1324,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A4A47E9527965DB300FE8ED8 /* Build configuration list for PBXNativeTarget "CovetIt" */ = {
+		A495369527B3DDE20000C3FE /* Build configuration list for PBXNativeTarget "CovetButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A4A47E9327965DB300FE8ED8 /* Debug */,
-				A4A47E9427965DB300FE8ED8 /* Release */,
+				A495369627B3DDE20000C3FE /* Debug */,
+				A495369727B3DDE20000C3FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
