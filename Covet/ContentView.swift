@@ -54,7 +54,7 @@ struct ContentView: View {
                         address: "",
                         birthday: Date(),
                         privateForFollowing: false,
-                        privateForFriending: false
+                        privateForFriending: true
                     )
                 }
             }

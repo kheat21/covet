@@ -20,7 +20,7 @@ class APIConfig {
     
     private static let local_serverless_hostname = "http://localhost:3000/dev"
     private static let staging_hostname = "https://og663wi5te.execute-api.us-east-1.amazonaws.com/staging"
-    private static let prod_hostname = "https://pxsxnvvxej.execute-api.us-east-1.amazonaws.com/prod"
+    private static let prod_hostname = "https://wq69qf52fe.execute-api.us-east-1.amazonaws.com/prod"
     
     static let hostname = getHostnameForStage(s: stage)
     

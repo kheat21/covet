@@ -73,7 +73,7 @@ struct UserSettingsView: View {
                         toggleBackgroundColor: nil, value: $privateForFollowing)
                     ExplainedPromptedRadioInput(
                         primaryPrompt: "Big Spender",
-                        secondaryPrompt: "Allows access to your covet list, gifting capabilities, and your shopping address",
+                        secondaryPrompt: "Allows access to your covet list, gifting capabilities, and your shipping address",
                         toggleBackgroundColor: nil, value: $privateForFriending)
                     // Text("Who can...?").font(.system(.headline))
                     // UserPermissionSettingsExplainer(privateForFollowing: privateForFollowing, privateForFriending: privateForFriending)

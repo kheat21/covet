@@ -10,6 +10,9 @@ import SwiftUI
 
 struct FollowCovetView: View {
     @EnvironmentObject var auth: AuthService
+    
+    var onFollowed: (() -> Void)
+    
     @State var isProcessingCovetFollow: Bool = false
     var body: some View {
         VStack {
@@ -44,8 +47,9 @@ struct FollowCovetView: View {
         Task {
             self.isProcessingCovetFollow = true
             do {
-                if let relationship = try await API.followCovet() {
-                    await auth.refreshUser()
+                if let _ = try await API.followCovet() {
+                    onFollowed()
+                    auth.refreshUser()
                 }
             } catch {}
             self.isProcessingCovetFollow = false

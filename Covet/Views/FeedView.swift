@@ -63,7 +63,9 @@ struct FeedView: View {
             if let user = auth.currentCovetUser, let posts = self.posts {
                 
                 if posts.count == 0 && user.isFollowingOrFriendingAnyone() == false {
-                    FollowCovetView()
+                    FollowCovetView(onFollowed: {
+                        self._fetchFirstPage()
+                    })
                 }
                             
                 // Otherwise, just show whatever we got..
@@ -112,16 +114,16 @@ struct FeedView: View {
                     .listStyle(PlainListStyle())
                     .refreshable {
                         Task.detached {
-                            await self._fetchFirstPage()
+                            self._fetchFirstPage()
                         }
                     }
-                    .task {
-                        if let p = self.posts {
-                            if p.count == 0 {
-                                self._fetchFirstPage()
-                            }
-                        }
-                    }
+//                    .task {
+//                        if let p = self.posts {
+//                            if p.count == 0 {
+//                                self._fetchFirstPage()
+//                            }
+//                        }
+//                    }
                 }
             }
         }
