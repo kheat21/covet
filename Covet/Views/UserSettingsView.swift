@@ -166,7 +166,7 @@ struct UserSettingsView: View {
             await self.updateUI(showLoadingToast: true, actionState: .CreatingProfile, profile: nil, errorToast: false)
             var usr: CovetUser? = nil
             do {
-                var createdProfile = try await API.createProfile(
+                let createdProfile = try await API.createProfile(
                     username: handle,
                     name: name,
                     bio: bio,
@@ -230,7 +230,9 @@ struct UserSettingsView: View {
         self.showProfileCreationErrorToast = errorToast
         
         // Global auth/profile state
-        auth.refreshUser()
+        // while making sure the extension token gets set
+        auth.refreshUser(first: true)
+        
     }
     
 }
