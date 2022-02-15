@@ -25,16 +25,21 @@ struct HamburgerOptionsView: View {
                     if let pending = auth.currentCovetUser!.pending_incoming {
                         if pending.count > 0 {
                             NavigationLink(
-                                destination: UserManagerView(
-                                    relationships: pending,
-                                    navbarTitle: "Requested Friends/Followers"
-                                )) {
+                                destination:
+                                    UserManagerView(
+                                        relationships: pending,
+                                        navbarTitle: "Requested Friends/Followers"
+                                    )
+                                    .onDisappear {
+                                        self.auth.refreshUser()
+                                    }
+                            ) {
                                 Chip(
                                     preIcon: nil,
                                     text: " " + String(pending.count) + " ",
                                     color: Color.covetGreen()
                                 )
-                                    .foregroundColor(Color.white)
+                                .foregroundColor(Color.white)
                                 Text("Follow and Friend Requests")
                             }
                         }

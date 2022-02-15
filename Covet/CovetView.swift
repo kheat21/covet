@@ -62,7 +62,7 @@ struct CovetView : View {
                         .foregroundColor(Color.covetGreen())
                 }
                 .tag(2)
-            }            
+            }
         }
         .font(.headline)
         .accentColor(.covetGreen())

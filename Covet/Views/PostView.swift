@@ -116,6 +116,7 @@ struct PostView: View {
                         }
                     }
                     .frame(height: 50, alignment: Alignment.trailing)
+                    .zIndex(2)
                     PostDisplay(post: self.post)
                     Spacer() //.frame(height: 40)
                 }

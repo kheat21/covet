@@ -248,17 +248,22 @@ struct UserListItem: View {
     
     func doActOnPendingRequest(value: Bool) {
         print("Doing action")
-        self.isSaving = true
-        Task {
+        Task.detached {
+            await updateUIForActOnPendingRequest(saving: true, success: nil)
             let success = await actOnPendingRequest(value: value)
-            if success {
-                await auth.refreshUser()
-                if let removedCallback = self.onListItemRemoved {
-                    removedCallback()
-                }
-            }
-            self.isSaving = false
+            await updateUIForActOnPendingRequest(saving: false, success: success)
         }
+    }
+    
+    @MainActor
+    func updateUIForActOnPendingRequest(saving: Bool, success: Bool?) async {
+        if success != nil {
+            //self.auth.refreshUser()
+            if let removedCallback = self.onListItemRemoved {
+                removedCallback()
+            }
+        }
+        self.isSaving = saving
     }
     
 //    func doCancelPendingRequest() {
