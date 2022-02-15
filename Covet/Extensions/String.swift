@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension String {
     
@@ -26,6 +26,12 @@ extension String {
     func firstNCharacters(n: Int) -> String {
         let index = self.index(self.startIndex, offsetBy: n)
         return String(self[..<index])
+    }
+    
+    func tryToOpenAsURL() {
+        if let validURL = URL(string: self) {
+            UIApplication.shared.open(validURL, options: [:], completionHandler: nil)
+        }
     }
     
 }

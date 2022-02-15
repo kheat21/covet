@@ -25,7 +25,10 @@ struct PostDisplay : View {
                 rightBorderWidth: 4
             )
             .padding([.bottom], 16)
-            .allowsHitTesting(false)
+            .onTapGesture {
+                self.post.products![0].link.tryToOpenAsURL()
+            }
+            //.allowsHitTesting(false)
             
             Text(product.name)
                     .font(.system(size: 24, weight: .regular, design: .default))
