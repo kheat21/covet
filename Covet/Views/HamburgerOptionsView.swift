@@ -29,6 +29,12 @@ struct HamburgerOptionsView: View {
                                     relationships: pending,
                                     navbarTitle: "Requested Friends/Followers"
                                 )) {
+                                Chip(
+                                    preIcon: nil,
+                                    text: " " + String(pending.count) + " ",
+                                    color: Color.covetGreen()
+                                )
+                                    .foregroundColor(Color.white)
                                 Text("Follow and Friend Requests")
                             }
                         }

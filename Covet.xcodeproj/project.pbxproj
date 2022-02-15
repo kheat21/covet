@@ -73,6 +73,8 @@
 		A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F949279749BC003DBD85 /* SetExtensionTokenResult.swift */; };
 		A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */; };
 		A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95027974BBD003DBD85 /* AppAPI.swift */; };
+		A4DBBD6527BBF48600F80929 /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = A4DBBD6427BBF48600F80929 /* SwiftUITooltip */; };
+		A4DBBD6727BBF99A00F80929 /* ButtonBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBD6627BBF99A00F80929 /* ButtonBadge.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -216,6 +218,7 @@
 		A4D1F94D27974BA4003DBD85 /* APIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelpers.swift; sourceTree = "<group>"; };
 		A4D1F95027974BBD003DBD85 /* AppAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPI.swift; sourceTree = "<group>"; };
 		A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAPI.swift; sourceTree = "<group>"; };
+		A4DBBD6627BBF99A00F80929 /* ButtonBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBadge.swift; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
+				A4DBBD6527BBF48600F80929 /* SwiftUITooltip in Frameworks */,
 				A4BA61F627AC7D7A001E39DA /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +490,7 @@
 		EB453072274BF9CF004395CA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A4DBBD6627BBF99A00F80929 /* ButtonBadge.swift */,
 				A42B07AF27A5F68D00667216 /* PostDisplay.swift */,
 				EB453073274BF9DF004395CA /* CovetC.swift */,
 				EB453075274BFEA4004395CA /* CovetItem.swift */,
@@ -616,6 +621,7 @@
 			name = Covet;
 			packageProductDependencies = (
 				A4BA61F527AC7D7A001E39DA /* AlertToast */,
+				A4DBBD6427BBF48600F80929 /* SwiftUITooltip */,
 			);
 			productName = Covet;
 			productReference = EB453040274BF993004395CA /* Covet.app */;
@@ -694,6 +700,7 @@
 			mainGroup = EB453037274BF993004395CA;
 			packageReferences = (
 				A4BA61F427AC7D7A001E39DA /* XCRemoteSwiftPackageReference "AlertToast" */,
+				A4DBBD6327BBF48600F80929 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */,
 			);
 			productRefGroup = EB453041274BF993004395CA /* Products */;
 			projectDirPath = "";
@@ -927,6 +934,7 @@
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
 				A42B07B227A5F6A000667216 /* UIColor.swift in Sources */,
 				A4A49CDB27ADC76F00F2AAB7 /* UIScreen.swift in Sources */,
+				A4DBBD6727BBF99A00F80929 /* ButtonBadge.swift in Sources */,
 				A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
 				A42B07B027A5F68D00667216 /* PostDisplay.swift in Sources */,
@@ -1380,6 +1388,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		A4DBBD6327BBF48600F80929 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quassummanus/SwiftUI-Tooltip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1387,6 +1403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A4BA61F427AC7D7A001E39DA /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		A4DBBD6427BBF48600F80929 /* SwiftUITooltip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A4DBBD6327BBF48600F80929 /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
+			productName = SwiftUITooltip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -120,4 +120,9 @@ struct CovetUser: Identifiable, Decodable {
                 self.current_user_blocks != nil
             )
         }
+    
+    func countPendingIncoming() -> Int {
+        guard let pending = self.pending_incoming else { return 0 }
+        return pending.count
+    }
 }

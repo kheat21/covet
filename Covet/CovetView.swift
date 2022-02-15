@@ -47,13 +47,22 @@ struct CovetView : View {
                 }
                 .tag(1)
             
-            ProfileView(isMe: true)
-            .tabItem {
-                Label("Profile", systemImage: "person.fill")
-                    .foregroundColor(Color.covetGreen())
-            }
-            .tag(2)
-            
+            if shouldShowBadge(currentCovetUser: auth.currentCovetUser) {
+                ProfileView(isMe: true)
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+                        .foregroundColor(Color.covetGreen())
+                }
+                .tag(2)
+                .badge(badgeContents(currentCovetUser: auth.currentCovetUser))
+            } else {
+                ProfileView(isMe: true)
+                .tabItem {
+                    Label("Profile", systemImage: "person.fill")
+                        .foregroundColor(Color.covetGreen())
+                }
+                .tag(2)
+            }            
         }
         .font(.headline)
         .accentColor(.covetGreen())
@@ -61,4 +70,13 @@ struct CovetView : View {
             CreatePostView()
         })
     }
+}
+
+func shouldShowBadge(currentCovetUser: CovetUser?) -> Bool {
+    guard let usr = currentCovetUser else { return false }
+    return usr.countPendingIncoming() > 0
+}
+
+func badgeContents(currentCovetUser: CovetUser?) -> Int {
+    return currentCovetUser!.countPendingIncoming()
 }

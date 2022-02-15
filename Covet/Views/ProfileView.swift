@@ -8,6 +8,7 @@
 import AlertToast
 import SwiftUI
 import Firebase
+import SwiftUITooltip
 
 struct ProfileView: View {
 
@@ -28,11 +29,18 @@ struct ProfileView: View {
     @State var showPostInDetailView: Post? = nil
     @State var showManagerView: Bool = false
     
+    @State var showTooltipIfApplicable: Bool = true
+    var tooltipConfig = DefaultTooltipConfig()
+    
     init(isMe: Bool) {
         if !isMe {
             fatalError("Cannot use this constructor unless the value is true")
         }
         self.profilePageMode = true
+        tooltipConfig.backgroundColor = Color.covetGreen()
+        tooltipConfig.side = .leading
+        tooltipConfig.borderColor = Color.clear
+        tooltipConfig.arrowHeight = 6.0
     }
     
     init(userId: Int) {
@@ -61,7 +69,16 @@ struct ProfileView: View {
                                 trailing: NavigationLink(isActive: self.$showManagerView, destination: {
                                     HamburgerOptionsView(user: me)
                                 }, label: {
-                                    Image(systemName: "line.horizontal.3")
+                                    if me.countPendingIncoming() > 0 && self.showTooltipIfApplicable {
+                                        Image(systemName: "line.horizontal.3")
+                                            .overlay(
+                                                ButtonBadge(message: "!!")
+                                            )
+                                            
+                                    } else {
+                                        Image(systemName: "line.horizontal.3")
+                                            .zIndex(3)
+                                    }                                       
                                 })
 //                                trailing: Button(
 //                                    action: {
@@ -139,6 +156,7 @@ struct UserProfile : View {
                     followers: followers,
                     friends: friends
                 )
+                .zIndex(2)
             } else {
                 if user.follows_count != nil && user.followers_count != nil && user.friends_count != nil {
                     UserRelationshipsHero(
@@ -146,6 +164,7 @@ struct UserProfile : View {
                         followers_count: user.followers_count!,
                         friends_count: user.friends_count!
                     )
+                    .zIndex(2)
                 }
             }
                         
@@ -164,6 +183,7 @@ struct UserProfile : View {
                         bottomBorderWidth: 8,
                         rightBorderWidth: 8
                     )
+                    .zIndex(1)
                     .frame(
                         width: AppConfig.getCovetImageWidth(),
                         height: AppConfig.getCovetImageWidth(),
