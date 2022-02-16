@@ -75,6 +75,7 @@
 		A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D1F95027974BBD003DBD85 /* AppAPI.swift */; };
 		A4DBBD6527BBF48600F80929 /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = A4DBBD6427BBF48600F80929 /* SwiftUITooltip */; };
 		A4DBBD6727BBF99A00F80929 /* ButtonBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBD6627BBF99A00F80929 /* ButtonBadge.swift */; };
+		A4DBBD6927BCF77300F80929 /* RefreshUserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4DBBD6827BCF77300F80929 /* RefreshUserButton.swift */; };
 		A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */; };
 		A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */; };
 		A4EDE9D52790C1B300EB6AE3 /* UserRelationshipsHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */; };
@@ -219,6 +220,7 @@
 		A4D1F95027974BBD003DBD85 /* AppAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPI.swift; sourceTree = "<group>"; };
 		A4D1F95227974BC6003DBD85 /* ExtensionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionAPI.swift; sourceTree = "<group>"; };
 		A4DBBD6627BBF99A00F80929 /* ButtonBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBadge.swift; sourceTree = "<group>"; };
+		A4DBBD6827BCF77300F80929 /* RefreshUserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUserButton.swift; sourceTree = "<group>"; };
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */,
 				A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */,
 				A45B857027AC36490033F28E /* UserPermissionSettingsExplainer.swift */,
+				A4DBBD6827BCF77300F80929 /* RefreshUserButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				EB12931F277ADAAE00FA0E46 /* Chip.swift in Sources */,
 				EB12931B277AD61D00FA0E46 /* SearchBar.swift in Sources */,
 				A4E537F12794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift in Sources */,
+				A4DBBD6927BCF77300F80929 /* RefreshUserButton.swift in Sources */,
 				A4D1F94A279749BC003DBD85 /* SetExtensionTokenResult.swift in Sources */,
 				A464BC6F27B49C0E00CC1991 /* ImageScrapeResponseObject.swift in Sources */,
 				A4CA973827AB1BE80081616D /* Binding.swift in Sources */,

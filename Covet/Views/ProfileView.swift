@@ -66,20 +66,23 @@ struct ProfileView: View {
                             .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
                             .navigationBarItems(
                                 leading: makeCovetC(size: 36, user: me, textSize: 12),
-                                trailing: NavigationLink(isActive: self.$showManagerView, destination: {
-                                    HamburgerOptionsView(user: me)
-                                }, label: {
-                                    if me.countPendingIncoming() > 0 && self.showTooltipIfApplicable {
-                                        Image(systemName: "line.horizontal.3")
-                                            .overlay(
-                                                ButtonBadge(message: "!!")
-                                            )
-                                            
-                                    } else {
-                                        Image(systemName: "line.horizontal.3")
-                                            .zIndex(3)
-                                    }                                       
-                                })
+                                trailing: HStack {
+                                    RefreshUserButton()
+                                    NavigationLink(isActive: self.$showManagerView, destination: {
+                                        HamburgerOptionsView(user: me)
+                                    }, label: {
+                                        if me.countPendingIncoming() > 0 && self.showTooltipIfApplicable {
+                                            Image(systemName: "line.horizontal.3")
+                                                .overlay(
+                                                    ButtonBadge(message: "!!")
+                                                )
+                                                
+                                        } else {
+                                            Image(systemName: "line.horizontal.3")
+                                                .zIndex(3)
+                                        }
+                                    })
+                                }
 //                                trailing: Button(
 //                                    action: {
 //                                        self.showManagerView = true
