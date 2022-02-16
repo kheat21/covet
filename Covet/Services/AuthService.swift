@@ -44,6 +44,7 @@ class AuthService: NSObject, ObservableObject {
             try Auth.auth().signOut()
             self.currentCovetUser = nil
             self.clearExtensionToken()
+            UserHelpNudgeKeys.resetAll()
         } catch {}
     }
     

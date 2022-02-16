@@ -60,6 +60,10 @@ struct SearchView: View {
                     ScrollView {
                         
                         // Show the users first
+                        if results.users.count > 0 {
+                            UserLongPressHelpNudge()
+                                .padding(.bottom, 8)
+                        }
                         ForEach(results.users.prefix(5)) { user in
 //                            NavigationLink {
 //                                ProfileView(userId: user.id)

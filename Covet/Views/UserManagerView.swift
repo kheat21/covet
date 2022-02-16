@@ -33,6 +33,10 @@ struct UserManagerView: View {
             SearchBar(text: $searchText)
             Spacer().frame(height: 16)
             ScrollView {
+                if self.hasAnyPending() == false {
+                    UserLongPressHelpNudge()
+                        .padding(.bottom, 8)
+                }
                 ForEach(self.getFilteredRelationships(), id: \.self) { item in
                     UserListItem(
                         user: item.user,
@@ -79,6 +83,13 @@ struct UserManagerView: View {
         self.relationships = self.relationships!.filter({ (r: CovetUserRelationshipInfo) in
             return item != r
         })
+    }
+    
+    func hasAnyPending() -> Bool? {
+        guard self.relationships != nil else { return nil }
+        return self.relationships!.filter { r in
+            r.relationship.pending == 1
+        }.count > 0
     }
 }
 

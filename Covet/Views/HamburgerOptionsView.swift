@@ -87,6 +87,20 @@ struct HamburgerOptionsView: View {
                         value: $settings.showErrorWhenUserRefreshFails,
                         leftEdgePadding: 0
                     )
+                    HStack {
+                        Text("App Launch Number")
+                            .font(.system(size: 16))
+                        Spacer()
+                        Text(String(UserHelpNudgeKeys.currentAppCountLaunchNumber()))
+                    }
+                    ForEach(Array(UserHelpNudgeKeys.nudges.enumerated()), id: \.offset) { index, n in
+                        HStack {
+                            Text(n)
+                                .font(.system(size: 16))
+                            Spacer()
+                            Text(String(UserHelpNudgeKeys.currentValue(nudge: n)))
+                        }
+                    }
                 }
             })
             Section("Compliance", content: {

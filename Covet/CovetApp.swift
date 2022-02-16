@@ -31,6 +31,9 @@ struct CovetApp: App {
                 ContentView()
                     .environmentObject(auth)
                     .environmentObject(settings)
+                    .onAppear {
+                        UserHelpNudgeKeys.setup()
+                    }
 //                    .onAppear(perform: {
 //                        Task {
 //                            await auth.refreshUser()
