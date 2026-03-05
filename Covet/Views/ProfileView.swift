@@ -152,24 +152,7 @@ struct UserProfile : View {
     
     var body: some View {
         VStack {
-            // Show the number of people they're connected to
-            if let follows = user.follows, let followers = user.followers, let friends = user.friends {
-                UserRelationshipsHero(
-                    following: follows,
-                    followers: followers,
-                    friends: friends
-                )
-                .zIndex(2)
-            } else {
-                if user.follows_count != nil && user.followers_count != nil && user.friends_count != nil {
-                    UserRelationshipsHero(
-                        following_count: user.follows_count!,
-                        followers_count: user.followers_count!,
-                        friends_count: user.friends_count!
-                    )
-                    .zIndex(2)
-                }
-            }
+
                         
             // Show their posts
             if let posts = user.posts {

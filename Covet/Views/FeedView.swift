@@ -17,6 +17,7 @@ struct FeedView: View {
     @State var isFetching = false
     @State var currentPage: Int = 1
     @State var posts: [Post]? = nil
+    @State var hiddenPostIds: Set<Int> = []
     
 //    @State var openUser: CovetUser? = nil
     
@@ -71,14 +72,17 @@ struct FeedView: View {
                 // Otherwise, just show whatever we got..
                 else {
                     List {
-                        ForEach(Array(posts.enumerated()), id: \.offset) { index, post in
+                        ForEach(Array(posts.filter { !hiddenPostIds.contains($0.id) }.enumerated()), id: \.offset) { index, post in
                             ZStack {
                                 if let thumbnailImage = getThumbnailImageURLForPost(post: post), let user = post.user {
                                     HStack {
                                         Spacer()
                                         UserPreview(
                                             user: user,
-                                            topItem: thumbnailImage
+                                            topItem: thumbnailImage,
+                                            onImageLoadFailed: {
+                                                hiddenPostIds.insert(post.id)
+                                            }
                                         )
                                         NavigationLink {
                                             ProfileView(userId: user.id)

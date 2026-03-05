@@ -14,7 +14,7 @@ target 'Covet' do
   shared_pods
 
   # Pods for Covet
-  pod 'FirebaseUI', '~> 8.0'       # Pull in all Firebase UI features
+  pod 'FirebaseUI', '~> 14.0'       # Pull in all Firebase UI features
 
   
   # For Analytics without IDFA collection capability, use this pod instead
@@ -31,6 +31,24 @@ target 'CovetButton' do
   use_frameworks!
   shared_pods
   pod 'SwiftSoup'
-  pod 'Socket.IO-Client-Swift', '~> 16.0.1'
+  pod 'Socket.IO-Client-Swift', '~> 16.1.1'
   pod 'Kingfisher', '~> 7.0'
+end
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['CLANG_WARN_STRICT_PROTOTYPES'] = 'NO'
+      
+      # Remove -G flag from linker flags
+      if config.build_settings['OTHER_LDFLAGS']
+        flags = config.build_settings['OTHER_LDFLAGS']
+        if flags.is_a?(Array)
+          config.build_settings['OTHER_LDFLAGS'] = flags.reject { |flag| flag == '-G' }
+        elsif flags.is_a?(String)
+          config.build_settings['OTHER_LDFLAGS'] = flags.gsub('-G', '')
+        end
+      end
+    end
+  end
 end

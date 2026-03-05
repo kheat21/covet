@@ -9,7 +9,7 @@ import AlertToast
 import Combine
 import SwiftUI
 import Firebase
-import FirebaseUI
+import FirebaseAuthUI
 
 @main
 struct CovetApp: App {
@@ -34,12 +34,6 @@ struct CovetApp: App {
                     .onAppear {
                         UserHelpNudgeKeys.setup()
                     }
-//                    .onAppear(perform: {
-//                        Task {
-//                            await auth.refreshUser()
-//                            await auth.refreshExtensionToken()
-//                        }
-//                    })
             } else {
                 LoginView()
                     .environmentObject(auth)

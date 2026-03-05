@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Alamofire
 
-Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
+Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -339,7 +339,7 @@ Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
-   Copyright (c) 2014-2016 Dalton Cherry.
+   Copyright (c) 2014-2023 Dalton Cherry.
 
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
@@ -514,9 +514,10 @@ Apache License
 
 ## SwiftSoup
 
-MIT License
+The MIT License
 
-Copyright (c) 2016 Nabil Chatbi
+Copyright (c) 2009-2025 Jonathan Hedley <https://jsoup.org/>  
+Swift port copyright (c) 2016-2025 Nabil Chatbi  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

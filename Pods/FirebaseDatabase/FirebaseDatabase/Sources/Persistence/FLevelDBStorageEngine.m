@@ -18,7 +18,7 @@
 
 #import "FirebaseDatabase/Sources/Persistence/FLevelDBStorageEngine.h"
 
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
 #import "FirebaseDatabase/Sources/Core/FQueryParams.h"
 #import "FirebaseDatabase/Sources/Core/FWriteRecord.h"
 #import "FirebaseDatabase/Sources/Persistence/FPendingPut.h"
@@ -131,7 +131,7 @@ static NSString *trackedQueryKeysKey(NSUInteger trackedQueryId, NSString *key) {
                    error);
         }
     } else if ([oldVersion isEqualToString:kFPersistenceVersion]) {
-        // Everythings fine no need for migration
+        // Everything's fine, no need for migration
     } else if ([oldVersion length] == 0) {
         FFWarn(@"I-RDB076036",
                @"Version file empty. Assuming database version 1.");
@@ -166,8 +166,18 @@ static NSString *trackedQueryKeysKey(NSUInteger trackedQueryId, NSString *key) {
             // it'll go fine :P
             [writes enumerateKeysAndValuesAsData:^(NSString *key, NSData *data,
                                                    BOOL *stop) {
-              id pendingPut = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-              if ([pendingPut isKindOfClass:[FPendingPut class]]) {
+              NSError *error;
+              id pendingPut = [NSKeyedUnarchiver
+                  unarchivedObjectOfClasses:
+                      [NSSet setWithObjects:[FPendingPut class],
+                                            [FPendingPutPriority class],
+                                            [FPendingUpdate class], nil]
+                                   fromData:data
+                                      error:&error];
+              if (error) {
+                  FFWarn(@"I-RDB076003", @"Failed to migrate legacy write: %@",
+                         error);
+              } else if ([pendingPut isKindOfClass:[FPendingPut class]]) {
                   FPendingPut *put = pendingPut;
                   id<FNode> newNode =
                       [FSnapshotUtilities nodeFrom:put.data
@@ -201,7 +211,9 @@ static NSString *trackedQueryKeysKey(NSUInteger trackedQueryId, NSString *key) {
                   numberOfWritesRestored++;
               } else {
                   FFWarn(@"I-RDB076003",
-                         @"Failed to migrate legacy write, meh!");
+                         @"Failed to migrate legacy write: unrecognized class "
+                         @"\"%@\"",
+                         [pendingPut class]);
               }
             }];
             FFWarn(@"I-RDB076004", @"Migrated %lu writes",
@@ -263,11 +275,16 @@ static NSString *trackedQueryKeysKey(NSUInteger trackedQueryId, NSString *key) {
 }
 
 + (NSString *)firebaseDir {
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS || TARGET_OS_WATCH || TARGET_OS_VISION
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(
         NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [dirPaths objectAtIndex:0];
     return [documentsDir stringByAppendingPathComponent:@"firebase"];
+#elif TARGET_OS_TV
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(
+        NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachesDir = [dirPaths objectAtIndex:0];
+    return [cachesDir stringByAppendingPathComponent:@"firebase"];
 #elif TARGET_OS_OSX
     return [NSHomeDirectory() stringByAppendingPathComponent:@".firebase"];
 #endif

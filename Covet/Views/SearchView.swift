@@ -77,7 +77,7 @@ struct SearchView: View {
                         }
                     
                         // Show the posts next
-                        if let posts = results.posts {
+                        if !results.posts.isEmpty {
                             ImageGrid(images: results.posts, selected: { p in
                                 print("selected " + String(p.id))
                                 self.navigateToPost = p

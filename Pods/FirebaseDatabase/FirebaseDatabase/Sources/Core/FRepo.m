@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
 #import "FirebaseDatabase/Sources/Api/Private/FIRDataSnapshot_Private.h"
 #import "FirebaseDatabase/Sources/Api/Private/FIRDatabaseQuery_Private.h"
 #import "FirebaseDatabase/Sources/Api/Private/FIRDatabase_Private.h"
@@ -52,7 +52,7 @@
 #import "FirebaseDatabase/Sources/Utilities/Tuples/FTupleTransaction.h"
 #import <dlfcn.h>
 
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
 #import <UIKit/UIKit.h>
 #endif
 
@@ -110,9 +110,14 @@
 - (void)deferredInit {
     // TODO: cleanup on dealloc
     __weak FRepo *weakSelf = self;
-    [self.config.authTokenProvider listenForTokenChanges:^(NSString *token) {
+    [self.config.contextProvider listenForAuthTokenChanges:^(NSString *token) {
       [weakSelf.connection refreshAuthToken:token];
     }];
+
+    [self.config.contextProvider
+        listenForAppCheckTokenChanges:^(NSString *token) {
+          [weakSelf.connection refreshAppCheckToken:token];
+        }];
 
     // Open connection now so that by the time we are connected the deferred
     // init has run This relies on the fact that all callbacks run on repos
@@ -513,6 +518,75 @@
     [self.connection purgeOutstandingWrites];
 }
 
+- (void)getData:(FIRDatabaseQuery *)query
+    withCompletionBlock:(void (^)(NSError *__nullable error,
+                                  FIRDataSnapshot *__nullable snapshot))block {
+    FQuerySpec *querySpec = [query querySpec];
+    id<FNode> node = [self.serverSyncTree getServerValue:[query querySpec]];
+    if (node != nil) {
+        [self.eventRaiser raiseCallback:^{
+          block(nil, [[FIRDataSnapshot alloc]
+                         initWithRef:query.ref
+                         indexedNode:[FIndexedNode
+                                         indexedNodeWithNode:node
+                                                       index:querySpec.index]]);
+        }];
+        return;
+    }
+    [self.persistenceManager setQueryActive:querySpec];
+    [self.connection
+        getDataAtPath:[query.path toString]
+           withParams:querySpec.params.wireProtocolParams
+         withCallback:^(NSString *status, id data, NSString *errorReason) {
+           id<FNode> node;
+           if (![status isEqualToString:kFWPResponseForActionStatusOk]) {
+               FFLog(@"I-RDB038024",
+                     @"getValue for query %@ falling back to disk cache",
+                     [querySpec.path toString]);
+               FIndexedNode *node =
+                   [self.serverSyncTree persistenceServerCache:querySpec];
+               if (node == nil) {
+                   NSDictionary *errorDict = @{
+                       NSLocalizedFailureReasonErrorKey : errorReason,
+                       NSLocalizedDescriptionKey : [NSString
+                           stringWithFormat:
+                               @"Unable to get latest value for query %@, "
+                               @"client offline with no active listeners "
+                               @"and no matching disk cache entries",
+                               querySpec]
+                   };
+                   [self.eventRaiser raiseCallback:^{
+                     block([NSError errorWithDomain:kFirebaseCoreErrorDomain
+                                               code:1
+                                           userInfo:errorDict],
+                           nil);
+                   }];
+                   return;
+               }
+               [self.eventRaiser raiseCallback:^{
+                 block(nil, [[FIRDataSnapshot alloc] initWithRef:query.ref
+                                                     indexedNode:node]);
+               }];
+           } else {
+               node = [FSnapshotUtilities nodeFrom:data];
+               [self.eventRaiser
+                   raiseEvents:[self.serverSyncTree
+                                   applyServerOverwriteAtPath:[query path]
+                                                      newData:node]];
+               [self.eventRaiser raiseCallback:^{
+                 block(
+                     nil,
+                     [[FIRDataSnapshot alloc]
+                         initWithRef:query.ref
+                         indexedNode:[FIndexedNode
+                                         indexedNodeWithNode:node
+                                                       index:querySpec.index]]);
+               }];
+           }
+           [self.persistenceManager setQueryInactive:querySpec];
+         }];
+}
+
 - (void)addEventRegistration:(id<FEventRegistration>)eventRegistration
                     forQuery:(FQuerySpec *)query {
     NSArray *events = nil;
@@ -739,9 +813,9 @@
     if (!self.config.persistenceEnabled)
         return;
 
-// Targetted compilation is ONLY for testing. UIKit is weak-linked in actual
+// Targeted compilation is ONLY for testing. UIKit is weak-linked in actual
 // release build.
-#if TARGET_OS_IOS || TARGET_OS_TV
+#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_VISION
     // The idea is to wait until any outstanding sets get written to disk. Since
     // the sets might still be in our dispatch queue, we wait for the dispatch
     // queue to catch up and for persistence to catch up. This may be

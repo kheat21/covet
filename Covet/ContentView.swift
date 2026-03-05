@@ -25,7 +25,11 @@ struct ContentView: View {
 //        set: { newValue in {} }
 //    )
     
-    var body: some View {
+var body: some View {
+        if !auth.isLoggedIn {
+            LoginView()
+                .environmentObject(auth)
+        } else {
         ZStack {
         if !auth.gettingCurrentCovetUserFirstTime {
             if auth.currentCovetUserExists == true {
@@ -46,15 +50,9 @@ struct ContentView: View {
             }
             else if auth.currentCovetUserExists == false {
                 NavigationView {
-                    UserSettingsView(
-                        mode: UserSettingsViewPresentationOptions.NewSignup,
+                    UserSettingsView(                        mode: .NewSignup,
                         handle: "",
-                        name: "",
-                        bio: "",
-                        address: "",
-                        birthday: Date(),
-                        privateForFollowing: false,
-                        privateForFriending: true
+                        name: ""
                     )
                 }
             }
@@ -109,6 +107,7 @@ struct ContentView: View {
         .toast(isPresenting: $auth.errorGettingCurrentCovetUser && $settings.showErrorWhenUserRefreshFails, alert: {
             AlertToast(displayMode: .hud, type: .error(Color.red), title: "Error Refreshing")
         })
+        } // end else (logged in)
     }
     
 }
@@ -118,3 +117,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

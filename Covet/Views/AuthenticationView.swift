@@ -1,5 +1,8 @@
 import SwiftUI
-import FirebaseUI
+import FirebaseAuthUI
+import FirebaseEmailAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseOAuthUI
 import Firebase
 
 public var screenWidth: CGFloat {

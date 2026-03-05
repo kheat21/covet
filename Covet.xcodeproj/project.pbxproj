@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84F255324BA80533EAA47EF3 /* Pods_CovetButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */; };
+		29F128108791901126A73041 /* Pods_CovetButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82594A246CE10C3AC3324D9 /* Pods_CovetButton.framework */; };
+		4909A4BD0757B3CFCEBC4AC4 /* Pods_Covet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D83FB7AC347C284AD4B85F /* Pods_Covet.framework */; };
 		A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */; };
 		A42B07AA27A5F5B100667216 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07A927A5F5B100667216 /* PostView.swift */; };
 		A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42B07AB27A5F60C00667216 /* RecovetView.swift */; };
@@ -62,7 +63,6 @@
 		A4A49CDB27ADC76F00F2AAB7 /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */; };
 		A4A49CDD27AE4D3600F2AAB7 /* PostArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */; };
 		A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */; };
-		A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */; };
 		A4AF67D127A8DD6800D449EB /* HamburgerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */; };
 		A4B1775D27A47C2400E784F6 /* ExtensionTokenStateManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775C27A47C2400E784F6 /* ExtensionTokenStateManagement.swift */; };
 		A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B1775E27A4949C00E784F6 /* Defaults.swift */; };
@@ -118,7 +118,11 @@
 		EBDF21CD274D400B008E48E3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CC274D400B008E48E3 /* Int.swift */; };
 		EBDF21CF274EDCCC008E48E3 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */; };
 		EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */; };
-		F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB702DBB95E653E783522CB1 /* Pods_Covet.framework */; };
+		F82E38C02F3121510070154F /* SimpleLoginView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82E38BF2F3121510070154F /* SimpleLoginView 2.swift */; };
+		F84434202F27E96A0067F9BC /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F844341F2F27E96A0067F9BC /* KeychainService.swift */; };
+		F84434222F27E9CC0067F9BC /* UsernameAuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84434212F27E9CC0067F9BC /* UsernameAuthAPI.swift */; };
+		F84434242F27EB0E0067F9BC /* UsernameLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84434232F27EB0E0067F9BC /* UsernameLoginView.swift */; };
+		F8C0DB742F2FD2A100A51AEA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8C0DB732F2FD2A100A51AEA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,14 +164,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
-		26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
-		29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.debug.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.debug.xcconfig"; sourceTree = "<group>"; };
-		2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.release.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.release.xcconfig"; sourceTree = "<group>"; };
-		447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
-		5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetIt.debug.xcconfig"; path = "Target Support Files/Pods-CovetIt/Pods-CovetIt.debug.xcconfig"; sourceTree = "<group>"; };
+		25602471750B7EE11EBD7949 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
+		3FDB6ED2DFADDB74F1094BBA /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
+		4D9345DBA7F61941D6801202 /* Pods-CovetButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.debug.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.debug.xcconfig"; sourceTree = "<group>"; };
+		77D83FB7AC347C284AD4B85F /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4026965279E4A0600D314BB /* ShareSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetViewController.swift; sourceTree = "<group>"; };
 		A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovetUserResponseObject.swift; sourceTree = "<group>"; };
 		A42B07A927A5F5B100667216 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
@@ -206,7 +206,6 @@
 		A4A49CDA27ADC76F00F2AAB7 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		A4A49CDC27AE4D3600F2AAB7 /* PostArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostArray.swift; sourceTree = "<group>"; };
 		A4A5CAEF27A990890026A4A7 /* OpenSourceSoftware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceSoftware.swift; sourceTree = "<group>"; };
-		A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A4AF67D027A8DD6700D449EB /* HamburgerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerOptionsView.swift; sourceTree = "<group>"; };
 		A4B1775A27A45B5900E784F6 /* ShareSheetThumbnails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetThumbnails.swift; sourceTree = "<group>"; };
 		A4B1775C27A47C2400E784F6 /* ExtensionTokenStateManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTokenStateManagement.swift; sourceTree = "<group>"; };
@@ -226,8 +225,7 @@
 		A4E537F02794B78B00BA60E2 /* SetUserRelationshipResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserRelationshipResponseObject.swift; sourceTree = "<group>"; };
 		A4EDE9D22790BEAA00EB6AE3 /* ImageGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGrid.swift; sourceTree = "<group>"; };
 		A4EDE9D42790C1B300EB6AE3 /* UserRelationshipsHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationshipsHero.swift; sourceTree = "<group>"; };
-		AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
-		CB702DBB95E653E783522CB1 /* Pods_Covet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Covet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D82594A246CE10C3AC3324D9 /* Pods_CovetButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CovetButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB12930D277A4D9800FA0E46 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EB12930F277A4E1000FA0E46 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		EB129311277A764F00FA0E46 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
@@ -270,7 +268,12 @@
 		EBDF21CC274D400B008E48E3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		EBDF21CE274EDCCC008E48E3 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		EBDF21D0274EF3C4008E48E3 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
-		ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet-CovetIt.release.xcconfig"; path = "Target Support Files/Pods-Covet-CovetIt/Pods-Covet-CovetIt.release.xcconfig"; sourceTree = "<group>"; };
+		EC11820AD9E6E14D8857A998 /* Pods-CovetButton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.release.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.release.xcconfig"; sourceTree = "<group>"; };
+		F82E38BF2F3121510070154F /* SimpleLoginView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleLoginView 2.swift"; sourceTree = "<group>"; };
+		F844341F2F27E96A0067F9BC /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		F84434212F27E9CC0067F9BC /* UsernameAuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameAuthAPI.swift; sourceTree = "<group>"; };
+		F84434232F27EB0E0067F9BC /* UsernameLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameLoginView.swift; sourceTree = "<group>"; };
+		F8C0DB732F2FD2A100A51AEA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,7 +281,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F255324BA80533EAA47EF3 /* Pods_CovetButton.framework in Frameworks */,
+				29F128108791901126A73041 /* Pods_CovetButton.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,9 +289,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F158BD951244CBF7CA0524A9 /* Pods_Covet.framework in Frameworks */,
 				A4DBBD6527BBF48600F80929 /* SwiftUITooltip in Frameworks */,
 				A4BA61F627AC7D7A001E39DA /* AlertToast in Frameworks */,
+				4909A4BD0757B3CFCEBC4AC4 /* Pods_Covet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,29 +312,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		604CD5100DF85109485798CF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CB702DBB95E653E783522CB1 /* Pods_Covet.framework */,
-				01D32D7BE85A5F199CADFE07 /* Pods_CovetIt.framework */,
-				2CAC35976740ADEA1B8C9D15 /* Pods_CovetButton.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		79B55A4B6ABBF5F02B25C283 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */,
-				447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */,
-				26618ADFA77B6678D4CA6328 /* Pods-Covet-CovetIt.debug.xcconfig */,
-				ED4793C795945562631C49AF /* Pods-Covet-CovetIt.release.xcconfig */,
-				5AACD9A31B70C11E088CC352 /* Pods-CovetIt.debug.xcconfig */,
-				22A86C18F5CC4BB705A9EE0F /* Pods-CovetIt.release.xcconfig */,
-				29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */,
-				4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */,
+				25602471750B7EE11EBD7949 /* Pods-Covet.debug.xcconfig */,
+				3FDB6ED2DFADDB74F1094BBA /* Pods-Covet.release.xcconfig */,
+				4D9345DBA7F61941D6801202 /* Pods-CovetButton.debug.xcconfig */,
+				EC11820AD9E6E14D8857A998 /* Pods-CovetButton.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		97B5CB9117FFAC04C1118AF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77D83FB7AC347C284AD4B85F /* Pods_Covet.framework */,
+				D82594A246CE10C3AC3324D9 /* Pods_CovetButton.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A43B1F8627A34E4B00D09167 /* Extensions */ = {
@@ -406,7 +404,7 @@
 				A495368B27B3DDE20000C3FE /* CovetButton */,
 				EB453041274BF993004395CA /* Products */,
 				79B55A4B6ABBF5F02B25C283 /* Pods */,
-				604CD5100DF85109485798CF /* Frameworks */,
+				97B5CB9117FFAC04C1118AF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -441,7 +439,7 @@
 				EB45308A274C2F87004395CA /* SceneDelegate.swift */,
 				EB453049274BF995004395CA /* Preview Content */,
 				EB453086274C26C6004395CA /* Info.plist */,
-				A4AF67CE27A721F800D449EB /* GoogleService-Info.plist */,
+				F8C0DB732F2FD2A100A51AEA /* GoogleService-Info.plist */,
 			);
 			path = Covet;
 			sourceTree = "<group>";
@@ -475,6 +473,7 @@
 		EB453071274BF9C3004395CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F82E38BF2F3121510070154F /* SimpleLoginView 2.swift */,
 				A42B07AB27A5F60C00667216 /* RecovetView.swift */,
 				A42B07A927A5F5B100667216 /* PostView.swift */,
 				EB45306D274BF9A6004395CA /* FeedView.swift */,
@@ -517,6 +516,9 @@
 		EB453087274C26E8004395CA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F844341F2F27E96A0067F9BC /* KeychainService.swift */,
+				F84434212F27E9CC0067F9BC /* UsernameAuthAPI.swift */,
+				F84434232F27EB0E0067F9BC /* UsernameLoginView.swift */,
 				EB453088274C26F2004395CA /* AuthService.swift */,
 				A44DA6E227973D5A00A9422E /* ExtensionToken.swift */,
 				A44DA6E5279740CB00A9422E /* Strings.swift */,
@@ -593,7 +595,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A495369527B3DDE20000C3FE /* Build configuration list for PBXNativeTarget "CovetButton" */;
 			buildPhases = (
-				EB6061D01ED1C0064AED8AFB /* [CP] Check Pods Manifest.lock */,
+				470E74BD1E1EB3403E14EB40 /* [CP] Check Pods Manifest.lock */,
 				A495368627B3DDE20000C3FE /* Sources */,
 				A495368727B3DDE20000C3FE /* Frameworks */,
 				A495368827B3DDE20000C3FE /* Resources */,
@@ -611,13 +613,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB453064274BF995004395CA /* Build configuration list for PBXNativeTarget "Covet" */;
 			buildPhases = (
-				339D8853219EF06F900F395E /* [CP] Check Pods Manifest.lock */,
+				151CC72F5F1FEA591D007845 /* [CP] Check Pods Manifest.lock */,
 				EB45303C274BF993004395CA /* Sources */,
 				EB45303D274BF993004395CA /* Frameworks */,
 				EB45303E274BF993004395CA /* Resources */,
 				A4A47E9227965DB300FE8ED8 /* Embed App Extensions */,
-				8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */,
-				C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */,
+				8E0F25B2EDF685BFB0EBBA35 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -736,7 +737,7 @@
 			files = (
 				EB45304B274BF995004395CA /* Preview Assets.xcassets in Resources */,
 				A495368527B3DB300000C3FE /* Assets.xcassets in Resources */,
-				A4AF67CF27A721F800D449EB /* GoogleService-Info.plist in Resources */,
+				F8C0DB742F2FD2A100A51AEA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,7 +758,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		339D8853219EF06F900F395E /* [CP] Check Pods Manifest.lock */ = {
+		151CC72F5F1FEA591D007845 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -779,41 +780,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F86A6491238477FAF1AD929 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C0A22BED1298F13449567530 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB6061D01ED1C0064AED8AFB /* [CP] Check Pods Manifest.lock */ = {
+		470E74BD1E1EB3403E14EB40 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -833,6 +800,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E0F25B2EDF685BFB0EBBA35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -881,7 +865,9 @@
 				A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */,
 				A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
+				F84434202F27E96A0067F9BC /* KeychainService.swift in Sources */,
 				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
+				F82E38C02F3121510070154F /* SimpleLoginView 2.swift in Sources */,
 				A436DA6427A5F9A5002FF28D /* IsLikedResponseObject.swift in Sources */,
 				EB453070274BF9B1004395CA /* ProfileView.swift in Sources */,
 				EB129319277AD4C200FA0E46 /* UserManagerView.swift in Sources */,
@@ -941,7 +927,9 @@
 				EBDF21CB274D3E48008E48E3 /* EdgeBorder.swift in Sources */,
 				A42B07B227A5F6A000667216 /* UIColor.swift in Sources */,
 				A4A49CDB27ADC76F00F2AAB7 /* UIScreen.swift in Sources */,
+				F84434222F27E9CC0067F9BC /* UsernameAuthAPI.swift in Sources */,
 				A4DBBD6727BBF99A00F80929 /* ButtonBadge.swift in Sources */,
+				F84434242F27EB0E0067F9BC /* UsernameLoginView.swift in Sources */,
 				A459DA1F2797552B00001BF5 /* APIConfig.swift in Sources */,
 				A4DBBD6B27BCF86D00F80929 /* UserHelpNudge.swift in Sources */,
 				EB12931D277AD8B100FA0E46 /* UserListItem.swift in Sources */,
@@ -991,7 +979,7 @@
 /* Begin XCBuildConfiguration section */
 		A495369627B3DDE20000C3FE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29F7E307DE080FAEAFF0ABF9 /* Pods-CovetButton.debug.xcconfig */;
+			baseConfigurationReference = 4D9345DBA7F61941D6801202 /* Pods-CovetButton.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1020,7 +1008,7 @@
 		};
 		A495369727B3DDE20000C3FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4021860490F5ECA37AD8B302 /* Pods-CovetButton.release.xcconfig */;
+			baseConfigurationReference = EC11820AD9E6E14D8857A998 /* Pods-CovetButton.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1167,7 +1155,7 @@
 		};
 		EB453065274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE716B7A3409E873F4EA4C10 /* Pods-Covet.debug.xcconfig */;
+			baseConfigurationReference = 25602471750B7EE11EBD7949 /* Pods-Covet.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1205,7 +1193,7 @@
 		};
 		EB453066274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 447A6D51231D8C46A784AD7C /* Pods-Covet.release.xcconfig */;
+			baseConfigurationReference = 3FDB6ED2DFADDB74F1094BBA /* Pods-Covet.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

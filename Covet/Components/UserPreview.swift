@@ -11,6 +11,7 @@ struct UserPreview: View {
     
     let user: CovetUser;
     let topItem: String;
+    var onImageLoadFailed: (() -> Void)? = nil
     
     var body: some View {
         HStack {
@@ -21,7 +22,8 @@ struct UserPreview: View {
                 topBorderWidth: 4,
                 leftBorderWidth: 4,
                 bottomBorderWidth: 4,
-                rightBorderWidth: 4
+                rightBorderWidth: 4,
+                onImageLoadFailed: onImageLoadFailed
             )
         }
     }

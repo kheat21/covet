@@ -60,13 +60,15 @@ struct CovetSquareZoomedInItem: View {
     var bottomBorderWidth: CGFloat?
     var rightBorderWidth: CGFloat?
     
+    var onImageLoadFailed: (() -> Void)? = nil
+    
     var body: some View {
         KFImage.url(URL(string: self.url))
           .loadDiskFileSynchronously()
           //.cacheMemoryOnly()
           .onProgress { receivedSize, totalSize in  }
           .onSuccess { result in  }
-          .onFailure { error in }
+          .onFailure { error in self.onImageLoadFailed?() }
           .resizable()
           .scaledToFill()
           .frame(width: size, height: size)

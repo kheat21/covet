@@ -106,7 +106,6 @@ class API {
             overrideBaseUrl: nil
         )
     }
-
     
     public static func getFeed(page: Int) async throws -> [Post]? {
         print("Getting feed...")
@@ -224,31 +223,31 @@ class API {
     }
     
     /*
-    private func setBlockedStatusForUser(
-        userId: String,
-        blockedStatus: Bool,
-        completion: @escaping (_: String?) -> Void
-    ) async {
-        APIHelpers.getEndpoint(
-            token: await getIdToken(),
-            endpoint: "/user/block/block",
-            method: HTTPMethod.post,
-            // headers: await API.getHeaders(),
-            data: [
-                "block": userId,
-                "status": blockedStatus
-            ]
-        ) { json in
-            completion(json["blocked"].string)
-        }
-    }
-    
-    public func blockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
-        await setBlockedStatusForUser(userId: userId, blockedStatus: true, completion: completion)
-    }
-    public func unblockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
-        await setBlockedStatusForUser(userId: userId, blockedStatus: false, completion: completion)
-    }
+     private func setBlockedStatusForUser(
+     userId: String,
+     blockedStatus: Bool,
+     completion: @escaping (_: String?) -> Void
+     ) async {
+     APIHelpers.getEndpoint(
+     token: await getIdToken(),
+     endpoint: "/user/block/block",
+     method: HTTPMethod.post,
+     // headers: await API.getHeaders(),
+     data: [
+     "block": userId,
+     "status": blockedStatus
+     ]
+     ) { json in
+     completion(json["blocked"].string)
+     }
+     }
+     
+     public func blockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
+     await setBlockedStatusForUser(userId: userId, blockedStatus: true, completion: completion)
+     }
+     public func unblockUser(userId: String, completion: @escaping (_: String?) -> Void) async {
+     await setBlockedStatusForUser(userId: userId, blockedStatus: false, completion: completion)
+     }
      */
     
     public static func setRelationship(userId: Int, relationshipType: CovetUserRelationshipType) async throws -> SetUserRelationshipResponseObject? {
@@ -315,22 +314,22 @@ class API {
     }
     
     /*
-    public func followUser(
-        userId: String,
-        completion: @escaping (_: String?) -> Void
-    ) async {
-        APIHelpers.getEndpoint(
-            endpoint: "/user/following/add",
-            method: HTTPMethod.post,
-            // headers: await API.getHeaders(),
-            data: [
-                "following": userId
-            ]
-        ) { json in
-            completion(json["status"].string)
-        }
-    }
-    */
+     public func followUser(
+     userId: String,
+     completion: @escaping (_: String?) -> Void
+     ) async {
+     APIHelpers.getEndpoint(
+     endpoint: "/user/following/add",
+     method: HTTPMethod.post,
+     // headers: await API.getHeaders(),
+     data: [
+     "following": userId
+     ]
+     ) { json in
+     completion(json["status"].string)
+     }
+     }
+     */
     
     private static func getHeaders() async -> HTTPHeaders {
         if let token = await getIdToken() {
@@ -338,8 +337,15 @@ class API {
         }
         return []
     }
-
+    
     static func getIdToken() async -> String? {
+        // First, check for username auth JWT token
+        if let token = KeychainService.shared.getToken() {
+            print("Using JWT token from Keychain")
+            return token
+        }
+        
+        // Fallback to Firebase Auth
         if let currentUser = Auth.auth().currentUser {
             do {
                 let token = try await currentUser.getIDToken()
@@ -349,5 +355,4 @@ class API {
         }
         return nil
     }
-    
 }

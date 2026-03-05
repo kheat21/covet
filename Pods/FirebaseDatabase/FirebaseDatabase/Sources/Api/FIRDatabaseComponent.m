@@ -20,8 +20,10 @@
 #import "FirebaseDatabase/Sources/Core/FRepoManager.h"
 #import "FirebaseDatabase/Sources/FIRDatabaseConfig_Private.h"
 
-#import "FirebaseCore/Sources/Private/FirebaseCoreInternal.h"
-#import "Interop/Auth/Public/FIRAuthInterop.h"
+#import "FirebaseAuth/Interop/Public/FirebaseAuthInterop/FIRAuthInterop.h"
+#import "FirebaseCore/Extension/FirebaseCoreInternal.h"
+
+#import <FirebaseAppCheckInterop/FirebaseAppCheckInterop.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +33,7 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
 
 @interface FIRDatabaseComponent () <FIRComponentLifecycleMaintainer, FIRLibrary>
 @property(nonatomic) FIRDatabaseDictionary *instances;
-/// Internal intializer.
+/// Internal initializer.
 - (instancetype)initWithApp:(FIRApp *)app;
 @end
 
@@ -52,16 +54,12 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
 
 + (void)load {
     [FIRApp registerInternalLibrary:(Class<FIRLibrary>)self
-                           withName:@"fire-db"
-                        withVersion:[FIRDatabase sdkVersion]];
+                           withName:@"fire-db"];
 }
 
 #pragma mark - FIRComponentRegistrant
 
 + (NSArray<FIRComponent *> *)componentsToRegister {
-    FIRDependency *authDep =
-        [FIRDependency dependencyWithProtocol:@protocol(FIRAuthInterop)
-                                   isRequired:NO];
     FIRComponentCreationBlock creationBlock =
         ^id _Nullable(FIRComponentContainer *container, BOOL *isCacheable) {
         *isCacheable = YES;
@@ -70,7 +68,6 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
     FIRComponent *databaseProvider =
         [FIRComponent componentWithProtocol:@protocol(FIRDatabaseProvider)
                         instantiationTiming:FIRInstantiationTimingLazy
-                               dependencies:@[ authDep ]
                               creationBlock:creationBlock];
     return @[ databaseProvider ];
 }
@@ -116,7 +113,7 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
                     format:@"The Database URL '%@' cannot be parsed. "
                             "Specify a valid DatabaseURL within FIRApp or from "
                             "your databaseForApp:URL: call.",
-                           databaseUrl];
+                           url];
     } else if (![databaseUrl.path isEqualToString:@""] &&
                ![databaseUrl.path isEqualToString:@"/"]) {
         [NSException
@@ -136,9 +133,12 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
                                        [parsedUrl.path toString]];
         FIRDatabase *database = instances[urlIndex];
         if (!database) {
-            id<FAuthTokenProvider> authTokenProvider = [FAuthTokenProvider
-                authTokenProviderWithAuth:FIR_COMPONENT(FIRAuthInterop,
-                                                        app.container)];
+            id<FIRDatabaseConnectionContextProvider> contextProvider =
+                [FIRDatabaseConnectionContextProvider
+                    contextProviderWithAuth:FIR_COMPONENT(FIRAuthInterop,
+                                                          app.container)
+                                   appCheck:FIR_COMPONENT(FIRAppCheckInterop,
+                                                          app.container)];
 
             // If this is the default app, don't set the session persistence key
             // so that we use our default ("default") instead of the FIRApp
@@ -153,7 +153,7 @@ typedef NSMutableDictionary<NSString *, FIRDatabase *> FIRDatabaseDictionary;
             FIRDatabaseConfig *config = [[FIRDatabaseConfig alloc]
                 initWithSessionIdentifier:sessionIdentifier
                               googleAppID:app.options.googleAppID
-                        authTokenProvider:authTokenProvider];
+                          contextProvider:contextProvider];
             database = [[FIRDatabase alloc] initWithApp:app
                                                repoInfo:parsedUrl.repoInfo
                                                  config:config];
