@@ -98,7 +98,7 @@ struct FeedView: View {
                                     }
                                 }
                             }
-                            .padding(.horizontal, 12)
+                            .padding(.horizontal, 16)
                             .padding(.bottom, 16)
                         }
                     }
