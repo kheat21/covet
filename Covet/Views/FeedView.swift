@@ -7,6 +7,7 @@
 
 import AlertToast
 import Combine
+import Kingfisher
 import SwiftUI
 
 struct FeedView: View {
@@ -71,68 +72,41 @@ struct FeedView: View {
                             
                 // Otherwise, just show whatever we got..
                 else {
-                    List {
-                        Section {
+                    ScrollView {
+                        LazyVStack(spacing: 0) {
                             FeedHeaderView()
-                                .listRowSeparator(.hidden)
-                                .listRowInsets(EdgeInsets())
-                        }
-                        ForEach(Array(posts.filter { !hiddenPostIds.contains($0.id) }.enumerated()), id: \.offset) { index, post in
-                            ZStack {
-                                if let thumbnailImage = getThumbnailImageURLForPost(post: post), let user = post.user {
-                                    HStack {
-                                        Spacer()
-                                        UserPreview(
-                                            user: user,
-                                            topItem: thumbnailImage,
-                                            onImageLoadFailed: {
-                                                hiddenPostIds.insert(post.id)
-                                            }
-                                        )
-                                        NavigationLink {
-                                            ProfileView(userId: user.id)
-                                                .navigationBarTitle(user.username)
-                                        } label: {
-                                            
+                            LazyVGrid(
+                                columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)],
+                                spacing: 16
+                            ) {
+                                ForEach(Array(posts.filter { !hiddenPostIds.contains($0.id) }.enumerated()), id: \.offset) { index, post in
+                                    if let product = getProductForPost(post: post), let postUser = post.user {
+                                        NavigationLink(destination: ProfileView(userId: postUser.id)
+                                            .navigationBarTitle(postUser.username)) {
+                                            FeedItemCard(
+                                                product: product,
+                                                user: postUser,
+                                                onImageLoadFailed: { hiddenPostIds.insert(post.id) }
+                                            )
                                         }
-                                        .padding([.top], 8)
-                                        .padding([.bottom], 8)
-                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-                                        Spacer()
+                                        .buttonStyle(PlainButtonStyle())
+                                        .onAppear {
+                                            if let lastPost = posts.last, lastPost.id == post.id, !self.isFetching {
+                                                _fetchNextPage()
+                                            }
+                                        }
                                     }
-                                    .onAppear(perform: {
-                                        print("Running on appear")
-                                        if let lastPost = posts.last {
-                                            if lastPost.id == post.id {
-                                                print("This is the last post (" + String(lastPost.id) + " == " + String(post.id) + ")")
-                                                if !self.isFetching {
-                                                    _fetchNextPage()
-                                                }
-                                            }
-                                        }
-                                    })
-//                                    .onTapGesture {
-//                                        self.openUser = user
-//                                    }
                                 }
                             }
-                            .listRowSeparator(.hidden)
+                            .padding(.horizontal, 12)
+                            .padding(.bottom, 16)
                         }
                     }
-                    .padding(.top, 0)
-                    .listStyle(PlainListStyle())
                     .refreshable {
                         Task.detached {
                             self._fetchFirstPage()
                         }
                     }
-//                    .task {
-//                        if let p = self.posts {
-//                            if p.count == 0 {
-//                                self._fetchFirstPage()
-//                            }
-//                        }
-//                    }
                 }
             }
         }
@@ -144,6 +118,49 @@ struct FeedView: View {
 //        })
         .task {
             _fetchFirstPage()
+        }
+    }
+}
+
+private struct FeedItemCard: View {
+    let product: Product
+    let user: CovetUser
+    var onImageLoadFailed: (() -> Void)? = nil
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            ZStack(alignment: .bottomLeading) {
+                KFImage(URL(string: product.image_url))
+                    .onFailure { _ in onImageLoadFailed?() }
+                    .resizable()
+                    .scaledToFill()
+                    .clipped()
+                makeCovetC(size: 36, user: user, textSize: 11)
+                    .padding(8)
+            }
+            .aspectRatio(0.8, contentMode: .fit)
+            .clipped()
+            .cornerRadius(4)
+
+            VStack(alignment: .leading, spacing: 2) {
+                if let vendor = product.vendor, !vendor.isEmpty {
+                    Text(vendor.uppercased())
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                        .fontWeight(.medium)
+                }
+                Text(product.name)
+                    .font(.subheadline)
+                    .lineLimit(2)
+                    .foregroundColor(.primary)
+                if let price = product.price {
+                    Text("$\(String(format: "%.0f", price))")
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                }
+            }
+            .padding(.horizontal, 2)
+            .padding(.bottom, 8)
         }
     }
 }
