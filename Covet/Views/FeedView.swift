@@ -19,6 +19,7 @@ struct FeedView: View {
     @State var currentPage: Int = 1
     @State var posts: [Post]? = nil
     @State var hiddenPostIds: Set<Int> = []
+    @State var selectedCategory: String = "All"
     
 //    @State var openUser: CovetUser? = nil
     
@@ -74,7 +75,7 @@ struct FeedView: View {
                 else {
                     ScrollView {
                         LazyVStack(spacing: 0) {
-                            FeedHeaderView()
+                            FeedHeaderView(selectedCategory: $selectedCategory)
                             LazyVGrid(
                                 columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)],
                                 spacing: 20
@@ -173,47 +174,36 @@ private struct FeedItemCard: View {
 }
 
 private struct FeedHeaderView: View {
-    @State private var selectedPrice: Int = 0
+    @Binding var selectedCategory: String
+
+    static let categories = ["All", "Clothing", "Shoes", "Accessories", "Home", "Beauty", "Tech"]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Curated for You")
-                .font(.system(size: 32, weight: .regular, design: .serif))
-                .padding(.top, 8)
+        VStack(alignment: .leading, spacing: 12) {
             Text("Discover what others are coveting")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            HStack(spacing: 4) {
-                Image(systemName: "line.3.horizontal.decrease")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                Text("PRICE RANGE")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .fontWeight(.medium)
-            }
-            .padding(.top, 8)
-            HStack(spacing: 12) {
-                Button(action: { selectedPrice = 0 }) {
-                    Text("All Prices")
-                        .font(.subheadline)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(selectedPrice == 0 ? Color.covetGreen() : Color(UIColor.systemGray5))
-                        .foregroundColor(selectedPrice == 0 ? .white : .primary)
-                        .cornerRadius(20)
+                .font(.system(size: 26, weight: .regular, design: .serif))
+                .padding(.top, 16)
+                .padding(.horizontal, 16)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(FeedHeaderView.categories, id: \.self) { category in
+                        Button(action: { selectedCategory = category }) {
+                            Text(category)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                                .background(selectedCategory == category ? Color.covetGreen() : Color(UIColor.systemGray6))
+                                .foregroundColor(selectedCategory == category ? .white : .primary)
+                                .cornerRadius(20)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
-                Button(action: { selectedPrice = 1 }) {
-                    Text("Under $500")
-                        .font(.subheadline)
-                        .fontWeight(selectedPrice == 1 ? .semibold : .regular)
-                        .foregroundColor(.primary)
-                }
-                .buttonStyle(PlainButtonStyle())
+                .padding(.horizontal, 16)
             }
             .padding(.bottom, 8)
         }
-        .padding(.horizontal, 16)
     }
 }
