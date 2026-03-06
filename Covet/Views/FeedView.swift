@@ -72,6 +72,11 @@ struct FeedView: View {
                 // Otherwise, just show whatever we got..
                 else {
                     List {
+                        Section {
+                            FeedHeaderView()
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
+                        }
                         ForEach(Array(posts.filter { !hiddenPostIds.contains($0.id) }.enumerated()), id: \.offset) { index, post in
                             ZStack {
                                 if let thumbnailImage = getThumbnailImageURLForPost(post: post), let user = post.user {
@@ -140,5 +145,51 @@ struct FeedView: View {
         .task {
             _fetchFirstPage()
         }
+    }
+}
+
+private struct FeedHeaderView: View {
+    @State private var selectedPrice: Int = 0
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Curated for You")
+                .font(.system(size: 32, weight: .regular, design: .serif))
+                .padding(.top, 8)
+            Text("Discover what others are coveting")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+            HStack(spacing: 4) {
+                Image(systemName: "line.3.horizontal.decrease")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Text("PRICE RANGE")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .fontWeight(.medium)
+            }
+            .padding(.top, 8)
+            HStack(spacing: 12) {
+                Button(action: { selectedPrice = 0 }) {
+                    Text("All Prices")
+                        .font(.subheadline)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                        .background(selectedPrice == 0 ? Color.covetGreen() : Color(UIColor.systemGray5))
+                        .foregroundColor(selectedPrice == 0 ? .white : .primary)
+                        .cornerRadius(20)
+                }
+                .buttonStyle(PlainButtonStyle())
+                Button(action: { selectedPrice = 1 }) {
+                    Text("Under $500")
+                        .font(.subheadline)
+                        .fontWeight(selectedPrice == 1 ? .semibold : .regular)
+                        .foregroundColor(.primary)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding(.bottom, 8)
+        }
+        .padding(.horizontal, 16)
     }
 }

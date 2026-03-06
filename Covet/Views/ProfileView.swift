@@ -151,41 +151,23 @@ struct UserProfile : View {
     @State var showPostInDetailView: Post? = nil
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
+            ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile())
 
-                        
-            // Show their posts
             if let posts = user.posts {
                 if posts.count == 0 {
                     UserProfileNoPostsYet(isOwnProfile: self.isOwnProfile())
                 } else {
-                            
-                    // Show the most recent one
-                    CovetSquareZoomedInItem(
-                        url: posts[0].products![0].image_url,
-                        size: AppConfig.getCovetImageWidth(),
-                        topBorderWidth: 8,
-                        leftBorderWidth: 8,
-                        bottomBorderWidth: 8,
-                        rightBorderWidth: 8
-                    )
-                    .zIndex(1)
-                    .frame(
-                        width: AppConfig.getCovetImageWidth(),
-                        height: AppConfig.getCovetImageWidth(),
-                        alignment: .top
-                    )
-                    .onTapGesture {
-                        self.showPostInDetailView = posts.first!
+                    HStack {
+                        Text("My Covet List")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                        Spacer()
                     }
-                    
-                    // Space them out so that the scroll view doesn't
-                    // get pushed too low or too high
-                    Spacer()
-                                          
-                    // Show all the others
                     ScrollView {
-                        ImageGrid(images: posts.suffix(posts.count - 1)) { i in
+                        ImageGrid(images: posts) { i in
                             self.showPostInDetailView = i
                         }
                     }
@@ -206,6 +188,81 @@ struct UserProfile : View {
             }
         }
         return false
+    }
+}
+
+private struct ProfileHeaderSection: View {
+    var user: CovetUser
+    var isOwnProfile: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .center, spacing: 16) {
+                makeCovetC(size: 72, user: user, textSize: 24)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(user.username)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    if let address = user.address, !address.isEmpty {
+                        Text(address)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 16)
+
+            HStack(spacing: 0) {
+                ProfileStatColumn(value: user.followers_count ?? 0, label: "FOLLOWERS")
+                ProfileStatColumn(value: user.follows_count ?? 0, label: "FOLLOWING")
+                ProfileStatColumn(value: user.posts?.count ?? 0, label: "COVETING")
+            }
+            .padding(.bottom, 16)
+
+            if isOwnProfile {
+                HStack(spacing: 12) {
+                    NavigationLink(destination: UserSettingsView(mode: .Modify, handle: user.username, name: user.name ?? "")) {
+                        Text("Edit Profile")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(Color.covetGreen())
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    Button(action: {}) {
+                        Text("Share Wishlist")
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(Color(UIColor.systemGray6))
+                            .foregroundColor(.black)
+                            .cornerRadius(8)
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
+            }
+
+            Divider()
+        }
+    }
+}
+
+private struct ProfileStatColumn: View {
+    var value: Int
+    var label: String
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(NumberFormatter.localizedString(from: NSNumber(value: value), number: .decimal))
+                .font(.system(size: 22, weight: .regular, design: .serif))
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(.gray)
+                .fontWeight(.medium)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
