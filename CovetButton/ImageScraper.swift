@@ -9,6 +9,14 @@ import Foundation
 import SocketIO
 import SwiftSoup
 
+struct ProductData {
+    var title: String?
+    var vendor: String?
+    var price: String?
+    var primaryImage: String?
+    var allImages: [String]?
+}
+
 class ImageScraper {
     
     private var manager: SocketManager;
@@ -17,6 +25,7 @@ class ImageScraper {
     private var onConnectionCallback: ( () -> Void)?;
     private var onImageRecievedCallback: ( (_ image: ScrapedImage) -> Void)?;
     private var onBase64ImageRecievedCallback: ( (_ image: ScrapedImage) -> Void)?;
+    private var onProductDataCallback: ((_ data: ProductData) -> Void)?;
     
     init() {
         self.manager = SocketManager(socketURL: URL(string: "http://covetimagescraperloadbalancer-830414987.us-east-1.elb.amazonaws.com:8000/")!, config: [
@@ -32,6 +41,10 @@ class ImageScraper {
     func setOnImageRecieved(callback: @escaping (_ image: ScrapedImage) -> Void) {
         self.onImageRecievedCallback = callback
     }
+
+    func setOnProductDataReceived(callback: @escaping (_ data: ProductData) -> Void) {
+        self.onProductDataCallback = callback
+    }
     
     func setup() {
         
@@ -42,6 +55,18 @@ class ImageScraper {
             }
         }
         
+        self.socket.on("product_data") { data, ack in
+            guard let dict = data[0] as? [String: Any] else { return }
+            let productData = ProductData(
+                title: dict["title"] as? String,
+                vendor: dict["vendor"] as? String,
+                price: dict["price"] as? String,
+                primaryImage: dict["primary_image"] as? String,
+                allImages: dict["all_images"] as? [String]
+            )
+            self.onProductDataCallback?(productData)
+        }
+
         self.socket.on("image") { data, ack in
             guard let url = data[0] as? String else {
                 print("Something wrong with response recieved")
