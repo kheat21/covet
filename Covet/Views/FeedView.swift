@@ -76,8 +76,8 @@ struct FeedView: View {
                         LazyVStack(spacing: 0) {
                             FeedHeaderView()
                             LazyVGrid(
-                                columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)],
-                                spacing: 16
+                                columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)],
+                                spacing: 20
                             ) {
                                 ForEach(Array(posts.filter { !hiddenPostIds.contains($0.id) }.enumerated()), id: \.offset) { index, post in
                                     if let product = getProductForPost(post: post), let postUser = post.user {
@@ -99,7 +99,8 @@ struct FeedView: View {
                                 }
                             }
                             .padding(.horizontal, 16)
-                            .padding(.bottom, 16)
+                            .padding(.top, 8)
+                            .padding(.bottom, 24)
                         }
                     }
                     .refreshable {
@@ -140,9 +141,9 @@ private struct FeedItemCard: View {
             }
             .aspectRatio(0.8, contentMode: .fit)
             .clipped()
-            .cornerRadius(4)
+            .cornerRadius(6)
 
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 3) {
                 if let vendor = product.vendor, !vendor.isEmpty {
                     Text(vendor.uppercased())
                         .font(.caption)
@@ -159,9 +160,15 @@ private struct FeedItemCard: View {
                         .foregroundColor(.primary)
                 }
             }
-            .padding(.horizontal, 2)
-            .padding(.bottom, 8)
+            .padding(.horizontal, 4)
+            .padding(.bottom, 10)
         }
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(6)
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color(UIColor.systemGray5), lineWidth: 1)
+        )
     }
 }
 
