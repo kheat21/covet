@@ -16,14 +16,13 @@ struct FeedView: View {
     
     @State var isRefreshingTop = false
     @State var isFetching = false
+    @State var isInitialLoad = true
     @State var currentPage: Int = 1
     @State var posts: [Post]? = nil
     @State var hiddenPostIds: Set<Int> = []
     @State var selectedCategory: String = "All"
     
 //    @State var openUser: CovetUser? = nil
-    
-    let image3 = "https://cdn.motor1.com/images/mgl/QeWez9/s1/001.jpg"
     
     func _fetchFirstPage() {
         _fetchNextPage(clearBeforeUpdating: true)
@@ -49,6 +48,7 @@ struct FeedView: View {
             }
         }
         self.isFetching = false
+        self.isInitialLoad = false
     }
 
     func _fetchNextPage(clearBeforeUpdating: Bool = false, continueFetchingForCategory: String? = nil) {
@@ -122,7 +122,11 @@ struct FeedView: View {
                             }
                             .padding(.horizontal, 16)
                             .padding(.top, 8)
-                            .padding(.bottom, 24)
+                            if isFetching && !isInitialLoad {
+                                ProgressView()
+                                    .padding(.vertical, 16)
+                            }
+                            Color.clear.frame(height: 24)
                         }
                     }
                     .refreshable {
@@ -135,7 +139,7 @@ struct FeedView: View {
                 }
             }
         }
-        .toast(isPresenting: $isFetching, alert: {
+        .toast(isPresenting: $isInitialLoad, alert: {
             AlertToast(displayMode: .alert, type: .loading, title: nil)
         })
 //        .sheet(item: $openUser, onDismiss: nil, content: { item in
@@ -230,7 +234,7 @@ private struct FeedItemCard: View {
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 3)
-                                .background(Color.red)
+                                .background(Color.covetGreen())
                                 .cornerRadius(4)
                                 .padding(6)
                         }
@@ -316,6 +320,7 @@ private struct FeedHeaderView: View {
                                 .cornerRadius(20)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        .accessibilityLabel("\(category) filter\(selectedCategory == category ? ", selected" : "")")
                     }
                 }
                 .padding(.horizontal, 16)

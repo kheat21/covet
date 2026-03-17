@@ -9,24 +9,26 @@ import Foundation
 import SwiftUI
 
 struct PostDisplay : View {
-    
+
     @State var post: Post
-    
+
     var body : some View {
         if let product = getProductForPost(post: self.post) {
-            
-            
-            CovetSquareZoomedInItem(
-                url: product.image_url,
-                size: 250,
-                topBorderWidth: 4,
-                leftBorderWidth: 4,
-                bottomBorderWidth: 4,
-                rightBorderWidth: 4
-            )
+
+            GeometryReader { geo in
+                CovetSquareZoomedInItem(
+                    url: product.image_url,
+                    size: geo.size.width,
+                    topBorderWidth: 4,
+                    leftBorderWidth: 4,
+                    bottomBorderWidth: 4,
+                    rightBorderWidth: 4
+                )
+            }
+            .aspectRatio(1, contentMode: .fit)
             .padding([.bottom], 16)
             .onTapGesture {
-                self.post.products![0].link.tryToOpenAsURL()
+                self.post.products?.first?.link.tryToOpenAsURL()
             }
             //.allowsHitTesting(false)
             

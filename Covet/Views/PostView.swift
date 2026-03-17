@@ -49,156 +49,158 @@ struct PostView: View {
     }
     
     var body: some View {
-        
-        NavigationView {
-            ScrollView {
-                VStack {
-                    HStack(spacing: 20) {
-                        // Like button
-                        Button {
-                            if !self.isBusy() {
-                                self.toggleLike(currentLiked: self.liked)
-                            }
-                        } label: {
-                            if self.isLikedStatusSaving {
-                                ProgressView()
-                            } else if !self.isLikedStatusLoading {
-                                self._likeButtonImage()
-                                    .foregroundColor(Color.black)
-                            }
+        ScrollView {
+            VStack {
+                HStack(spacing: 20) {
+                    // Like button
+                    Button {
+                        if !self.isBusy() {
+                            self.toggleLike(currentLiked: self.liked)
                         }
-
-                        // Share button
-                        Button {
-                            self.showingShareActionSheet = true
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(Color.black)
+                    } label: {
+                        if self.isLikedStatusSaving {
+                            ProgressView()
+                        } else if !self.isLikedStatusLoading {
+                            self._likeButtonImage()
+                                .foregroundColor(Color.covetGreen())
                         }
+                    }
+                    .accessibilityLabel(liked ? "Unlike" : "Like")
 
-                        // Recovet (C.) — only on other people's posts
-                        if !self.isOwnPost {
+                    // Share button
+                    Button {
+                        self.showingShareActionSheet = true
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                            .foregroundColor(Color.covetGreen())
+                    }
+                    .accessibilityLabel("Share")
+
+                    // Recovet (C.) — only on other people's posts
+                    if !self.isOwnPost {
+                        Button {
+                            self.showingRecovetActionSheet = true
+                        } label: {
+                            Image("Recovet")
+                        }
+                        .accessibilityLabel("Recovet")
+                    }
+
+                    // Own-post controls
+                    if self.isOwnPost {
+                        // Coveted checkbox
+                        if self.isTogglingCoveted {
+                            ProgressView()
+                        } else {
                             Button {
-                                self.showingRecovetActionSheet = true
+                                self.toggleCoveted()
                             } label: {
-                                Image("Recovet")
+                                Image(systemName: isCoveted ? "checkmark.square.fill" : "square")
+                                    .foregroundColor(Color.covetGreen())
                             }
+                            .accessibilityLabel(isCoveted ? "Mark as not coveted" : "Mark as coveted")
                         }
-
-                        // Own-post controls
-                        if self.isOwnPost {
-                            // Coveted checkbox
-                            if self.isTogglingCoveted {
-                                ProgressView()
-                            } else {
-                                Button {
-                                    self.toggleCoveted()
-                                } label: {
-                                    Image(systemName: isCoveted ? "checkmark.square.fill" : "square")
-                                        .foregroundColor(isCoveted ? Color.covetGreen() : Color.black)
-                                }
-                            }
-                            // Delete
-                            if self.isDeleting {
-                                ProgressView()
-                            } else {
-                                Button {
-                                    self.showingDeleteConfirmMessage = true
-                                } label: {
-                                    Image(systemName: "trash").foregroundColor(Color.red)
-                                }
-                            }
+                        // Delete
+                        if self.isDeleting {
+                            ProgressView()
                         } else {
-                            // Report (other posts)
-                            if self.isReporting {
-                                ProgressView()
-                            } else {
-                                Button {
-                                    self.showingReportConfirmMessage = true
-                                } label: {
-                                    Image(systemName: "flag").foregroundColor(Color.red)
-                                }
+                            Button {
+                                self.showingDeleteConfirmMessage = true
+                            } label: {
+                                Image(systemName: "trash").foregroundColor(Color.red)
                             }
+                            .accessibilityLabel("Delete post")
                         }
-                    }
-                    .font(.system(size: 20))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .padding(.horizontal, 24)
-                    .zIndex(2)
-                    PostDisplay(post: self.post)
-                    Spacer() //.frame(height: 40)
-                }
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        if let u = self.post.user {
-                            NavigationLink(destination: ProfileView(userId: u.id)) {
-                                makeCovetC(size: 36, user: u)
-                            }
+                    } else {
+                        // Report (other posts)
+                        if self.isReporting {
+                            ProgressView()
                         } else {
-                            EmptyView()
+                            Button {
+                                self.showingReportConfirmMessage = true
+                            } label: {
+                                Image(systemName: "flag").foregroundColor(Color.red)
+                            }
+                            .accessibilityLabel("Report post")
                         }
                     }
-                    ToolbarItem(placement: .principal) {
-                        Image("Covet_Logo_Colored")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: nil, height: 20, alignment: Alignment.center)
-                    }
                 }
-            }
-            .toast(isPresenting: self.$showingAddressCopiedToast, duration: 2, tapToDismiss: true, alert: {
-                AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.covetGreen()), title: "Copied Address", subTitle: "Now use that to checkout on the merchant's website", style: nil)
-            }, onTap: nil, completion: {
-                self.openURL()
-            })
-            .toast(isPresenting: self.$showingNoAddressToCopyToast, duration: 5, tapToDismiss: true, alert: {
-                AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.red), title: "No address available", subTitle: "You'll have to ask your friend", style: nil)
-            }, onTap: nil, completion: {
-                self.openURL()
-            })
-            .toast(isPresenting: self.$errorDeleting, duration: 2, tapToDismiss: true, alert: {
-                AlertToast(displayMode: .alert, type: .error(Color.red), title: "Could not delete", subTitle: "Try again later", style: nil)
-            })
-            .toast(isPresenting: self.$errorReporting, duration: 2, tapToDismiss: true, alert: {
-                AlertToast(displayMode: .alert, type: .error(Color.red), title: "Could not report", subTitle: "Try again later / Did you already report?", style: nil)
-            })
-            .toast(isPresenting: self.$showReportSuccessfulToast, duration: 2, tapToDismiss: true, alert: {
-                AlertToast(displayMode: .alert, type: .complete(Color.green), title: "Reported", subTitle: nil, style: nil)
-            })
-            .sheet(isPresented: $showingShareActionSheet) {
-                PostShareSheet(activityItems: [
-                    self.post.products![0].link
-                ])
-            }
-            .sheet(isPresented: $showingRecovetActionSheet, onDismiss: nil, content: {
-                RecovetView(post: self.post)
-            })
-            .confirmationDialog("Delete post?", isPresented: $showingDeleteConfirmMessage, actions: {
-                Button("Delete", role: .destructive) {
-                    doPostDelete()
-                }
-                Button("Cancel", role: .cancel) { }
-            })
-            .confirmationDialog("Report post?", isPresented: $showingReportConfirmMessage, actions: {
-                Button("Report", role: .destructive) {
-                    doPostReport()
-                }
-                Button("Cancel", role: .cancel) { }
-            })
-            .task {
-                isCoveted = (post.coveted ?? 0) == 1
-                do {
-                    if let likeStatus = try await API.likes(post_id: self.post.id) {
-                        print(likeStatus)
-                        self.liked = likeStatus.likes
-                        self.isLikedStatusLoading = false
-                    }
-                } catch {}
+                .font(.system(size: 20))
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .padding(.horizontal, 24)
+                .zIndex(2)
+                PostDisplay(post: self.post)
+                Spacer()
             }
         }
-    
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                if let u = self.post.user {
+                    NavigationLink(destination: ProfileView(userId: u.id)) {
+                        makeCovetC(size: 36, user: u)
+                    }
+                } else {
+                    EmptyView()
+                }
+            }
+            ToolbarItem(placement: .principal) {
+                Image("Covet_Logo_Colored")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: nil, height: 20, alignment: Alignment.center)
+            }
+        }
+        .toast(isPresenting: self.$showingAddressCopiedToast, duration: 2, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.covetGreen()), title: "Copied Address", subTitle: "Now use that to checkout on the merchant's website", style: nil)
+        }, onTap: nil, completion: {
+            self.openURL()
+        })
+        .toast(isPresenting: self.$showingNoAddressToCopyToast, duration: 5, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .banner(.pop), type: AlertToast.AlertType.complete(Color.red), title: "No address available", subTitle: "You'll have to ask your friend", style: nil)
+        }, onTap: nil, completion: {
+            self.openURL()
+        })
+        .toast(isPresenting: self.$errorDeleting, duration: 2, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .alert, type: .error(Color.red), title: "Could not delete", subTitle: "Try again later", style: nil)
+        })
+        .toast(isPresenting: self.$errorReporting, duration: 2, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .alert, type: .error(Color.red), title: "Could not report", subTitle: "Try again later / Did you already report?", style: nil)
+        })
+        .toast(isPresenting: self.$showReportSuccessfulToast, duration: 2, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .alert, type: .complete(Color.green), title: "Reported", subTitle: nil, style: nil)
+        })
+        .sheet(isPresented: $showingShareActionSheet) {
+            if let link = self.post.products?.first?.link {
+                PostShareSheet(activityItems: [link])
+            }
+        }
+        .sheet(isPresented: $showingRecovetActionSheet, onDismiss: nil, content: {
+            RecovetView(post: self.post)
+        })
+        .confirmationDialog("Delete post?", isPresented: $showingDeleteConfirmMessage, actions: {
+            Button("Delete", role: .destructive) {
+                doPostDelete()
+            }
+            Button("Cancel", role: .cancel) { }
+        })
+        .confirmationDialog("Report post?", isPresented: $showingReportConfirmMessage, actions: {
+            Button("Report", role: .destructive) {
+                doPostReport()
+            }
+            Button("Cancel", role: .cancel) { }
+        })
+        .task {
+            isCoveted = (post.coveted ?? 0) == 1
+            do {
+                if let likeStatus = try await API.likes(post_id: self.post.id) {
+                    print(likeStatus)
+                    self.liked = likeStatus.likes
+                    self.isLikedStatusLoading = false
+                }
+            } catch {}
+        }
     }
     
     private func doPostDelete() {

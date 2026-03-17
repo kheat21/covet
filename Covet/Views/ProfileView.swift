@@ -32,10 +32,7 @@ struct ProfileView: View {
     @State var showTooltipIfApplicable: Bool = true
     var tooltipConfig = DefaultTooltipConfig()
     
-    init(isMe: Bool) {
-        if !isMe {
-            fatalError("Cannot use this constructor unless the value is true")
-        }
+    init() {
         self.profilePageMode = true
         tooltipConfig.backgroundColor = Color.covetGreen()
         tooltipConfig.side = .leading
@@ -251,6 +248,7 @@ private struct ProfileHeaderSection: View {
     @State private var isPending: Bool = false
     @State private var followLoading: Bool = false
     @State private var didInitFollowState: Bool = false
+    @State private var showShareSheet: Bool = false
 
     @State private var showFollowers: Bool = false
     @State private var showFollowing: Bool = false
@@ -307,13 +305,16 @@ private struct ProfileHeaderSection: View {
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
-                    Button(action: {}) {
+                    Button(action: { showShareSheet = true }) {
                         Text("Share Covet List")
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 14)
                             .background(Color(UIColor.systemGray6))
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .cornerRadius(8)
+                    }
+                    .sheet(isPresented: $showShareSheet) {
+                        PostShareSheet(activityItems: ["Check out my Covet List: @\(user.username)"])
                     }
                 }
                 .padding(.horizontal, 16)
@@ -466,21 +467,21 @@ private struct FollowersFollowingListView: View {
 struct UserProfileNoPostsYet : View {
     var isOwnProfile: Bool
     var body : some View {
-        Spacer()
-        VStack {
+        VStack(spacing: 12) {
+            Spacer()
             Text("No posts yet.")
+                .font(.headline)
             if isOwnProfile {
                 Group {
-                    Text("Add something with the ").foregroundColor(Color.black) +
+                    Text("Add something with the ").foregroundColor(.secondary) +
                     Text("covet").foregroundColor(Color.covetGreen()) +
-                    Text(". button in Safari").foregroundColor(Color.black)
+                    Text(". button in Safari").foregroundColor(.secondary)
                 }
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
             }
+            Spacer()
         }
-//        Text("No posts yet. Add something with the covet button in Safari to make one!")
-//            .padding([.leading, .trailing], 64)
-//            .multilineTextAlignment(.center)
-        Spacer()
+        .frame(minHeight: 200)
     }
 }

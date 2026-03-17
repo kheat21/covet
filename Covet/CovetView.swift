@@ -48,7 +48,7 @@ struct CovetView : View {
                 .tag(1)
             
             if shouldShowBadge(currentCovetUser: auth.currentCovetUser) {
-                ProfileView(isMe: true)
+                ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                         .foregroundColor(Color.covetGreen())
@@ -56,7 +56,7 @@ struct CovetView : View {
                 .tag(2)
                 .badge(badgeContents(currentCovetUser: auth.currentCovetUser))
             } else {
-                ProfileView(isMe: true)
+                ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                         .foregroundColor(Color.covetGreen())
