@@ -50,8 +50,12 @@ For each SwiftUI view file, check:
 
 ## Execution Steps
 
-1. Use `Glob` to find all `.swift` files in `**/Views/`, `**/Screens/`, and `**/Components/`
-2. For Gift Discovery and Curated Items screens, prioritize those first
+1. Use `Glob` to find all `.swift` files in these actual project paths:
+   - `Covet/Views/**` — full-screen views (FeedView, ProfileView, PostView, SearchView, GiftFlowView, etc.)
+   - `Covet/Components/**` — reusable UI components (CovetC, ImageGrid, PostDisplay, UserListItem, etc.)
+   - `Covet/Classes/Views/**` — additional views (legacy location)
+   - Entry point: `Covet/CovetApp.swift` → `CovetApp` struct (`@main`), renders `ContentView` or `LoginView`
+2. For Gift Discovery (`GiftFlowView.swift`) first, then Curated Items screens
 3. Read each file and apply the checklist above
 4. For each defect found, output:
    - **File**: path/to/File.swift
