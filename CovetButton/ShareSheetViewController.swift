@@ -2,8 +2,6 @@
 //  ShareSheetViewController.swift
 //  CovetIt
 //
-//  Created by Covet on 1/23/22.
-//
 
 import UIKit
 import Social
@@ -12,555 +10,420 @@ import Foundation
 import UniformTypeIdentifiers
 import SwiftSoup
 
+// MARK: - FancyTextEditor
+
 class FancyTextEditor: UITextField {
-    // Whatever you like
-    let padding = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16);
-    // Paddging for place holder
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-    // Padding for text
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-    // Padding for text in editting mode
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: padding)
-    }
-    
+    let padding = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect { bounds.inset(by: padding) }
+    override func textRect(forBounds bounds: CGRect) -> CGRect { bounds.inset(by: padding) }
+    override func editingRect(forBounds bounds: CGRect) -> CGRect { bounds.inset(by: padding) }
 }
 
+// MARK: - Stage enum (kept for compatibility)
+
 enum ShareSheetViewControllerInputStage {
-    case PHOTO
-    case TITLE
-    case VENDOR
-    case PRICE
-    case CAPTION
-    case PREVIEW
+    case PHOTO, TITLE, VENDOR, PRICE, CAPTION, PREVIEW
 }
+
+// MARK: - ShareSheetViewController
 
 class ShareSheetViewController: UIViewController {
 
+    // IBOutlets — kept for storyboard compatibility
     @IBOutlet weak var backButton: UIBarButtonItem!
-    //@IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleTextField: UITextField!
-    //@IBOutlet weak var vendorTextField: UITextField!
-    //@IBOutlet weak var priceTextField: UITextField!
-    //@IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var previewImageView: UIImageView!
-    //@IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var skipButton: UIBarButtonItem!
-    
+
+    // Scraping / image picker
     var tableViewController = TableViewController()
-        
     var activityIndicator: UIActivityIndicatorView?
     var loadingTextView: UILabel?
+
+    // Product data
+    var url: URL?
+    var image: ScrapedImage?
+    var productTitle: String?
+    var produtVendor: String?
+    var productPrice: Double?
+    var caption: String?
+
+    // Review screen refs (updated by scraper as data arrives)
     var imageView: UIImageView?
+    var brandFieldView: FancyTextEditor?
+    var itemNameFieldView: FancyTextEditor?
+    var priceLabelView: UILabel?
+    var commentsTextView: UITextView?
+    var primaryButton: UIButton?
+
+    // Unused legacy refs kept so resetUI compiles
     var imageViewPrompt: UILabel?
     var inputFieldView: FancyTextEditor?
     var inputFieldPrompt: UILabel?
     var freeformView: UITextView?
-    var primaryButton: UIButton?
-    
     var previewTitleText: UILabel?
     var previewSecondaryText: UILabel?
     var previewTertiaryText: UILabel?
-    
-    var alreadyConfigured: Bool = false
-    var url: URL?;
-    var image: ScrapedImage?;
-    var productTitle: String?;
-    var produtVendor: String?
-    var productPrice: Double?
-    var caption: String?
-    
-    var stages = [
-        ShareSheetViewControllerInputStage.TITLE,
-        ShareSheetViewControllerInputStage.VENDOR,
-        ShareSheetViewControllerInputStage.PRICE,
-        ShareSheetViewControllerInputStage.CAPTION,
-        ShareSheetViewControllerInputStage.PHOTO,
-        ShareSheetViewControllerInputStage.PREVIEW
-    ]
-    var stageIndex = 0
-    
+
+    var alreadyConfigured = false
+
+    // MARK: Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if (!isLoggedIn()) {
-            let alert = UIAlertController(title: "Please Login", message: "You cannot Covet things unless you have recently signed into the app", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+
+        if !isLoggedIn() {
+            let alert = UIAlertController(
+                title: "Please Login",
+                message: "You cannot Covet things unless you have recently signed into the app",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
                 self.extensionContext!.cancelRequest(withError: RuntimeError("Not logged in"))
-            }))
-            self.present(alert, animated: true, completion: nil)
+            })
+            present(alert, animated: true)
         }
-        
-        self.backButton!.tintColor = UIColor.covetGreen
-        
-        configureLoadingView()
-        
-        self.tableViewController.setSelectedImageHandler { image in
+
+        // Remove Skip, clear title — Back stays and cancels the extension
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.title = ""
+
+        view.backgroundColor = UIColor.systemGroupedBackground
+
+        showLoadingSpinner()
+
+        tableViewController.setSelectedImageHandler { [weak self] image in
+            guard let self else { return }
             self.image = image
-            self.imageView?.image = image.image
-            self.dismiss(animated: true, completion: nil)
-            self.toggleButtonStatus(enabled: true)
-            self.toggleImageBorderStatus(enabled: true)
+            DispatchQueue.main.async {
+                self.imageView?.image = image.image
+                self.imageView?.layer.borderWidth = 2
+            }
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !self.alreadyConfigured {
-            self.alreadyConfigured = true
-            getSharedURL { u in
-                if let url = u {
-                    self.url = url.absoluteURL
-                    //self.configureViewFor(url: self.url!)
-                    self.buildUI()
-                    if let urlString = url.absoluteString {
-                        // self.getImages(url: urlString)
-                        self.listedForScrapedImages(url: urlString)
+        guard !alreadyConfigured else { return }
+        alreadyConfigured = true
+
+        getSharedURL { [weak self] u in
+            guard let self, let url = u else { return }
+            self.url = url.absoluteURL
+            DispatchQueue.main.async { self.buildReviewScreen() }
+            if let urlString = url.absoluteString {
+                // Direct HTTP scrape — fills fields as soon as page data arrives
+                Task {
+                    if let scraped = await ExtensionPageScraper.scrape(urlString: urlString) {
+                        await MainActor.run { self.applyExtensionScrape(scraped) }
                     }
                 }
+                // Socket scraper for images (runs in parallel)
+                self.listedForScrapedImages(url: urlString)
             }
-            
-            // self.showLoadingView(message: "This will only take a second")
         }
     }
-    
-    @objc func primaryButtonPressed() {
-        if self.stageIndex < self.stages.count - 1 {
-            print("Going to the next page")
-            nextPage()
+
+    // MARK: - Build review screen
+
+    func buildReviewScreen() {
+        // Clear loading spinner
+        activityIndicator?.removeFromSuperview()
+        loadingTextView?.removeFromSuperview()
+        primaryButton?.removeFromSuperview()
+
+        let W = view.frame.width
+        let pad: CGFloat = 20
+        let PW = W - pad * 2
+
+        // ── HEADER: logo + "Covet It" ──────────────────────────────────
+        let headerY = CGFloat(navbarHeight()) + 20
+        let logoH: CGFloat = 20
+        let logoW: CGFloat = logoH * 3.6
+
+        let logoImgView = UIImageView()
+        logoImgView.image = UIImage(named: "Covet_Logo_BW")
+        logoImgView.contentMode = UIView.ContentMode.scaleAspectFit
+
+        let titleLabel = UILabel()
+        titleLabel.text = "it"
+        titleLabel.font = UIFont(name: "Georgia", size: 22) ?? .systemFont(ofSize: 22, weight: .light)
+        titleLabel.textColor = .label
+        titleLabel.sizeToFit()
+
+        let gap: CGFloat = 8
+        let totalHeaderW = logoW + gap + titleLabel.frame.width
+        let startX = (W - totalHeaderW) / 2
+        let headerH: CGFloat = 32
+
+        logoImgView.frame = CGRect(x: startX, y: headerY + (headerH - logoH) / 2, width: logoW, height: logoH)
+        titleLabel.frame = CGRect(
+            x: startX + logoW + gap,
+            y: headerY + (headerH - titleLabel.frame.height) / 2,
+            width: titleLabel.frame.width,
+            height: titleLabel.frame.height
+        )
+        view.addSubview(logoImgView)
+        view.addSubview(titleLabel)
+
+        // ── PRODUCT IMAGE ──────────────────────────────────────────────
+        let imgSize: CGFloat = 100
+        let imgY = headerY + headerH + 14
+        let imgView = UIImageView(frame: CGRect(x: (W - imgSize) / 2, y: imgY, width: imgSize, height: imgSize))
+        imgView.image = image?.image
+        imgView.contentMode = UIView.ContentMode.scaleAspectFill
+        imgView.layer.cornerRadius = 12
+        imgView.layer.masksToBounds = true
+        imgView.layer.borderColor = UIColor.covetGreen.cgColor
+        imgView.layer.borderWidth = image != nil ? 2 : 0
+        imgView.backgroundColor = UIColor.systemGray6
+        imgView.isUserInteractionEnabled = true
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewPressed)))
+        view.addSubview(imgView)
+        self.imageView = imgView
+
+        // ── DETAILS CARD ───────────────────────────────────────────────
+        let cardY = imgY + imgSize + 14
+        let rowH: CGFloat = 50
+        let divH: CGFloat = 1
+        let innerPad: CGFloat = 16
+        let commentLabelH: CGFloat = 18
+        let commentViewH: CGFloat = 72
+        let cardH = innerPad + rowH + divH + rowH + divH + rowH + divH + commentLabelH + 8 + commentViewH + innerPad
+
+        let card = UIView(frame: CGRect(x: pad, y: cardY, width: PW, height: cardH))
+        card.backgroundColor = UIColor.systemBackground
+        card.layer.cornerRadius = 14
+        card.layer.masksToBounds = true
+        card.layer.borderColor = UIColor.systemGray5.cgColor
+        card.layer.borderWidth = 1
+        view.addSubview(card)
+
+        let labelW: CGFloat = 64
+        let fieldX: CGFloat = labelW + innerPad + 4
+        let fieldW: CGFloat = PW - fieldX - innerPad
+
+        func makeRowLabel(_ text: String, y: CGFloat) -> UILabel {
+            let l = UILabel(frame: CGRect(x: innerPad, y: y, width: labelW, height: rowH))
+            l.attributedText = NSAttributedString(string: text.uppercased(), attributes: [
+                .font: UIFont.systemFont(ofSize: 10, weight: .semibold),
+                .foregroundColor: UIColor.secondaryLabel,
+                .kern: 0.8
+            ])
+            return l
+        }
+
+        func makeDivider(y: CGFloat) -> UIView {
+            let v = UIView(frame: CGRect(x: innerPad, y: y, width: PW - innerPad * 2, height: divH))
+            v.backgroundColor = UIColor.systemGray5
+            return v
+        }
+
+        func makeInputField(placeholder: String, y: CGFloat, text: String?) -> FancyTextEditor {
+            let f = FancyTextEditor(frame: CGRect(x: fieldX, y: y + (rowH - 32) / 2, width: fieldW, height: 32))
+            f.placeholder = placeholder
+            f.text = text ?? ""
+            f.font = UIFont.systemFont(ofSize: 15)
+            f.textColor = UIColor.label
+            f.borderStyle = .none
+            return f
+        }
+
+        var curY: CGFloat = innerPad
+
+        // Brand row
+        card.addSubview(makeRowLabel("Brand", y: curY))
+        let brandF = makeInputField(placeholder: "Brand name", y: curY, text: produtVendor)
+        brandF.addTarget(self, action: #selector(brandChanged(_:)), for: .editingChanged)
+        card.addSubview(brandF)
+        self.brandFieldView = brandF
+        curY += rowH
+
+        card.addSubview(makeDivider(y: curY)); curY += divH
+
+        // Item Name row
+        card.addSubview(makeRowLabel("Item", y: curY))
+        let nameF = makeInputField(placeholder: "Item name", y: curY, text: productTitle)
+        nameF.addTarget(self, action: #selector(nameChanged(_:)), for: .editingChanged)
+        card.addSubview(nameF)
+        self.itemNameFieldView = nameF
+        curY += rowH
+
+        card.addSubview(makeDivider(y: curY)); curY += divH
+
+        // Price row (read-only, auto-filled)
+        card.addSubview(makeRowLabel("Price", y: curY))
+        let priceLabel = UILabel(frame: CGRect(x: fieldX + 12, y: curY, width: fieldW - 12, height: rowH))
+        priceLabel.font = .systemFont(ofSize: 15)
+        if let p = productPrice, p > 0 {
+            priceLabel.text = "$\(Int(p))"
+            priceLabel.textColor = .label
         } else {
-            print("Saving post...")
-            savePost()
+            priceLabel.text = "Fetching..."
+            priceLabel.textColor = .tertiaryLabel
         }
-    }
-    
-    @objc func nextPage() {
-        self.stageIndex += 1
-        resetUI()
-        buildUI()
-    }
-    
-    @objc func lastPage() {
-        if self.stageIndex > 0 {
-            self.stageIndex -= 1
-            resetUI()
-            buildUI()
+        card.addSubview(priceLabel)
+        self.priceLabelView = priceLabel
+        curY += rowH
+
+        card.addSubview(makeDivider(y: curY)); curY += divH
+
+        // Comments
+        let commentHeader = UILabel(frame: CGRect(x: innerPad, y: curY + 2, width: PW, height: commentLabelH))
+        commentHeader.attributedText = NSAttributedString(string: "COMMENTS", attributes: [
+            .font: UIFont.systemFont(ofSize: 10, weight: .semibold),
+            .foregroundColor: UIColor.secondaryLabel,
+            .kern: 0.8
+        ])
+        card.addSubview(commentHeader)
+        curY += commentLabelH + 8
+
+        let commentTV = UITextView(frame: CGRect(x: innerPad, y: curY, width: PW - innerPad * 2, height: commentViewH))
+        commentTV.font = UIFont.systemFont(ofSize: 15)
+        commentTV.backgroundColor = UIColor.systemGray6
+        commentTV.layer.cornerRadius = 8
+        commentTV.textContainerInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
+        commentTV.delegate = self
+        if let c = caption, !c.isEmpty {
+            commentTV.text = c
+            commentTV.textColor = .label
+        } else {
+            commentTV.text = "What do you love about it?"
+            commentTV.textColor = .placeholderText
         }
+        card.addSubview(commentTV)
+        self.commentsTextView = commentTV
+
+        // ── COVET IT BUTTON ────────────────────────────────────────────
+        buildCovetItButton()
     }
-    
-    func buildUI() {
-        DispatchQueue.main.async {
-            let stage = self.stages[self.stageIndex]
-            
-            switch (stage) {
-            case .PHOTO:
-                self.buildPhotoPage(imageBorderPresentByDefault: self.image != nil)
-                self.buildBottomButton(enabledByDefault: self.image != nil)
-                self.skipButton.isEnabled = false
-                self.skipButton.tintColor = UIColor.clear
-            case .TITLE:
-                self.buildInputPage(
-                    prompt: "Product Title",
-                    placeholder: "Industrial Incandescent Lamp",
-                    value: self.productTitle as AnyObject
-                )
-                self.buildBottomButton(enabledByDefault: self.truthy(value: self.productTitle))
-                self.skipButton.isEnabled = false
-                self.skipButton.tintColor = UIColor.clear
-            case .VENDOR:
-                self.buildInputPage(
-                    prompt: "Vendor (company that makes it)",
-                    placeholder: "B&M Furniture",
-                    value: self.produtVendor as AnyObject
-                )
-                self.buildBottomButton(enabledByDefault: self.truthy(value: self.produtVendor))
-                self.skipButton.isEnabled = true
-                self.skipButton.tintColor = UIColor.covetGreen
-            case .PRICE:
-                self.buildInputPage(
-                    prompt: "Price",
-                    placeholder: "$199.99",
-                    value: self.productPrice as AnyObject,
-                    inputType: .decimalPad
-                )
-                self.buildBottomButton(enabledByDefault: self.productPrice != nil)
-                self.skipButton.isEnabled = true
-                self.skipButton.tintColor = UIColor.covetGreen
-            case .CAPTION:
-                self.buildInputPage(
-                    prompt: "Caption",
-                    placeholder: "Say something about this product and why you like it",
-                    value: self.caption as AnyObject
-                )
-                self.buildBottomButton(enabledByDefault: self.truthy(value: self.caption))
-                self.skipButton.isEnabled = true
-                self.skipButton.tintColor = UIColor.covetGreen
-            case .PREVIEW:
-                self.buildPreviewPage()
-                self.buildBottomButton(enabledByDefault: true, text: "COVET IT")
-                self.skipButton.isEnabled = false
-                self.skipButton.tintColor = UIColor.clear
-            default:
-                break
-            }
-            self.backButton.isEnabled = self.stageIndex > 0
-    
-        }
-    }
-    
-    func resetUI() {
-        self.activityIndicator?.removeFromSuperview()
-        self.loadingTextView?.removeFromSuperview()
-        self.imageView?.removeFromSuperview()
-        self.imageViewPrompt?.removeFromSuperview()
-        self.inputFieldView?.removeFromSuperview()
-        self.inputFieldPrompt?.removeFromSuperview()
-        self.freeformView?.removeFromSuperview()
-        self.primaryButton?.removeFromSuperview()
-        self.previewTitleText?.removeFromSuperview()
-        self.previewSecondaryText?.removeFromSuperview()
-        self.previewTertiaryText?.removeFromSuperview()
-    }
-    
-    func buildInputPage(
-        prompt: String,
-        placeholder: String,
-        value: AnyObject?,
-        inputType: UIKeyboardType = .asciiCapable
-    ) {
-        
-        let inputFieldPromptHeight: Double = 40.0
-        let inputFieldPromptTopY: Double = self.fromTop(y: 16)
-        let inputFieldViewTopY: Double = inputFieldPromptTopY + inputFieldPromptHeight + 16
-        
-        self.inputFieldPrompt = UILabel(frame: CGRect(
-            x: self.paddedXLeft(),
-            y: inputFieldPromptTopY,
-            width: self.paddedWidth(),
-            height: inputFieldPromptTopY
+
+    func buildCovetItButton() {
+        primaryButton?.removeFromSuperview()
+        let btn = UIButton(frame: CGRect(
+            x: 20,
+            y: view.frame.height - 56 - 32,
+            width: view.frame.width - 40,
+            height: 56
         ))
-        self.inputFieldPrompt!.text = prompt
-        
-        self.inputFieldView = FancyTextEditor(frame: CGRect(
-            x: self.paddedXLeft(),
-            y: inputFieldViewTopY,
-            width: self.paddedWidth(),
-            height: 48
-        ))
-        self.inputFieldView?.backgroundColor = UIColor.white
-        self.inputFieldView?.layer.masksToBounds = false
-        self.inputFieldView?.layer.shadowRadius = 3.0
-        self.inputFieldView?.layer.shadowColor = UIColor.gray.cgColor
-        self.inputFieldView?.layer.shadowOffset = CGSize(width: 1.0, height: 2.0)
-        self.inputFieldView?.layer.shadowOpacity = 1
-        self.inputFieldView?.layer.cornerRadius = 0
-        self.inputFieldView?.borderStyle = .roundedRect
-        self.inputFieldView?.placeholder = placeholder
-        self.inputFieldView?.keyboardType = inputType
-        
-        var string: String = ""
-        if let decimalValue = value as? Double {
-            string = String(decimalValue)
-        }
-        else if let stringValue = value as? String {
-            string = stringValue
-        }
-        
-        self.inputFieldView?.text = string
-        self.inputFieldView?.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        
-        self.view.addSubview(self.inputFieldPrompt!)
-        self.view.addSubview(self.inputFieldView!)
+        btn.setTitle("Send", for: .normal)
+        btn.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        btn.backgroundColor = UIColor.covetGreen
+        btn.setTitleColor(.white, for: .normal)
+        btn.layer.cornerRadius = 14
+        btn.layer.masksToBounds = true
+        btn.addTarget(self, action: #selector(covetItPressed), for: .touchUpInside)
+        view.addSubview(btn)
+        self.primaryButton = btn
     }
-    
-    func buildPhotoPage(imageBorderPresentByDefault: Bool = false) {
-        
-        let imageViewSize = self.getImageSize()
-        let imageViewYOrigin = self.fromTop(y: 64)
-        
-        self.imageView = UIImageView(frame: CGRect(
-            x: self.centerX(width: imageViewSize),
-            y: imageViewYOrigin,
-            width: imageViewSize,
-            height: imageViewSize
-        ))
-        self.imageView!.image = self.image?.image ?? UIImage(named: "Pick_Image")
-        self.view.addSubview(self.imageView!)
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.imageViewPressed))
-        self.imageView!.addGestureRecognizer(tapGestureRecognizer)
-        self.imageView!.isUserInteractionEnabled = true
-        self.toggleImageBorderStatus(enabled: imageBorderPresentByDefault)
-        
-        self.imageViewPrompt = UILabel(frame: CGRect(
-            x: 0,
-            y: imageViewYOrigin + imageViewSize + 16.0,
-            width: self.view.frame.width,
-            height: 32
-        ))
-        self.imageViewPrompt?.textAlignment = .center
-        self.imageViewPrompt?.text = "Pick the best picture of the product"
-        self.imageViewPrompt?.textColor = UIColor.lightGray
-        self.view.addSubview(self.imageViewPrompt!)
+
+    // MARK: - Actions
+
+    @objc func covetItPressed() {
+        // Sync comments field before saving
+        if let tv = commentsTextView, tv.textColor != .placeholderText {
+            caption = tv.text.isEmpty ? nil : tv.text
+        }
+        // If no image selected yet, try auto-picking the first scraped image
+        if image == nil, let first = tableViewController.images.first {
+            image = first
+        }
+        savePost()
     }
-    
-    func buildPreviewPage() {
-        
-        let padding = 16.0
-        let imageViewSize = self.getImageSize()
-        let imageViewYOrigin = self.fromTop(y: 32)
-        
-        let primaryTextHeight = 48.0
-        let primaryTextY = imageViewYOrigin + imageViewSize + padding
-        
-        let secondaryTextHeight = 32.0
-        let secondaryTextY = primaryTextY + primaryTextHeight + padding
-        
-        let tertiaryTextHeight = 26.0
-        let tertiaryTextY = secondaryTextY + secondaryTextHeight + padding
-        
-        let hasVendor = self.produtVendor != nil
-        let hasPrice = self.productPrice != nil
-        let hasVendorOrPrice = hasVendor || hasPrice
-        let hasCaption = self.caption != nil
-        
-        self.imageView = UIImageView(frame: CGRect(
-            x: self.centerX(width: imageViewSize),
-            y: imageViewYOrigin,
-            width: imageViewSize,
-            height: imageViewSize
-        ))
-        self.imageView!.image = self.image?.image ?? UIImage(named: "Pick_Image")
-        self.imageView!.layer.borderColor = UIColor.covetGreen.cgColor
-        self.imageView!.layer.borderWidth = 4.0
-        self.view.addSubview(self.imageView!)
-        
-        self.previewTitleText = UILabel(frame: CGRect(
-            x: self.paddedXLeft(), y: primaryTextY, width: self.paddedWidth(), height: primaryTextHeight
-        ))
-        self.previewTitleText!.text = self.productTitle!
-        self.previewTitleText!.textAlignment = .center
-        self.previewTitleText!.font = .systemFont(ofSize: 24)
-        
-        self.previewSecondaryText = UILabel(frame: CGRect(
-            x: self.paddedXLeft(), y: secondaryTextY, width: self.paddedWidth(), height: secondaryTextHeight
-        ))
-        self.previewSecondaryText!.textAlignment = .center
-        self.previewSecondaryText!.font = .systemFont(ofSize: 20)
-        var secondaryStr = ""
-        if(hasVendor) {
-            secondaryStr += produtVendor!
-        }
-        if (hasPrice) {
-            if(self.produtVendor != nil) {
-                secondaryStr += " - "
-            }
-            secondaryStr += "$" + String(productPrice!)
-        }
-        if (!hasVendorOrPrice && hasCaption) {
-            secondaryStr += self.caption!
-            self.previewSecondaryText!.font = .systemFont(ofSize: 16)
-        }
-        self.previewSecondaryText!.text = secondaryStr
-        
-        self.previewTertiaryText = UILabel(frame: CGRect(
-            x: self.paddedXLeft(), y: tertiaryTextY, width: self.paddedWidth(), height: tertiaryTextHeight
-        ))
-        self.previewTertiaryText?.textAlignment = .center
-        if (hasVendorOrPrice && hasCaption) {
-            self.previewTertiaryText!.text = self.caption!
-            self.previewTertiaryText!.font = .systemFont(ofSize: 16)
-        }
-        
-        self.view.addSubview(self.previewTitleText!)
-        self.view.addSubview(self.previewSecondaryText!)
-        self.view.addSubview(self.previewTertiaryText!)
-        
-    }
-    
-    func buildBottomButton(enabledByDefault: Bool = false, text: String = "Next") {
-        self.primaryButton = UIButton(frame: CGRect(
-            x: self.paddedXLeft(),
-            y: self.view.frame.height - (52.0 + 24.0),
-            width: self.paddedWidth(),
-            height: 52
-        ))
-        
-        self.primaryButton?.setTitle(text, for: UIControl.State.normal)
-        self.primaryButton?.layer.cornerRadius = 4
-        self.primaryButton?.layer.shadowColor = UIColor.gray.cgColor
-        self.primaryButton?.layer.shadowOffset = CGSize(width: 1, height: 2)
-        self.primaryButton?.layer.shadowOpacity = 0.3
-        
-        self.primaryButton?.addTarget(self, action: #selector(primaryButtonPressed), for: .touchUpInside)
-        self.toggleButtonStatus(enabled: enabledByDefault)
-        
-        self.view.addSubview(self.primaryButton!)
-    }
-    
-    func configureViewFor(url: URL) {
-        DispatchQueue.main.async {
-            let suggestedText = self.getDefaultItemTitle()
-            
-            // If the user's already typed something by the time we
-            // get here, just keep whatever they typed
-            if let existingText = self.productTitle {
-                if existingText.count > 0 {
-                    return
-                }
-            }
-            self.productTitle = suggestedText
+
+    @objc func brandChanged(_ tf: UITextField) { produtVendor = tf.text }
+    @objc func nameChanged(_ tf: UITextField) { productTitle = tf.text }
+
+    @objc func imageViewPressed() {
+        if tableViewController.images.count > 0 {
+            present(tableViewController, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Loading images", message: "Images are still loading from the page — try again in a moment.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
     }
-    
-    func getSharedURL(completion: @escaping (_: NSURL?) -> Void) -> NSURL? {
-        if let item = extensionContext?.inputItems.first as? NSExtensionItem {
-            if let itemProvider = item.attachments?.first {
-                if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-                    itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil, completionHandler: { (url, error) -> Void in
-                        if let shareURL = url as? NSURL {
-                            // do what you want to do with shareURL
-                            completion(shareURL)
-                        }
-                    })
-                }
+
+    @IBAction func shareButtonPressed(_ sender: Any) {}
+    @IBAction func backButtonPressed(_ sender: Any) {
+        extensionContext?.cancelRequest(withError: RuntimeError("User cancelled"))
+    }
+
+    // MARK: - Loading spinner
+
+    func showLoadingSpinner() {
+        let midY = view.frame.height / 2
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: midY - 40, width: view.frame.width, height: 40))
+        activityIndicator?.style = .medium
+        activityIndicator?.startAnimating()
+        view.addSubview(activityIndicator!)
+
+        loadingTextView = UILabel(frame: CGRect(x: 0, y: midY + 8, width: view.frame.width, height: 32))
+        loadingTextView?.text = "Loading product..."
+        loadingTextView?.textAlignment = .center
+        loadingTextView?.font = .systemFont(ofSize: 14)
+        loadingTextView?.textColor = .secondaryLabel
+        view.addSubview(loadingTextView!)
+    }
+
+    // MARK: - URL extraction
+
+    @discardableResult
+    func getSharedURL(completion: @escaping (NSURL?) -> Void) -> NSURL? {
+        if let item = extensionContext?.inputItems.first as? NSExtensionItem,
+           let provider = item.attachments?.first,
+           provider.hasItemConformingToTypeIdentifier("public.url") {
+            provider.loadItem(forTypeIdentifier: "public.url", options: nil) { url, _ in
+                completion(url as? NSURL)
             }
         }
         return nil
     }
-    
-    @objc func imageViewPressed() {
-        if self.tableViewController.images.count > 0 {
-            print("Image view pressed!")
-            self.present(tableViewController, animated: true) {
-                print("Completion")
-            }
-        } else {
-            let controller = UIAlertController(title: "No images", message: "Please wait, images are still loading...", preferredStyle: .actionSheet)
-            controller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(controller, animated: true, completion: nil)
-        }
-    }
-    @IBAction func shareButtonPressed(_ sender: Any) {
-        nextPage()
-    }
-    
-    func getDefaultItemTitle() -> String? {
-        do {
-            let doc: Document = try SwiftSoup.parse(getPageHTML())
-            return try doc.title()
-        } catch {
-            return nil
-        }
-    }
-    
-    private func getPageHTML() throws -> String {
-        return try String(contentsOf: self.url!)
+
+    // MARK: - Keyboard handling
+
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let kbHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height,
+              let btn = primaryButton else { return }
+        btn.frame.origin.y = view.frame.height - kbHeight - 56 - 12
     }
 
-    func configureLoadingView() {
-        let middleY = self.view.frame.height / 2
-        
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(
-            x: 0, y: middleY - 40, width: self.view.frame.width, height: 40
-        ))
-        activityIndicator!.startAnimating()
-        
-        loadingTextView = UILabel(frame: CGRect(
-            x: 0, y: middleY + 12, width: self.view.frame.width, height: 40
-        ))
-        loadingTextView!.textAlignment = .center
+    @objc func keyboardWillHide(notification: NSNotification) {
+        primaryButton?.frame.origin.y = view.frame.height - 56 - 32
     }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        switch ( self.stages[self.stageIndex] ) {
-            case .TITLE:
-                self.productTitle = textField.text
-            case .VENDOR:
-                self.produtVendor = textField.text
-            case .PRICE:
-                var val: Double? = nil
-                if let text = textField.text {
-                    if let doubleValue = Double(text) {
-                        val = doubleValue
-                    }
-                }
-                self.productPrice = val
-            case .CAPTION:
-                self.caption = textField.text
-            default: break
-        }
-        if let text = textField.text {
-            self.toggleButtonStatus(enabled: text.count > 0)
-        }
-    }
-    
-    @objc func keyboardWillShow(notification:NSNotification) {
-        
-        print("Keyboard will show")
 
-//        guard let userInfo = notification.userInfo else { return }
-//        var keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-//        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
-        
-        let keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size.height
-        print(keyboardHeight)
-        
-        if let pb = self.primaryButton {
-            print("Got the button")
-            pb.frame = CGRect(
-                x: self.paddedXLeft(),
-                y: self.view.frame.height - keyboardHeight - 52.0 - 16.0,
-                width: self.paddedWidth(),
-                height: 52
-            )
-            print(pb.frame)
-        }
+    // MARK: - Helpers
 
-//        var contentInset:UIEdgeInsets = self.scrollView.contentInset
-//        contentInset.bottom = keyboardFrame.size.height + 20
-//        scrollView.contentInset = contentInset
-    }
-    
-    @IBAction func backButtonPressed(_ sender: Any) {
-        lastPage()
-    }
-    
-    @objc func keyboardWillHide(notification:NSNotification) {
-
-        if let pb = self.primaryButton {
-            pb.frame = CGRect(
-                x: self.paddedXLeft(),
-                y: self.view.frame.height - 52.0 - 24.0,
-                width: self.paddedWidth(),
-                height: 52
-            )
-        }
-        
-    }
-    
     func toggleButtonStatus(enabled: Bool) {
-        self.primaryButton?.isEnabled = enabled
-        self.primaryButton?.backgroundColor = enabled ? UIColor.covetGreen : UIColor.darkGray
+        primaryButton?.isEnabled = enabled
+        primaryButton?.backgroundColor = enabled ? UIColor.covetGreen : UIColor.systemGray4
     }
-    
+
+    // Legacy stub — no longer used but kept so extensions compile
     func toggleImageBorderStatus(enabled: Bool) {
-        self.imageView!.layer.borderColor = UIColor.covetGreen.cgColor
-        self.imageView!.layer.borderWidth = enabled ? 4.0 : 0.0
+        imageView?.layer.borderWidth = enabled ? 2 : 0
     }
-    
-    private func truthy(value: String?) -> Bool {
-        if let val = value {
-            return val.count > 0
+}
+
+// MARK: - UITextViewDelegate
+
+extension ShareSheetViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .placeholderText {
+            textView.text = nil
+            textView.textColor = .label
         }
-        return value != nil
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "What do you love about it?"
+            textView.textColor = .placeholderText
+        }
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        caption = textView.text
     }
 }

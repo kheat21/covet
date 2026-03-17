@@ -59,9 +59,11 @@ class API {
     public static func updateProfile(
         originalUser: CovetUser,
         name: String?, bio: String?, birthday: Date?, address: String?,
-        privateForFollowing: Int?, privateForFriending: Int?
+        privateForFollowing: Int?, privateForFriending: Int?,
+        shoeSize: String? = nil, ringSize: String? = nil, jeansSize: String? = nil,
+        dressSize: String? = nil, topSize: String? = nil
     ) async throws -> CovetUser? {
-        let options: Parameters = [
+        var options: Parameters = [
             "user": originalUser.id,
             "name": name ?? originalUser.name ?? "",
             "bio": bio ?? originalUser.bio ?? "",
@@ -70,6 +72,11 @@ class API {
             "privateForFollowing": privateForFollowing ?? originalUser.privateForFollowing,
             "privateForFriending": privateForFriending ?? originalUser.privateForFriending
         ]
+        if let v = shoeSize  { options["shoe_size"]  = v }
+        if let v = ringSize  { options["ring_size"]  = v }
+        if let v = jeansSize { options["jeans_size"] = v }
+        if let v = dressSize { options["dress_size"] = v }
+        if let v = topSize   { options["top_size"]   = v }
         print(options)
         return try await APIHelpers.getEndpointPromise(
             token: await getIdToken(),
@@ -180,6 +187,21 @@ class API {
         )
     }
     
+    public static func toggleCoveted(post_id: Int) async throws -> (success: Bool, coveted: Int)? {
+        let resp = try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/post/coveted",
+            method: .post,
+            data: ["post": post_id],
+            ToggleCovetiResponseObject.self,
+            overrideBaseUrl: nil
+        )
+        if let r = resp {
+            return (success: r.success, coveted: r.coveted)
+        }
+        return nil
+    }
+
     public static func delete(post_id: Int) async -> Bool {
         do {
             let resp = try await APIHelpers.getEndpointPromise(

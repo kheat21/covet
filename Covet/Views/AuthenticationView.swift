@@ -139,7 +139,7 @@ struct CustomLoginViewController : UIViewControllerRepresentable {
         
         let providers : [FUIAuthProvider] = [
             FUIEmailAuth(),
-            FUIGoogleAuth(),
+            FUIGoogleAuth(authUI: authUI!),
             FUIOAuth.appleAuthProvider()
         ]
         

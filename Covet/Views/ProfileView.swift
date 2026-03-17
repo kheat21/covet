@@ -149,30 +149,74 @@ struct UserProfile : View {
     var user: CovetUser;
     
     @State var showPostInDetailView: Post? = nil
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile())
+    @State var showSizes: Bool = false
 
-            if let posts = user.posts {
-                if posts.count == 0 {
-                    UserProfileNoPostsYet(isOwnProfile: self.isOwnProfile())
-                } else {
-                    HStack {
-                        Text("My Covet List")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+    private var canSeeSizes: Bool {
+        guard !isOwnProfile() else { return false }
+        guard hasSizes else { return false }
+        return (user.current_user_is_following ?? 0) == 1
+    }
+
+    private var hasSizes: Bool {
+        [user.shoe_size, user.ring_size, user.jeans_size, user.dress_size, user.top_size]
+            .contains { $0 != nil && !($0!.isEmpty) }
+    }
+
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile())
+
+                if let posts = user.posts {
+                    if posts.count == 0 {
+                        UserProfileNoPostsYet(isOwnProfile: self.isOwnProfile())
+                    } else {
+                        Section(header:
+                            HStack(spacing: 8) {
+                                Text(covetListTitle())
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
+                                if canSeeSizes {
+                                    Button(action: { showSizes = true }) {
+                                        Image(systemName: "ruler.fill")
+                                            .font(.system(size: 16, weight: .medium))
+                                            .foregroundColor(Color.covetGreen())
+                                    }
+                                }
+                                Spacer()
+                            }
                             .padding(.horizontal, 16)
                             .padding(.vertical, 12)
-                        Spacer()
-                    }
-                    ScrollView {
-                        ImageGrid(images: posts) { i in
-                            self.showPostInDetailView = i
+                            .background(Color(UIColor.systemBackground))
+                        ) {
+                            ImageGrid(images: posts) { i in
+                                self.showPostInDetailView = i
+                            }
                         }
                     }
                 }
             }
+        }
+        .sheet(isPresented: $showSizes) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Text("\(user.name?.components(separatedBy: " ").first ?? user.username)'s Sizes")
+                        .font(.system(size: 18, weight: .semibold))
+                    Spacer()
+                    Button(action: { showSizes = false }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(Color(UIColor.systemGray3))
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 24)
+                .padding(.bottom, 16)
+                MySizesReadOnlySection(user: user)
+                    .padding(.horizontal, 20)
+                Spacer()
+            }
+            .presentationDetentsMediumIfAvailable()
         }
         .sheet(item: self.$showPostInDetailView, onDismiss: {
             self.showPostInDetailView = nil
@@ -189,11 +233,34 @@ struct UserProfile : View {
         }
         return false
     }
+
+    private func covetListTitle() -> String {
+        if isOwnProfile() {
+            return "My Covet List"
+        }
+        let firstName = user.name?.components(separatedBy: " ").first ?? user.username
+        return "\(firstName)'s Covet List"
+    }
 }
 
 private struct ProfileHeaderSection: View {
     var user: CovetUser
     var isOwnProfile: Bool
+
+    @State private var isFollowing: Bool = false
+    @State private var isPending: Bool = false
+    @State private var followLoading: Bool = false
+    @State private var didInitFollowState: Bool = false
+
+    @State private var showFollowers: Bool = false
+    @State private var showFollowing: Bool = false
+
+    private var followerUsers: [CovetUser] {
+        (user.followers ?? []).map { $0.user }
+    }
+    private var followingUsers: [CovetUser] {
+        (user.follows ?? []).map { $0.user }
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -215,8 +282,17 @@ private struct ProfileHeaderSection: View {
             .padding(.vertical, 16)
 
             HStack(spacing: 0) {
+                NavigationLink(isActive: $showFollowers, destination: {
+                    FollowersFollowingListView(title: "Followers", users: followerUsers)
+                }, label: { EmptyView() })
+                NavigationLink(isActive: $showFollowing, destination: {
+                    FollowersFollowingListView(title: "Following", users: followingUsers)
+                }, label: { EmptyView() })
+
                 ProfileStatColumn(value: user.followers_count ?? 0, label: "FOLLOWERS")
+                    .onTapGesture { showFollowers = true }
                 ProfileStatColumn(value: user.follows_count ?? 0, label: "FOLLOWING")
+                    .onTapGesture { showFollowing = true }
                 ProfileStatColumn(value: user.posts?.count ?? 0, label: "COVETING")
             }
             .padding(.bottom, 16)
@@ -232,7 +308,7 @@ private struct ProfileHeaderSection: View {
                             .cornerRadius(8)
                     }
                     Button(action: {}) {
-                        Text("Share Wishlist")
+                        Text("Share Covet List")
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 14)
                             .background(Color(UIColor.systemGray6))
@@ -242,10 +318,117 @@ private struct ProfileHeaderSection: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 16)
+            } else {
+                // Follow button for other users
+                Button(action: { toggleFollow() }) {
+                    Group {
+                        if followLoading {
+                            ProgressView().tint(.white)
+                        } else if isFollowing {
+                            Text("Following")
+                        } else if isPending {
+                            Text("Requested")
+                        } else {
+                            Text("Follow")
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(isFollowing || isPending ? Color(UIColor.systemGray6) : Color.covetGreen())
+                    .foregroundColor(isFollowing || isPending ? .black : .white)
+                    .cornerRadius(8)
+                }
+                .disabled(followLoading)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 16)
             }
 
             Divider()
         }
+        .onAppear {
+            if !didInitFollowState {
+                isFollowing = (user.current_user_is_following ?? 0) == 1
+                isPending   = (user.current_user_is_pending_following ?? 0) == 1
+                didInitFollowState = true
+            }
+        }
+    }
+
+    private func toggleFollow() {
+        followLoading = true
+        Task {
+            do {
+                if isFollowing || isPending {
+                    let _ = try await API.removeRelationshipWith(userId: user.id)
+                    await MainActor.run { isFollowing = false; isPending = false }
+                } else {
+                    let _ = try await API.setRelationship(userId: user.id, relationshipType: .Following)
+                    // If user has private following, it becomes pending; otherwise approved
+                    let nowPending = user.privateForFollowing == 1
+                    await MainActor.run {
+                        isFollowing = !nowPending
+                        isPending   = nowPending
+                    }
+                }
+            } catch {
+                print("Follow error: \(error)")
+            }
+            await MainActor.run { followLoading = false }
+        }
+    }
+}
+
+private struct MySizesReadOnlySection: View {
+    var user: CovetUser
+
+    private var sizeItems: [(label: String, value: String)] {
+        [
+            ("SHOES", user.shoe_size ?? ""),
+            ("RING",  user.ring_size ?? ""),
+            ("JEANS", user.jeans_size ?? ""),
+            ("DRESS", user.dress_size ?? ""),
+            ("TOP",   user.top_size ?? ""),
+        ].filter { !$0.value.isEmpty }
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: "ruler")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(Color.covetGreen())
+                Text("Sizes")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.primary)
+            }
+
+            LazyVGrid(columns: [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ], spacing: 8) {
+                ForEach(sizeItems, id: \.label) { item in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.label)
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundColor(.secondary)
+                            .tracking(0.5)
+                        Text(item.value)
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundColor(.primary)
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(UIColor.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                }
+            }
+        }
+        .padding(14)
+        .background(Color(UIColor.systemGray6).opacity(0.4))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(UIColor.systemGray5), lineWidth: 1))
     }
 }
 
@@ -263,6 +446,20 @@ private struct ProfileStatColumn: View {
                 .fontWeight(.medium)
         }
         .frame(maxWidth: .infinity)
+    }
+}
+
+private struct FollowersFollowingListView: View {
+    let title: String
+    let users: [CovetUser]
+
+    var body: some View {
+        List(users) { user in
+            UserListItem(user: user, showRelationshipToUser: true, showPendingOptions: false)
+                .listRowInsets(EdgeInsets())
+        }
+        .listStyle(.plain)
+        .navigationBarTitle(title, displayMode: .inline)
     }
 }
 

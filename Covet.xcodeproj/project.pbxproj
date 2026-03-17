@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		086C93CF2F5C9F7F00D976ED /* ProductNameParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93CE2F5C9F7F00D976ED /* ProductNameParser.swift */; };
+		086C93F82F5CBCC900D976ED /* GiftFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93F72F5CBCC900D976ED /* GiftFlowView.swift */; };
+		086C93FA2F5CBE9600D976ED /* GiftingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93F92F5CBE9600D976ED /* GiftingView.swift */; };
+		086C93FC2F5DD61800D976ED /* ExtensionPageScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93FB2F5DD61800D976ED /* ExtensionPageScraper.swift */; };
 		29F128108791901126A73041 /* Pods_CovetButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D82594A246CE10C3AC3324D9 /* Pods_CovetButton.framework */; };
 		4909A4BD0757B3CFCEBC4AC4 /* Pods_Covet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77D83FB7AC347C284AD4B85F /* Pods_Covet.framework */; };
 		A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4125A5427A9EDEE00D6CF34 /* CovetUserResponseObject.swift */; };
@@ -33,7 +37,7 @@
 		A492182427B3E41800D4D74E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A492182327B3E41800D4D74E /* MainInterface.storyboard */; };
 		A492182527B3E63100D4D74E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A495368427B3DB300000C3FE /* Assets.xcassets */; };
 		A495368527B3DB300000C3FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A495368427B3DB300000C3FE /* Assets.xcassets */; };
-		A495369427B3DDE20000C3FE /* CovetButton.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A495368A27B3DDE20000C3FE /* CovetButton.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A495369427B3DDE20000C3FE /* CovetButton.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A495368A27B3DDE20000C3FE /* CovetButton.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A49536A227B3DE5C0000C3FE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8727A34E5700D09167 /* UIView.swift */; };
 		A49536A327B3DE5E0000C3FE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8927A3B4F600D09167 /* UIColor.swift */; };
 		A49536AF27B3DE650000C3FE /* ShareSheetImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43B1F8F27A3BF9F00D09167 /* ShareSheetImageConfig.swift */; };
@@ -150,20 +154,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A4A47E9227965DB300FE8ED8 /* Embed App Extensions */ = {
+		A4A47E9227965DB300FE8ED8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				A495369427B3DDE20000C3FE /* CovetButton.appex in Embed App Extensions */,
+				A495369427B3DDE20000C3FE /* CovetButton.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		086C93CE2F5C9F7F00D976ED /* ProductNameParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNameParser.swift; sourceTree = "<group>"; };
+		086C93F72F5CBCC900D976ED /* GiftFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftFlowView.swift; sourceTree = "<group>"; };
+		086C93F92F5CBE9600D976ED /* GiftingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingView.swift; sourceTree = "<group>"; };
+		086C93FB2F5DD61800D976ED /* ExtensionPageScraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPageScraper.swift; sourceTree = "<group>"; };
 		25602471750B7EE11EBD7949 /* Pods-Covet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.debug.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.debug.xcconfig"; sourceTree = "<group>"; };
 		3FDB6ED2DFADDB74F1094BBA /* Pods-Covet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Covet.release.xcconfig"; path = "Target Support Files/Pods-Covet/Pods-Covet.release.xcconfig"; sourceTree = "<group>"; };
 		4D9345DBA7F61941D6801202 /* Pods-CovetButton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CovetButton.debug.xcconfig"; path = "Target Support Files/Pods-CovetButton/Pods-CovetButton.debug.xcconfig"; sourceTree = "<group>"; };
@@ -362,6 +370,7 @@
 		A495368B27B3DDE20000C3FE /* CovetButton */ = {
 			isa = PBXGroup;
 			children = (
+				086C93FB2F5DD61800D976ED /* ExtensionPageScraper.swift */,
 				A49536C727B3E1590000C3FE /* CovetButton.entitlements */,
 				A43B1F8627A34E4B00D09167 /* Extensions */,
 				A432CF4E2797B83F005EFCA8 /* TableViewController.swift */,
@@ -473,6 +482,8 @@
 		EB453071274BF9C3004395CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				086C93F92F5CBE9600D976ED /* GiftingView.swift */,
+				086C93F72F5CBCC900D976ED /* GiftFlowView.swift */,
 				F82E38BF2F3121510070154F /* SimpleLoginView 2.swift */,
 				A42B07AB27A5F60C00667216 /* RecovetView.swift */,
 				A42B07A927A5F5B100667216 /* PostView.swift */,
@@ -532,6 +543,7 @@
 		EB453093274C41D2004395CA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				086C93CE2F5C9F7F00D976ED /* ProductNameParser.swift */,
 				EB453094274C41DE004395CA /* CovetUser.swift */,
 				EB12930D277A4D9800FA0E46 /* Post.swift */,
 				EB12930F277A4E1000FA0E46 /* Product.swift */,
@@ -617,7 +629,7 @@
 				EB45303C274BF993004395CA /* Sources */,
 				EB45303D274BF993004395CA /* Frameworks */,
 				EB45303E274BF993004395CA /* Resources */,
-				A4A47E9227965DB300FE8ED8 /* Embed App Extensions */,
+				A4A47E9227965DB300FE8ED8 /* Embed Foundation Extensions */,
 				8E0F25B2EDF685BFB0EBBA35 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -678,7 +690,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					A495368927B3DDE20000C3FE = {
 						CreatedOnToolsVersion = 13.1;
@@ -810,9 +822,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Covet/Pods-Covet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -837,6 +853,7 @@
 				A49536C227B3E0950000C3FE /* ExtensionToken.swift in Sources */,
 				A49536BF27B3E06D0000C3FE /* RuntimeError.swift in Sources */,
 				A49536AF27B3DE650000C3FE /* ShareSheetImageConfig.swift in Sources */,
+				086C93FC2F5DD61800D976ED /* ExtensionPageScraper.swift in Sources */,
 				A49536C127B3E0820000C3FE /* APIHelpers.swift in Sources */,
 				A49536BB27B3DFB30000C3FE /* APIErrors.swift in Sources */,
 				A49536B727B3DE650000C3FE /* ShareSheetUIConfig.swift in Sources */,
@@ -880,6 +897,7 @@
 				EB453046274BF993004395CA /* ContentView.swift in Sources */,
 				EB517D1127556C28006470B8 /* RuntimeError.swift in Sources */,
 				A42B07AC27A5F60C00667216 /* RecovetView.swift in Sources */,
+				086C93F82F5CBCC900D976ED /* GiftFlowView.swift in Sources */,
 				EB129310277A4E1000FA0E46 /* Product.swift in Sources */,
 				EB517D0E2755537A006470B8 /* UserSettingsView.swift in Sources */,
 				EB453085274C2631004395CA /* AppDelegate.swift in Sources */,
@@ -908,6 +926,7 @@
 				EB35F3A1277D16D100C7BA92 /* PromptedUserInput.swift in Sources */,
 				A44DA6E327973D5A00A9422E /* ExtensionToken.swift in Sources */,
 				A4D1F94E27974BA4003DBD85 /* APIHelpers.swift in Sources */,
+				086C93FA2F5CBE9600D976ED /* GiftingView.swift in Sources */,
 				A4EDE9D32790BEAA00EB6AE3 /* ImageGrid.swift in Sources */,
 				A4A5CAF027A990890026A4A7 /* OpenSourceSoftware.swift in Sources */,
 				A45B857127AC36490033F28E /* UserPermissionSettingsExplainer.swift in Sources */,
@@ -921,6 +940,7 @@
 				A44C8EFA27AAD0FD009C3EA8 /* SimpleSuccessOrFailureResponseObject.swift in Sources */,
 				EBD26E2A27820B4000366816 /* CovetUserRelationship.swift in Sources */,
 				EB129314277A772A00FA0E46 /* ImagePicker.swift in Sources */,
+				086C93CF2F5C9F7F00D976ED /* ProductNameParser.swift in Sources */,
 				EB724CFE2780C2650076593C /* JSDictExtension.swift in Sources */,
 				A4D1F95127974BBD003DBD85 /* AppAPI.swift in Sources */,
 				EBDF21D1274EF3C4008E48E3 /* AuthenticationView.swift in Sources */,
@@ -984,7 +1004,7 @@
 				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CovetButton/Info.plist;
@@ -996,9 +1016,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1013,7 +1034,7 @@
 				CODE_SIGN_ENTITLEMENTS = CovetButton/CovetButton.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CovetButton/Info.plist;
@@ -1025,9 +1046,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet.CovetButton;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1039,6 +1061,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1072,6 +1095,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1092,6 +1116,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1101,6 +1126,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1134,6 +1160,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1147,6 +1174,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1157,13 +1185,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25602471750B7EE11EBD7949 /* Pods-Covet.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Covet/Covet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				ENABLE_PREVIEWS = YES;
@@ -1181,7 +1208,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.6.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1195,13 +1222,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FDB6ED2DFADDB74F1094BBA /* Pods-Covet.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Covet/Covet.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Covet/Preview Content\"";
 				DEVELOPMENT_TEAM = ZWWP79CS2D;
 				ENABLE_PREVIEWS = YES;
@@ -1219,7 +1245,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.6.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.covetapp.Covet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1232,7 +1258,6 @@
 		EB453068274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1257,7 +1282,6 @@
 		EB453069274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1282,7 +1306,6 @@
 		EB45306B274BF995004395CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 844DBNGC2A;
@@ -1305,7 +1328,6 @@
 		EB45306C274BF995004395CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 844DBNGC2A;

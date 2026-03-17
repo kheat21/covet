@@ -10,3 +10,8 @@ import Foundation
 struct SimpleSuccessOrFailureResponseObject : Decodable {
     var success: Bool;
 }
+
+struct ToggleCovetiResponseObject : Decodable {
+    var success: Bool;
+    var coveted: Int;
+}

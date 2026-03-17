@@ -26,6 +26,9 @@ struct PostView: View {
     @State var showingAddressCopiedToast: Bool = false
     @State var showingNoAddressToCopyToast: Bool = false
     
+    @State var isCoveted: Bool = false
+    @State var isTogglingCoveted: Bool = false
+
     @State var isDeleting: Bool = false
     @State var errorDeleting: Bool = false
     @State var showingDeleteConfirmMessage: Bool = false
@@ -40,7 +43,8 @@ struct PostView: View {
             self.isLikedStatusLoading ||
             self.isLikedStatusSaving ||
             self.isDeleting ||
-            self.isReporting
+            self.isReporting ||
+            self.isTogglingCoveted
         )
     }
     
@@ -49,51 +53,52 @@ struct PostView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    HStack {
-                        Spacer().frame(width: 125)
+                    HStack(spacing: 20) {
+                        // Like button
                         Button {
-                            print("Clicked")
                             if !self.isBusy() {
                                 self.toggleLike(currentLiked: self.liked)
                             }
                         } label: {
-                            if self.isLikedStatusLoading {
-                                EmptyView()
-                            } else if self.isLikedStatusSaving {
+                            if self.isLikedStatusSaving {
                                 ProgressView()
-                            } else {
+                            } else if !self.isLikedStatusLoading {
                                 self._likeButtonImage()
-                                    .foregroundColor(
-                                        self.isLikedStatusLoading
-                                            ? Color.clear : Color.black
-                                    )
+                                    .foregroundColor(Color.black)
                             }
                         }
+
+                        // Share button
                         Button {
                             self.showingShareActionSheet = true
                         } label: {
                             Image(systemName: "square.and.arrow.up")
                                 .foregroundColor(Color.black)
                         }
-                        Button {
-                            self.showingRecovetActionSheet = true
-                        } label: {
-                            Image("Recovet")
+
+                        // Recovet (C.) — only on other people's posts
+                        if !self.isOwnPost {
+                            Button {
+                                self.showingRecovetActionSheet = true
+                            } label: {
+                                Image("Recovet")
+                            }
                         }
-                        Button {
-                            if let postUser = self.post.user {
-                                if let address = postUser.address {
-                                    UIPasteboard.general.string = address
-                                    self.showingAddressCopiedToast = true
-                                } else {
-                                    self.showingNoAddressToCopyToast = true
+
+                        // Own-post controls
+                        if self.isOwnPost {
+                            // Coveted checkbox
+                            if self.isTogglingCoveted {
+                                ProgressView()
+                            } else {
+                                Button {
+                                    self.toggleCoveted()
+                                } label: {
+                                    Image(systemName: isCoveted ? "checkmark.square.fill" : "square")
+                                        .foregroundColor(isCoveted ? Color.covetGreen() : Color.black)
                                 }
                             }
-                            
-                        } label: {
-                            Image(systemName: "gift").foregroundColor(Color.black)
-                        }
-                        if self.isOwnPost {
+                            // Delete
                             if self.isDeleting {
                                 ProgressView()
                             } else {
@@ -104,6 +109,7 @@ struct PostView: View {
                                 }
                             }
                         } else {
+                            // Report (other posts)
                             if self.isReporting {
                                 ProgressView()
                             } else {
@@ -115,7 +121,10 @@ struct PostView: View {
                             }
                         }
                     }
-                    .frame(height: 50, alignment: Alignment.trailing)
+                    .font(.system(size: 20))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .padding(.horizontal, 24)
                     .zIndex(2)
                     PostDisplay(post: self.post)
                     Spacer() //.frame(height: 40)
@@ -124,7 +133,9 @@ struct PostView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         if let u = self.post.user {
-                            makeCovetC(size: 36, user: u)
+                            NavigationLink(destination: ProfileView(userId: u.id)) {
+                                makeCovetC(size: 36, user: u)
+                            }
                         } else {
                             EmptyView()
                         }
@@ -177,6 +188,7 @@ struct PostView: View {
                 Button("Cancel", role: .cancel) { }
             })
             .task {
+                isCoveted = (post.coveted ?? 0) == 1
                 do {
                     if let likeStatus = try await API.likes(post_id: self.post.id) {
                         print(likeStatus)
@@ -217,6 +229,21 @@ struct PostView: View {
         }
     }
     
+    private func toggleCoveted() {
+        Task.detached {
+            await MainActor.run { self.isTogglingCoveted = true }
+            do {
+                if let result = try await API.toggleCoveted(post_id: self.post.id) {
+                    await MainActor.run {
+                        self.isCoveted = result.coveted == 1
+                        self.post.coveted = result.coveted
+                    }
+                }
+            } catch { print(error) }
+            await MainActor.run { self.isTogglingCoveted = false }
+        }
+    }
+
     private func toggleLike(currentLiked: Bool) {
         Task.detached {
             var liked = currentLiked

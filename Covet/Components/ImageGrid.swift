@@ -8,54 +8,98 @@
 import SwiftUI
 
 struct ImageGrid: View {
-    
+
     var images: [Post]
     var selected: (_: Post) -> Void
-    
+
     private let gridItems = [GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0), GridItem(.flexible(), spacing: 0)]
-    
+
+    // Uncoveted posts first (by date desc), coveted posts last
+    private var sortedImages: [Post] {
+        let uncoveted = images.filter { ($0.coveted ?? 0) == 0 }
+        let coveted   = images.filter { ($0.coveted ?? 0) == 1 }
+        return uncoveted + coveted
+    }
+
     var body: some View {
+        let posts = sortedImages
         LazyVGrid(columns: gridItems, spacing: 0) {
-            ForEach(Array(images.enumerated()), id: \.offset) { index, element in
-                GeometryReader { gr in
-//                    NavigationLink {
-//                        ProfileView()
-//                            .navigationBarHidden(false)
-//                            .navigationTitle("New Page")
-//                    } label: {
-                        CovetSquareZoomedInItem(
-                            url: getProductForPost(post: element)!.image_url,
-                            size: gr.size.width,
-                            topBorderWidth: getTopBorderWidth(index: index),
-                            leftBorderWidth: getLeftBorderWidth(index: index),
-                            bottomBorderWidth: getBottomBorderWidth(index: index, total: images.count),
-                            rightBorderWidth: getRightBorderWidth(index: index, total: images.count)
-                        )
-                        .onTapGesture {
-                            self.selected(element)
-                        }
-//                    }
-                }
-                .clipped()
-                .aspectRatio(1, contentMode: .fit)
+            ForEach(Array(posts.enumerated()), id: \.offset) { index, element in
+                ImageGridCell(
+                    post: element,
+                    index: index,
+                    total: posts.count,
+                    onTap: { self.selected(element) }
+                )
             }
         }
     }
     
-    func getTopBorderWidth(index: Int) -> CGFloat {
-        return 4;
+}
+
+private struct ImageGridCell: View {
+    let post: Post
+    let index: Int
+    let total: Int
+    let onTap: () -> Void
+
+    @State private var fallbackImageURL: String? = nil
+    @State private var hidden: Bool = false
+    @State private var isScraping: Bool = false
+
+    private var imageURL: String {
+        fallbackImageURL ?? (getProductForPost(post: post)?.image_url ?? "")
     }
-    
-    func getBottomBorderWidth(index: Int, total: Int) -> CGFloat {
-        return index >= total - 3 ? 4 : 0;
+
+    private func handleImageFailure() {
+        if fallbackImageURL != nil {
+            hidden = true
+            return
+        }
+        guard !isScraping,
+              let link = getProductForPost(post: post)?.link, !link.isEmpty else {
+            hidden = true
+            return
+        }
+        isScraping = true
+        Task {
+            if let scraped = await scrapeProduct(urlString: link),
+               let freshURL = scraped.imageURL, !freshURL.isEmpty,
+               freshURL != getProductForPost(post: post)?.image_url {
+                await MainActor.run { fallbackImageURL = freshURL }
+            } else {
+                await MainActor.run { hidden = true }
+            }
+        }
     }
-    
-    func getLeftBorderWidth(index: Int) -> CGFloat {
-        return 4;
-    }
-    
-    func getRightBorderWidth(index: Int, total: Int) -> CGFloat {
-        return (index % 3 == 2 || index == total - 1) ? 4 : 0;
+
+    var body: some View {
+        if !hidden {
+            GeometryReader { gr in
+                ZStack(alignment: .topLeading) {
+                    CovetSquareZoomedInItem(
+                        url: imageURL,
+                        size: gr.size.width,
+                        topBorderWidth: 4,
+                        leftBorderWidth: 4,
+                        bottomBorderWidth: index >= total - 3 ? 4 : 0,
+                        rightBorderWidth: (index % 3 == 2 || index == total - 1) ? 4 : 0,
+                        onImageLoadFailed: handleImageFailure
+                    )
+                    .onTapGesture { onTap() }
+
+                    if (post.coveted ?? 0) == 1 {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
+                            .padding(6)
+                    }
+                }
+            }
+            .clipped()
+            .aspectRatio(1, contentMode: .fit)
+        }
     }
 }
 

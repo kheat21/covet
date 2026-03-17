@@ -25,20 +25,7 @@ struct UserListItem: View {
     
     @State var isSaving: Bool = false
     
-    @State private var navigateToUserProfile: Bool = false
-    @State private var navigateToUser: CovetUser? = nil
-    
-    var body: some View {
-        NavigationLink(isActive: self.$navigateToUserProfile, destination: {
-            if let usr = self.navigateToUser {
-                ProfileView(userId: usr.id)
-                    .navigationBarTitle(usr.username)
-            } else {
-                EmptyView()
-            }
-        }, label: {
-            EmptyView()
-        })
+    private var rowContent: some View {
         HStack {
             Spacer().frame(width: 16)
             makeCovetC(size: 48, user: self.user)
@@ -71,19 +58,17 @@ struct UserListItem: View {
             Spacer().frame(width: 16)
         }
         .background { Color.white }
-//        .background {
-//            NavigationLink(isActive: self.$navigateToUserProfile, destination: {
-//                ProfileView(userId: self.navigateToUser!.id)
-//            }, label: {
-//                EmptyView()
-//            })
-//        }
-        .onTapGesture {
-            print("Tapped")
-            if self.shouldAllowClicksForUser(user: self.user) && !self.isSaving {
-                self.navigateToUser = user
-                self.navigateToUserProfile = true
-                // print("Navigate to " + String(self.navigateToUser.id))
+    }
+
+    var body: some View {
+        ZStack {
+            if shouldAllowClicksForUser(user: user) && !isSaving {
+                NavigationLink(destination: ProfileView(userId: user.id).navigationBarTitle(user.username)) {
+                    rowContent
+                }
+                .buttonStyle(PlainButtonStyle())
+            } else {
+                rowContent
             }
         }
         .onLongPressGesture(perform: {

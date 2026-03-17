@@ -44,7 +44,13 @@ struct CovetUser: Identifiable, Decodable {
         
         var privateForFollowing: Int;
         var privateForFriending: Int;
-    
+
+        var shoe_size: String?;
+        var ring_size: String?;
+        var jeans_size: String?;
+        var dress_size: String?;
+        var top_size: String?;
+
         var isDeleted: Int?;
     
         var follows: [CovetUserRelationshipInfo]?

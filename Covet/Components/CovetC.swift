@@ -25,6 +25,9 @@ struct CovetC: View {
     
     var body: some View {
         ZStack(alignment: Alignment.center) {
+            Circle()
+                .fill(Color.white.opacity(0.72))
+                .frame(width: CGFloat(size) * 0.62, height: CGFloat(size) * 0.62)
             Text(text)
                 .font(.system(size: self.textSize, weight: .medium, design: .default))
                 .padding(Edge.Set.leading, 2)

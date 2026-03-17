@@ -29,6 +29,7 @@ struct Post : Identifiable, Decodable, Hashable {
     var products: [Product]?;
     var deleted: Int?;
     var removed: Int?;
+    var coveted: Int?;
     var createdAt: Int;
     
     var highlighted_product_id: Int?;

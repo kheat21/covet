@@ -30,17 +30,20 @@ struct PostDisplay : View {
             }
             //.allowsHitTesting(false)
             
-            Text(product.name)
-                    .font(.system(size: 24, weight: .regular, design: .default))
-            
-            HStack {
-                if let productVendor = product.vendor {
-                    Text(productVendor)
-                        .font(.system(size: 20, weight: .regular, design: .default))
+            let parsed = parseProductDisplay(name: product.name, vendor: product.vendor)
+            VStack(spacing: 4) {
+                if let brand = parsed.brand, !brand.isEmpty {
+                    Text(brand.uppercased())
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.gray)
+                        .tracking(0.5)
                 }
-                if let productPrice = product.price {
-                    Text("$" + String(productPrice))
-                        .font(.system(size: 20, weight: .semibold, design: .default))
+                Text(parsed.cleanName)
+                    .font(.system(size: 22, weight: .regular, design: .default))
+                    .multilineTextAlignment(.center)
+                if let priceStr = formatPrice(product.price) {
+                    Text(priceStr)
+                        .font(.system(size: 18, weight: .semibold, design: .default))
                 }
             }
             .padding([.top, .bottom], 8)

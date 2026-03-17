@@ -70,7 +70,7 @@ For each SwiftUI view file, check:
 ### 🔴 Critical
 [file, line, defect, fix]
 
-### 🟠 High  
+### 🟠 High
 [file, line, defect, fix]
 
 ### 🟡 Medium

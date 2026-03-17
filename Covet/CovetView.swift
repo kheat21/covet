@@ -63,6 +63,14 @@ struct CovetView : View {
                 }
                 .tag(2)
             }
+
+            NavigationView {
+                GiftingView()
+            }
+            .tabItem {
+                Label("Gifting", systemImage: "shippingbox")
+            }
+            .tag(3)
         }
         .font(.headline)
         .accentColor(.covetGreen())
