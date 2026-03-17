@@ -45,6 +45,15 @@ struct GiftIdea: Identifiable, Decodable {
         case shopUrl = "shop_url"
     }
 
+    init(name: String, reason: String, priceRange: String, searchQuery: String, shopUrl: String) {
+        self.id = UUID().uuidString
+        self.name = name
+        self.reason = reason
+        self.priceRange = priceRange
+        self.searchQuery = searchQuery
+        self.shopUrl = shopUrl
+    }
+
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         id = UUID().uuidString
@@ -64,105 +73,40 @@ struct GiftAIResult {
 // MARK: - AI Service
 
 enum GiftAIService {
-    // Add your Anthropic API key here
-    // TODO: move to a Lambda proxy — never hardcode API keys in the app binary
-    static let anthropicApiKey = ""
-
     static func generateIdeas(context: GiftContext, userProducts: [Product]) async throws -> GiftAIResult {
-        guard !anthropicApiKey.isEmpty else {
-            throw NSError(domain: "GiftAI", code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "Anthropic API key not configured"])
-        }
-        let url = URL(string: "https://api.anthropic.com/v1/messages")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-        request.setValue(anthropicApiKey, forHTTPHeaderField: "x-api-key")
-        request.timeoutInterval = 30
-
-        let body: [String: Any] = [
-            "model": "claude-haiku-4-5-20251001",
-            "max_tokens": 1500,
-            "messages": [["role": "user", "content": buildPrompt(context: context, userProducts: userProducts)]]
-        ]
-        request.httpBody = try JSONSerialization.data(withJSONObject: body)
-
-        let (data, _) = try await URLSession.shared.data(for: request)
-        if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-           let content = json["content"] as? [[String: Any]],
-           let text = content.first?["text"] as? String {
-            return parseResult(from: text, context: context)
-        }
-        throw NSError(domain: "GiftAI", code: 2,
-            userInfo: [NSLocalizedDescriptionKey: "Could not parse AI response"])
-    }
-
-    private static func buildPrompt(context: GiftContext, userProducts: [Product]) -> String {
-        var lines: [String] = ["You are a thoughtful gift advisor. Suggest 6–8 specific, creative gift ideas.\n"]
-
+        let productNames = userProducts.prefix(10).compactMap { $0.name }
+        let recipientType: String
         switch context.recipientType {
-        case .myself:
-            lines.append("Recipient: the user themselves")
-        case .anotherUser:
-            if let u = context.selectedUser {
-                lines.append("Recipient: @\(u.username)\(u.name.map { " (\($0))" } ?? "")")
-            }
-        case .external:
-            if !context.recipientName.isEmpty { lines.append("Recipient: \(context.recipientName)") }
+        case .myself:      recipientType = "myself"
+        case .anotherUser: recipientType = "anotherUser"
+        case .external:    recipientType = "external"
         }
-        if !context.relationship.isEmpty { lines.append("Relationship: \(context.relationship)") }
-        if !context.occasion.isEmpty     { lines.append("Occasion: \(context.occasion)") }
-        if !context.interests.isEmpty    { lines.append("Interests: \(context.interests.joined(separator: ", "))") }
-        if !context.additionalInfo.isEmpty { lines.append("Additional context: \(context.additionalInfo)") }
-        if !context.budget.isEmpty       { lines.append("Budget: \(context.budget)") }
-        if !userProducts.isEmpty {
-            let names = userProducts.prefix(10).map { $0.name }.joined(separator: ", ")
-            lines.append("Items they've saved on their shopping wishlist: \(names)")
-        }
-        let budgetInstruction = context.budget.isEmpty
-            ? ""
-            : "\nCRITICAL: Every single suggestion MUST be priced within \(context.budget). Do not suggest anything outside this budget range. The price_range field must fall within \(context.budget)."
-        lines.append(budgetInstruction)
-        let includeSummary = context.recipientType == .anotherUser
-        lines.append("""
 
-Return ONLY a valid JSON object, no markdown, no explanation:
-{
-  \(includeSummary ? "\"style_summary\": \"2-3 sentence paragraph about their personal style based on their saved items — mention specific brands, aesthetics, price point. e.g. They love clothes ranging from everyday fashion to cozy Eberjey pajamas. Brands they gravitate toward vary from Missoni to Jimmy Choo — veering on the side of luxury. Here are suggestions that keep the same chic style.\"," : "")
-  "ideas": [
-    {"name":"Specific Product Name","reason":"One-line why this fits them","price_range":"$X–$Y","search_query":"specific search term","shop_url":"https://www.amazon.com/s?k=specific+search+term"}
-  ]
-}
-
-Make names specific (e.g. "Lululemon Align Leggings" not "leggings"). Focus on emotional resonance. Use real Amazon search URLs.
-""")
-        return lines.joined(separator: "\n")
-    }
-
-    private static func parseResult(from text: String, context: GiftContext) -> GiftAIResult {
-        // Try to parse as object with ideas array
-        if let start = text.firstIndex(of: "{"), let end = text.lastIndex(of: "}"), start <= end {
-            let jsonStr = String(text[start...end])
-            if let data = jsonStr.data(using: .utf8),
-               let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
-                let summary = obj["style_summary"] as? String
-                var ideas: [GiftIdea] = []
-                if let ideasArr = obj["ideas"] {
-                    if let ideasData = try? JSONSerialization.data(withJSONObject: ideasArr) {
-                        ideas = (try? JSONDecoder().decode([GiftIdea].self, from: ideasData)) ?? []
-                    }
-                }
-                if !ideas.isEmpty { return GiftAIResult(ideas: ideas, styleSummary: summary) }
-            }
+        guard let response = try await API.giftRecommendations(
+            recipientType: recipientType,
+            recipientName: context.selectedUser.map { "@\($0.username)" } ?? (context.recipientName.isEmpty ? nil : context.recipientName),
+            relationship: context.relationship.isEmpty ? nil : context.relationship,
+            occasion: context.occasion.isEmpty ? nil : context.occasion,
+            interests: context.interests,
+            additionalInfo: context.additionalInfo.isEmpty ? nil : context.additionalInfo,
+            budget: context.budget.isEmpty ? nil : context.budget,
+            productNames: Array(productNames),
+            includeStyleSummary: context.recipientType == .anotherUser
+        ) else {
+            throw NSError(domain: "GiftAI", code: 2,
+                userInfo: [NSLocalizedDescriptionKey: "No response from server"])
         }
-        // Fallback: try plain array
-        if let start = text.firstIndex(of: "["), let end = text.lastIndex(of: "]"), start <= end {
-            let jsonStr = String(text[start...end])
-            let ideas = (try? JSONDecoder().decode([GiftIdea].self, from: Data(jsonStr.utf8))) ?? []
-            return GiftAIResult(ideas: ideas, styleSummary: nil)
+
+        let ideas = response.ideas.map { r in
+            GiftIdea(
+                name: r.name,
+                reason: r.reason,
+                priceRange: r.price_range,
+                searchQuery: r.search_query,
+                shopUrl: r.shop_url ?? ""
+            )
         }
-        return GiftAIResult(ideas: [], styleSummary: nil)
+        return GiftAIResult(ideas: ideas, styleSummary: response.styleSummary)
     }
 }
 

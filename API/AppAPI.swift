@@ -353,6 +353,39 @@ class API {
      }
      */
     
+    static func giftRecommendations(
+        recipientType: String,
+        recipientName: String?,
+        relationship: String?,
+        occasion: String?,
+        interests: [String],
+        additionalInfo: String?,
+        budget: String?,
+        productNames: [String],
+        includeStyleSummary: Bool
+    ) async throws -> GiftRecommendationsResponseObject? {
+        var params: [String: Any] = [
+            "recipientType": recipientType,
+            "interests": interests,
+            "productNames": productNames,
+            "includeStyleSummary": includeStyleSummary,
+        ]
+        if let v = recipientName,   !v.isEmpty { params["recipientName"]  = v }
+        if let v = relationship,    !v.isEmpty { params["relationship"]   = v }
+        if let v = occasion,        !v.isEmpty { params["occasion"]       = v }
+        if let v = additionalInfo,  !v.isEmpty { params["additionalInfo"] = v }
+        if let v = budget,          !v.isEmpty { params["budget"]         = v }
+
+        return try await APIHelpers.getEndpointPromise(
+            token: await getIdToken(),
+            endpoint: "/gift/recommendations",
+            method: HTTPMethod.post,
+            data: params,
+            GiftRecommendationsResponseObject.self,
+            overrideBaseUrl: nil
+        )
+    }
+
     private static func getHeaders() async -> HTTPHeaders {
         if let token = await getIdToken() {
             return [.authorization(bearerToken: token)]
