@@ -326,7 +326,7 @@ private struct FeedHeaderView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Discover what others are coveting")
+            Text("Take the \(Text("if").italic().foregroundColor(Color.covetGreen())) out of gift giving.")
                 .font(.system(size: 26, weight: .regular, design: .serif))
                 .padding(.top, 16)
                 .padding(.horizontal, 16)
