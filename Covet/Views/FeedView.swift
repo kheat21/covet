@@ -326,10 +326,16 @@ private struct FeedHeaderView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Take the \(Text("if").italic().foregroundColor(Color.covetGreen())) out of gift giving.")
-                .font(.system(size: 26, weight: .regular, design: .serif))
-                .padding(.top, 16)
-                .padding(.horizontal, 16)
+            (
+                Text("Take the ")
+                + Text("if").foregroundColor(Color.covetGreen())
+                + Text(" out of g")
+                + Text("if").foregroundColor(Color.covetGreen())
+                + Text("t giving")
+            )
+            .font(.system(size: 26, weight: .regular, design: .serif))
+            .padding(.top, 16)
+            .padding(.horizontal, 16)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
