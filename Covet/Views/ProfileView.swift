@@ -58,37 +58,7 @@ struct ProfileView: View {
 //                            .frame(width: 0, height: 0, alignment: Alignment.topTrailing)
 //                            .padding(0)
                         UserProfile(user: me)
-                            .navigationBarHidden(false)
-                            .navigationBarTitle(auth.currentCovetUser?.username ?? "My Profile")
-                            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-                            .navigationBarItems(
-                                leading: makeCovetC(size: 36, user: me, textSize: 12),
-                                trailing: HStack {
-                                    RefreshUserButton()
-                                    NavigationLink(isActive: self.$showManagerView, destination: {
-                                        HamburgerOptionsView(user: me)
-                                    }, label: {
-                                        if me.countPendingIncoming() > 0 && self.showTooltipIfApplicable {
-                                            Image(systemName: "line.horizontal.3")
-                                                .overlay(
-                                                    ButtonBadge(message: "!!")
-                                                )
-                                                
-                                        } else {
-                                            Image(systemName: "line.horizontal.3")
-                                                .zIndex(3)
-                                        }
-                                    })
-                                }
-//                                trailing: Button(
-//                                    action: {
-//                                        self.showManagerView = true
-//                                    }
-//                                )
-//                                {
-//                                    Image(systemName: "line.horizontal.3")
-//                                }
-                            )
+                            .navigationBarHidden(true)
                     } else {
                         ProgressView()
                     }
@@ -249,6 +219,7 @@ private struct ProfileHeaderSection: View {
     @State private var followLoading: Bool = false
     @State private var didInitFollowState: Bool = false
     @State private var showShareSheet: Bool = false
+    @State private var showManagerView: Bool = false
 
     @State private var showFollowers: Bool = false
     @State private var showFollowing: Bool = false
@@ -275,6 +246,20 @@ private struct ProfileHeaderSection: View {
                     }
                 }
                 Spacer()
+                if isOwnProfile {
+                    NavigationLink(isActive: $showManagerView, destination: {
+                        HamburgerOptionsView(user: user)
+                    }, label: {
+                        Image(systemName: "line.horizontal.3")
+                            .font(.system(size: 20))
+                            .foregroundColor(.primary)
+                            .overlay(
+                                user.countPendingIncoming() > 0
+                                    ? AnyView(ButtonBadge(message: "!!"))
+                                    : AnyView(EmptyView())
+                            )
+                    })
+                }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 16)
