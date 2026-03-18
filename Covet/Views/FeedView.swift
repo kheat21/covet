@@ -21,7 +21,7 @@ struct FeedView: View {
     @State var posts: [Post]? = nil
     @State var hiddenPostIds: Set<Int> = []
     @State var selectedCategory: String = "All"
-    @State private var columnCount: Int = 2
+    @State private var columnCount: Int = 1
     
 //    @State var openUser: CovetUser? = nil
     
