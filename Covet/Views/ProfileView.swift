@@ -114,14 +114,15 @@ struct UserProfile : View {
     @EnvironmentObject var auth: AuthService
     
     var user: CovetUser;
-    
+
     @State var showPostInDetailView: Post? = nil
     @State var showSizes: Bool = false
+    @State private var liveIsFollowing: Bool = false
 
     private var canSeeSizes: Bool {
         guard !isOwnProfile() else { return false }
         guard hasSizes else { return false }
-        return (user.current_user_is_following ?? 0) == 1
+        return liveIsFollowing
     }
 
     private var hasSizes: Bool {
@@ -132,7 +133,7 @@ struct UserProfile : View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile())
+                ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile(), liveIsFollowing: $liveIsFollowing)
 
                 if let posts = user.posts {
                     if posts.count == 0 {
@@ -213,6 +214,7 @@ struct UserProfile : View {
 private struct ProfileHeaderSection: View {
     var user: CovetUser
     var isOwnProfile: Bool
+    @Binding var liveIsFollowing: Bool
 
     @State private var isFollowing: Bool = false
     @State private var isPending: Bool = false
@@ -330,6 +332,7 @@ private struct ProfileHeaderSection: View {
             if !didInitFollowState {
                 isFollowing = (user.current_user_is_following ?? 0) == 1
                 isPending   = (user.current_user_is_pending_following ?? 0) == 1
+                liveIsFollowing = isFollowing
                 didInitFollowState = true
             }
         }
@@ -341,7 +344,7 @@ private struct ProfileHeaderSection: View {
             do {
                 if isFollowing || isPending {
                     let _ = try await API.removeRelationshipWith(userId: user.id)
-                    await MainActor.run { isFollowing = false; isPending = false }
+                    await MainActor.run { isFollowing = false; isPending = false; liveIsFollowing = false }
                 } else {
                     let _ = try await API.setRelationship(userId: user.id, relationshipType: .Following)
                     // If user has private following, it becomes pending; otherwise approved
@@ -349,6 +352,7 @@ private struct ProfileHeaderSection: View {
                     await MainActor.run {
                         isFollowing = !nowPending
                         isPending   = nowPending
+                        liveIsFollowing = !nowPending
                     }
                 }
             } catch {
