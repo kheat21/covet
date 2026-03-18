@@ -61,42 +61,6 @@ struct HamburgerOptionsView: View {
                     ProgressView()
                 }
             }
-            Section("Developer & Debugging", content: {
-                PromptedRadioInput(
-                    prompt: "Show developer options",
-                    toggleBackgroundColor: nil,
-                    value: $showDeveloperOptions,
-                    leftEdgePadding: 0
-                )
-                if showDeveloperOptions {
-                    PromptedRadioInput(
-                        prompt: "Show alert when user refreshing",
-                        toggleBackgroundColor: Color.gray,
-                        value: $settings.showNotificationWhenRefreshingUser,
-                        leftEdgePadding: 0
-                    )
-                    PromptedRadioInput(
-                        prompt: "Show error if user refresh fails",
-                        toggleBackgroundColor: Color.gray,
-                        value: $settings.showErrorWhenUserRefreshFails,
-                        leftEdgePadding: 0
-                    )
-                    HStack {
-                        Text("App Launch Number")
-                            .font(.system(size: 16))
-                        Spacer()
-                        Text(String(UserHelpNudgeKeys.currentAppCountLaunchNumber()))
-                    }
-                    ForEach(Array(UserHelpNudgeKeys.nudges.enumerated()), id: \.offset) { index, n in
-                        HStack {
-                            Text(n)
-                                .font(.system(size: 16))
-                            Spacer()
-                            Text(String(UserHelpNudgeKeys.currentValue(nudge: n)))
-                        }
-                    }
-                }
-            })
             Section("Help", content: {
                 NavigationLink(destination: FAQView()) {
                     Label("FAQ & How-To", systemImage: "questionmark.circle")
