@@ -133,7 +133,7 @@ struct UserProfile : View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+            LazyVStack(spacing: 0) {
                 ProfileHeaderSection(user: user, isOwnProfile: isOwnProfile(), liveIsFollowing: $liveIsFollowing)
 
                 if let posts = user.posts {
