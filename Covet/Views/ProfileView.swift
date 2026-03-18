@@ -239,11 +239,6 @@ private struct ProfileHeaderSection: View {
                     Text(user.username)
                         .font(.title3)
                         .fontWeight(.semibold)
-                    if let address = user.address, !address.isEmpty {
-                        Text(address)
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
                 }
                 Spacer()
                 if isOwnProfile {
