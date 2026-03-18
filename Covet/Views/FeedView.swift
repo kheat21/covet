@@ -21,6 +21,7 @@ struct FeedView: View {
     @State var posts: [Post]? = nil
     @State var hiddenPostIds: Set<Int> = []
     @State var selectedCategory: String = "All"
+    @State private var columnCount: Int = 2
     
 //    @State var openUser: CovetUser? = nil
     
@@ -98,7 +99,7 @@ struct FeedView: View {
                             Color.clear.frame(height: 0).id("feedTop")
                             FeedHeaderView(selectedCategory: $selectedCategory, onCategoryTap: { cat in selectCategory(cat, scrollProxy: scrollProxy) })
                             LazyVGrid(
-                                columns: [GridItem(.flexible()), GridItem(.flexible())],
+                                columns: Array(repeating: GridItem(.flexible()), count: columnCount),
                                 spacing: 16
                             ) {
                                 ForEach(Array(filteredPosts.enumerated()), id: \.offset) { index, post in
@@ -147,6 +148,24 @@ struct FeedView: View {
 //        })
         .task {
             _fetchFirstPage()
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 12) {
+                    Button(action: { columnCount = 1 }) {
+                        Image(systemName: "rectangle.portrait")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(columnCount == 1 ? Color.covetGreen() : Color(UIColor.systemGray3))
+                    }
+                    .accessibilityLabel("Single column view")
+                    Button(action: { columnCount = 2 }) {
+                        Image(systemName: "square.grid.2x2")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(columnCount == 2 ? Color.covetGreen() : Color(UIColor.systemGray3))
+                    }
+                    .accessibilityLabel("Two column view")
+                }
+            }
         }
     }
 }
