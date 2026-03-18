@@ -63,7 +63,7 @@ struct UserListItem: View {
     var body: some View {
         ZStack {
             if shouldAllowClicksForUser(user: user) && !isSaving {
-                NavigationLink(destination: ProfileView(userId: user.id).navigationBarTitle(user.username)) {
+                NavigationLink(destination: ProfileView(userId: user.id)) {
                     rowContent
                 }
                 .buttonStyle(PlainButtonStyle())

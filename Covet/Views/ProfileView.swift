@@ -67,6 +67,7 @@ struct ProfileView: View {
                 
                 if let them = self.user {
                     UserProfile(user: them)
+                        .navigationBarHidden(true)
                         .toast(isPresenting: $isLoading, alert: {
                             AlertToast(displayMode: .alert, type: .loading, title: nil)
                         })
@@ -215,6 +216,7 @@ private struct ProfileHeaderSection: View {
     var user: CovetUser
     var isOwnProfile: Bool
     @Binding var liveIsFollowing: Bool
+    @Environment(\.presentationMode) var presentationMode
 
     @State private var isFollowing: Bool = false
     @State private var isPending: Bool = false
@@ -235,7 +237,15 @@ private struct ProfileHeaderSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .center, spacing: 16) {
+            HStack(alignment: .center, spacing: 8) {
+                if !isOwnProfile {
+                    Button(action: { presentationMode.wrappedValue.dismiss() }) {
+                        Image(systemName: "chevron.left")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.primary)
+                    }
+                    .accessibilityLabel("Back")
+                }
                 makeCovetC(size: 72, user: user, textSize: 24)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(user.username)
