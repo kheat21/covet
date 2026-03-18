@@ -352,15 +352,6 @@ struct UserListItem: View {
     }
     
     private func shouldAllowClicksForUser(user: CovetUser) -> Bool {
-        // Allow clicks on completely public profiles
-        if user.privateForFollowing == 0 && user.privateForFriending == 0 {
-            return true
-        }
-        
-        // Otherwise, check if we have a relationship with them
-        if user.allRelationshipInformationPresent() {
-            return user.currentUserFollows() || user.currentUserFriend()
-        }
-        return false
+        return true
     }
 }
