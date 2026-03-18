@@ -243,6 +243,10 @@ private struct FeedItemCard: View {
                 )
                 .cornerRadius(6)
                 .clipped()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.covetGreen(), lineWidth: 2)
+                )
 
             let parsed = parseProductDisplay(name: product.name, vendor: product.vendor)
             VStack(alignment: .leading, spacing: 3) {
@@ -251,7 +255,7 @@ private struct FeedItemCard: View {
                         .font(.caption)
                         .foregroundColor(.gray)
                         .fontWeight(.medium)
-                        .lineLimit(2)
+                        .lineLimit(1)
                 }
                 Text(parsed.cleanName)
                     .font(.subheadline)
@@ -275,7 +279,9 @@ private struct FeedItemCard: View {
             }
             .padding(.horizontal, 4)
             .padding(.bottom, 10)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .background(Color(UIColor.systemBackground))
         .cornerRadius(6)
         .overlay(
