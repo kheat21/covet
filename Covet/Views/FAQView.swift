@@ -49,10 +49,6 @@ struct FAQView: View {
                 FAQSectionHeader(title: "Understanding the Buttons")
 
                 FAQItem(
-                    question: "What is the green C. avatar?",
-                    answer: "The green C. circle with your initials is your covet. identity — your profile icon throughout the app. You'll see your C. and friends' C. avatars on items in the feed, showing who posted what at a glance."
-                )
-                FAQItem(
                     question: "What does the ✓ checkbox mean? (Coveted)",
                     answer: "The checkbox marks an item as \"coveted\" — meaning you've actually purchased or received it. Only you can see and toggle your own checkbox.\n\nWhen browsing your feed, items with a ✓ checkmark in the top corner belong to posts the owner has marked as coveted. It's a subtle signal of items that made it off the wishlist and into real life."
                 )
@@ -72,11 +68,6 @@ struct FAQView: View {
                     question: "What does the 🚩 flag button do?",
                     answer: "The flag reports a post that violates community guidelines. Use it if you see spam, inappropriate content, or anything that shouldn't be on covet."
                 )
-                FAQItem(
-                    question: "What do the feed category filters do?",
-                    answer: "The pill buttons at the top of the feed (All, Clothing, Shoes, Accessories, Home, Beauty, Tech) filter posts by product category. Tap any category to see only items in that type. Tap \"All\" to see everything."
-                )
-
                 // Gifting section
                 FAQSectionHeader(title: "AI Gifting")
 
