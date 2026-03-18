@@ -93,10 +93,10 @@ struct FeedView: View {
                     }
                     VStack(spacing: 0) {
                         ScrollViewReader { scrollProxy in
-                        FeedHeaderView(selectedCategory: $selectedCategory, onCategoryTap: { cat in selectCategory(cat, scrollProxy: scrollProxy) })
                     ScrollView {
                         LazyVStack(spacing: 0) {
                             Color.clear.frame(height: 0).id("feedTop")
+                            FeedHeaderView(selectedCategory: $selectedCategory, onCategoryTap: { cat in selectCategory(cat, scrollProxy: scrollProxy) })
                             LazyVGrid(
                                 columns: [GridItem(.flexible()), GridItem(.flexible())],
                                 spacing: 16
@@ -276,9 +276,11 @@ private struct FeedItemCard: View {
                         .font(.subheadline)
                         .foregroundColor(.primary)
                 }
+                Spacer(minLength: 0)
             }
             .padding(.horizontal, 4)
-            .padding(.bottom, 10)
+            .padding(.vertical, 8)
+            .frame(height: 82, alignment: .topLeading)
         }
         .background(Color(UIColor.systemBackground))
         .cornerRadius(6)
