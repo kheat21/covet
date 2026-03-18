@@ -264,7 +264,7 @@ private struct FeedItemCard: View {
                 .clipped()
                 .overlay(
                     RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color.covetGreen(), lineWidth: 4)
+                        .strokeBorder(Color.covetGreen(), lineWidth: 4)
                 )
 
             let parsed = parseProductDisplay(name: product.name, vendor: product.vendor)
