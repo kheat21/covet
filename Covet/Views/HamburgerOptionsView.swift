@@ -97,6 +97,11 @@ struct HamburgerOptionsView: View {
                     }
                 }
             })
+            Section("Help", content: {
+                NavigationLink(destination: FAQView()) {
+                    Label("FAQ & How-To", systemImage: "questionmark.circle")
+                }
+            })
             Section("Compliance", content: {
                 NavigationLink(destination: {
                     OpenSourceSoftware()
