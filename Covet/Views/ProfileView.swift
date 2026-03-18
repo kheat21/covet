@@ -247,10 +247,19 @@ private struct ProfileHeaderSection: View {
                     .accessibilityLabel("Back")
                 }
                 makeCovetC(size: 72, user: user, textSize: 24)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(user.username)
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                VStack(alignment: .leading, spacing: 2) {
+                    if let name = user.name, !name.isEmpty {
+                        Text(name)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        Text("@\(user.username)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    } else {
+                        Text(user.username)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                    }
                 }
                 Spacer()
                 if isOwnProfile {
