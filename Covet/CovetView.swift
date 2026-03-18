@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct CovetView : View {
-    
+
     @EnvironmentObject var auth: AuthService;
     @State var showCreatePostView = false
-    
-//    @State private var shouldShowSavingToast: Bool = false
-//    @State var shouldShowErrorToast: Bool = false
-//    @State var errorToastContents: String = ""
-    
+    @State private var selectedTab: Int = 0
+
     var body : some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             NavigationView {
                 FeedView()
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
-                            Image("Covet_Logo_BW")
+                            Image("Covet_Logo_Colored")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 20)
@@ -35,18 +32,14 @@ struct CovetView : View {
                     .foregroundColor(Color.covetGreen())
             }
             .tag(0)
-            
-            SearchView(
-//                shouldShowSavingToast: $shouldShowSavingToast,
-//                shouldShowErrorToast: $shouldShowErrorToast,
-//                errorToastContents: $errorToastContents
-            )
+
+            SearchView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                         .foregroundColor(Color.covetGreen())
                 }
                 .tag(1)
-            
+
             if shouldShowBadge(currentCovetUser: auth.currentCovetUser) {
                 ProfileView()
                 .tabItem {
@@ -74,6 +67,7 @@ struct CovetView : View {
         }
         .font(.headline)
         .accentColor(.covetGreen())
+        .onAppear { selectedTab = 0 }
         .popover(isPresented: self.$showCreatePostView, content: {
             CreatePostView()
         })

@@ -33,16 +33,16 @@ struct FAQView: View {
                 FAQSectionHeader(title: "How It Works")
 
                 FAQItem(
-                    question: "What is covet.?",
-                    answer: "covet. is a wishlist, social shopping, and gifting app. Save items you love from any website, follow friends to see what they're coveting, and use our AI gifting tool to find the perfect gift for anyone — based on their covet list."
+                    question: "What is Covet?",
+                    answer: "Covet is a wishlist, social shopping, and gifting app. Save items you love from any website, follow friends to see what they're coveting, and use our AI gifting tool to find the perfect gift for anyone — based on their Covet List."
                 )
                 FAQItem(
-                    question: "How do I add items to my covet list?",
-                    answer: "Use the covet. Safari Extension to save any product while browsing the web.\n\n1. Open Safari and go to any product page.\n2. Tap the Share button (□↑) in Safari.\n3. Scroll and tap \"covet.\" in the share sheet.\n4. The item will be added to your covet list automatically."
+                    question: "How do I add items to my Covet List?",
+                    answer: "Use the Covet Safari Extension to save any product while browsing the web.\n\n1. Open Safari and go to any product page.\n2. Tap the Share button (□↑) in Safari.\n3. Scroll and tap \"covet.\" in the share sheet.\n4. The item will be added to your Covet List automatically."
                 )
                 FAQItem(
-                    question: "Who can see my covet list?",
-                    answer: "Anyone who follows you can see your covet list — that's the magic. Friends and family can browse what you actually want, making gifting effortless. You control who follows you in Privacy settings."
+                    question: "Who can see my Covet List?",
+                    answer: "Anyone who follows you can see your Covet List — that's the magic. Friends and family can browse what you actually want, making gifting effortless. You control who follows you in Privacy settings."
                 )
 
                 // Understanding the Buttons section
@@ -54,7 +54,7 @@ struct FAQView: View {
                 )
                 FAQItem(
                     question: "What is Recovet (the C. button on a post)?",
-                    answer: "Recoveting lets you save someone else's item to your own covet list. Think of it like a repost — you saw something on a friend's list and want it too.\n\nTap the C. button on any post to recovet it. It will appear on your covet list and link back to the original product."
+                    answer: "Recoveting lets you save someone else's item to your own Covet List. Think of it like a repost — you saw something on a friend's list and want it too.\n\nTap the C. button on any post to recovet it. It will appear on your Covet List and link back to the original product."
                 )
                 FAQItem(
                     question: "What does the ♡ heart button do?",
@@ -66,25 +66,25 @@ struct FAQView: View {
                 )
                 FAQItem(
                     question: "What does the 🚩 flag button do?",
-                    answer: "The flag reports a post that violates community guidelines. Use it if you see spam, inappropriate content, or anything that shouldn't be on covet."
+                    answer: "The flag reports a post that violates community guidelines. Use it if you see spam, inappropriate content, or anything that shouldn't be on Covet."
                 )
                 // Gifting section
                 FAQSectionHeader(title: "AI Gifting")
 
                 FAQItem(
                     question: "How does AI gift recommendations work?",
-                    answer: "Our gifting tool uses AI to suggest personalized gift ideas. Choose who you're gifting:\n\n• For Myself — based on items on your own covet list\n• For Another User — analyzes their covet list for style cues\n• For Someone Not On The App — describe them and we'll figure it out\n\nThen select their interests, occasion, and budget. The AI generates specific, thoughtful gift ideas with a price range and a link to shop."
+                    answer: "Our gifting tool uses AI to suggest personalized gift ideas. Choose who you're gifting:\n\n• For Myself — based on items on your own Covet List\n• For Another User — analyzes their Covet List for style cues\n• For Someone Not On The App — describe them and we'll figure it out\n\nThen select their interests, occasion, and budget. The AI generates specific, thoughtful gift ideas with a price range and a link to shop."
                 )
                 FAQItem(
                     question: "Can the gift recipient see that I'm shopping for them?",
-                    answer: "No. When you use the gifting tool to browse someone's covet list, they have no idea. The coveted ✓ checkbox is only visible to the item's owner — so your gift research stays completely private."
+                    answer: "No. When you use the gifting tool to browse someone's Covet List, they have no idea. The coveted ✓ checkbox is only visible to the item's owner — so your gift research stays completely private."
                 )
 
                 // Managing Your List section
                 FAQSectionHeader(title: "Managing Your List")
 
                 FAQItem(
-                    question: "How do I remove an item from my covet list?",
+                    question: "How do I remove an item from my Covet List?",
                     answer: "Open the item by tapping it from your profile, then tap the 🗑 trash icon in the top action bar. You'll be asked to confirm before it's deleted."
                 )
                 FAQItem(
@@ -109,7 +109,7 @@ struct FAQView: View {
                 )
                 FAQItem(
                     question: "The Safari Extension isn't working. Help!",
-                    answer: "Make sure the covet. extension is enabled:\n\n1. Open iPhone Settings → Safari → Extensions.\n2. Make sure covet. is toggled on.\n3. Also ensure covet. has permission to read page content (required to pull product info).\n\nIf it still doesn't work, try force-quitting and reopening Safari."
+                    answer: "Make sure the Covet extension is enabled:\n\n1. Open iPhone Settings → Safari → Extensions.\n2. Make sure Covet is toggled on.\n3. Also ensure Covet has permission to read page content (required to pull product info).\n\nIf it still doesn't work, try force-quitting and reopening Safari."
                 )
                 FAQItem(
                     question: "I can't log in. What should I do?",
