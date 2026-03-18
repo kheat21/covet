@@ -26,7 +26,7 @@ struct CovetView : View {
                             Image("Covet_Logo_BW")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: nil, height: 20, alignment: Alignment.center)
+                                .frame(width: 80, height: 20)
                         }
                     }
             }

@@ -279,9 +279,7 @@ private struct FeedItemCard: View {
             }
             .padding(.horizontal, 4)
             .padding(.bottom, 10)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .background(Color(UIColor.systemBackground))
         .cornerRadius(6)
         .overlay(
