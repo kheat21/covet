@@ -24,7 +24,7 @@ struct ImageGrid: View {
     var body: some View {
         let posts = sortedImages
         LazyVGrid(columns: gridItems, spacing: 0) {
-            ForEach(Array(posts.enumerated()), id: \.offset) { index, element in
+            ForEach(Array(posts.enumerated()), id: \.element.id) { index, element in
                 ImageGridCell(
                     post: element,
                     index: index,
