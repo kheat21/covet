@@ -461,11 +461,14 @@ private struct FollowersFollowingListView: View {
     let users: [CovetUser]
 
     var body: some View {
-        List(users) { user in
-            UserListItem(user: user, showRelationshipToUser: true, showPendingOptions: false)
-                .listRowInsets(EdgeInsets())
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(users) { user in
+                    UserListItem(user: user, showRelationshipToUser: true, showPendingOptions: false)
+                    Divider()
+                }
+            }
         }
-        .listStyle(.plain)
         .navigationBarTitle(title, displayMode: .inline)
     }
 }
