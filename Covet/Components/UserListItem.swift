@@ -60,16 +60,22 @@ struct UserListItem: View {
         .background { Color.white }
     }
 
+    @State private var navigateToProfile = false
+
     var body: some View {
         ZStack {
-            if shouldAllowClicksForUser(user: user) && !isSaving {
-                NavigationLink(destination: ProfileView(userId: user.id)) {
-                    rowContent
+            NavigationLink(isActive: $navigateToProfile, destination: {
+                ProfileView(userId: user.id)
+            }, label: { EmptyView() })
+            .opacity(0)
+
+            rowContent
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    if !isSaving {
+                        navigateToProfile = true
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
-            } else {
-                rowContent
-            }
         }
         .onLongPressGesture(perform: {
             if !self.isSaving {
