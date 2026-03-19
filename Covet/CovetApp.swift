@@ -18,6 +18,7 @@ struct CovetApp: App {
 
     @ObservedObject var auth: AuthService = AuthService()
     @ObservedObject var settings: LocalSettingsService = LocalSettingsService()
+    @StateObject var deepLinkRouter: DeepLinkRouter = DeepLinkRouter()
     
     public init() {
         FirebaseApp.configure()
@@ -31,13 +32,16 @@ struct CovetApp: App {
                 ContentView()
                     .environmentObject(auth)
                     .environmentObject(settings)
+                    .environmentObject(deepLinkRouter)
                     .onAppear {
                         UserHelpNudgeKeys.setup()
                     }
+                    .onOpenURL { url in deepLinkRouter.handle(url: url) }
             } else {
                 LoginView()
                     .environmentObject(auth)
                     .environmentObject(settings)
+                    .onOpenURL { url in deepLinkRouter.handle(url: url) }
             }
         }
     }

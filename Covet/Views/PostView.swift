@@ -172,8 +172,11 @@ struct PostView: View {
             AlertToast(displayMode: .alert, type: .complete(Color.green), title: "Reported", subTitle: nil, style: nil)
         })
         .sheet(isPresented: $showingShareActionSheet) {
-            if let link = self.post.products?.first?.link {
-                PostShareSheet(activityItems: [link])
+            let deepLink = URL(string: "covet://post/\(post.user?.id ?? 0)/\(post.id)")!
+            if let link = self.post.products?.first?.link, let productURL = URL(string: link) {
+                PostShareSheet(activityItems: ["Check out this item on Covet!", deepLink, productURL])
+            } else {
+                PostShareSheet(activityItems: ["Check out this item on Covet!", deepLink])
             }
         }
         .sheet(isPresented: $showingRecovetActionSheet, onDismiss: nil, content: {

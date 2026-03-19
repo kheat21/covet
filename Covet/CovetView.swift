@@ -7,11 +7,22 @@
 
 import SwiftUI
 
+// Identifiable wrapper for a user ID used in deep link sheets
+private struct DeepLinkUserID: Identifiable {
+    let id: Int
+}
+
 struct CovetView : View {
 
-    @EnvironmentObject var auth: AuthService;
+    @EnvironmentObject var auth: AuthService
+    @EnvironmentObject var deepLinkRouter: DeepLinkRouter
     @State var showCreatePostView = false
     @State private var selectedTab: Int = 0
+
+    // Deep link navigation state
+    @State private var deepLinkProfileTarget: DeepLinkUserID? = nil
+    @State private var deepLinkPostTarget: Post? = nil
+    @State private var isResolvingDeepLink: Bool = false
 
     var body : some View {
         TabView(selection: $selectedTab) {
@@ -71,6 +82,39 @@ struct CovetView : View {
         .popover(isPresented: self.$showCreatePostView, content: {
             CreatePostView()
         })
+        .onChange(of: deepLinkRouter.pending) { dest in
+            guard let dest = dest else { return }
+            deepLinkRouter.pending = nil
+            switch dest {
+            case .profile(let userId):
+                deepLinkProfileTarget = DeepLinkUserID(id: userId)
+            case .post(let userId, let postId):
+                isResolvingDeepLink = true
+                Task {
+                    if let resp = try? await API.getUser(user_id: userId),
+                       let post = resp.user?.posts?.first(where: { $0.id == postId }) {
+                        await MainActor.run {
+                            deepLinkPostTarget = post
+                            isResolvingDeepLink = false
+                        }
+                    } else {
+                        // Couldn't find post — fall back to showing the profile
+                        await MainActor.run {
+                            deepLinkProfileTarget = DeepLinkUserID(id: userId)
+                            isResolvingDeepLink = false
+                        }
+                    }
+                }
+            }
+        }
+        .sheet(item: $deepLinkProfileTarget) { target in
+            NavigationView {
+                ProfileView(userId: target.id)
+            }
+        }
+        .sheet(item: $deepLinkPostTarget, onDismiss: { deepLinkPostTarget = nil }) { post in
+            PostView(post: post)
+        }
     }
 }
 

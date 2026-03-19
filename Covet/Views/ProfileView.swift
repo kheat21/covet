@@ -315,7 +315,10 @@ private struct ProfileHeaderSection: View {
                             .cornerRadius(8)
                     }
                     .sheet(isPresented: $showShareSheet) {
-                        PostShareSheet(activityItems: ["Check out my Covet List: @\(user.username)"])
+                        PostShareSheet(activityItems: [
+                            "Check out \(user.name ?? user.username)'s Covet List on Covet!",
+                            URL(string: "covet://profile/\(user.id)")!
+                        ])
                     }
                 }
                 .padding(.horizontal, 16)
