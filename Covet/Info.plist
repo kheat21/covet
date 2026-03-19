@@ -22,9 +22,13 @@
 				<string>com.googleusercontent.apps.190048349319-7sub5l5jte6tnnsm69lpe7jrp5nnbpfv</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.covet.app</string>
+		</dict>
 	</array>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

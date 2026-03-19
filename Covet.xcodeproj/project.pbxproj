@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0821A4182F6A31EE0046666B /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0821A4172F6A31EE0046666B /* FAQView.swift */; };
 		086C93CF2F5C9F7F00D976ED /* ProductNameParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93CE2F5C9F7F00D976ED /* ProductNameParser.swift */; };
 		086C93F82F5CBCC900D976ED /* GiftFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93F72F5CBCC900D976ED /* GiftFlowView.swift */; };
 		086C93FA2F5CBE9600D976ED /* GiftingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086C93F92F5CBE9600D976ED /* GiftingView.swift */; };
@@ -168,6 +169,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0821A4172F6A31EE0046666B /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
+		0821A4192F6A3ADB0046666B /* Screenshot 2026-03-17 at 9.43.52 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screenshot 2026-03-17 at 9.43.52 PM.png"; path = "../../../../var/folders/s6/s2m3vl5s5fn228t61015c24m0000gn/T/TemporaryItems/NSIRD_screencaptureui_I8ExOf/Screenshot 2026-03-17 at 9.43.52 PM.png"; sourceTree = "<group>"; };
 		086C93CE2F5C9F7F00D976ED /* ProductNameParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNameParser.swift; sourceTree = "<group>"; };
 		086C93F72F5CBCC900D976ED /* GiftFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftFlowView.swift; sourceTree = "<group>"; };
 		086C93F92F5CBE9600D976ED /* GiftingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingView.swift; sourceTree = "<group>"; };
@@ -334,6 +337,7 @@
 		97B5CB9117FFAC04C1118AF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0821A4192F6A3ADB0046666B /* Screenshot 2026-03-17 at 9.43.52 PM.png */,
 				77D83FB7AC347C284AD4B85F /* Pods_Covet.framework */,
 				D82594A246CE10C3AC3324D9 /* Pods_CovetButton.framework */,
 			);
@@ -482,6 +486,7 @@
 		EB453071274BF9C3004395CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0821A4172F6A31EE0046666B /* FAQView.swift */,
 				086C93F92F5CBE9600D976ED /* GiftingView.swift */,
 				086C93F72F5CBCC900D976ED /* GiftFlowView.swift */,
 				F82E38BF2F3121510070154F /* SimpleLoginView 2.swift */,
@@ -882,6 +887,7 @@
 				A4B1775F27A4949C00E784F6 /* Defaults.swift in Sources */,
 				A4125A5527A9EDEE00D6CF34 /* CovetUserResponseObject.swift in Sources */,
 				EB35F39D277D0DF300C7BA92 /* String.swift in Sources */,
+				0821A4182F6A31EE0046666B /* FAQView.swift in Sources */,
 				F84434202F27E96A0067F9BC /* KeychainService.swift in Sources */,
 				A44DA6E6279740CB00A9422E /* Strings.swift in Sources */,
 				F82E38C02F3121510070154F /* SimpleLoginView 2.swift in Sources */,
@@ -1197,6 +1203,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Covet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = covet.;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1234,6 +1241,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Covet/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = covet.;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
