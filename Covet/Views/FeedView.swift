@@ -331,7 +331,7 @@ private struct FeedHeaderView: View {
                 + Text("if").foregroundColor(Color.covetGreen())
                 + Text(" out of g")
                 + Text("if").foregroundColor(Color.covetGreen())
-                + Text("ting")
+                + Text("t")
             )
             .font(.system(size: 20, weight: .regular, design: .serif))
             .padding(.top, 16)
