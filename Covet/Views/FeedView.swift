@@ -122,6 +122,7 @@ struct FeedView: View {
                                     }
                                 }
                             }
+                            .id(selectedCategory)
                             .padding(.horizontal, 16)
                             .padding(.top, 8)
                             if isFetching && !isInitialLoad {
