@@ -239,19 +239,6 @@ struct PostView: View {
         }
     }
     
-    private func doPostReport() {
-        if self.isBusy() { return }
-        Task.detached {
-            await self.setUIForReporting(reporting: true, error: nil)
-            let reported = await API.report(post_id: self.post.id)
-            if reported {
-                await self.setUIForReporting(reporting: false, error: false)
-            } else {
-                await self.setUIForReporting(reporting: false, error: true)
-            }
-        }
-    }
-    
     private func toggleCoveted() {
         Task.detached {
             await MainActor.run { self.isTogglingCoveted = true }
@@ -305,17 +292,6 @@ struct PostView: View {
         self.isDeleting = deleting
         if let e = error {
             self.errorDeleting = e
-        }
-    }
-    
-    @MainActor
-    private func setUIForReporting(reporting: Bool, error: Bool?) {
-        self.isReporting = reporting
-        if let e = error {
-            self.errorReporting = e
-            if !e {
-                self.showReportSuccessfulToast = true
-            }
         }
     }
     
