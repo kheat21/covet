@@ -72,6 +72,7 @@ private struct GiftOptionCard: View {
                 Image(systemName: icon)
                     .font(.system(size: 22))
                     .foregroundColor(.covetGreen())
+                    .accessibilityHidden(true)
             }
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
@@ -86,6 +87,7 @@ private struct GiftOptionCard: View {
             Image(systemName: "chevron.right")
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(Color(UIColor.systemGray3))
+                .accessibilityHidden(true)
         }
         .padding(16)
         .background(Color(UIColor.systemBackground))

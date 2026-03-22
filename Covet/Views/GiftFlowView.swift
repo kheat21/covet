@@ -166,11 +166,11 @@ struct GiftRecipientSetupView: View {
         }
         .navigationTitle(recipientType == .myself ? "For Yourself" : "Who is it for?")
         .navigationBarTitleDisplayMode(.inline)
-        .background(
+        .background {
             NavigationLink(destination: GiftInterestsView(context: context), isActive: $navigateNext) {
                 EmptyView()
-            }
-        )
+            }.hidden()
+        }
         .onChange(of: userSearchQuery) { query in
             guard query.count >= 2 else {
                 apiSearchResults = []
@@ -413,11 +413,11 @@ struct GiftInterestsView: View {
         }
         .navigationTitle(context.recipientType == .myself ? "Your Interests" : "Their Interests")
         .navigationBarTitleDisplayMode(.inline)
-        .background(
+        .background {
             NavigationLink(destination: GiftBudgetView(context: nextContext), isActive: $navigateNext) {
                 EmptyView()
-            }
-        )
+            }.hidden()
+        }
         .task { await loadRecipientProducts() }
     }
 
@@ -548,17 +548,20 @@ struct GiftBudgetView: View {
                         .padding(.vertical, 16)
                         .background(Color.covetGreen())
                         .foregroundColor(.white)
+                        .cornerRadius(12)
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
             }
         }
         .navigationTitle("Budget")
         .navigationBarTitleDisplayMode(.inline)
-        .background(
+        .background {
             NavigationLink(
                 destination: GiftResultsView(context: finalContext),
                 isActive: $navigateToResults
-            ) { EmptyView() }
-        )
+            ) { EmptyView() }.hidden()
+        }
         .task { await loadProducts() }
     }
 
@@ -846,6 +849,7 @@ private struct GiftIdeaCard: View {
             )
         }
         .buttonStyle(PlainButtonStyle())
+        .accessibilityLabel("Shop \(idea.name), \(idea.priceRange)")
     }
 }
 
@@ -915,11 +919,11 @@ struct GiftNewDirectionView: View {
         }
         .navigationTitle("New Direction")
         .navigationBarTitleDisplayMode(.inline)
-        .background(
+        .background {
             NavigationLink(destination: GiftResultsView(context: newContext), isActive: $navigateToResults) {
                 EmptyView()
-            }
-        )
+            }.hidden()
+        }
     }
 }
 

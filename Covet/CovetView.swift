@@ -77,13 +77,21 @@ struct CovetView : View {
                 }
                 .tag(1)
 
+            NavigationView {
+                GiftingView()
+            }
+            .tabItem {
+                Label("Gifting", systemImage: "shippingbox")
+            }
+            .tag(2)
+
             if shouldShowBadge(currentCovetUser: auth.currentCovetUser) {
                 ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.fill")
                         .foregroundColor(Color.covetGreen())
                 }
-                .tag(2)
+                .tag(3)
                 .badge(badgeContents(currentCovetUser: auth.currentCovetUser))
             } else {
                 ProfileView()
@@ -91,16 +99,8 @@ struct CovetView : View {
                     Label("Profile", systemImage: "person.fill")
                         .foregroundColor(Color.covetGreen())
                 }
-                .tag(2)
+                .tag(3)
             }
-
-            NavigationView {
-                GiftingView()
-            }
-            .tabItem {
-                Label("Gifting", systemImage: "shippingbox")
-            }
-            .tag(3)
         }
         .font(.headline)
         .accentColor(.covetGreen())

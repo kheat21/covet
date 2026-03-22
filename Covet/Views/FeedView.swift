@@ -72,6 +72,7 @@ struct FeedView: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
+            Color.covetGreen().opacity(0.05).ignoresSafeArea()
             // If the user just made their account, there will be no posts available AND
             // there will be no completed friend or follower requests yet
             if let user = auth.currentCovetUser, let posts = self.posts {
@@ -102,7 +103,7 @@ struct FeedView: View {
                                 columns: Array(repeating: GridItem(.flexible()), count: columnCount),
                                 spacing: 16
                             ) {
-                                ForEach(Array(filteredPosts.enumerated()), id: \.offset) { index, post in
+                                ForEach(filteredPosts, id: \.id) { post in
                                     if let product = getProductForPost(post: post), let postUser = post.user {
                                         NavigationLink(destination: PostView(post: post)) {
                                             FeedItemCard(
@@ -157,12 +158,14 @@ struct FeedView: View {
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(columnCount == 1 ? Color.covetGreen() : Color(UIColor.systemGray3))
                     }
+                    .buttonStyle(.plain)
                     .accessibilityLabel("Single column view")
                     Button(action: { columnCount = 2 }) {
                         Image(systemName: "square.grid.2x2")
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(columnCount == 2 ? Color.covetGreen() : Color(UIColor.systemGray3))
                     }
+                    .buttonStyle(.plain)
                     .accessibilityLabel("Two column view")
                 }
             }
@@ -218,8 +221,8 @@ private struct FeedItemCard: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Color.clear
+        VStack(alignment: .leading, spacing: 0) {
+            Color.white
                 .aspectRatio(0.8, contentMode: .fit)
                 .overlay(
                     KFImage(URL(string: activeImageURL))
@@ -247,66 +250,25 @@ private struct FeedItemCard: View {
                 )
                 .overlay(
                     Group {
-                        if isOnSale {
-                            Text("SALE")
-                                .font(.system(size: 9, weight: .bold))
+                        if let priceStr = formatPrice(displayPrice) {
+                            Text(priceStr)
+                                .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(.white)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 3)
-                                .background(Color.covetGreen())
-                                .cornerRadius(4)
-                                .padding(6)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 5)
+                                .background(Color.black.opacity(0.45))
+                                .clipShape(Capsule())
+                                .padding(8)
                         }
                     },
                     alignment: .topTrailing
                 )
-                .cornerRadius(6)
+                .cornerRadius(10)
                 .clipped()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .strokeBorder(Color.covetGreen(), lineWidth: 4)
-                )
 
-            let parsed = parseProductDisplay(name: product.name, vendor: product.vendor)
-            VStack(alignment: .leading, spacing: 3) {
-                if let brand = parsed.brand, !brand.isEmpty {
-                    Text(brand.uppercased())
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .fontWeight(.medium)
-                        .lineLimit(1)
-                }
-                Text(parsed.cleanName)
-                    .font(.subheadline)
-                    .lineLimit(2)
-                    .foregroundColor(.primary)
-                if isOnSale, let original = product.price, let saleStr = formatPrice(scrapedPrice) {
-                    HStack(spacing: 4) {
-                        Text(formatPrice(original) ?? "")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                            .strikethrough()
-                        Text(saleStr)
-                            .font(.subheadline)
-                            .foregroundColor(.red)
-                    }
-                } else if let priceStr = formatPrice(displayPrice) {
-                    Text(priceStr)
-                        .font(.subheadline)
-                        .foregroundColor(.primary)
-                }
-                Spacer(minLength: 0)
-            }
-            .padding(.horizontal, 4)
-            .padding(.vertical, 8)
-            .frame(height: 82, alignment: .topLeading)
         }
-        .background(Color(UIColor.systemBackground))
-        .cornerRadius(6)
-        .overlay(
-            RoundedRectangle(cornerRadius: 6)
-                .stroke(Color(UIColor.systemGray5), lineWidth: 1)
-        )
+        .cornerRadius(10)
+        .shadow(color: Color.black.opacity(0.06), radius: 6, x: 0, y: 2)
         .task {
             guard (product.price == nil || product.price == 0), !product.link.isEmpty else { return }
             if let scraped = await scrapeProduct(urlString: product.link),
@@ -346,7 +308,7 @@ private struct FeedHeaderView: View {
                                 .fontWeight(.medium)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
-                                .background(selectedCategory == category ? Color.covetGreen() : Color(UIColor.systemGray6))
+                                .background(selectedCategory == category ? Color.covetGreen() : Color.white)
                                 .foregroundColor(selectedCategory == category ? .white : .primary)
                                 .cornerRadius(20)
                         }

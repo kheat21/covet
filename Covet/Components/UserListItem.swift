@@ -12,7 +12,6 @@ struct UserListItem: View {
     
     @EnvironmentObject var auth: AuthService
         
-    @State var backgroundColor: Color = Color.white;
     @State var showingActionDialog: Bool = false;
     
     @State var user: CovetUser;
@@ -57,7 +56,7 @@ struct UserListItem: View {
             }
             Spacer().frame(width: 16)
         }
-        .background { Color.white }
+        .background { Color(UIColor.systemBackground) }
     }
 
     @State private var navigateToProfile = false
