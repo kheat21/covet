@@ -96,7 +96,7 @@ struct FeedView: View {
                     VStack(spacing: 0) {
                         ScrollViewReader { scrollProxy in
                     ScrollView {
-                        LazyVStack(spacing: 0) {
+                        VStack(spacing: 0) {
                             Color.clear.frame(height: 0).id("feedTop")
                             FeedHeaderView(selectedCategory: $selectedCategory, onCategoryTap: { cat in selectCategory(cat, scrollProxy: scrollProxy) })
                             LazyVGrid(
